@@ -16,7 +16,8 @@ WHEN UPDATING PRODUCTION SERVER:
 
 THIS COMMIT:
 
-Created Rails code for project.
+Added svn:externals dependency to the cq_rails installation of the
+acts_as_state_machine plugin.
 
 	
 ======================================================================
@@ -32,4 +33,19 @@ TODO:
 ----[ Tuesday, December 16, 2008 ]------------------------------------
 
 @ Created Rails project, imported into Subversion.
+
+@ I want to share some code between the ci_rails and cq_rails
+projects.
+
+I looked at the documentation for svn:externals:
+
+  http://svnbook.red-bean.com/en/1.5/svn.advanced.externals.html
+
+and then issued the following command:
+
+  svn propedit svn:externals vendor/plugins
+
+which opened up a text editor, where I added this line:
+
+  acts_as_state_machine https://craigharman.net/svn/cq_rails/vendor/plugins/acts_as_state_machine
 
