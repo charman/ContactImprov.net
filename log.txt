@@ -16,7 +16,7 @@ WHEN UPDATING PRODUCTION SERVER:
 
 THIS COMMIT:
 
-Copied/adapted the UserAccountRequest class.
+Copied/adapted the Company and Studio classes.
 
 
 ======================================================================
@@ -28,13 +28,18 @@ TODO:
     - list(*)
     - account requests
 
-@ Functional tests
-  ...
+@ Verify that AJAX location forms still work
+
+@ Calendar input
 
 @ Copy/adapt:
   - models
     - Entry
     - Entity
+
+@ Create
+  - Jam model
+  - Event model
 
 @ Prune UserMailer model
 

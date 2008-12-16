@@ -1,3 +1,21 @@
+CREATE TABLE `ci_companies` (
+  `company_id` int(11) NOT NULL auto_increment,
+  `version` int(11) default NULL,
+  `name` varchar(255) default NULL,
+  `created_at` datetime default NULL,
+  `updated_at` datetime default NULL,
+  PRIMARY KEY  (`company_id`)
+) ENGINE=MyISAM AUTO_INCREMENT=15000 DEFAULT CHARSET=utf8;
+
+CREATE TABLE `ci_company_versions` (
+  `company_version_id` int(11) NOT NULL auto_increment,
+  `company_id` int(11) default NULL,
+  `version` int(11) default NULL,
+  `name` varchar(255) default NULL,
+  `updated_at` datetime default NULL,
+  PRIMARY KEY  (`company_version_id`)
+) ENGINE=MyISAM AUTO_INCREMENT=15000 DEFAULT CHARSET=utf8;
+
 CREATE TABLE `ci_country_names` (
   `country_name_id` int(11) NOT NULL auto_increment,
   `iso_3166_1_a2_code` char(2) default NULL,
@@ -124,6 +142,24 @@ CREATE TABLE `ci_schema_migrations` (
   UNIQUE KEY `unique_schema_migrations` (`version`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+CREATE TABLE `ci_studio_versions` (
+  `studio_version_id` int(11) NOT NULL auto_increment,
+  `studio_id` int(11) default NULL,
+  `version` int(11) default NULL,
+  `name` varchar(255) default NULL,
+  `updated_at` datetime default NULL,
+  PRIMARY KEY  (`studio_version_id`)
+) ENGINE=MyISAM AUTO_INCREMENT=15000 DEFAULT CHARSET=utf8;
+
+CREATE TABLE `ci_studios` (
+  `studio_id` int(11) NOT NULL auto_increment,
+  `version` int(11) default NULL,
+  `name` varchar(255) default NULL,
+  `created_at` datetime default NULL,
+  `updated_at` datetime default NULL,
+  PRIMARY KEY  (`studio_id`)
+) ENGINE=MyISAM AUTO_INCREMENT=15000 DEFAULT CHARSET=utf8;
+
 CREATE TABLE `ci_url_versions` (
   `url_version_id` int(11) NOT NULL auto_increment,
   `url_id` int(11) default NULL,
@@ -211,3 +247,7 @@ INSERT INTO ci_schema_migrations (version) VALUES ('20081216200339');
 INSERT INTO ci_schema_migrations (version) VALUES ('20081216201129');
 
 INSERT INTO ci_schema_migrations (version) VALUES ('20081216204531');
+
+INSERT INTO ci_schema_migrations (version) VALUES ('20081216222210');
+
+INSERT INTO ci_schema_migrations (version) VALUES ('20081216222634');
