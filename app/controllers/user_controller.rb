@@ -189,7 +189,7 @@ class UserController < ApplicationController
 
     def index
       @user = self.current_user
-      cache_entries_for_countries
+#      cache_entries_for_countries
     end
 
     def password_reset_requested

@@ -40,4 +40,26 @@ class Test::Unit::TestCase
   fixtures :all
 
   # Add more helper methods to be used by all tests here...
+  @@default_location_fields = {:street_address_line_1 => 'new_address_1',
+                               :street_address_line_2 => 'new_address_2',
+                               :city_name => 'new_city',
+                               :postal_code => '12345',
+                               :us_state => {:name => 'new_region'},
+                               :country_name => {:english_name => 'Canada'}}
+  @@empty_location_fields = {:street_address_line_1 => '',
+                             :street_address_line_2 => '',
+                             :city_name => '',
+                             :postal_code => '',
+                             :us_state => {:name => ''},
+                             :country_name => {:english_name => ''}}
+end
+
+
+def verify_default_location_fields(location)
+  assert_equal 'new_address_1', location.street_address_line_1
+  assert_equal 'new_address_2', location.street_address_line_2
+  assert_equal 'new_city', location.city_name
+  assert_equal '12345', location.postal_code
+  assert_equal 'new_region', location.state_name_or_region_name
+  assert_equal 'Canada', location.english_country_name
 end

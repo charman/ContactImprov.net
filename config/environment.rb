@@ -105,7 +105,7 @@ ActionController::Base.cache_store = :mem_cache_store
 
 #  List of people who should receive email when an unhandled exception occurs
 ExceptionNotifier.exception_recipients = %w(charman@acm.org)
-ExceptionNotifier.sender_address = %("CQadmin" <app.error@contactquarterly.com>)
+ExceptionNotifier.sender_address = %("CQadmin" <app.error@contactimprov.net>)
 ExceptionNotifier.email_prefix = "[RailsError] "
 
 

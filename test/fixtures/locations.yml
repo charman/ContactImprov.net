@@ -1,0 +1,69 @@
+quentin_address:
+    location_id: 1
+    street_address_line_1: 'street_address_line_1'
+    street_address_line_2: 'street_address_line_2'
+    city_name: 'city_name'
+    region_name: nil
+    us_state_id: 1
+    postal_code: '12345'
+    country_name_id: 1
+
+aaron_address:
+    location_id: 2
+    street_address_line_1: 'street_address_line_1'
+    street_address_line_2: 'street_address_line_2'
+    city_name: 'city_name'
+    region_name: 'Ontario'
+    us_state_id: nil
+    postal_code: '12345'
+    country_name_id: 2
+
+only_used_once_address:
+    location_id: 10
+    street_address_line_1: 'street_address_line_1'
+    street_address_line_2: 'street_address_line_2'
+    city_name: 'city_name'
+    region_name: 'Ontario'
+    us_state_id: nil
+    postal_code: '12345'
+    country_name_id: 2
+
+stranger_contacts_applicant_address:
+    location_id: 400
+    street_address_line_1: 'street_address_line_1'
+    street_address_line_2: 'street_address_line_2'
+    city_name: 'city_name'
+    region_name: 'Ontario'
+    us_state_id: nil
+    postal_code: '12345'
+    country_name_id: 2
+
+user_contacts_applicant_address:
+    location_id: 401
+    street_address_line_1: 'street_address_line_1'
+    street_address_line_2: 'street_address_line_2'
+    city_name: 'city_name'
+    region_name: 'Ontario'
+    us_state_id: nil
+    postal_code: '12345'
+    country_name_id: 2
+
+duplicate1_contacts_applicant_address:
+    location_id: 402
+    street_address_line_1: 'street_address_line_1'
+    street_address_line_2: 'street_address_line_2'
+    city_name: 'city_name'
+    region_name: 'Ontario'
+    us_state_id: nil
+    postal_code: '12345'
+    country_name_id: 2
+
+duplicate2_contacts_applicant_address:
+    location_id: 403
+    street_address_line_1: 'street_address_line_1'
+    street_address_line_2: 'street_address_line_2'
+    city_name: 'city_name'
+    region_name: 'Ontario'
+    us_state_id: nil
+    postal_code: '12345'
+    country_name_id: 2

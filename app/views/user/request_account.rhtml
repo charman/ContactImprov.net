@@ -1,4 +1,4 @@
-<%= render(:partial => "shared/header", :locals => { :title => 'Request a CQ online account' } )%>
+<%= render(:partial => "shared/header", :locals => { :title => 'Request a ContactImprov.net account' } )%>
 
 <h1>Request your ContactImprov.net account</h1>
 
@@ -19,28 +19,6 @@
 	<p><%= render :partial => "shared/email",    :object => @uar_email,    
 		:locals => { :prefix => 'uar_email',  :legend => 'Your email address' } 
 	%></p>
-
-	<% fields_for :user_account_request do |uar| %>
-	<p>
-		<fieldset>
-			<legend>Your <i>Contact Quarterly</i> Subscriber Status</legend>
-			<ol>
-				<li style="clear: both; padding-bottom: 0.4em;">
-					<label><%= uar.radio_button :subscriber_status, :new_subscriber %></label>
-					I am a <b>new Subscriber</b> - I am waiting for my first issue of <i>CQ</i>
-				</li>
-				<li style="clear: both; padding-bottom: 0.4em;">
-					<label><%= uar.radio_button :subscriber_status, :existing_subscriber %></label>
-					I am an <b>existing Subscriber</b> - I have received <i>CQ</i> before
-				</li>
-				<li style="clear: both;">
-					<label><%= uar.radio_button :subscriber_status, :confused_stranger %></label>
-					I am not a Subscriber
-				</li>
-			</ol>
-		</fieldset>
-	</p>
-	<% end %>
 
 	<p>
 		<%= submit_tag 'Request Account' %>

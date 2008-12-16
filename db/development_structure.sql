@@ -9,6 +9,47 @@ CREATE TABLE `ci_country_names` (
   KEY `index_ci_country_names_on_underlined_english_name` (`underlined_english_name`)
 ) ENGINE=MyISAM AUTO_INCREMENT=15000 DEFAULT CHARSET=latin1;
 
+CREATE TABLE `ci_location_versions` (
+  `location_version_id` int(11) NOT NULL auto_increment,
+  `location_id` int(11) default NULL,
+  `version` int(11) default NULL,
+  `street_address_line_1` varchar(255) default NULL,
+  `street_address_line_2` varchar(255) default NULL,
+  `city_name` varchar(255) default NULL,
+  `region_name` varchar(255) default NULL,
+  `us_state_id` int(11) default NULL,
+  `postal_code` varchar(255) default NULL,
+  `country_name_id` int(11) default NULL,
+  `lat` float default NULL,
+  `lng` float default NULL,
+  `geocode_precision` varchar(10) default NULL,
+  `updated_at` datetime default NULL,
+  PRIMARY KEY  (`location_version_id`),
+  KEY `index_ci_location_versions_on_location_id` (`location_id`),
+  KEY `index_ci_location_versions_on_us_state_id` (`us_state_id`),
+  KEY `index_ci_location_versions_on_country_name_id` (`country_name_id`)
+) ENGINE=MyISAM AUTO_INCREMENT=15000 DEFAULT CHARSET=latin1;
+
+CREATE TABLE `ci_locations` (
+  `location_id` int(11) NOT NULL auto_increment,
+  `version` int(11) default NULL,
+  `street_address_line_1` varchar(255) default NULL,
+  `street_address_line_2` varchar(255) default NULL,
+  `city_name` varchar(255) default NULL,
+  `region_name` varchar(255) default NULL,
+  `us_state_id` int(11) default NULL,
+  `postal_code` varchar(255) default NULL,
+  `country_name_id` int(11) default NULL,
+  `lat` float default NULL,
+  `lng` float default NULL,
+  `geocode_precision` varchar(10) default NULL,
+  `created_at` datetime default NULL,
+  `updated_at` datetime default NULL,
+  PRIMARY KEY  (`location_id`),
+  KEY `index_ci_locations_on_us_state_id` (`us_state_id`),
+  KEY `index_ci_locations_on_country_name_id` (`country_name_id`)
+) ENGINE=MyISAM AUTO_INCREMENT=15000 DEFAULT CHARSET=latin1;
+
 CREATE TABLE `ci_people` (
   `person_id` int(11) NOT NULL auto_increment,
   `version` int(11) default NULL,
@@ -68,7 +109,7 @@ CREATE TABLE `ci_users` (
   KEY `index_ci_users_on_state` (`state`),
   KEY `index_ci_users_on_password_reset_code` (`password_reset_code`),
   KEY `index_ci_users_on_activation_code` (`activation_code`)
-) ENGINE=MyISAM AUTO_INCREMENT=15001 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=15000 DEFAULT CHARSET=latin1;
 
 INSERT INTO ci_schema_migrations (version) VALUES ('20081216170645');
 
@@ -77,3 +118,5 @@ INSERT INTO ci_schema_migrations (version) VALUES ('20081216172545');
 INSERT INTO ci_schema_migrations (version) VALUES ('20081216172610');
 
 INSERT INTO ci_schema_migrations (version) VALUES ('20081216174522');
+
+INSERT INTO ci_schema_migrations (version) VALUES ('20081216185405');

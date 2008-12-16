@@ -16,22 +16,28 @@ WHEN UPDATING PRODUCTION SERVER:
 
 THIS COMMIT:
 
-Copied/adapted the CountryName, Person, User, and UsState models.
-
-Functional tests for the sessions controller are now implemented and
-working.
+Copied/adapted the Location class.
 
 
 ======================================================================
 
 TODO:
 
-@ Create/copy User model.
-
 @ Functional tests
   - user controller
+    - edit actions
 
-@ Create/copy Location model
+@ Copy/adapt:
+  - UserAccountRequest model
+    - uncomment functional tests
+
+@ Prune UserMailer model
+
+@ Copy over country name and us state data
+
+---
+
+@ ack for instances of 'uarterly' or 'CQ'
 
 
 ==[ LOG ]=============================================================

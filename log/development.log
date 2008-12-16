@@ -2807,3 +2807,1685 @@ Migrating to CreatePeople (20081216174522)
   [4;36;1mSQL (0.7ms)[0m   [0;1mINSERT INTO ci_schema_migrations (version) VALUES ('20081216172545');[0m
   [4;35;1mSQL (0.6ms)[0m   [0mINSERT INTO ci_schema_migrations (version) VALUES ('20081216172610');[0m
   [4;36;1mSQL (0.6ms)[0m   [0;1mINSERT INTO ci_schema_migrations (version) VALUES ('20081216174522');[0m
+  [4;36;1mSQL (0.2ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+  [4;36;1mSQL (0.4ms)[0m   [0;1mSHOW TABLES[0m
+  [4;35;1mSQL (0.2ms)[0m   [0mSELECT version FROM ci_schema_migrations[0m
+Migrating to CreateUsers (20081216170645)
+Migrating to CreateUsStates (20081216172545)
+Migrating to CreateCountryNames (20081216172610)
+Migrating to CreatePeople (20081216174522)
+Migrating to CreateLocations (20081216185405)
+  [4;36;1mSQL (2.9ms)[0m   [0;1mCREATE TABLE `ci_locations` (`location_id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `version` int(11), `street_address_line_1` varchar(255), `street_address_line_2` varchar(255), `region_name` varchar(255), `us_state_id` int(11), `postal_code` varchar(255), `country_name_id` int(11), `lat` float, `lng` float, `geocode_precisiion` varchar(10), `created_at` datetime, `updated_at` datetime) auto_increment = 15000[0m
+  [4;35;1mSQL (78.5ms)[0m   [0mCREATE INDEX `index_ci_locations_on_us_state_id` ON `ci_locations` (`us_state_id`)[0m
+  [4;36;1mSQL (4.8ms)[0m   [0;1mCREATE INDEX `index_ci_locations_on_country_name_id` ON `ci_locations` (`country_name_id`)[0m
+  [4;35;1mSQL (2.6ms)[0m   [0mCREATE TABLE `ci_location_versions` (`location_version_id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `location_id` int(11), `version` int(11), `street_address_line_1` varchar(255), `street_address_line_2` varchar(255), `region_name` varchar(255), `us_state_id` int(11), `postal_code` varchar(255), `country_name_id` int(11), `lat` float, `lng` float, `geocode_precisiion` varchar(10), `updated_at` datetime) auto_increment = 15000[0m
+  [4;36;1mSQL (4.3ms)[0m   [0;1mCREATE INDEX `index_ci_location_versions_on_location_id` ON `ci_location_versions` (`location_id`)[0m
+  [4;35;1mSQL (4.6ms)[0m   [0mCREATE INDEX `index_ci_location_versions_on_us_state_id` ON `ci_location_versions` (`us_state_id`)[0m
+  [4;36;1mSQL (4.0ms)[0m   [0;1mCREATE INDEX `index_ci_location_versions_on_country_name_id` ON `ci_location_versions` (`country_name_id`)[0m
+  [4;35;1mSQL (0.8ms)[0m   [0mINSERT INTO ci_schema_migrations (version) VALUES ('20081216185405')[0m
+  [4;36;1mSQL (0.2ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+  [4;36;1mSQL (0.4ms)[0m   [0;1mSHOW TABLES[0m
+  [4;35;1mSQL (0.2ms)[0m   [0mSELECT version FROM ci_schema_migrations[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+  [4;36;1mSQL (0.6ms)[0m   [0;1mSHOW FULL TABLES WHERE Table_type = 'BASE TABLE'[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSHOW CREATE TABLE `ci_country_names`[0m
+  [4;36;1mSQL (0.4ms)[0m   [0;1mSHOW CREATE TABLE `ci_location_versions`[0m
+  [4;35;1mSQL (0.3ms)[0m   [0mSHOW CREATE TABLE `ci_locations`[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSHOW CREATE TABLE `ci_people`[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSHOW CREATE TABLE `ci_person_versions`[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSHOW CREATE TABLE `ci_schema_migrations`[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSHOW CREATE TABLE `ci_us_states`[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSHOW CREATE TABLE `ci_users`[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSELECT version FROM ci_schema_migrations[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+  [4;36;1mSQL (5.0ms)[0m   [0;1mDROP DATABASE IF EXISTS `ci_rails_test`[0m
+  [4;35;1mSQL (0.4ms)[0m   [0mCREATE DATABASE `ci_rails_test` DEFAULT CHARACTER SET `utf8`[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSET foreign_key_checks = 0[0m
+  [4;35;1mSQL (2.1ms)[0m   [0mCREATE TABLE `ci_country_names` (
+ `country_name_id` int(11) NOT NULL auto_increment,
+ `iso_3166_1_a2_code` varchar(2) default NULL,
+ `english_name` varchar(255) default NULL,
+ `underlined_english_name` varchar(255) default NULL,
+ PRIMARY KEY (`country_name_id`),
+ KEY `index_ci_country_names_on_iso_3166_1_a2_code` (`iso_3166_1_a2_code`),
+ KEY `index_ci_country_names_on_english_name` (`english_name`),
+ KEY `index_ci_country_names_on_underlined_english_name` (`underlined_english_name`)
+) ENGINE=MyISAM AUTO_INCREMENT=15000 DEFAULT CHARSET=latin1;[0m
+  [4;36;1mSQL (2.2ms)[0m   [0;1mCREATE TABLE `ci_location_versions` (
+ `location_version_id` int(11) NOT NULL auto_increment,
+ `location_id` int(11) default NULL,
+ `version` int(11) default NULL,
+ `street_address_line_1` varchar(255) default NULL,
+ `street_address_line_2` varchar(255) default NULL,
+ `region_name` varchar(255) default NULL,
+ `us_state_id` int(11) default NULL,
+ `postal_code` varchar(255) default NULL,
+ `country_name_id` int(11) default NULL,
+ `lat` float default NULL,
+ `lng` float default NULL,
+ `geocode_precisiion` varchar(10) default NULL,
+ `updated_at` datetime default NULL,
+ PRIMARY KEY (`location_version_id`),
+ KEY `index_ci_location_versions_on_location_id` (`location_id`),
+ KEY `index_ci_location_versions_on_us_state_id` (`us_state_id`),
+ KEY `index_ci_location_versions_on_country_name_id` (`country_name_id`)
+) ENGINE=MyISAM AUTO_INCREMENT=15000 DEFAULT CHARSET=latin1;[0m
+  [4;35;1mSQL (1.8ms)[0m   [0mCREATE TABLE `ci_locations` (
+ `location_id` int(11) NOT NULL auto_increment,
+ `version` int(11) default NULL,
+ `street_address_line_1` varchar(255) default NULL,
+ `street_address_line_2` varchar(255) default NULL,
+ `region_name` varchar(255) default NULL,
+ `us_state_id` int(11) default NULL,
+ `postal_code` varchar(255) default NULL,
+ `country_name_id` int(11) default NULL,
+ `lat` float default NULL,
+ `lng` float default NULL,
+ `geocode_precisiion` varchar(10) default NULL,
+ `created_at` datetime default NULL,
+ `updated_at` datetime default NULL,
+ PRIMARY KEY (`location_id`),
+ KEY `index_ci_locations_on_us_state_id` (`us_state_id`),
+ KEY `index_ci_locations_on_country_name_id` (`country_name_id`)
+) ENGINE=MyISAM AUTO_INCREMENT=15000 DEFAULT CHARSET=latin1;[0m
+  [4;36;1mSQL (1.7ms)[0m   [0;1mCREATE TABLE `ci_people` (
+ `person_id` int(11) NOT NULL auto_increment,
+ `version` int(11) default NULL,
+ `first_name` varchar(255) default NULL,
+ `last_name` varchar(255) default NULL,
+ `created_at` datetime default NULL,
+ `updated_at` datetime default NULL,
+ PRIMARY KEY (`person_id`)
+) ENGINE=MyISAM AUTO_INCREMENT=15000 DEFAULT CHARSET=latin1;[0m
+  [4;35;1mSQL (1.7ms)[0m   [0mCREATE TABLE `ci_person_versions` (
+ `person_version_id` int(11) NOT NULL auto_increment,
+ `persion_id` int(11) default NULL,
+ `version` int(11) default NULL,
+ `first_name` varchar(255) default NULL,
+ `last_name` varchar(255) default NULL,
+ `updated_at` datetime default NULL,
+ PRIMARY KEY (`person_version_id`)
+) ENGINE=MyISAM AUTO_INCREMENT=15000 DEFAULT CHARSET=latin1;[0m
+  [4;36;1mSQL (27.2ms)[0m   [0;1mCREATE TABLE `ci_schema_migrations` (
+ `version` varchar(255) NOT NULL,
+ UNIQUE KEY `unique_schema_migrations` (`version`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;[0m
+  [4;35;1mSQL (2.3ms)[0m   [0mCREATE TABLE `ci_us_states` (
+ `us_state_id` int(11) NOT NULL auto_increment,
+ `abbreviation` varchar(2) default NULL,
+ `name` varchar(50) default NULL,
+ `underlined_name` varchar(50) default NULL,
+ PRIMARY KEY (`us_state_id`),
+ KEY `index_ci_us_states_on_abbreviation` (`abbreviation`),
+ KEY `index_ci_us_states_on_name` (`name`),
+ KEY `index_ci_us_states_on_underlined_name` (`underlined_name`)
+) ENGINE=MyISAM AUTO_INCREMENT=15000 DEFAULT CHARSET=latin1;[0m
+  [4;36;1mSQL (2.2ms)[0m   [0;1mCREATE TABLE `ci_users` (
+ `user_id` int(11) NOT NULL auto_increment,
+ `email` varchar(255) default NULL,
+ `person_id` int(11) default NULL,
+ `admin` tinyint(1) default '0',
+ `state` varchar(12) default NULL,
+ `crypted_password` varchar(40) default NULL,
+ `salt` varchar(40) default NULL,
+ `password_reset_code` varchar(40) default NULL,
+ `activation_code` varchar(40) default NULL,
+ `activated_at` datetime default NULL,
+ `deleted_at` datetime default NULL,
+ `last_login_at` datetime default NULL,
+ `remember_token` varchar(255) default NULL,
+ `remember_token_expires_at` datetime default NULL,
+ `created_at` datetime default NULL,
+ `updated_at` datetime default NULL,
+ PRIMARY KEY (`user_id`),
+ KEY `index_ci_users_on_email` (`email`),
+ KEY `index_ci_users_on_person_id` (`person_id`),
+ KEY `index_ci_users_on_state` (`state`),
+ KEY `index_ci_users_on_password_reset_code` (`password_reset_code`),
+ KEY `index_ci_users_on_activation_code` (`activation_code`)
+) ENGINE=MyISAM AUTO_INCREMENT=15001 DEFAULT CHARSET=latin1;[0m
+  [4;35;1mSQL (0.8ms)[0m   [0mINSERT INTO ci_schema_migrations (version) VALUES ('20081216170645');[0m
+  [4;36;1mSQL (0.8ms)[0m   [0;1mINSERT INTO ci_schema_migrations (version) VALUES ('20081216172545');[0m
+  [4;35;1mSQL (0.7ms)[0m   [0mINSERT INTO ci_schema_migrations (version) VALUES ('20081216172610');[0m
+  [4;36;1mSQL (0.7ms)[0m   [0;1mINSERT INTO ci_schema_migrations (version) VALUES ('20081216174522');[0m
+  [4;35;1mSQL (0.7ms)[0m   [0mINSERT INTO ci_schema_migrations (version) VALUES ('20081216185405');[0m
+  [4;36;1mSQL (0.2ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+  [4;36;1mSQL (0.4ms)[0m   [0;1mSHOW TABLES[0m
+  [4;35;1mSQL (0.2ms)[0m   [0mSELECT version FROM ci_schema_migrations[0m
+Migrating to CreateUsers (20081216170645)
+Migrating to CreateUsStates (20081216172545)
+Migrating to CreateCountryNames (20081216172610)
+Migrating to CreatePeople (20081216174522)
+Migrating to CreateLocations (20081216185405)
+  [4;36;1mSQL (0.2ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+  [4;36;1mSQL (0.4ms)[0m   [0;1mSHOW TABLES[0m
+  [4;35;1mSQL (0.2ms)[0m   [0mSELECT version FROM ci_schema_migrations[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+  [4;36;1mSQL (0.5ms)[0m   [0;1mSHOW FULL TABLES WHERE Table_type = 'BASE TABLE'[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSHOW CREATE TABLE `ci_country_names`[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSHOW CREATE TABLE `ci_people`[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSHOW CREATE TABLE `ci_person_versions`[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSHOW CREATE TABLE `ci_schema_migrations`[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSHOW CREATE TABLE `ci_us_states`[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSHOW CREATE TABLE `ci_users`[0m
+  [4;35;1mSQL (0.2ms)[0m   [0mSELECT version FROM ci_schema_migrations[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+  [4;36;1mSQL (6.1ms)[0m   [0;1mDROP DATABASE IF EXISTS `ci_rails_test`[0m
+  [4;35;1mSQL (0.4ms)[0m   [0mCREATE DATABASE `ci_rails_test` DEFAULT CHARACTER SET `utf8`[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET foreign_key_checks = 0[0m
+  [4;35;1mSQL (2.1ms)[0m   [0mCREATE TABLE `ci_country_names` (
+ `country_name_id` int(11) NOT NULL auto_increment,
+ `iso_3166_1_a2_code` varchar(2) default NULL,
+ `english_name` varchar(255) default NULL,
+ `underlined_english_name` varchar(255) default NULL,
+ PRIMARY KEY (`country_name_id`),
+ KEY `index_ci_country_names_on_iso_3166_1_a2_code` (`iso_3166_1_a2_code`),
+ KEY `index_ci_country_names_on_english_name` (`english_name`),
+ KEY `index_ci_country_names_on_underlined_english_name` (`underlined_english_name`)
+) ENGINE=MyISAM AUTO_INCREMENT=15000 DEFAULT CHARSET=latin1;[0m
+  [4;36;1mSQL (1.8ms)[0m   [0;1mCREATE TABLE `ci_people` (
+ `person_id` int(11) NOT NULL auto_increment,
+ `version` int(11) default NULL,
+ `first_name` varchar(255) default NULL,
+ `last_name` varchar(255) default NULL,
+ `created_at` datetime default NULL,
+ `updated_at` datetime default NULL,
+ PRIMARY KEY (`person_id`)
+) ENGINE=MyISAM AUTO_INCREMENT=15000 DEFAULT CHARSET=latin1;[0m
+  [4;35;1mSQL (2.0ms)[0m   [0mCREATE TABLE `ci_person_versions` (
+ `person_version_id` int(11) NOT NULL auto_increment,
+ `persion_id` int(11) default NULL,
+ `version` int(11) default NULL,
+ `first_name` varchar(255) default NULL,
+ `last_name` varchar(255) default NULL,
+ `updated_at` datetime default NULL,
+ PRIMARY KEY (`person_version_id`)
+) ENGINE=MyISAM AUTO_INCREMENT=15000 DEFAULT CHARSET=latin1;[0m
+  [4;36;1mSQL (2.0ms)[0m   [0;1mCREATE TABLE `ci_schema_migrations` (
+ `version` varchar(255) NOT NULL,
+ UNIQUE KEY `unique_schema_migrations` (`version`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;[0m
+  [4;35;1mSQL (2.2ms)[0m   [0mCREATE TABLE `ci_us_states` (
+ `us_state_id` int(11) NOT NULL auto_increment,
+ `abbreviation` varchar(2) default NULL,
+ `name` varchar(50) default NULL,
+ `underlined_name` varchar(50) default NULL,
+ PRIMARY KEY (`us_state_id`),
+ KEY `index_ci_us_states_on_abbreviation` (`abbreviation`),
+ KEY `index_ci_us_states_on_name` (`name`),
+ KEY `index_ci_us_states_on_underlined_name` (`underlined_name`)
+) ENGINE=MyISAM AUTO_INCREMENT=15000 DEFAULT CHARSET=latin1;[0m
+  [4;36;1mSQL (2.2ms)[0m   [0;1mCREATE TABLE `ci_users` (
+ `user_id` int(11) NOT NULL auto_increment,
+ `email` varchar(255) default NULL,
+ `person_id` int(11) default NULL,
+ `admin` tinyint(1) default '0',
+ `state` varchar(12) default NULL,
+ `crypted_password` varchar(40) default NULL,
+ `salt` varchar(40) default NULL,
+ `password_reset_code` varchar(40) default NULL,
+ `activation_code` varchar(40) default NULL,
+ `activated_at` datetime default NULL,
+ `deleted_at` datetime default NULL,
+ `last_login_at` datetime default NULL,
+ `remember_token` varchar(255) default NULL,
+ `remember_token_expires_at` datetime default NULL,
+ `created_at` datetime default NULL,
+ `updated_at` datetime default NULL,
+ PRIMARY KEY (`user_id`),
+ KEY `index_ci_users_on_email` (`email`),
+ KEY `index_ci_users_on_person_id` (`person_id`),
+ KEY `index_ci_users_on_state` (`state`),
+ KEY `index_ci_users_on_password_reset_code` (`password_reset_code`),
+ KEY `index_ci_users_on_activation_code` (`activation_code`)
+) ENGINE=MyISAM AUTO_INCREMENT=15001 DEFAULT CHARSET=latin1;[0m
+  [4;35;1mSQL (1.1ms)[0m   [0mINSERT INTO ci_schema_migrations (version) VALUES ('20081216170645');[0m
+  [4;36;1mSQL (1.0ms)[0m   [0;1mINSERT INTO ci_schema_migrations (version) VALUES ('20081216172545');[0m
+  [4;35;1mSQL (0.7ms)[0m   [0mINSERT INTO ci_schema_migrations (version) VALUES ('20081216172610');[0m
+  [4;36;1mSQL (1.5ms)[0m   [0;1mINSERT INTO ci_schema_migrations (version) VALUES ('20081216174522');[0m
+  [4;35;1mSQL (0.8ms)[0m   [0mINSERT INTO ci_schema_migrations (version) VALUES ('20081216185405');[0m
+  [4;36;1mSQL (0.2ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+  [4;36;1mSQL (0.3ms)[0m   [0;1mSHOW TABLES[0m
+  [4;35;1mSQL (0.2ms)[0m   [0mSELECT version FROM ci_schema_migrations[0m
+  [4;36;1mSQL (0.2ms)[0m   [0;1mSHOW TABLES[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSELECT version FROM ci_schema_migrations[0m
+Migrating to CreateLocations (20081216185405)
+  [4;36;1mSQL (0.0ms)[0m   [0;1mMysql::Error: Unknown table 'ci_locations': DROP TABLE `ci_locations`[0m
+  [4;36;1mSQL (0.2ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+  [4;36;1mSQL (0.4ms)[0m   [0;1mSHOW TABLES[0m
+  [4;35;1mSQL (0.2ms)[0m   [0mSELECT version FROM ci_schema_migrations[0m
+Migrating to CreateUsers (20081216170645)
+Migrating to CreateUsStates (20081216172545)
+Migrating to CreateCountryNames (20081216172610)
+Migrating to CreatePeople (20081216174522)
+Migrating to CreateLocations (20081216185405)
+  [4;36;1mSQL (0.2ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+  [4;36;1mSQL (138.1ms)[0m   [0;1mDROP DATABASE IF EXISTS `ci_rails`[0m
+  [4;36;1mSQL (0.2ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+  [4;36;1mSQL (0.3ms)[0m   [0;1mSHOW TABLES[0m
+  [4;35;1mSQL (1.9ms)[0m   [0mCREATE TABLE `ci_schema_migrations` (`version` varchar(255) NOT NULL) ENGINE=InnoDB[0m
+  [4;36;1mSQL (5.2ms)[0m   [0;1mCREATE UNIQUE INDEX `unique_schema_migrations` ON `ci_schema_migrations` (`version`)[0m
+  [4;35;1mSQL (0.4ms)[0m   [0mSHOW TABLES[0m
+  [4;36;1mSQL (0.4ms)[0m   [0;1mSELECT version FROM ci_schema_migrations[0m
+Migrating to CreateUsers (20081216170645)
+  [4;35;1mSQL (2.0ms)[0m   [0mCREATE TABLE `ci_users` (`user_id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `email` varchar(255), `person_id` int(11), `admin` tinyint(1) DEFAULT 0, `state` varchar(12), `crypted_password` varchar(40), `salt` varchar(40), `password_reset_code` varchar(40), `activation_code` varchar(40), `activated_at` datetime, `deleted_at` datetime, `last_login_at` datetime, `remember_token` varchar(255), `remember_token_expires_at` datetime, `created_at` datetime, `updated_at` datetime) auto_increment = 15000[0m
+  [4;36;1mSQL (4.9ms)[0m   [0;1mCREATE INDEX `index_ci_users_on_email` ON `ci_users` (`email`)[0m
+  [4;35;1mSQL (4.8ms)[0m   [0mCREATE INDEX `index_ci_users_on_person_id` ON `ci_users` (`person_id`)[0m
+  [4;36;1mSQL (5.6ms)[0m   [0;1mCREATE INDEX `index_ci_users_on_state` ON `ci_users` (`state`)[0m
+  [4;35;1mSQL (3.4ms)[0m   [0mCREATE INDEX `index_ci_users_on_password_reset_code` ON `ci_users` (`password_reset_code`)[0m
+  [4;36;1mSQL (4.7ms)[0m   [0;1mCREATE INDEX `index_ci_users_on_activation_code` ON `ci_users` (`activation_code`)[0m
+  [4;35;1mSQL (0.6ms)[0m   [0mINSERT INTO ci_schema_migrations (version) VALUES ('20081216170645')[0m
+Migrating to CreateUsStates (20081216172545)
+  [4;36;1mSQL (1.8ms)[0m   [0;1mCREATE TABLE `ci_us_states` (`us_state_id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `abbreviation` varchar(2), `name` varchar(50), `underlined_name` varchar(50)) auto_increment = 15000[0m
+  [4;35;1mSQL (4.3ms)[0m   [0mCREATE INDEX `index_ci_us_states_on_abbreviation` ON `ci_us_states` (`abbreviation`)[0m
+  [4;36;1mSQL (3.9ms)[0m   [0;1mCREATE INDEX `index_ci_us_states_on_name` ON `ci_us_states` (`name`)[0m
+  [4;35;1mSQL (5.0ms)[0m   [0mCREATE INDEX `index_ci_us_states_on_underlined_name` ON `ci_us_states` (`underlined_name`)[0m
+  [4;36;1mSQL (0.6ms)[0m   [0;1mINSERT INTO ci_schema_migrations (version) VALUES ('20081216172545')[0m
+Migrating to CreateCountryNames (20081216172610)
+  [4;35;1mSQL (1.7ms)[0m   [0mCREATE TABLE `ci_country_names` (`country_name_id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `iso_3166_1_a2_code` varchar(2), `english_name` varchar(255), `underlined_english_name` varchar(255)) auto_increment = 15000[0m
+  [4;36;1mSQL (3.7ms)[0m   [0;1mCREATE INDEX `index_ci_country_names_on_iso_3166_1_a2_code` ON `ci_country_names` (`iso_3166_1_a2_code`)[0m
+  [4;35;1mSQL (8.6ms)[0m   [0mCREATE INDEX `index_ci_country_names_on_english_name` ON `ci_country_names` (`english_name`)[0m
+  [4;36;1mSQL (3.1ms)[0m   [0;1mCREATE INDEX `index_ci_country_names_on_underlined_english_name` ON `ci_country_names` (`underlined_english_name`)[0m
+  [4;35;1mSQL (0.7ms)[0m   [0mINSERT INTO ci_schema_migrations (version) VALUES ('20081216172610')[0m
+Migrating to CreatePeople (20081216174522)
+  [4;36;1mSQL (1.9ms)[0m   [0;1mCREATE TABLE `ci_people` (`person_id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `version` int(11), `first_name` varchar(255), `last_name` varchar(255), `created_at` datetime, `updated_at` datetime) auto_increment = 15000[0m
+  [4;35;1mSQL (1.6ms)[0m   [0mCREATE TABLE `ci_person_versions` (`person_version_id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `persion_id` int(11), `version` int(11), `first_name` varchar(255), `last_name` varchar(255), `updated_at` datetime) auto_increment = 15000[0m
+  [4;36;1mSQL (0.7ms)[0m   [0;1mINSERT INTO ci_schema_migrations (version) VALUES ('20081216174522')[0m
+Migrating to CreateLocations (20081216185405)
+  [4;35;1mSQL (2.1ms)[0m   [0mCREATE TABLE `ci_locations` (`location_id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `version` int(11), `street_address_line_1` varchar(255), `street_address_line_2` varchar(255), `city_name` varchar(255), `region_name` varchar(255), `us_state_id` int(11), `postal_code` varchar(255), `country_name_id` int(11), `lat` float, `lng` float, `geocode_precisiion` varchar(10), `created_at` datetime, `updated_at` datetime) auto_increment = 15000[0m
+  [4;36;1mSQL (4.9ms)[0m   [0;1mCREATE INDEX `index_ci_locations_on_us_state_id` ON `ci_locations` (`us_state_id`)[0m
+  [4;35;1mSQL (4.8ms)[0m   [0mCREATE INDEX `index_ci_locations_on_country_name_id` ON `ci_locations` (`country_name_id`)[0m
+  [4;36;1mSQL (7.8ms)[0m   [0;1mCREATE TABLE `ci_location_versions` (`location_version_id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `location_id` int(11), `version` int(11), `street_address_line_1` varchar(255), `street_address_line_2` varchar(255), `city_name` varchar(255), `region_name` varchar(255), `us_state_id` int(11), `postal_code` varchar(255), `country_name_id` int(11), `lat` float, `lng` float, `geocode_precisiion` varchar(10), `updated_at` datetime) auto_increment = 15000[0m
+  [4;35;1mSQL (3.0ms)[0m   [0mCREATE INDEX `index_ci_location_versions_on_location_id` ON `ci_location_versions` (`location_id`)[0m
+  [4;36;1mSQL (5.2ms)[0m   [0;1mCREATE INDEX `index_ci_location_versions_on_us_state_id` ON `ci_location_versions` (`us_state_id`)[0m
+  [4;35;1mSQL (4.7ms)[0m   [0mCREATE INDEX `index_ci_location_versions_on_country_name_id` ON `ci_location_versions` (`country_name_id`)[0m
+  [4;36;1mSQL (0.7ms)[0m   [0;1mINSERT INTO ci_schema_migrations (version) VALUES ('20081216185405')[0m
+  [4;36;1mSQL (0.2ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+  [4;36;1mSQL (0.4ms)[0m   [0;1mSHOW TABLES[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSELECT version FROM ci_schema_migrations[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+  [4;36;1mSQL (0.6ms)[0m   [0;1mSHOW FULL TABLES WHERE Table_type = 'BASE TABLE'[0m
+  [4;35;1mSQL (0.4ms)[0m   [0mSHOW CREATE TABLE `ci_country_names`[0m
+  [4;36;1mSQL (0.3ms)[0m   [0;1mSHOW CREATE TABLE `ci_location_versions`[0m
+  [4;35;1mSQL (0.3ms)[0m   [0mSHOW CREATE TABLE `ci_locations`[0m
+  [4;36;1mSQL (0.2ms)[0m   [0;1mSHOW CREATE TABLE `ci_people`[0m
+  [4;35;1mSQL (0.2ms)[0m   [0mSHOW CREATE TABLE `ci_person_versions`[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSHOW CREATE TABLE `ci_schema_migrations`[0m
+  [4;35;1mSQL (0.3ms)[0m   [0mSHOW CREATE TABLE `ci_us_states`[0m
+  [4;36;1mSQL (0.3ms)[0m   [0;1mSHOW CREATE TABLE `ci_users`[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSELECT version FROM ci_schema_migrations[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+  [4;36;1mSQL (3.3ms)[0m   [0;1mDROP DATABASE IF EXISTS `ci_rails_test`[0m
+  [4;35;1mSQL (0.3ms)[0m   [0mCREATE DATABASE `ci_rails_test` DEFAULT CHARACTER SET `utf8`[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET foreign_key_checks = 0[0m
+  [4;35;1mSQL (1.3ms)[0m   [0mCREATE TABLE `ci_country_names` (
+ `country_name_id` int(11) NOT NULL auto_increment,
+ `iso_3166_1_a2_code` varchar(2) default NULL,
+ `english_name` varchar(255) default NULL,
+ `underlined_english_name` varchar(255) default NULL,
+ PRIMARY KEY (`country_name_id`),
+ KEY `index_ci_country_names_on_iso_3166_1_a2_code` (`iso_3166_1_a2_code`),
+ KEY `index_ci_country_names_on_english_name` (`english_name`),
+ KEY `index_ci_country_names_on_underlined_english_name` (`underlined_english_name`)
+) ENGINE=MyISAM AUTO_INCREMENT=15000 DEFAULT CHARSET=latin1;[0m
+  [4;36;1mSQL (1.3ms)[0m   [0;1mCREATE TABLE `ci_location_versions` (
+ `location_version_id` int(11) NOT NULL auto_increment,
+ `location_id` int(11) default NULL,
+ `version` int(11) default NULL,
+ `street_address_line_1` varchar(255) default NULL,
+ `street_address_line_2` varchar(255) default NULL,
+ `city_name` varchar(255) default NULL,
+ `region_name` varchar(255) default NULL,
+ `us_state_id` int(11) default NULL,
+ `postal_code` varchar(255) default NULL,
+ `country_name_id` int(11) default NULL,
+ `lat` float default NULL,
+ `lng` float default NULL,
+ `geocode_precisiion` varchar(10) default NULL,
+ `updated_at` datetime default NULL,
+ PRIMARY KEY (`location_version_id`),
+ KEY `index_ci_location_versions_on_location_id` (`location_id`),
+ KEY `index_ci_location_versions_on_us_state_id` (`us_state_id`),
+ KEY `index_ci_location_versions_on_country_name_id` (`country_name_id`)
+) ENGINE=MyISAM AUTO_INCREMENT=15000 DEFAULT CHARSET=latin1;[0m
+  [4;35;1mSQL (1.2ms)[0m   [0mCREATE TABLE `ci_locations` (
+ `location_id` int(11) NOT NULL auto_increment,
+ `version` int(11) default NULL,
+ `street_address_line_1` varchar(255) default NULL,
+ `street_address_line_2` varchar(255) default NULL,
+ `city_name` varchar(255) default NULL,
+ `region_name` varchar(255) default NULL,
+ `us_state_id` int(11) default NULL,
+ `postal_code` varchar(255) default NULL,
+ `country_name_id` int(11) default NULL,
+ `lat` float default NULL,
+ `lng` float default NULL,
+ `geocode_precisiion` varchar(10) default NULL,
+ `created_at` datetime default NULL,
+ `updated_at` datetime default NULL,
+ PRIMARY KEY (`location_id`),
+ KEY `index_ci_locations_on_us_state_id` (`us_state_id`),
+ KEY `index_ci_locations_on_country_name_id` (`country_name_id`)
+) ENGINE=MyISAM AUTO_INCREMENT=15000 DEFAULT CHARSET=latin1;[0m
+  [4;36;1mSQL (1.4ms)[0m   [0;1mCREATE TABLE `ci_people` (
+ `person_id` int(11) NOT NULL auto_increment,
+ `version` int(11) default NULL,
+ `first_name` varchar(255) default NULL,
+ `last_name` varchar(255) default NULL,
+ `created_at` datetime default NULL,
+ `updated_at` datetime default NULL,
+ PRIMARY KEY (`person_id`)
+) ENGINE=MyISAM AUTO_INCREMENT=15000 DEFAULT CHARSET=latin1;[0m
+  [4;35;1mSQL (1.3ms)[0m   [0mCREATE TABLE `ci_person_versions` (
+ `person_version_id` int(11) NOT NULL auto_increment,
+ `persion_id` int(11) default NULL,
+ `version` int(11) default NULL,
+ `first_name` varchar(255) default NULL,
+ `last_name` varchar(255) default NULL,
+ `updated_at` datetime default NULL,
+ PRIMARY KEY (`person_version_id`)
+) ENGINE=MyISAM AUTO_INCREMENT=15000 DEFAULT CHARSET=latin1;[0m
+  [4;36;1mSQL (1.7ms)[0m   [0;1mCREATE TABLE `ci_schema_migrations` (
+ `version` varchar(255) NOT NULL,
+ UNIQUE KEY `unique_schema_migrations` (`version`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;[0m
+  [4;35;1mSQL (1.8ms)[0m   [0mCREATE TABLE `ci_us_states` (
+ `us_state_id` int(11) NOT NULL auto_increment,
+ `abbreviation` varchar(2) default NULL,
+ `name` varchar(50) default NULL,
+ `underlined_name` varchar(50) default NULL,
+ PRIMARY KEY (`us_state_id`),
+ KEY `index_ci_us_states_on_abbreviation` (`abbreviation`),
+ KEY `index_ci_us_states_on_name` (`name`),
+ KEY `index_ci_us_states_on_underlined_name` (`underlined_name`)
+) ENGINE=MyISAM AUTO_INCREMENT=15000 DEFAULT CHARSET=latin1;[0m
+  [4;36;1mSQL (2.0ms)[0m   [0;1mCREATE TABLE `ci_users` (
+ `user_id` int(11) NOT NULL auto_increment,
+ `email` varchar(255) default NULL,
+ `person_id` int(11) default NULL,
+ `admin` tinyint(1) default '0',
+ `state` varchar(12) default NULL,
+ `crypted_password` varchar(40) default NULL,
+ `salt` varchar(40) default NULL,
+ `password_reset_code` varchar(40) default NULL,
+ `activation_code` varchar(40) default NULL,
+ `activated_at` datetime default NULL,
+ `deleted_at` datetime default NULL,
+ `last_login_at` datetime default NULL,
+ `remember_token` varchar(255) default NULL,
+ `remember_token_expires_at` datetime default NULL,
+ `created_at` datetime default NULL,
+ `updated_at` datetime default NULL,
+ PRIMARY KEY (`user_id`),
+ KEY `index_ci_users_on_email` (`email`),
+ KEY `index_ci_users_on_person_id` (`person_id`),
+ KEY `index_ci_users_on_state` (`state`),
+ KEY `index_ci_users_on_password_reset_code` (`password_reset_code`),
+ KEY `index_ci_users_on_activation_code` (`activation_code`)
+) ENGINE=MyISAM AUTO_INCREMENT=15000 DEFAULT CHARSET=latin1;[0m
+  [4;35;1mSQL (1.2ms)[0m   [0mINSERT INTO ci_schema_migrations (version) VALUES ('20081216170645');[0m
+  [4;36;1mSQL (0.7ms)[0m   [0;1mINSERT INTO ci_schema_migrations (version) VALUES ('20081216172545');[0m
+  [4;35;1mSQL (1.0ms)[0m   [0mINSERT INTO ci_schema_migrations (version) VALUES ('20081216172610');[0m
+  [4;36;1mSQL (0.8ms)[0m   [0;1mINSERT INTO ci_schema_migrations (version) VALUES ('20081216174522');[0m
+  [4;35;1mSQL (1.2ms)[0m   [0mINSERT INTO ci_schema_migrations (version) VALUES ('20081216185405');[0m
+  [4;36;1mSQL (0.2ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+  [4;36;1mSQL (0.4ms)[0m   [0;1mSHOW TABLES[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSELECT version FROM ci_schema_migrations[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+  [4;36;1mSQL (0.5ms)[0m   [0;1mSHOW FULL TABLES WHERE Table_type = 'BASE TABLE'[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSHOW CREATE TABLE `ci_country_names`[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSHOW CREATE TABLE `ci_location_versions`[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSHOW CREATE TABLE `ci_locations`[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSHOW CREATE TABLE `ci_people`[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSHOW CREATE TABLE `ci_person_versions`[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSHOW CREATE TABLE `ci_schema_migrations`[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSHOW CREATE TABLE `ci_us_states`[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSHOW CREATE TABLE `ci_users`[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSELECT version FROM ci_schema_migrations[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+  [4;36;1mSQL (76.9ms)[0m   [0;1mDROP DATABASE IF EXISTS `ci_rails_test`[0m
+  [4;35;1mSQL (0.5ms)[0m   [0mCREATE DATABASE `ci_rails_test` DEFAULT CHARACTER SET `utf8`[0m
+  [4;36;1mSQL (0.2ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET foreign_key_checks = 0[0m
+  [4;35;1mSQL (2.0ms)[0m   [0mCREATE TABLE `ci_country_names` (
+ `country_name_id` int(11) NOT NULL auto_increment,
+ `iso_3166_1_a2_code` varchar(2) default NULL,
+ `english_name` varchar(255) default NULL,
+ `underlined_english_name` varchar(255) default NULL,
+ PRIMARY KEY (`country_name_id`),
+ KEY `index_ci_country_names_on_iso_3166_1_a2_code` (`iso_3166_1_a2_code`),
+ KEY `index_ci_country_names_on_english_name` (`english_name`),
+ KEY `index_ci_country_names_on_underlined_english_name` (`underlined_english_name`)
+) ENGINE=MyISAM AUTO_INCREMENT=15000 DEFAULT CHARSET=latin1;[0m
+  [4;36;1mSQL (2.4ms)[0m   [0;1mCREATE TABLE `ci_location_versions` (
+ `location_version_id` int(11) NOT NULL auto_increment,
+ `location_id` int(11) default NULL,
+ `version` int(11) default NULL,
+ `street_address_line_1` varchar(255) default NULL,
+ `street_address_line_2` varchar(255) default NULL,
+ `city_name` varchar(255) default NULL,
+ `region_name` varchar(255) default NULL,
+ `us_state_id` int(11) default NULL,
+ `postal_code` varchar(255) default NULL,
+ `country_name_id` int(11) default NULL,
+ `lat` float default NULL,
+ `lng` float default NULL,
+ `geocode_precisiion` varchar(10) default NULL,
+ `updated_at` datetime default NULL,
+ PRIMARY KEY (`location_version_id`),
+ KEY `index_ci_location_versions_on_location_id` (`location_id`),
+ KEY `index_ci_location_versions_on_us_state_id` (`us_state_id`),
+ KEY `index_ci_location_versions_on_country_name_id` (`country_name_id`)
+) ENGINE=MyISAM AUTO_INCREMENT=15000 DEFAULT CHARSET=latin1;[0m
+  [4;35;1mSQL (2.4ms)[0m   [0mCREATE TABLE `ci_locations` (
+ `location_id` int(11) NOT NULL auto_increment,
+ `version` int(11) default NULL,
+ `street_address_line_1` varchar(255) default NULL,
+ `street_address_line_2` varchar(255) default NULL,
+ `city_name` varchar(255) default NULL,
+ `region_name` varchar(255) default NULL,
+ `us_state_id` int(11) default NULL,
+ `postal_code` varchar(255) default NULL,
+ `country_name_id` int(11) default NULL,
+ `lat` float default NULL,
+ `lng` float default NULL,
+ `geocode_precisiion` varchar(10) default NULL,
+ `created_at` datetime default NULL,
+ `updated_at` datetime default NULL,
+ PRIMARY KEY (`location_id`),
+ KEY `index_ci_locations_on_us_state_id` (`us_state_id`),
+ KEY `index_ci_locations_on_country_name_id` (`country_name_id`)
+) ENGINE=MyISAM AUTO_INCREMENT=15000 DEFAULT CHARSET=latin1;[0m
+  [4;36;1mSQL (2.4ms)[0m   [0;1mCREATE TABLE `ci_people` (
+ `person_id` int(11) NOT NULL auto_increment,
+ `version` int(11) default NULL,
+ `first_name` varchar(255) default NULL,
+ `last_name` varchar(255) default NULL,
+ `created_at` datetime default NULL,
+ `updated_at` datetime default NULL,
+ PRIMARY KEY (`person_id`)
+) ENGINE=MyISAM AUTO_INCREMENT=15000 DEFAULT CHARSET=latin1;[0m
+  [4;35;1mSQL (1.8ms)[0m   [0mCREATE TABLE `ci_person_versions` (
+ `person_version_id` int(11) NOT NULL auto_increment,
+ `persion_id` int(11) default NULL,
+ `version` int(11) default NULL,
+ `first_name` varchar(255) default NULL,
+ `last_name` varchar(255) default NULL,
+ `updated_at` datetime default NULL,
+ PRIMARY KEY (`person_version_id`)
+) ENGINE=MyISAM AUTO_INCREMENT=15000 DEFAULT CHARSET=latin1;[0m
+  [4;36;1mSQL (2.2ms)[0m   [0;1mCREATE TABLE `ci_schema_migrations` (
+ `version` varchar(255) NOT NULL,
+ UNIQUE KEY `unique_schema_migrations` (`version`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;[0m
+  [4;35;1mSQL (2.2ms)[0m   [0mCREATE TABLE `ci_us_states` (
+ `us_state_id` int(11) NOT NULL auto_increment,
+ `abbreviation` varchar(2) default NULL,
+ `name` varchar(50) default NULL,
+ `underlined_name` varchar(50) default NULL,
+ PRIMARY KEY (`us_state_id`),
+ KEY `index_ci_us_states_on_abbreviation` (`abbreviation`),
+ KEY `index_ci_us_states_on_name` (`name`),
+ KEY `index_ci_us_states_on_underlined_name` (`underlined_name`)
+) ENGINE=MyISAM AUTO_INCREMENT=15000 DEFAULT CHARSET=latin1;[0m
+  [4;36;1mSQL (2.5ms)[0m   [0;1mCREATE TABLE `ci_users` (
+ `user_id` int(11) NOT NULL auto_increment,
+ `email` varchar(255) default NULL,
+ `person_id` int(11) default NULL,
+ `admin` tinyint(1) default '0',
+ `state` varchar(12) default NULL,
+ `crypted_password` varchar(40) default NULL,
+ `salt` varchar(40) default NULL,
+ `password_reset_code` varchar(40) default NULL,
+ `activation_code` varchar(40) default NULL,
+ `activated_at` datetime default NULL,
+ `deleted_at` datetime default NULL,
+ `last_login_at` datetime default NULL,
+ `remember_token` varchar(255) default NULL,
+ `remember_token_expires_at` datetime default NULL,
+ `created_at` datetime default NULL,
+ `updated_at` datetime default NULL,
+ PRIMARY KEY (`user_id`),
+ KEY `index_ci_users_on_email` (`email`),
+ KEY `index_ci_users_on_person_id` (`person_id`),
+ KEY `index_ci_users_on_state` (`state`),
+ KEY `index_ci_users_on_password_reset_code` (`password_reset_code`),
+ KEY `index_ci_users_on_activation_code` (`activation_code`)
+) ENGINE=MyISAM AUTO_INCREMENT=15000 DEFAULT CHARSET=latin1;[0m
+  [4;35;1mSQL (0.9ms)[0m   [0mINSERT INTO ci_schema_migrations (version) VALUES ('20081216170645');[0m
+  [4;36;1mSQL (3.9ms)[0m   [0;1mINSERT INTO ci_schema_migrations (version) VALUES ('20081216172545');[0m
+  [4;35;1mSQL (1.5ms)[0m   [0mINSERT INTO ci_schema_migrations (version) VALUES ('20081216172610');[0m
+  [4;36;1mSQL (0.8ms)[0m   [0;1mINSERT INTO ci_schema_migrations (version) VALUES ('20081216174522');[0m
+  [4;35;1mSQL (1.2ms)[0m   [0mINSERT INTO ci_schema_migrations (version) VALUES ('20081216185405');[0m
+  [4;36;1mSQL (0.2ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+  [4;36;1mSQL (37.9ms)[0m   [0;1mDROP DATABASE IF EXISTS `ci_rails`[0m
+  [4;36;1mSQL (0.2ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+  [4;36;1mSQL (0.3ms)[0m   [0;1mSHOW TABLES[0m
+  [4;35;1mSQL (3.2ms)[0m   [0mCREATE TABLE `ci_schema_migrations` (`version` varchar(255) NOT NULL) ENGINE=InnoDB[0m
+  [4;36;1mSQL (7.9ms)[0m   [0;1mCREATE UNIQUE INDEX `unique_schema_migrations` ON `ci_schema_migrations` (`version`)[0m
+  [4;35;1mSQL (0.5ms)[0m   [0mSHOW TABLES[0m
+  [4;36;1mSQL (0.4ms)[0m   [0;1mSELECT version FROM ci_schema_migrations[0m
+Migrating to CreateUsers (20081216170645)
+  [4;35;1mSQL (2.4ms)[0m   [0mCREATE TABLE `ci_users` (`user_id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `email` varchar(255), `person_id` int(11), `admin` tinyint(1) DEFAULT 0, `state` varchar(12), `crypted_password` varchar(40), `salt` varchar(40), `password_reset_code` varchar(40), `activation_code` varchar(40), `activated_at` datetime, `deleted_at` datetime, `last_login_at` datetime, `remember_token` varchar(255), `remember_token_expires_at` datetime, `created_at` datetime, `updated_at` datetime) auto_increment = 15000[0m
+  [4;36;1mSQL (4.5ms)[0m   [0;1mCREATE INDEX `index_ci_users_on_email` ON `ci_users` (`email`)[0m
+  [4;35;1mSQL (5.0ms)[0m   [0mCREATE INDEX `index_ci_users_on_person_id` ON `ci_users` (`person_id`)[0m
+  [4;36;1mSQL (4.7ms)[0m   [0;1mCREATE INDEX `index_ci_users_on_state` ON `ci_users` (`state`)[0m
+  [4;35;1mSQL (4.4ms)[0m   [0mCREATE INDEX `index_ci_users_on_password_reset_code` ON `ci_users` (`password_reset_code`)[0m
+  [4;36;1mSQL (4.5ms)[0m   [0;1mCREATE INDEX `index_ci_users_on_activation_code` ON `ci_users` (`activation_code`)[0m
+  [4;35;1mSQL (0.9ms)[0m   [0mINSERT INTO ci_schema_migrations (version) VALUES ('20081216170645')[0m
+Migrating to CreateUsStates (20081216172545)
+  [4;36;1mSQL (2.6ms)[0m   [0;1mCREATE TABLE `ci_us_states` (`us_state_id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `abbreviation` varchar(2), `name` varchar(50), `underlined_name` varchar(50)) auto_increment = 15000[0m
+  [4;35;1mSQL (4.6ms)[0m   [0mCREATE INDEX `index_ci_us_states_on_abbreviation` ON `ci_us_states` (`abbreviation`)[0m
+  [4;36;1mSQL (5.1ms)[0m   [0;1mCREATE INDEX `index_ci_us_states_on_name` ON `ci_us_states` (`name`)[0m
+  [4;35;1mSQL (5.2ms)[0m   [0mCREATE INDEX `index_ci_us_states_on_underlined_name` ON `ci_us_states` (`underlined_name`)[0m
+  [4;36;1mSQL (1.0ms)[0m   [0;1mINSERT INTO ci_schema_migrations (version) VALUES ('20081216172545')[0m
+Migrating to CreateCountryNames (20081216172610)
+  [4;35;1mSQL (1.8ms)[0m   [0mCREATE TABLE `ci_country_names` (`country_name_id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `iso_3166_1_a2_code` varchar(2), `english_name` varchar(255), `underlined_english_name` varchar(255)) auto_increment = 15000[0m
+  [4;36;1mSQL (4.8ms)[0m   [0;1mCREATE INDEX `index_ci_country_names_on_iso_3166_1_a2_code` ON `ci_country_names` (`iso_3166_1_a2_code`)[0m
+  [4;35;1mSQL (8.3ms)[0m   [0mCREATE INDEX `index_ci_country_names_on_english_name` ON `ci_country_names` (`english_name`)[0m
+  [4;36;1mSQL (5.3ms)[0m   [0;1mCREATE INDEX `index_ci_country_names_on_underlined_english_name` ON `ci_country_names` (`underlined_english_name`)[0m
+  [4;35;1mSQL (0.7ms)[0m   [0mINSERT INTO ci_schema_migrations (version) VALUES ('20081216172610')[0m
+Migrating to CreatePeople (20081216174522)
+  [4;36;1mSQL (2.2ms)[0m   [0;1mCREATE TABLE `ci_people` (`person_id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `version` int(11), `first_name` varchar(255), `last_name` varchar(255), `created_at` datetime, `updated_at` datetime) auto_increment = 15000[0m
+  [4;35;1mSQL (2.1ms)[0m   [0mCREATE TABLE `ci_person_versions` (`person_version_id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `persion_id` int(11), `version` int(11), `first_name` varchar(255), `last_name` varchar(255), `updated_at` datetime) auto_increment = 15000[0m
+  [4;36;1mSQL (0.8ms)[0m   [0;1mINSERT INTO ci_schema_migrations (version) VALUES ('20081216174522')[0m
+Migrating to CreateLocations (20081216185405)
+  [4;35;1mSQL (2.2ms)[0m   [0mCREATE TABLE `ci_locations` (`location_id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `version` int(11), `street_address_line_1` varchar(255), `street_address_line_2` varchar(255), `city_name` varchar(255), `region_name` varchar(255), `us_state_id` int(11), `postal_code` varchar(255), `country_name_id` int(11), `lat` float, `lng` float, `geocode_precision` varchar(10), `created_at` datetime, `updated_at` datetime) auto_increment = 15000[0m
+  [4;36;1mSQL (4.5ms)[0m   [0;1mCREATE INDEX `index_ci_locations_on_us_state_id` ON `ci_locations` (`us_state_id`)[0m
+  [4;35;1mSQL (6.3ms)[0m   [0mCREATE INDEX `index_ci_locations_on_country_name_id` ON `ci_locations` (`country_name_id`)[0m
+  [4;36;1mSQL (3.0ms)[0m   [0;1mCREATE TABLE `ci_location_versions` (`location_version_id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `location_id` int(11), `version` int(11), `street_address_line_1` varchar(255), `street_address_line_2` varchar(255), `city_name` varchar(255), `region_name` varchar(255), `us_state_id` int(11), `postal_code` varchar(255), `country_name_id` int(11), `lat` float, `lng` float, `geocode_precision` varchar(10), `updated_at` datetime) auto_increment = 15000[0m
+  [4;35;1mSQL (3.2ms)[0m   [0mCREATE INDEX `index_ci_location_versions_on_location_id` ON `ci_location_versions` (`location_id`)[0m
+  [4;36;1mSQL (4.5ms)[0m   [0;1mCREATE INDEX `index_ci_location_versions_on_us_state_id` ON `ci_location_versions` (`us_state_id`)[0m
+  [4;35;1mSQL (5.7ms)[0m   [0mCREATE INDEX `index_ci_location_versions_on_country_name_id` ON `ci_location_versions` (`country_name_id`)[0m
+  [4;36;1mSQL (0.8ms)[0m   [0;1mINSERT INTO ci_schema_migrations (version) VALUES ('20081216185405')[0m
+  [4;36;1mSQL (0.2ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+  [4;36;1mSQL (0.4ms)[0m   [0;1mSHOW TABLES[0m
+  [4;35;1mSQL (0.2ms)[0m   [0mSELECT version FROM ci_schema_migrations[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+  [4;36;1mSQL (0.6ms)[0m   [0;1mSHOW FULL TABLES WHERE Table_type = 'BASE TABLE'[0m
+  [4;35;1mSQL (0.4ms)[0m   [0mSHOW CREATE TABLE `ci_country_names`[0m
+  [4;36;1mSQL (0.3ms)[0m   [0;1mSHOW CREATE TABLE `ci_location_versions`[0m
+  [4;35;1mSQL (0.3ms)[0m   [0mSHOW CREATE TABLE `ci_locations`[0m
+  [4;36;1mSQL (0.3ms)[0m   [0;1mSHOW CREATE TABLE `ci_people`[0m
+  [4;35;1mSQL (0.3ms)[0m   [0mSHOW CREATE TABLE `ci_person_versions`[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSHOW CREATE TABLE `ci_schema_migrations`[0m
+  [4;35;1mSQL (0.4ms)[0m   [0mSHOW CREATE TABLE `ci_us_states`[0m
+  [4;36;1mSQL (0.3ms)[0m   [0;1mSHOW CREATE TABLE `ci_users`[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSELECT version FROM ci_schema_migrations[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+  [4;36;1mSQL (5.0ms)[0m   [0;1mDROP DATABASE IF EXISTS `ci_rails_test`[0m
+  [4;35;1mSQL (0.3ms)[0m   [0mCREATE DATABASE `ci_rails_test` DEFAULT CHARACTER SET `utf8`[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET foreign_key_checks = 0[0m
+  [4;35;1mSQL (1.3ms)[0m   [0mCREATE TABLE `ci_country_names` (
+ `country_name_id` int(11) NOT NULL auto_increment,
+ `iso_3166_1_a2_code` varchar(2) default NULL,
+ `english_name` varchar(255) default NULL,
+ `underlined_english_name` varchar(255) default NULL,
+ PRIMARY KEY (`country_name_id`),
+ KEY `index_ci_country_names_on_iso_3166_1_a2_code` (`iso_3166_1_a2_code`),
+ KEY `index_ci_country_names_on_english_name` (`english_name`),
+ KEY `index_ci_country_names_on_underlined_english_name` (`underlined_english_name`)
+) ENGINE=MyISAM AUTO_INCREMENT=15000 DEFAULT CHARSET=latin1;[0m
+  [4;36;1mSQL (2.0ms)[0m   [0;1mCREATE TABLE `ci_location_versions` (
+ `location_version_id` int(11) NOT NULL auto_increment,
+ `location_id` int(11) default NULL,
+ `version` int(11) default NULL,
+ `street_address_line_1` varchar(255) default NULL,
+ `street_address_line_2` varchar(255) default NULL,
+ `city_name` varchar(255) default NULL,
+ `region_name` varchar(255) default NULL,
+ `us_state_id` int(11) default NULL,
+ `postal_code` varchar(255) default NULL,
+ `country_name_id` int(11) default NULL,
+ `lat` float default NULL,
+ `lng` float default NULL,
+ `geocode_precision` varchar(10) default NULL,
+ `updated_at` datetime default NULL,
+ PRIMARY KEY (`location_version_id`),
+ KEY `index_ci_location_versions_on_location_id` (`location_id`),
+ KEY `index_ci_location_versions_on_us_state_id` (`us_state_id`),
+ KEY `index_ci_location_versions_on_country_name_id` (`country_name_id`)
+) ENGINE=MyISAM AUTO_INCREMENT=15000 DEFAULT CHARSET=latin1;[0m
+  [4;35;1mSQL (2.5ms)[0m   [0mCREATE TABLE `ci_locations` (
+ `location_id` int(11) NOT NULL auto_increment,
+ `version` int(11) default NULL,
+ `street_address_line_1` varchar(255) default NULL,
+ `street_address_line_2` varchar(255) default NULL,
+ `city_name` varchar(255) default NULL,
+ `region_name` varchar(255) default NULL,
+ `us_state_id` int(11) default NULL,
+ `postal_code` varchar(255) default NULL,
+ `country_name_id` int(11) default NULL,
+ `lat` float default NULL,
+ `lng` float default NULL,
+ `geocode_precision` varchar(10) default NULL,
+ `created_at` datetime default NULL,
+ `updated_at` datetime default NULL,
+ PRIMARY KEY (`location_id`),
+ KEY `index_ci_locations_on_us_state_id` (`us_state_id`),
+ KEY `index_ci_locations_on_country_name_id` (`country_name_id`)
+) ENGINE=MyISAM AUTO_INCREMENT=15000 DEFAULT CHARSET=latin1;[0m
+  [4;36;1mSQL (2.5ms)[0m   [0;1mCREATE TABLE `ci_people` (
+ `person_id` int(11) NOT NULL auto_increment,
+ `version` int(11) default NULL,
+ `first_name` varchar(255) default NULL,
+ `last_name` varchar(255) default NULL,
+ `created_at` datetime default NULL,
+ `updated_at` datetime default NULL,
+ PRIMARY KEY (`person_id`)
+) ENGINE=MyISAM AUTO_INCREMENT=15000 DEFAULT CHARSET=latin1;[0m
+  [4;35;1mSQL (2.2ms)[0m   [0mCREATE TABLE `ci_person_versions` (
+ `person_version_id` int(11) NOT NULL auto_increment,
+ `persion_id` int(11) default NULL,
+ `version` int(11) default NULL,
+ `first_name` varchar(255) default NULL,
+ `last_name` varchar(255) default NULL,
+ `updated_at` datetime default NULL,
+ PRIMARY KEY (`person_version_id`)
+) ENGINE=MyISAM AUTO_INCREMENT=15000 DEFAULT CHARSET=latin1;[0m
+  [4;36;1mSQL (2.3ms)[0m   [0;1mCREATE TABLE `ci_schema_migrations` (
+ `version` varchar(255) NOT NULL,
+ UNIQUE KEY `unique_schema_migrations` (`version`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;[0m
+  [4;35;1mSQL (2.7ms)[0m   [0mCREATE TABLE `ci_us_states` (
+ `us_state_id` int(11) NOT NULL auto_increment,
+ `abbreviation` varchar(2) default NULL,
+ `name` varchar(50) default NULL,
+ `underlined_name` varchar(50) default NULL,
+ PRIMARY KEY (`us_state_id`),
+ KEY `index_ci_us_states_on_abbreviation` (`abbreviation`),
+ KEY `index_ci_us_states_on_name` (`name`),
+ KEY `index_ci_us_states_on_underlined_name` (`underlined_name`)
+) ENGINE=MyISAM AUTO_INCREMENT=15000 DEFAULT CHARSET=latin1;[0m
+  [4;36;1mSQL (2.8ms)[0m   [0;1mCREATE TABLE `ci_users` (
+ `user_id` int(11) NOT NULL auto_increment,
+ `email` varchar(255) default NULL,
+ `person_id` int(11) default NULL,
+ `admin` tinyint(1) default '0',
+ `state` varchar(12) default NULL,
+ `crypted_password` varchar(40) default NULL,
+ `salt` varchar(40) default NULL,
+ `password_reset_code` varchar(40) default NULL,
+ `activation_code` varchar(40) default NULL,
+ `activated_at` datetime default NULL,
+ `deleted_at` datetime default NULL,
+ `last_login_at` datetime default NULL,
+ `remember_token` varchar(255) default NULL,
+ `remember_token_expires_at` datetime default NULL,
+ `created_at` datetime default NULL,
+ `updated_at` datetime default NULL,
+ PRIMARY KEY (`user_id`),
+ KEY `index_ci_users_on_email` (`email`),
+ KEY `index_ci_users_on_person_id` (`person_id`),
+ KEY `index_ci_users_on_state` (`state`),
+ KEY `index_ci_users_on_password_reset_code` (`password_reset_code`),
+ KEY `index_ci_users_on_activation_code` (`activation_code`)
+) ENGINE=MyISAM AUTO_INCREMENT=15000 DEFAULT CHARSET=latin1;[0m
+  [4;35;1mSQL (1.0ms)[0m   [0mINSERT INTO ci_schema_migrations (version) VALUES ('20081216170645');[0m
+  [4;36;1mSQL (0.8ms)[0m   [0;1mINSERT INTO ci_schema_migrations (version) VALUES ('20081216172545');[0m
+  [4;35;1mSQL (0.8ms)[0m   [0mINSERT INTO ci_schema_migrations (version) VALUES ('20081216172610');[0m
+  [4;36;1mSQL (2.2ms)[0m   [0;1mINSERT INTO ci_schema_migrations (version) VALUES ('20081216174522');[0m
+  [4;35;1mSQL (1.0ms)[0m   [0mINSERT INTO ci_schema_migrations (version) VALUES ('20081216185405');[0m
+  [4;36;1mSQL (0.2ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+  [4;36;1mSQL (0.4ms)[0m   [0;1mSHOW TABLES[0m
+  [4;35;1mSQL (0.2ms)[0m   [0mSELECT version FROM ci_schema_migrations[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+  [4;36;1mSQL (0.5ms)[0m   [0;1mSHOW FULL TABLES WHERE Table_type = 'BASE TABLE'[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSHOW CREATE TABLE `ci_country_names`[0m
+  [4;36;1mSQL (0.2ms)[0m   [0;1mSHOW CREATE TABLE `ci_location_versions`[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSHOW CREATE TABLE `ci_locations`[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSHOW CREATE TABLE `ci_people`[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSHOW CREATE TABLE `ci_person_versions`[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSHOW CREATE TABLE `ci_schema_migrations`[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSHOW CREATE TABLE `ci_us_states`[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSHOW CREATE TABLE `ci_users`[0m
+  [4;35;1mSQL (0.2ms)[0m   [0mSELECT version FROM ci_schema_migrations[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+  [4;36;1mSQL (6.1ms)[0m   [0;1mDROP DATABASE IF EXISTS `ci_rails_test`[0m
+  [4;35;1mSQL (0.4ms)[0m   [0mCREATE DATABASE `ci_rails_test` DEFAULT CHARACTER SET `utf8`[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET foreign_key_checks = 0[0m
+  [4;35;1mSQL (2.4ms)[0m   [0mCREATE TABLE `ci_country_names` (
+ `country_name_id` int(11) NOT NULL auto_increment,
+ `iso_3166_1_a2_code` varchar(2) default NULL,
+ `english_name` varchar(255) default NULL,
+ `underlined_english_name` varchar(255) default NULL,
+ PRIMARY KEY (`country_name_id`),
+ KEY `index_ci_country_names_on_iso_3166_1_a2_code` (`iso_3166_1_a2_code`),
+ KEY `index_ci_country_names_on_english_name` (`english_name`),
+ KEY `index_ci_country_names_on_underlined_english_name` (`underlined_english_name`)
+) ENGINE=MyISAM AUTO_INCREMENT=15000 DEFAULT CHARSET=latin1;[0m
+  [4;36;1mSQL (2.5ms)[0m   [0;1mCREATE TABLE `ci_location_versions` (
+ `location_version_id` int(11) NOT NULL auto_increment,
+ `location_id` int(11) default NULL,
+ `version` int(11) default NULL,
+ `street_address_line_1` varchar(255) default NULL,
+ `street_address_line_2` varchar(255) default NULL,
+ `city_name` varchar(255) default NULL,
+ `region_name` varchar(255) default NULL,
+ `us_state_id` int(11) default NULL,
+ `postal_code` varchar(255) default NULL,
+ `country_name_id` int(11) default NULL,
+ `lat` float default NULL,
+ `lng` float default NULL,
+ `geocode_precision` varchar(10) default NULL,
+ `updated_at` datetime default NULL,
+ PRIMARY KEY (`location_version_id`),
+ KEY `index_ci_location_versions_on_location_id` (`location_id`),
+ KEY `index_ci_location_versions_on_us_state_id` (`us_state_id`),
+ KEY `index_ci_location_versions_on_country_name_id` (`country_name_id`)
+) ENGINE=MyISAM AUTO_INCREMENT=15000 DEFAULT CHARSET=latin1;[0m
+  [4;35;1mSQL (2.4ms)[0m   [0mCREATE TABLE `ci_locations` (
+ `location_id` int(11) NOT NULL auto_increment,
+ `version` int(11) default NULL,
+ `street_address_line_1` varchar(255) default NULL,
+ `street_address_line_2` varchar(255) default NULL,
+ `city_name` varchar(255) default NULL,
+ `region_name` varchar(255) default NULL,
+ `us_state_id` int(11) default NULL,
+ `postal_code` varchar(255) default NULL,
+ `country_name_id` int(11) default NULL,
+ `lat` float default NULL,
+ `lng` float default NULL,
+ `geocode_precision` varchar(10) default NULL,
+ `created_at` datetime default NULL,
+ `updated_at` datetime default NULL,
+ PRIMARY KEY (`location_id`),
+ KEY `index_ci_locations_on_us_state_id` (`us_state_id`),
+ KEY `index_ci_locations_on_country_name_id` (`country_name_id`)
+) ENGINE=MyISAM AUTO_INCREMENT=15000 DEFAULT CHARSET=latin1;[0m
+  [4;36;1mSQL (1.7ms)[0m   [0;1mCREATE TABLE `ci_people` (
+ `person_id` int(11) NOT NULL auto_increment,
+ `version` int(11) default NULL,
+ `first_name` varchar(255) default NULL,
+ `last_name` varchar(255) default NULL,
+ `created_at` datetime default NULL,
+ `updated_at` datetime default NULL,
+ PRIMARY KEY (`person_id`)
+) ENGINE=MyISAM AUTO_INCREMENT=15000 DEFAULT CHARSET=latin1;[0m
+  [4;35;1mSQL (1.8ms)[0m   [0mCREATE TABLE `ci_person_versions` (
+ `person_version_id` int(11) NOT NULL auto_increment,
+ `persion_id` int(11) default NULL,
+ `version` int(11) default NULL,
+ `first_name` varchar(255) default NULL,
+ `last_name` varchar(255) default NULL,
+ `updated_at` datetime default NULL,
+ PRIMARY KEY (`person_version_id`)
+) ENGINE=MyISAM AUTO_INCREMENT=15000 DEFAULT CHARSET=latin1;[0m
+  [4;36;1mSQL (2.5ms)[0m   [0;1mCREATE TABLE `ci_schema_migrations` (
+ `version` varchar(255) NOT NULL,
+ UNIQUE KEY `unique_schema_migrations` (`version`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;[0m
+  [4;35;1mSQL (2.4ms)[0m   [0mCREATE TABLE `ci_us_states` (
+ `us_state_id` int(11) NOT NULL auto_increment,
+ `abbreviation` varchar(2) default NULL,
+ `name` varchar(50) default NULL,
+ `underlined_name` varchar(50) default NULL,
+ PRIMARY KEY (`us_state_id`),
+ KEY `index_ci_us_states_on_abbreviation` (`abbreviation`),
+ KEY `index_ci_us_states_on_name` (`name`),
+ KEY `index_ci_us_states_on_underlined_name` (`underlined_name`)
+) ENGINE=MyISAM AUTO_INCREMENT=15000 DEFAULT CHARSET=latin1;[0m
+  [4;36;1mSQL (2.6ms)[0m   [0;1mCREATE TABLE `ci_users` (
+ `user_id` int(11) NOT NULL auto_increment,
+ `email` varchar(255) default NULL,
+ `person_id` int(11) default NULL,
+ `admin` tinyint(1) default '0',
+ `state` varchar(12) default NULL,
+ `crypted_password` varchar(40) default NULL,
+ `salt` varchar(40) default NULL,
+ `password_reset_code` varchar(40) default NULL,
+ `activation_code` varchar(40) default NULL,
+ `activated_at` datetime default NULL,
+ `deleted_at` datetime default NULL,
+ `last_login_at` datetime default NULL,
+ `remember_token` varchar(255) default NULL,
+ `remember_token_expires_at` datetime default NULL,
+ `created_at` datetime default NULL,
+ `updated_at` datetime default NULL,
+ PRIMARY KEY (`user_id`),
+ KEY `index_ci_users_on_email` (`email`),
+ KEY `index_ci_users_on_person_id` (`person_id`),
+ KEY `index_ci_users_on_state` (`state`),
+ KEY `index_ci_users_on_password_reset_code` (`password_reset_code`),
+ KEY `index_ci_users_on_activation_code` (`activation_code`)
+) ENGINE=MyISAM AUTO_INCREMENT=15000 DEFAULT CHARSET=latin1;[0m
+  [4;35;1mSQL (1.0ms)[0m   [0mINSERT INTO ci_schema_migrations (version) VALUES ('20081216170645');[0m
+  [4;36;1mSQL (0.8ms)[0m   [0;1mINSERT INTO ci_schema_migrations (version) VALUES ('20081216172545');[0m
+  [4;35;1mSQL (0.8ms)[0m   [0mINSERT INTO ci_schema_migrations (version) VALUES ('20081216172610');[0m
+  [4;36;1mSQL (1.6ms)[0m   [0;1mINSERT INTO ci_schema_migrations (version) VALUES ('20081216174522');[0m
+  [4;35;1mSQL (0.6ms)[0m   [0mINSERT INTO ci_schema_migrations (version) VALUES ('20081216185405');[0m
+  [4;36;1mSQL (0.2ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+  [4;36;1mSQL (0.4ms)[0m   [0;1mSHOW TABLES[0m
+  [4;35;1mSQL (0.2ms)[0m   [0mSELECT version FROM ci_schema_migrations[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+  [4;36;1mSQL (0.5ms)[0m   [0;1mSHOW FULL TABLES WHERE Table_type = 'BASE TABLE'[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSHOW CREATE TABLE `ci_country_names`[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSHOW CREATE TABLE `ci_location_versions`[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSHOW CREATE TABLE `ci_locations`[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSHOW CREATE TABLE `ci_people`[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSHOW CREATE TABLE `ci_person_versions`[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSHOW CREATE TABLE `ci_schema_migrations`[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSHOW CREATE TABLE `ci_us_states`[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSHOW CREATE TABLE `ci_users`[0m
+  [4;35;1mSQL (0.2ms)[0m   [0mSELECT version FROM ci_schema_migrations[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+  [4;36;1mSQL (5.1ms)[0m   [0;1mDROP DATABASE IF EXISTS `ci_rails_test`[0m
+  [4;35;1mSQL (0.7ms)[0m   [0mCREATE DATABASE `ci_rails_test` DEFAULT CHARACTER SET `utf8`[0m
+  [4;36;1mSQL (0.2ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.2ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET foreign_key_checks = 0[0m
+  [4;35;1mSQL (1.2ms)[0m   [0mCREATE TABLE `ci_country_names` (
+ `country_name_id` int(11) NOT NULL auto_increment,
+ `iso_3166_1_a2_code` varchar(2) default NULL,
+ `english_name` varchar(255) default NULL,
+ `underlined_english_name` varchar(255) default NULL,
+ PRIMARY KEY (`country_name_id`),
+ KEY `index_ci_country_names_on_iso_3166_1_a2_code` (`iso_3166_1_a2_code`),
+ KEY `index_ci_country_names_on_english_name` (`english_name`),
+ KEY `index_ci_country_names_on_underlined_english_name` (`underlined_english_name`)
+) ENGINE=MyISAM AUTO_INCREMENT=15000 DEFAULT CHARSET=latin1;[0m
+  [4;36;1mSQL (2.2ms)[0m   [0;1mCREATE TABLE `ci_location_versions` (
+ `location_version_id` int(11) NOT NULL auto_increment,
+ `location_id` int(11) default NULL,
+ `version` int(11) default NULL,
+ `street_address_line_1` varchar(255) default NULL,
+ `street_address_line_2` varchar(255) default NULL,
+ `city_name` varchar(255) default NULL,
+ `region_name` varchar(255) default NULL,
+ `us_state_id` int(11) default NULL,
+ `postal_code` varchar(255) default NULL,
+ `country_name_id` int(11) default NULL,
+ `lat` float default NULL,
+ `lng` float default NULL,
+ `geocode_precision` varchar(10) default NULL,
+ `updated_at` datetime default NULL,
+ PRIMARY KEY (`location_version_id`),
+ KEY `index_ci_location_versions_on_location_id` (`location_id`),
+ KEY `index_ci_location_versions_on_us_state_id` (`us_state_id`),
+ KEY `index_ci_location_versions_on_country_name_id` (`country_name_id`)
+) ENGINE=MyISAM AUTO_INCREMENT=15000 DEFAULT CHARSET=latin1;[0m
+  [4;35;1mSQL (2.4ms)[0m   [0mCREATE TABLE `ci_locations` (
+ `location_id` int(11) NOT NULL auto_increment,
+ `version` int(11) default NULL,
+ `street_address_line_1` varchar(255) default NULL,
+ `street_address_line_2` varchar(255) default NULL,
+ `city_name` varchar(255) default NULL,
+ `region_name` varchar(255) default NULL,
+ `us_state_id` int(11) default NULL,
+ `postal_code` varchar(255) default NULL,
+ `country_name_id` int(11) default NULL,
+ `lat` float default NULL,
+ `lng` float default NULL,
+ `geocode_precision` varchar(10) default NULL,
+ `created_at` datetime default NULL,
+ `updated_at` datetime default NULL,
+ PRIMARY KEY (`location_id`),
+ KEY `index_ci_locations_on_us_state_id` (`us_state_id`),
+ KEY `index_ci_locations_on_country_name_id` (`country_name_id`)
+) ENGINE=MyISAM AUTO_INCREMENT=15000 DEFAULT CHARSET=latin1;[0m
+  [4;36;1mSQL (2.2ms)[0m   [0;1mCREATE TABLE `ci_people` (
+ `person_id` int(11) NOT NULL auto_increment,
+ `version` int(11) default NULL,
+ `first_name` varchar(255) default NULL,
+ `last_name` varchar(255) default NULL,
+ `created_at` datetime default NULL,
+ `updated_at` datetime default NULL,
+ PRIMARY KEY (`person_id`)
+) ENGINE=MyISAM AUTO_INCREMENT=15000 DEFAULT CHARSET=latin1;[0m
+  [4;35;1mSQL (2.1ms)[0m   [0mCREATE TABLE `ci_person_versions` (
+ `person_version_id` int(11) NOT NULL auto_increment,
+ `persion_id` int(11) default NULL,
+ `version` int(11) default NULL,
+ `first_name` varchar(255) default NULL,
+ `last_name` varchar(255) default NULL,
+ `updated_at` datetime default NULL,
+ PRIMARY KEY (`person_version_id`)
+) ENGINE=MyISAM AUTO_INCREMENT=15000 DEFAULT CHARSET=latin1;[0m
+  [4;36;1mSQL (30.7ms)[0m   [0;1mCREATE TABLE `ci_schema_migrations` (
+ `version` varchar(255) NOT NULL,
+ UNIQUE KEY `unique_schema_migrations` (`version`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;[0m
+  [4;35;1mSQL (2.4ms)[0m   [0mCREATE TABLE `ci_us_states` (
+ `us_state_id` int(11) NOT NULL auto_increment,
+ `abbreviation` varchar(2) default NULL,
+ `name` varchar(50) default NULL,
+ `underlined_name` varchar(50) default NULL,
+ PRIMARY KEY (`us_state_id`),
+ KEY `index_ci_us_states_on_abbreviation` (`abbreviation`),
+ KEY `index_ci_us_states_on_name` (`name`),
+ KEY `index_ci_us_states_on_underlined_name` (`underlined_name`)
+) ENGINE=MyISAM AUTO_INCREMENT=15000 DEFAULT CHARSET=latin1;[0m
+  [4;36;1mSQL (2.1ms)[0m   [0;1mCREATE TABLE `ci_users` (
+ `user_id` int(11) NOT NULL auto_increment,
+ `email` varchar(255) default NULL,
+ `person_id` int(11) default NULL,
+ `admin` tinyint(1) default '0',
+ `state` varchar(12) default NULL,
+ `crypted_password` varchar(40) default NULL,
+ `salt` varchar(40) default NULL,
+ `password_reset_code` varchar(40) default NULL,
+ `activation_code` varchar(40) default NULL,
+ `activated_at` datetime default NULL,
+ `deleted_at` datetime default NULL,
+ `last_login_at` datetime default NULL,
+ `remember_token` varchar(255) default NULL,
+ `remember_token_expires_at` datetime default NULL,
+ `created_at` datetime default NULL,
+ `updated_at` datetime default NULL,
+ PRIMARY KEY (`user_id`),
+ KEY `index_ci_users_on_email` (`email`),
+ KEY `index_ci_users_on_person_id` (`person_id`),
+ KEY `index_ci_users_on_state` (`state`),
+ KEY `index_ci_users_on_password_reset_code` (`password_reset_code`),
+ KEY `index_ci_users_on_activation_code` (`activation_code`)
+) ENGINE=MyISAM AUTO_INCREMENT=15000 DEFAULT CHARSET=latin1;[0m
+  [4;35;1mSQL (0.9ms)[0m   [0mINSERT INTO ci_schema_migrations (version) VALUES ('20081216170645');[0m
+  [4;36;1mSQL (0.8ms)[0m   [0;1mINSERT INTO ci_schema_migrations (version) VALUES ('20081216172545');[0m
+  [4;35;1mSQL (0.8ms)[0m   [0mINSERT INTO ci_schema_migrations (version) VALUES ('20081216172610');[0m
+  [4;36;1mSQL (0.7ms)[0m   [0;1mINSERT INTO ci_schema_migrations (version) VALUES ('20081216174522');[0m
+  [4;35;1mSQL (0.7ms)[0m   [0mINSERT INTO ci_schema_migrations (version) VALUES ('20081216185405');[0m
+  [4;36;1mSQL (0.2ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+  [4;36;1mSQL (0.4ms)[0m   [0;1mSHOW TABLES[0m
+  [4;35;1mSQL (0.2ms)[0m   [0mSELECT version FROM ci_schema_migrations[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+  [4;36;1mSQL (0.5ms)[0m   [0;1mSHOW FULL TABLES WHERE Table_type = 'BASE TABLE'[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSHOW CREATE TABLE `ci_country_names`[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSHOW CREATE TABLE `ci_location_versions`[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSHOW CREATE TABLE `ci_locations`[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSHOW CREATE TABLE `ci_people`[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSHOW CREATE TABLE `ci_person_versions`[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSHOW CREATE TABLE `ci_schema_migrations`[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSHOW CREATE TABLE `ci_us_states`[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSHOW CREATE TABLE `ci_users`[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSELECT version FROM ci_schema_migrations[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+  [4;36;1mSQL (6.6ms)[0m   [0;1mDROP DATABASE IF EXISTS `ci_rails_test`[0m
+  [4;35;1mSQL (0.3ms)[0m   [0mCREATE DATABASE `ci_rails_test` DEFAULT CHARACTER SET `utf8`[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSET foreign_key_checks = 0[0m
+  [4;35;1mSQL (1.9ms)[0m   [0mCREATE TABLE `ci_country_names` (
+ `country_name_id` int(11) NOT NULL auto_increment,
+ `iso_3166_1_a2_code` varchar(2) default NULL,
+ `english_name` varchar(255) default NULL,
+ `underlined_english_name` varchar(255) default NULL,
+ PRIMARY KEY (`country_name_id`),
+ KEY `index_ci_country_names_on_iso_3166_1_a2_code` (`iso_3166_1_a2_code`),
+ KEY `index_ci_country_names_on_english_name` (`english_name`),
+ KEY `index_ci_country_names_on_underlined_english_name` (`underlined_english_name`)
+) ENGINE=MyISAM AUTO_INCREMENT=15000 DEFAULT CHARSET=latin1;[0m
+  [4;36;1mSQL (3.2ms)[0m   [0;1mCREATE TABLE `ci_location_versions` (
+ `location_version_id` int(11) NOT NULL auto_increment,
+ `location_id` int(11) default NULL,
+ `version` int(11) default NULL,
+ `street_address_line_1` varchar(255) default NULL,
+ `street_address_line_2` varchar(255) default NULL,
+ `city_name` varchar(255) default NULL,
+ `region_name` varchar(255) default NULL,
+ `us_state_id` int(11) default NULL,
+ `postal_code` varchar(255) default NULL,
+ `country_name_id` int(11) default NULL,
+ `lat` float default NULL,
+ `lng` float default NULL,
+ `geocode_precision` varchar(10) default NULL,
+ `updated_at` datetime default NULL,
+ PRIMARY KEY (`location_version_id`),
+ KEY `index_ci_location_versions_on_location_id` (`location_id`),
+ KEY `index_ci_location_versions_on_us_state_id` (`us_state_id`),
+ KEY `index_ci_location_versions_on_country_name_id` (`country_name_id`)
+) ENGINE=MyISAM AUTO_INCREMENT=15000 DEFAULT CHARSET=latin1;[0m
+  [4;35;1mSQL (2.0ms)[0m   [0mCREATE TABLE `ci_locations` (
+ `location_id` int(11) NOT NULL auto_increment,
+ `version` int(11) default NULL,
+ `street_address_line_1` varchar(255) default NULL,
+ `street_address_line_2` varchar(255) default NULL,
+ `city_name` varchar(255) default NULL,
+ `region_name` varchar(255) default NULL,
+ `us_state_id` int(11) default NULL,
+ `postal_code` varchar(255) default NULL,
+ `country_name_id` int(11) default NULL,
+ `lat` float default NULL,
+ `lng` float default NULL,
+ `geocode_precision` varchar(10) default NULL,
+ `created_at` datetime default NULL,
+ `updated_at` datetime default NULL,
+ PRIMARY KEY (`location_id`),
+ KEY `index_ci_locations_on_us_state_id` (`us_state_id`),
+ KEY `index_ci_locations_on_country_name_id` (`country_name_id`)
+) ENGINE=MyISAM AUTO_INCREMENT=15000 DEFAULT CHARSET=latin1;[0m
+  [4;36;1mSQL (2.0ms)[0m   [0;1mCREATE TABLE `ci_people` (
+ `person_id` int(11) NOT NULL auto_increment,
+ `version` int(11) default NULL,
+ `first_name` varchar(255) default NULL,
+ `last_name` varchar(255) default NULL,
+ `created_at` datetime default NULL,
+ `updated_at` datetime default NULL,
+ PRIMARY KEY (`person_id`)
+) ENGINE=MyISAM AUTO_INCREMENT=15000 DEFAULT CHARSET=latin1;[0m
+  [4;35;1mSQL (1.7ms)[0m   [0mCREATE TABLE `ci_person_versions` (
+ `person_version_id` int(11) NOT NULL auto_increment,
+ `persion_id` int(11) default NULL,
+ `version` int(11) default NULL,
+ `first_name` varchar(255) default NULL,
+ `last_name` varchar(255) default NULL,
+ `updated_at` datetime default NULL,
+ PRIMARY KEY (`person_version_id`)
+) ENGINE=MyISAM AUTO_INCREMENT=15000 DEFAULT CHARSET=latin1;[0m
+  [4;36;1mSQL (352.7ms)[0m   [0;1mCREATE TABLE `ci_schema_migrations` (
+ `version` varchar(255) NOT NULL,
+ UNIQUE KEY `unique_schema_migrations` (`version`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;[0m
+  [4;35;1mSQL (2.4ms)[0m   [0mCREATE TABLE `ci_us_states` (
+ `us_state_id` int(11) NOT NULL auto_increment,
+ `abbreviation` varchar(2) default NULL,
+ `name` varchar(50) default NULL,
+ `underlined_name` varchar(50) default NULL,
+ PRIMARY KEY (`us_state_id`),
+ KEY `index_ci_us_states_on_abbreviation` (`abbreviation`),
+ KEY `index_ci_us_states_on_name` (`name`),
+ KEY `index_ci_us_states_on_underlined_name` (`underlined_name`)
+) ENGINE=MyISAM AUTO_INCREMENT=15000 DEFAULT CHARSET=latin1;[0m
+  [4;36;1mSQL (2.6ms)[0m   [0;1mCREATE TABLE `ci_users` (
+ `user_id` int(11) NOT NULL auto_increment,
+ `email` varchar(255) default NULL,
+ `person_id` int(11) default NULL,
+ `admin` tinyint(1) default '0',
+ `state` varchar(12) default NULL,
+ `crypted_password` varchar(40) default NULL,
+ `salt` varchar(40) default NULL,
+ `password_reset_code` varchar(40) default NULL,
+ `activation_code` varchar(40) default NULL,
+ `activated_at` datetime default NULL,
+ `deleted_at` datetime default NULL,
+ `last_login_at` datetime default NULL,
+ `remember_token` varchar(255) default NULL,
+ `remember_token_expires_at` datetime default NULL,
+ `created_at` datetime default NULL,
+ `updated_at` datetime default NULL,
+ PRIMARY KEY (`user_id`),
+ KEY `index_ci_users_on_email` (`email`),
+ KEY `index_ci_users_on_person_id` (`person_id`),
+ KEY `index_ci_users_on_state` (`state`),
+ KEY `index_ci_users_on_password_reset_code` (`password_reset_code`),
+ KEY `index_ci_users_on_activation_code` (`activation_code`)
+) ENGINE=MyISAM AUTO_INCREMENT=15000 DEFAULT CHARSET=latin1;[0m
+  [4;35;1mSQL (0.9ms)[0m   [0mINSERT INTO ci_schema_migrations (version) VALUES ('20081216170645');[0m
+  [4;36;1mSQL (0.8ms)[0m   [0;1mINSERT INTO ci_schema_migrations (version) VALUES ('20081216172545');[0m
+  [4;35;1mSQL (0.8ms)[0m   [0mINSERT INTO ci_schema_migrations (version) VALUES ('20081216172610');[0m
+  [4;36;1mSQL (0.8ms)[0m   [0;1mINSERT INTO ci_schema_migrations (version) VALUES ('20081216174522');[0m
+  [4;35;1mSQL (0.8ms)[0m   [0mINSERT INTO ci_schema_migrations (version) VALUES ('20081216185405');[0m
+  [4;36;1mSQL (0.2ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+  [4;36;1mSQL (0.5ms)[0m   [0;1mSHOW TABLES[0m
+  [4;35;1mSQL (0.2ms)[0m   [0mSELECT version FROM ci_schema_migrations[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+  [4;36;1mSQL (0.6ms)[0m   [0;1mSHOW FULL TABLES WHERE Table_type = 'BASE TABLE'[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSHOW CREATE TABLE `ci_country_names`[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSHOW CREATE TABLE `ci_location_versions`[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSHOW CREATE TABLE `ci_locations`[0m
+  [4;36;1mSQL (0.2ms)[0m   [0;1mSHOW CREATE TABLE `ci_people`[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSHOW CREATE TABLE `ci_person_versions`[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSHOW CREATE TABLE `ci_schema_migrations`[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSHOW CREATE TABLE `ci_us_states`[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSHOW CREATE TABLE `ci_users`[0m
+  [4;35;1mSQL (0.2ms)[0m   [0mSELECT version FROM ci_schema_migrations[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+  [4;36;1mSQL (83.9ms)[0m   [0;1mDROP DATABASE IF EXISTS `ci_rails_test`[0m
+  [4;35;1mSQL (0.5ms)[0m   [0mCREATE DATABASE `ci_rails_test` DEFAULT CHARACTER SET `utf8`[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET foreign_key_checks = 0[0m
+  [4;35;1mSQL (1.5ms)[0m   [0mCREATE TABLE `ci_country_names` (
+ `country_name_id` int(11) NOT NULL auto_increment,
+ `iso_3166_1_a2_code` varchar(2) default NULL,
+ `english_name` varchar(255) default NULL,
+ `underlined_english_name` varchar(255) default NULL,
+ PRIMARY KEY (`country_name_id`),
+ KEY `index_ci_country_names_on_iso_3166_1_a2_code` (`iso_3166_1_a2_code`),
+ KEY `index_ci_country_names_on_english_name` (`english_name`),
+ KEY `index_ci_country_names_on_underlined_english_name` (`underlined_english_name`)
+) ENGINE=MyISAM AUTO_INCREMENT=15000 DEFAULT CHARSET=latin1;[0m
+  [4;36;1mSQL (2.9ms)[0m   [0;1mCREATE TABLE `ci_location_versions` (
+ `location_version_id` int(11) NOT NULL auto_increment,
+ `location_id` int(11) default NULL,
+ `version` int(11) default NULL,
+ `street_address_line_1` varchar(255) default NULL,
+ `street_address_line_2` varchar(255) default NULL,
+ `city_name` varchar(255) default NULL,
+ `region_name` varchar(255) default NULL,
+ `us_state_id` int(11) default NULL,
+ `postal_code` varchar(255) default NULL,
+ `country_name_id` int(11) default NULL,
+ `lat` float default NULL,
+ `lng` float default NULL,
+ `geocode_precision` varchar(10) default NULL,
+ `updated_at` datetime default NULL,
+ PRIMARY KEY (`location_version_id`),
+ KEY `index_ci_location_versions_on_location_id` (`location_id`),
+ KEY `index_ci_location_versions_on_us_state_id` (`us_state_id`),
+ KEY `index_ci_location_versions_on_country_name_id` (`country_name_id`)
+) ENGINE=MyISAM AUTO_INCREMENT=15000 DEFAULT CHARSET=latin1;[0m
+  [4;35;1mSQL (1.6ms)[0m   [0mCREATE TABLE `ci_locations` (
+ `location_id` int(11) NOT NULL auto_increment,
+ `version` int(11) default NULL,
+ `street_address_line_1` varchar(255) default NULL,
+ `street_address_line_2` varchar(255) default NULL,
+ `city_name` varchar(255) default NULL,
+ `region_name` varchar(255) default NULL,
+ `us_state_id` int(11) default NULL,
+ `postal_code` varchar(255) default NULL,
+ `country_name_id` int(11) default NULL,
+ `lat` float default NULL,
+ `lng` float default NULL,
+ `geocode_precision` varchar(10) default NULL,
+ `created_at` datetime default NULL,
+ `updated_at` datetime default NULL,
+ PRIMARY KEY (`location_id`),
+ KEY `index_ci_locations_on_us_state_id` (`us_state_id`),
+ KEY `index_ci_locations_on_country_name_id` (`country_name_id`)
+) ENGINE=MyISAM AUTO_INCREMENT=15000 DEFAULT CHARSET=latin1;[0m
+  [4;36;1mSQL (1.2ms)[0m   [0;1mCREATE TABLE `ci_people` (
+ `person_id` int(11) NOT NULL auto_increment,
+ `version` int(11) default NULL,
+ `first_name` varchar(255) default NULL,
+ `last_name` varchar(255) default NULL,
+ `created_at` datetime default NULL,
+ `updated_at` datetime default NULL,
+ PRIMARY KEY (`person_id`)
+) ENGINE=MyISAM AUTO_INCREMENT=15000 DEFAULT CHARSET=latin1;[0m
+  [4;35;1mSQL (1.1ms)[0m   [0mCREATE TABLE `ci_person_versions` (
+ `person_version_id` int(11) NOT NULL auto_increment,
+ `persion_id` int(11) default NULL,
+ `version` int(11) default NULL,
+ `first_name` varchar(255) default NULL,
+ `last_name` varchar(255) default NULL,
+ `updated_at` datetime default NULL,
+ PRIMARY KEY (`person_version_id`)
+) ENGINE=MyISAM AUTO_INCREMENT=15000 DEFAULT CHARSET=latin1;[0m
+  [4;36;1mSQL (1.4ms)[0m   [0;1mCREATE TABLE `ci_schema_migrations` (
+ `version` varchar(255) NOT NULL,
+ UNIQUE KEY `unique_schema_migrations` (`version`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;[0m
+  [4;35;1mSQL (1.3ms)[0m   [0mCREATE TABLE `ci_us_states` (
+ `us_state_id` int(11) NOT NULL auto_increment,
+ `abbreviation` varchar(2) default NULL,
+ `name` varchar(50) default NULL,
+ `underlined_name` varchar(50) default NULL,
+ PRIMARY KEY (`us_state_id`),
+ KEY `index_ci_us_states_on_abbreviation` (`abbreviation`),
+ KEY `index_ci_us_states_on_name` (`name`),
+ KEY `index_ci_us_states_on_underlined_name` (`underlined_name`)
+) ENGINE=MyISAM AUTO_INCREMENT=15000 DEFAULT CHARSET=latin1;[0m
+  [4;36;1mSQL (1.5ms)[0m   [0;1mCREATE TABLE `ci_users` (
+ `user_id` int(11) NOT NULL auto_increment,
+ `email` varchar(255) default NULL,
+ `person_id` int(11) default NULL,
+ `admin` tinyint(1) default '0',
+ `state` varchar(12) default NULL,
+ `crypted_password` varchar(40) default NULL,
+ `salt` varchar(40) default NULL,
+ `password_reset_code` varchar(40) default NULL,
+ `activation_code` varchar(40) default NULL,
+ `activated_at` datetime default NULL,
+ `deleted_at` datetime default NULL,
+ `last_login_at` datetime default NULL,
+ `remember_token` varchar(255) default NULL,
+ `remember_token_expires_at` datetime default NULL,
+ `created_at` datetime default NULL,
+ `updated_at` datetime default NULL,
+ PRIMARY KEY (`user_id`),
+ KEY `index_ci_users_on_email` (`email`),
+ KEY `index_ci_users_on_person_id` (`person_id`),
+ KEY `index_ci_users_on_state` (`state`),
+ KEY `index_ci_users_on_password_reset_code` (`password_reset_code`),
+ KEY `index_ci_users_on_activation_code` (`activation_code`)
+) ENGINE=MyISAM AUTO_INCREMENT=15000 DEFAULT CHARSET=latin1;[0m
+  [4;35;1mSQL (0.7ms)[0m   [0mINSERT INTO ci_schema_migrations (version) VALUES ('20081216170645');[0m
+  [4;36;1mSQL (0.8ms)[0m   [0;1mINSERT INTO ci_schema_migrations (version) VALUES ('20081216172545');[0m
+  [4;35;1mSQL (1.4ms)[0m   [0mINSERT INTO ci_schema_migrations (version) VALUES ('20081216172610');[0m
+  [4;36;1mSQL (0.5ms)[0m   [0;1mINSERT INTO ci_schema_migrations (version) VALUES ('20081216174522');[0m
+  [4;35;1mSQL (49.5ms)[0m   [0mINSERT INTO ci_schema_migrations (version) VALUES ('20081216185405');[0m
+  [4;36;1mSQL (0.2ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+  [4;36;1mSQL (0.4ms)[0m   [0;1mSHOW TABLES[0m
+  [4;35;1mSQL (0.2ms)[0m   [0mSELECT version FROM ci_schema_migrations[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+  [4;36;1mSQL (0.5ms)[0m   [0;1mSHOW FULL TABLES WHERE Table_type = 'BASE TABLE'[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSHOW CREATE TABLE `ci_country_names`[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSHOW CREATE TABLE `ci_location_versions`[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSHOW CREATE TABLE `ci_locations`[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSHOW CREATE TABLE `ci_people`[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSHOW CREATE TABLE `ci_person_versions`[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSHOW CREATE TABLE `ci_schema_migrations`[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSHOW CREATE TABLE `ci_us_states`[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSHOW CREATE TABLE `ci_users`[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSELECT version FROM ci_schema_migrations[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+  [4;36;1mSQL (6.9ms)[0m   [0;1mDROP DATABASE IF EXISTS `ci_rails_test`[0m
+  [4;35;1mSQL (0.5ms)[0m   [0mCREATE DATABASE `ci_rails_test` DEFAULT CHARACTER SET `utf8`[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET foreign_key_checks = 0[0m
+  [4;35;1mSQL (2.1ms)[0m   [0mCREATE TABLE `ci_country_names` (
+ `country_name_id` int(11) NOT NULL auto_increment,
+ `iso_3166_1_a2_code` varchar(2) default NULL,
+ `english_name` varchar(255) default NULL,
+ `underlined_english_name` varchar(255) default NULL,
+ PRIMARY KEY (`country_name_id`),
+ KEY `index_ci_country_names_on_iso_3166_1_a2_code` (`iso_3166_1_a2_code`),
+ KEY `index_ci_country_names_on_english_name` (`english_name`),
+ KEY `index_ci_country_names_on_underlined_english_name` (`underlined_english_name`)
+) ENGINE=MyISAM AUTO_INCREMENT=15000 DEFAULT CHARSET=latin1;[0m
+  [4;36;1mSQL (2.0ms)[0m   [0;1mCREATE TABLE `ci_location_versions` (
+ `location_version_id` int(11) NOT NULL auto_increment,
+ `location_id` int(11) default NULL,
+ `version` int(11) default NULL,
+ `street_address_line_1` varchar(255) default NULL,
+ `street_address_line_2` varchar(255) default NULL,
+ `city_name` varchar(255) default NULL,
+ `region_name` varchar(255) default NULL,
+ `us_state_id` int(11) default NULL,
+ `postal_code` varchar(255) default NULL,
+ `country_name_id` int(11) default NULL,
+ `lat` float default NULL,
+ `lng` float default NULL,
+ `geocode_precision` varchar(10) default NULL,
+ `updated_at` datetime default NULL,
+ PRIMARY KEY (`location_version_id`),
+ KEY `index_ci_location_versions_on_location_id` (`location_id`),
+ KEY `index_ci_location_versions_on_us_state_id` (`us_state_id`),
+ KEY `index_ci_location_versions_on_country_name_id` (`country_name_id`)
+) ENGINE=MyISAM AUTO_INCREMENT=15000 DEFAULT CHARSET=latin1;[0m
+  [4;35;1mSQL (2.4ms)[0m   [0mCREATE TABLE `ci_locations` (
+ `location_id` int(11) NOT NULL auto_increment,
+ `version` int(11) default NULL,
+ `street_address_line_1` varchar(255) default NULL,
+ `street_address_line_2` varchar(255) default NULL,
+ `city_name` varchar(255) default NULL,
+ `region_name` varchar(255) default NULL,
+ `us_state_id` int(11) default NULL,
+ `postal_code` varchar(255) default NULL,
+ `country_name_id` int(11) default NULL,
+ `lat` float default NULL,
+ `lng` float default NULL,
+ `geocode_precision` varchar(10) default NULL,
+ `created_at` datetime default NULL,
+ `updated_at` datetime default NULL,
+ PRIMARY KEY (`location_id`),
+ KEY `index_ci_locations_on_us_state_id` (`us_state_id`),
+ KEY `index_ci_locations_on_country_name_id` (`country_name_id`)
+) ENGINE=MyISAM AUTO_INCREMENT=15000 DEFAULT CHARSET=latin1;[0m
+  [4;36;1mSQL (1.8ms)[0m   [0;1mCREATE TABLE `ci_people` (
+ `person_id` int(11) NOT NULL auto_increment,
+ `version` int(11) default NULL,
+ `first_name` varchar(255) default NULL,
+ `last_name` varchar(255) default NULL,
+ `created_at` datetime default NULL,
+ `updated_at` datetime default NULL,
+ PRIMARY KEY (`person_id`)
+) ENGINE=MyISAM AUTO_INCREMENT=15000 DEFAULT CHARSET=latin1;[0m
+  [4;35;1mSQL (2.2ms)[0m   [0mCREATE TABLE `ci_person_versions` (
+ `person_version_id` int(11) NOT NULL auto_increment,
+ `persion_id` int(11) default NULL,
+ `version` int(11) default NULL,
+ `first_name` varchar(255) default NULL,
+ `last_name` varchar(255) default NULL,
+ `updated_at` datetime default NULL,
+ PRIMARY KEY (`person_version_id`)
+) ENGINE=MyISAM AUTO_INCREMENT=15000 DEFAULT CHARSET=latin1;[0m
+  [4;36;1mSQL (2.3ms)[0m   [0;1mCREATE TABLE `ci_schema_migrations` (
+ `version` varchar(255) NOT NULL,
+ UNIQUE KEY `unique_schema_migrations` (`version`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;[0m
+  [4;35;1mSQL (2.2ms)[0m   [0mCREATE TABLE `ci_us_states` (
+ `us_state_id` int(11) NOT NULL auto_increment,
+ `abbreviation` varchar(2) default NULL,
+ `name` varchar(50) default NULL,
+ `underlined_name` varchar(50) default NULL,
+ PRIMARY KEY (`us_state_id`),
+ KEY `index_ci_us_states_on_abbreviation` (`abbreviation`),
+ KEY `index_ci_us_states_on_name` (`name`),
+ KEY `index_ci_us_states_on_underlined_name` (`underlined_name`)
+) ENGINE=MyISAM AUTO_INCREMENT=15000 DEFAULT CHARSET=latin1;[0m
+  [4;36;1mSQL (2.4ms)[0m   [0;1mCREATE TABLE `ci_users` (
+ `user_id` int(11) NOT NULL auto_increment,
+ `email` varchar(255) default NULL,
+ `person_id` int(11) default NULL,
+ `admin` tinyint(1) default '0',
+ `state` varchar(12) default NULL,
+ `crypted_password` varchar(40) default NULL,
+ `salt` varchar(40) default NULL,
+ `password_reset_code` varchar(40) default NULL,
+ `activation_code` varchar(40) default NULL,
+ `activated_at` datetime default NULL,
+ `deleted_at` datetime default NULL,
+ `last_login_at` datetime default NULL,
+ `remember_token` varchar(255) default NULL,
+ `remember_token_expires_at` datetime default NULL,
+ `created_at` datetime default NULL,
+ `updated_at` datetime default NULL,
+ PRIMARY KEY (`user_id`),
+ KEY `index_ci_users_on_email` (`email`),
+ KEY `index_ci_users_on_person_id` (`person_id`),
+ KEY `index_ci_users_on_state` (`state`),
+ KEY `index_ci_users_on_password_reset_code` (`password_reset_code`),
+ KEY `index_ci_users_on_activation_code` (`activation_code`)
+) ENGINE=MyISAM AUTO_INCREMENT=15000 DEFAULT CHARSET=latin1;[0m
+  [4;35;1mSQL (0.9ms)[0m   [0mINSERT INTO ci_schema_migrations (version) VALUES ('20081216170645');[0m
+  [4;36;1mSQL (0.8ms)[0m   [0;1mINSERT INTO ci_schema_migrations (version) VALUES ('20081216172545');[0m
+  [4;35;1mSQL (0.9ms)[0m   [0mINSERT INTO ci_schema_migrations (version) VALUES ('20081216172610');[0m
+  [4;36;1mSQL (0.9ms)[0m   [0;1mINSERT INTO ci_schema_migrations (version) VALUES ('20081216174522');[0m
+  [4;35;1mSQL (1.2ms)[0m   [0mINSERT INTO ci_schema_migrations (version) VALUES ('20081216185405');[0m
+  [4;36;1mSQL (0.2ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+  [4;36;1mSQL (0.4ms)[0m   [0;1mSHOW TABLES[0m
+  [4;35;1mSQL (0.2ms)[0m   [0mSELECT version FROM ci_schema_migrations[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+  [4;36;1mSQL (0.5ms)[0m   [0;1mSHOW FULL TABLES WHERE Table_type = 'BASE TABLE'[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSHOW CREATE TABLE `ci_country_names`[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSHOW CREATE TABLE `ci_location_versions`[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSHOW CREATE TABLE `ci_locations`[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSHOW CREATE TABLE `ci_people`[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSHOW CREATE TABLE `ci_person_versions`[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSHOW CREATE TABLE `ci_schema_migrations`[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSHOW CREATE TABLE `ci_us_states`[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSHOW CREATE TABLE `ci_users`[0m
+  [4;35;1mSQL (0.2ms)[0m   [0mSELECT version FROM ci_schema_migrations[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+  [4;36;1mSQL (7.9ms)[0m   [0;1mDROP DATABASE IF EXISTS `ci_rails_test`[0m
+  [4;35;1mSQL (0.3ms)[0m   [0mCREATE DATABASE `ci_rails_test` DEFAULT CHARACTER SET `utf8`[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET foreign_key_checks = 0[0m
+  [4;35;1mSQL (2.1ms)[0m   [0mCREATE TABLE `ci_country_names` (
+ `country_name_id` int(11) NOT NULL auto_increment,
+ `iso_3166_1_a2_code` varchar(2) default NULL,
+ `english_name` varchar(255) default NULL,
+ `underlined_english_name` varchar(255) default NULL,
+ PRIMARY KEY (`country_name_id`),
+ KEY `index_ci_country_names_on_iso_3166_1_a2_code` (`iso_3166_1_a2_code`),
+ KEY `index_ci_country_names_on_english_name` (`english_name`),
+ KEY `index_ci_country_names_on_underlined_english_name` (`underlined_english_name`)
+) ENGINE=MyISAM AUTO_INCREMENT=15000 DEFAULT CHARSET=latin1;[0m
+  [4;36;1mSQL (2.1ms)[0m   [0;1mCREATE TABLE `ci_location_versions` (
+ `location_version_id` int(11) NOT NULL auto_increment,
+ `location_id` int(11) default NULL,
+ `version` int(11) default NULL,
+ `street_address_line_1` varchar(255) default NULL,
+ `street_address_line_2` varchar(255) default NULL,
+ `city_name` varchar(255) default NULL,
+ `region_name` varchar(255) default NULL,
+ `us_state_id` int(11) default NULL,
+ `postal_code` varchar(255) default NULL,
+ `country_name_id` int(11) default NULL,
+ `lat` float default NULL,
+ `lng` float default NULL,
+ `geocode_precision` varchar(10) default NULL,
+ `updated_at` datetime default NULL,
+ PRIMARY KEY (`location_version_id`),
+ KEY `index_ci_location_versions_on_location_id` (`location_id`),
+ KEY `index_ci_location_versions_on_us_state_id` (`us_state_id`),
+ KEY `index_ci_location_versions_on_country_name_id` (`country_name_id`)
+) ENGINE=MyISAM AUTO_INCREMENT=15000 DEFAULT CHARSET=latin1;[0m
+  [4;35;1mSQL (2.4ms)[0m   [0mCREATE TABLE `ci_locations` (
+ `location_id` int(11) NOT NULL auto_increment,
+ `version` int(11) default NULL,
+ `street_address_line_1` varchar(255) default NULL,
+ `street_address_line_2` varchar(255) default NULL,
+ `city_name` varchar(255) default NULL,
+ `region_name` varchar(255) default NULL,
+ `us_state_id` int(11) default NULL,
+ `postal_code` varchar(255) default NULL,
+ `country_name_id` int(11) default NULL,
+ `lat` float default NULL,
+ `lng` float default NULL,
+ `geocode_precision` varchar(10) default NULL,
+ `created_at` datetime default NULL,
+ `updated_at` datetime default NULL,
+ PRIMARY KEY (`location_id`),
+ KEY `index_ci_locations_on_us_state_id` (`us_state_id`),
+ KEY `index_ci_locations_on_country_name_id` (`country_name_id`)
+) ENGINE=MyISAM AUTO_INCREMENT=15000 DEFAULT CHARSET=latin1;[0m
+  [4;36;1mSQL (1.9ms)[0m   [0;1mCREATE TABLE `ci_people` (
+ `person_id` int(11) NOT NULL auto_increment,
+ `version` int(11) default NULL,
+ `first_name` varchar(255) default NULL,
+ `last_name` varchar(255) default NULL,
+ `created_at` datetime default NULL,
+ `updated_at` datetime default NULL,
+ PRIMARY KEY (`person_id`)
+) ENGINE=MyISAM AUTO_INCREMENT=15000 DEFAULT CHARSET=latin1;[0m
+  [4;35;1mSQL (2.3ms)[0m   [0mCREATE TABLE `ci_person_versions` (
+ `person_version_id` int(11) NOT NULL auto_increment,
+ `persion_id` int(11) default NULL,
+ `version` int(11) default NULL,
+ `first_name` varchar(255) default NULL,
+ `last_name` varchar(255) default NULL,
+ `updated_at` datetime default NULL,
+ PRIMARY KEY (`person_version_id`)
+) ENGINE=MyISAM AUTO_INCREMENT=15000 DEFAULT CHARSET=latin1;[0m
+  [4;36;1mSQL (346.2ms)[0m   [0;1mCREATE TABLE `ci_schema_migrations` (
+ `version` varchar(255) NOT NULL,
+ UNIQUE KEY `unique_schema_migrations` (`version`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;[0m
+  [4;35;1mSQL (2.4ms)[0m   [0mCREATE TABLE `ci_us_states` (
+ `us_state_id` int(11) NOT NULL auto_increment,
+ `abbreviation` varchar(2) default NULL,
+ `name` varchar(50) default NULL,
+ `underlined_name` varchar(50) default NULL,
+ PRIMARY KEY (`us_state_id`),
+ KEY `index_ci_us_states_on_abbreviation` (`abbreviation`),
+ KEY `index_ci_us_states_on_name` (`name`),
+ KEY `index_ci_us_states_on_underlined_name` (`underlined_name`)
+) ENGINE=MyISAM AUTO_INCREMENT=15000 DEFAULT CHARSET=latin1;[0m
+  [4;36;1mSQL (2.6ms)[0m   [0;1mCREATE TABLE `ci_users` (
+ `user_id` int(11) NOT NULL auto_increment,
+ `email` varchar(255) default NULL,
+ `person_id` int(11) default NULL,
+ `admin` tinyint(1) default '0',
+ `state` varchar(12) default NULL,
+ `crypted_password` varchar(40) default NULL,
+ `salt` varchar(40) default NULL,
+ `password_reset_code` varchar(40) default NULL,
+ `activation_code` varchar(40) default NULL,
+ `activated_at` datetime default NULL,
+ `deleted_at` datetime default NULL,
+ `last_login_at` datetime default NULL,
+ `remember_token` varchar(255) default NULL,
+ `remember_token_expires_at` datetime default NULL,
+ `created_at` datetime default NULL,
+ `updated_at` datetime default NULL,
+ PRIMARY KEY (`user_id`),
+ KEY `index_ci_users_on_email` (`email`),
+ KEY `index_ci_users_on_person_id` (`person_id`),
+ KEY `index_ci_users_on_state` (`state`),
+ KEY `index_ci_users_on_password_reset_code` (`password_reset_code`),
+ KEY `index_ci_users_on_activation_code` (`activation_code`)
+) ENGINE=MyISAM AUTO_INCREMENT=15000 DEFAULT CHARSET=latin1;[0m
+  [4;35;1mSQL (1.0ms)[0m   [0mINSERT INTO ci_schema_migrations (version) VALUES ('20081216170645');[0m
+  [4;36;1mSQL (0.8ms)[0m   [0;1mINSERT INTO ci_schema_migrations (version) VALUES ('20081216172545');[0m
+  [4;35;1mSQL (0.8ms)[0m   [0mINSERT INTO ci_schema_migrations (version) VALUES ('20081216172610');[0m
+  [4;36;1mSQL (1.1ms)[0m   [0;1mINSERT INTO ci_schema_migrations (version) VALUES ('20081216174522');[0m
+  [4;35;1mSQL (1.2ms)[0m   [0mINSERT INTO ci_schema_migrations (version) VALUES ('20081216185405');[0m
+  [4;36;1mSQL (0.2ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+  [4;36;1mSQL (0.4ms)[0m   [0;1mSHOW TABLES[0m
+  [4;35;1mSQL (0.2ms)[0m   [0mSELECT version FROM ci_schema_migrations[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+  [4;36;1mSQL (0.6ms)[0m   [0;1mSHOW FULL TABLES WHERE Table_type = 'BASE TABLE'[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSHOW CREATE TABLE `ci_country_names`[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSHOW CREATE TABLE `ci_location_versions`[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSHOW CREATE TABLE `ci_locations`[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSHOW CREATE TABLE `ci_people`[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSHOW CREATE TABLE `ci_person_versions`[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSHOW CREATE TABLE `ci_schema_migrations`[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSHOW CREATE TABLE `ci_us_states`[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSHOW CREATE TABLE `ci_users`[0m
+  [4;35;1mSQL (0.2ms)[0m   [0mSELECT version FROM ci_schema_migrations[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+  [4;36;1mSQL (7.1ms)[0m   [0;1mDROP DATABASE IF EXISTS `ci_rails_test`[0m
+  [4;35;1mSQL (0.3ms)[0m   [0mCREATE DATABASE `ci_rails_test` DEFAULT CHARACTER SET `utf8`[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET foreign_key_checks = 0[0m
+  [4;35;1mSQL (1.3ms)[0m   [0mCREATE TABLE `ci_country_names` (
+ `country_name_id` int(11) NOT NULL auto_increment,
+ `iso_3166_1_a2_code` varchar(2) default NULL,
+ `english_name` varchar(255) default NULL,
+ `underlined_english_name` varchar(255) default NULL,
+ PRIMARY KEY (`country_name_id`),
+ KEY `index_ci_country_names_on_iso_3166_1_a2_code` (`iso_3166_1_a2_code`),
+ KEY `index_ci_country_names_on_english_name` (`english_name`),
+ KEY `index_ci_country_names_on_underlined_english_name` (`underlined_english_name`)
+) ENGINE=MyISAM AUTO_INCREMENT=15000 DEFAULT CHARSET=latin1;[0m
+  [4;36;1mSQL (2.0ms)[0m   [0;1mCREATE TABLE `ci_location_versions` (
+ `location_version_id` int(11) NOT NULL auto_increment,
+ `location_id` int(11) default NULL,
+ `version` int(11) default NULL,
+ `street_address_line_1` varchar(255) default NULL,
+ `street_address_line_2` varchar(255) default NULL,
+ `city_name` varchar(255) default NULL,
+ `region_name` varchar(255) default NULL,
+ `us_state_id` int(11) default NULL,
+ `postal_code` varchar(255) default NULL,
+ `country_name_id` int(11) default NULL,
+ `lat` float default NULL,
+ `lng` float default NULL,
+ `geocode_precision` varchar(10) default NULL,
+ `updated_at` datetime default NULL,
+ PRIMARY KEY (`location_version_id`),
+ KEY `index_ci_location_versions_on_location_id` (`location_id`),
+ KEY `index_ci_location_versions_on_us_state_id` (`us_state_id`),
+ KEY `index_ci_location_versions_on_country_name_id` (`country_name_id`)
+) ENGINE=MyISAM AUTO_INCREMENT=15000 DEFAULT CHARSET=latin1;[0m
+  [4;35;1mSQL (2.4ms)[0m   [0mCREATE TABLE `ci_locations` (
+ `location_id` int(11) NOT NULL auto_increment,
+ `version` int(11) default NULL,
+ `street_address_line_1` varchar(255) default NULL,
+ `street_address_line_2` varchar(255) default NULL,
+ `city_name` varchar(255) default NULL,
+ `region_name` varchar(255) default NULL,
+ `us_state_id` int(11) default NULL,
+ `postal_code` varchar(255) default NULL,
+ `country_name_id` int(11) default NULL,
+ `lat` float default NULL,
+ `lng` float default NULL,
+ `geocode_precision` varchar(10) default NULL,
+ `created_at` datetime default NULL,
+ `updated_at` datetime default NULL,
+ PRIMARY KEY (`location_id`),
+ KEY `index_ci_locations_on_us_state_id` (`us_state_id`),
+ KEY `index_ci_locations_on_country_name_id` (`country_name_id`)
+) ENGINE=MyISAM AUTO_INCREMENT=15000 DEFAULT CHARSET=latin1;[0m
+  [4;36;1mSQL (2.2ms)[0m   [0;1mCREATE TABLE `ci_people` (
+ `person_id` int(11) NOT NULL auto_increment,
+ `version` int(11) default NULL,
+ `first_name` varchar(255) default NULL,
+ `last_name` varchar(255) default NULL,
+ `created_at` datetime default NULL,
+ `updated_at` datetime default NULL,
+ PRIMARY KEY (`person_id`)
+) ENGINE=MyISAM AUTO_INCREMENT=15000 DEFAULT CHARSET=latin1;[0m
+  [4;35;1mSQL (1.9ms)[0m   [0mCREATE TABLE `ci_person_versions` (
+ `person_version_id` int(11) NOT NULL auto_increment,
+ `persion_id` int(11) default NULL,
+ `version` int(11) default NULL,
+ `first_name` varchar(255) default NULL,
+ `last_name` varchar(255) default NULL,
+ `updated_at` datetime default NULL,
+ PRIMARY KEY (`person_version_id`)
+) ENGINE=MyISAM AUTO_INCREMENT=15000 DEFAULT CHARSET=latin1;[0m
+  [4;36;1mSQL (40.0ms)[0m   [0;1mCREATE TABLE `ci_schema_migrations` (
+ `version` varchar(255) NOT NULL,
+ UNIQUE KEY `unique_schema_migrations` (`version`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;[0m
+  [4;35;1mSQL (2.8ms)[0m   [0mCREATE TABLE `ci_us_states` (
+ `us_state_id` int(11) NOT NULL auto_increment,
+ `abbreviation` varchar(2) default NULL,
+ `name` varchar(50) default NULL,
+ `underlined_name` varchar(50) default NULL,
+ PRIMARY KEY (`us_state_id`),
+ KEY `index_ci_us_states_on_abbreviation` (`abbreviation`),
+ KEY `index_ci_us_states_on_name` (`name`),
+ KEY `index_ci_us_states_on_underlined_name` (`underlined_name`)
+) ENGINE=MyISAM AUTO_INCREMENT=15000 DEFAULT CHARSET=latin1;[0m
+  [4;36;1mSQL (2.6ms)[0m   [0;1mCREATE TABLE `ci_users` (
+ `user_id` int(11) NOT NULL auto_increment,
+ `email` varchar(255) default NULL,
+ `person_id` int(11) default NULL,
+ `admin` tinyint(1) default '0',
+ `state` varchar(12) default NULL,
+ `crypted_password` varchar(40) default NULL,
+ `salt` varchar(40) default NULL,
+ `password_reset_code` varchar(40) default NULL,
+ `activation_code` varchar(40) default NULL,
+ `activated_at` datetime default NULL,
+ `deleted_at` datetime default NULL,
+ `last_login_at` datetime default NULL,
+ `remember_token` varchar(255) default NULL,
+ `remember_token_expires_at` datetime default NULL,
+ `created_at` datetime default NULL,
+ `updated_at` datetime default NULL,
+ PRIMARY KEY (`user_id`),
+ KEY `index_ci_users_on_email` (`email`),
+ KEY `index_ci_users_on_person_id` (`person_id`),
+ KEY `index_ci_users_on_state` (`state`),
+ KEY `index_ci_users_on_password_reset_code` (`password_reset_code`),
+ KEY `index_ci_users_on_activation_code` (`activation_code`)
+) ENGINE=MyISAM AUTO_INCREMENT=15000 DEFAULT CHARSET=latin1;[0m
+  [4;35;1mSQL (0.8ms)[0m   [0mINSERT INTO ci_schema_migrations (version) VALUES ('20081216170645');[0m
+  [4;36;1mSQL (0.6ms)[0m   [0;1mINSERT INTO ci_schema_migrations (version) VALUES ('20081216172545');[0m
+  [4;35;1mSQL (0.7ms)[0m   [0mINSERT INTO ci_schema_migrations (version) VALUES ('20081216172610');[0m
+  [4;36;1mSQL (0.8ms)[0m   [0;1mINSERT INTO ci_schema_migrations (version) VALUES ('20081216174522');[0m
+  [4;35;1mSQL (0.9ms)[0m   [0mINSERT INTO ci_schema_migrations (version) VALUES ('20081216185405');[0m
