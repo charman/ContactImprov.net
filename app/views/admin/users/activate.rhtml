@@ -1,0 +1,22 @@
+<%= render(:partial => "shared/admin/header",
+           :locals => { :subsection => 'users', :title => 'Activate a User' } )%>
+
+<%= error_messages_for :user, :header_message => 'Unable to Activate User' %>
+<% form_for :user, :url => { :action => 'activate'} do |f| -%>
+	<p><label for="email">Email:</label><br/>
+	<%= f.text_field :email %></p>
+
+	<p><label for="password">Password:</label><br/>
+	<%= f.text_field :password %></p>
+
+	<p><label for="password_confirmation">Confirm Password:</label><br/>
+	<%= f.text_field :password_confirmation %></p>
+
+	<p><%= submit_tag 'Activate User' %></p>
+<% end -%>
+
+<p>
+	An email will be sent to the user that contains the password you specify.
+</p>
+
+<%= render(:partial => "shared/admin/footer" )%>

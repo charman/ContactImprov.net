@@ -1,0 +1,335 @@
+<%= render(:partial => "shared/admin/header",
+           :locals => { :subsection => 'users',  :title => 'Show User Information' } )%>
+
+<style>
+	div.userinfo {
+		margin-left: 2em;
+		margin-bottom: 1em;
+	}
+	.userinfo table { 
+		border: solid #7F7F7F 1px;
+		padding: 0.25em;
+	}
+	.userinfo th {
+		background-color: #F0F0F0;
+		padding-left: 1em;
+		padding-right: 1em;
+		text-align: right;
+	}
+</style>
+
+<% if @user %>
+
+	<h2>Actions for User Account for  <%= "#{@user.person.first_name} #{@user.person.last_name}" %>:</h2>
+	<div class="userinfo" style="font-size: large;">
+		<ul>
+			<li><a href="/admin/users/edit/<%= @user.id %>">Edit</a></li>
+			<% if @user.active? %>
+				<li><a href="/admin/users/reset_password/<%= @user.id %>">Reset password</a></li>
+			<% end %>
+			<% if @user.subscriber %>
+				<li><a href="/admin/subscribers/show/<%= @user.subscriber.id %>">View subscriber information</a></li>
+			<% end %>
+		</ul>
+	</div>
+
+	<hr />
+
+	<h2>Contacts List Entries for  <%= "#{@user.person.first_name} #{@user.person.last_name}" %>:</h2>
+	<div class="userinfo" style="font-size: large;">
+		<% if @user.entries.blank? %>
+			N/A
+		<% else %>
+			<% @user.entries.each do |entry| %>
+				<a href="/entry/edit/<%= entry.id %>"><%= entry.title %></a> 
+			<% end %>
+		<% end %>
+	</div>
+
+	<hr />
+
+	<h2>User Information</h2>
+	<div class="userinfo">
+		<table>
+			<tbody>
+				<tr>
+					<th>Last Name:</th>
+					<td><%= @user.last_name %></td>
+				</tr>
+				<tr>
+					<th>First Name:</th>
+					<td><%= @user.first_name %></td>
+				</tr>
+				<tr>
+					<th>State:</th>
+					<td>
+						<%= @user.state %>
+						<% if @user.state == 'pending' %>(<a href="/admin/users/activate/<%= @user.user_id %>">activate</a>)<% end %>
+					</td>
+				</tr>
+				<tr>
+					<th>Created At:</th>
+					<td><%= @user.created_at.strftime('%F %T') %></td>
+				</tr>
+				<tr>
+					<th>Updated At:</th>
+					<td><%= @user.updated_at.strftime('%F %T') %></td>
+				</tr>
+				<tr>
+					<th></th>
+					<td></td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+
+	<hr />
+
+	<% if @user.subscriber_address && @user.subscriber %>
+		<h2>Comparison of Address Changes from Filemaker and from Website</h2>
+		<p>Fields that were updated more recently are highlighted in red.</p>
+		<div class="userinfo">
+			<table>
+				<thead>
+					<tr>
+						<th style="text-align: center;">Field Name</th>
+						<th style="text-align: center;">Date Updated<br />through Website</th>
+						<th style="text-align: center;">Field from<br />Website</th>
+						<th style="text-align: center;">Field from<br />Filemaker</th>
+						<th style="text-align: center;">Date Updated<br />in Filemaker</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<%= address_comparison_row("Address 1", @user.subscriber_address, :street_address_line_1, @user.subscriber, :address_1) %>
+					</tr>
+					<tr>
+						<%= address_comparison_row("Address 2", @user.subscriber_address, :street_address_line_2, @user.subscriber, :address_2) %>
+					</tr>
+					<tr>
+						<%= address_comparison_row("City", @user.subscriber_address, :city_name, @user.subscriber, :city) %>
+					</tr>
+					<tr>
+						<%= address_comparison_row("State/Region", @user.subscriber_address, :state_abbreviation_or_region_name, @user.subscriber, :state_region) %>
+					</tr>
+					<tr>
+						<%= address_comparison_row("Postal", @user.subscriber_address, :postal_code, @user.subscriber, :postal) %>
+					</tr>
+					<tr>
+						<%= address_comparison_row("Country", @user.subscriber_address, :english_country_name, @user.subscriber, :country) %>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	<hr />
+	<% end %>
+
+
+	<h2>History of changes made to User's Name</h2>
+	<p>Fields that were updated for a given update are highlighted in bold.</b>
+	<div id="peopleTableContainer" class="yui-skin-sam" style="margin-left: 2em; margin-bottom: 1em;">
+		<table id="peopleTable">
+			<thead>
+				<tr>
+					<th>Last Name</th>
+					<th>First Name</th>
+					<th>Updated</th>
+				</tr>
+			</thead>
+			<tbody>
+			<% if @user.person %>
+				<% @user.person.versions.size.downto(1) { |version|
+					 @user.person.revert_to(version)
+				     person = @user.person
+				%>
+					<tr>
+						<td><%= wrap_in_span_if_attribute_changed(person, :last_name) %></td>
+						<td><%= wrap_in_span_if_attribute_changed(person, :first_name) %></td>
+						<td><%= person.updated_at.strftime('%F %T') %></td>
+					</tr>
+				<% } %>
+			<% end %>
+			</tbody>
+		</table>
+	</div>
+
+	<hr />
+
+	<h2>History of changes made to User's Address through Website</h2>
+	<div id="locationTableContainer" class="yui-skin-sam" style="margin-left: 2em; margin-bottom: 1em;">
+		<table id="locationTable">
+			<thead>
+				<tr>
+					<th>Address 1</th>
+					<th>Address 2</th>
+					<th>City</th>
+					<th>State/Region</th>
+					<th>Postal Code</th>
+					<th>Country</th>
+					<th>Updated At</th>
+				</tr>
+			</thead>
+			<tbody>
+			<% if @user.subscriber_address %>
+				<% @user.subscriber_address.versions.size.downto(1) { |version|
+					 @user.subscriber_address.revert_to(version)
+					address = @user.subscriber_address
+				%>
+					<tr>
+						<td><%= wrap_in_span_if_attribute_changed(address, :street_address_line_1) %></td>
+						<td><%= wrap_in_span_if_attribute_changed(address, :street_address_line_2) %></td>
+						<td><%= wrap_in_span_if_attribute_changed(address, :city_name) %></td>
+						<td><%= wrap_in_span_if_attribute_changed(address, :state_name_or_region_name) %>
+						<td><%= wrap_in_span_if_attribute_changed(address, :postal_code) %></td>
+						<td><%= wrap_in_span_if_attribute_changed(address, :english_country_name) %></td>
+						<td><%= address.updated_at.strftime('%F %T') %></td>
+					</tr>
+				<% } %>
+			<% end %>
+			</tbody>
+		</table>
+	</div>
+
+	<hr />
+
+	<% if @user.subscriber %>
+		<h2>History of changes made to User's Address through Filemaker</h2>
+		<div id="subscriberTableContainer" class="yui-skin-sam" style="margin-left: 2em; margin-bottom: 1em;">
+			<table id="subscriberTable">
+				<thead>
+					<tr>
+						<th>Last Name</th>
+						<th>First Name</th>
+						<th>Address 1</th>
+						<th>Address 2</th>
+						<th>City</th>
+						<th>State/Region</th>
+						<th>Postal Code</th>
+						<th>Country</th>
+						<th>email</th>
+						<th>S/N</th>
+						<th>Last Issue</th>
+						<th>Modified</th>
+					</tr>
+				</thead>
+				<tbody>
+				<% @user.subscriber.versions.size.downto(1) { |version|
+					 @user.subscriber.revert_to(version)
+					scriber = @user.subscriber
+				%>
+					<tr>
+						<td><%= wrap_in_span_if_attribute_changed(scriber, :last_name) %></td>
+						<td><%= wrap_in_span_if_attribute_changed(scriber, :first_name) %></td>
+						<td><%= wrap_in_span_if_attribute_changed(scriber, :address_1) %></td>
+						<td><%= wrap_in_span_if_attribute_changed(scriber, :address_2) %></td>
+						<td><%= wrap_in_span_if_attribute_changed(scriber, :city) %></td>
+						<td><%= wrap_in_span_if_attribute_changed(scriber, :state_region) %>
+						<td><%= wrap_in_span_if_attribute_changed(scriber, :postal) %></td>
+						<td><%= wrap_in_span_if_attribute_changed(scriber, :country) %></td>
+						<td><%= wrap_in_span_if_attribute_changed(scriber, :email) %></td>
+						<td><%= wrap_in_span_if_attribute_changed(scriber, :serial_number)%>
+						<td><%= wrap_in_span_if_attribute_changed(scriber, :expires_with_issue) %></td>
+						<td><%= scriber.modification_date.strftime('%F') %></td>
+					</tr>
+				<% } %>
+				</tbody>
+			</table>
+		</div>
+	<% end %>
+
+	
+	
+	<script type="text/javascript">
+	//  People Table
+	var peopleDataSource = new YAHOO.util.DataSource(YAHOO.util.Dom.get("peopleTable"));
+	peopleDataSource.responseType = YAHOO.util.DataSource.TYPE_HTMLTABLE;
+	peopleDataSource.responseSchema = {
+	    fields: [
+		    {key:"last_name"},
+		    {key:"first_name"},
+		    {key:"updated_at"}
+	    ]
+	};
+
+	var peopleColumnDefs = [ 
+		{key:"last_name",  label:"Last Name",  sortable:true},
+		{key:"first_name", label:"First Name", sortable:true},
+		{key:"updated_at", label:"Updated At", sortable:true}
+	];
+
+	var peopleDataTable = new YAHOO.widget.DataTable("peopleTableContainer", peopleColumnDefs, peopleDataSource);
+
+
+	//  Location Table
+	var locationDataSource = new YAHOO.util.DataSource(YAHOO.util.Dom.get("locationTable"));
+	locationDataSource.responseType = YAHOO.util.DataSource.TYPE_HTMLTABLE;
+	locationDataSource.responseSchema = {
+	    fields: [
+		    {key:"street_address_line_1"},
+		    {key:"street_address_line_2"},
+		    {key:"city_name"},
+		    {key:"state_region"},
+		    {key:"postal_code"},
+		    {key:"country_name"},
+			{key: "updated_at"}
+	    ]
+	};
+
+	var locationColumnDefs = [ 
+		{key:"street_address_line_1", label:"Address 1",    sortable:true},
+		{key:"street_address_line_2", label:"Address 2",    sortable:true},
+		{key:"city_name",             label:"City",         sortable:true},
+		{key:"state_region",          label:"State/Region", sortable:true},
+		{key:"postal_code",           label:"Postal Code",  sortable:true},
+		{key:"country_name",          label:"Country",      sortable:true},
+		{key:"updated_at",            label:"Updated At",   sortable:true}
+	];
+
+	var locationDataTable = new YAHOO.widget.DataTable("locationTableContainer", locationColumnDefs, locationDataSource);
+	
+	
+	//  Subscriber Table
+	var subscriberDataSource = new YAHOO.util.DataSource(YAHOO.util.Dom.get("subscriberTable"));
+	subscriberDataSource.responseType = YAHOO.util.DataSource.TYPE_HTMLTABLE;
+	subscriberDataSource.responseSchema = {
+	    fields: [
+	    	{key:"last_name"},
+	    	{key:"first_name"},
+		    {key:"address_1"},
+		    {key:"address_2"},
+		    {key:"city"},
+		    {key:"state_region"},
+		    {key:"postal"},
+		    {key:"country"},
+		    {key:"email"},
+		    {key:"serial_number"},
+			{key:"expires_with_issue"},
+			{key:"modification_date"}
+	    ]
+	};
+
+	var subscriberColumnDefs = [ 
+		{key:"last_name",          label:"Last Name",    sortable:true},
+		{key:"first_name",         label:"First Name",   sortable:true},
+		{key:"address_1",          label:"Address 1",    sortable:true},
+		{key:"address_2",          label:"Address 2",    sortable:true},
+		{key:"city",               label:"City",         sortable:true},
+		{key:"state_region",       label:"State/Region", sortable:true},
+		{key:"postal",             label:"Postal Code",  sortable:true},
+		{key:"country",            label:"Country",      sortable:true},
+		{key:"email",              label:"email",        sortable:true},
+		{key:"serial_number",      label:"S/N",          sortable:true},
+		{key:"expires_with_issue", label:"Last Issue",   sortable:true},
+		{key:"modification_date",  label:"Modified",     sortable:true}
+	];
+
+	var subscriberDataTable = new YAHOO.widget.DataTable("subscriberTableContainer", subscriberColumnDefs, subscriberDataSource);
+	</script>
+	
+<% else %>
+	
+	
+<% end %>
+
+
+<%= render(:partial => "shared/admin/footer" )%>

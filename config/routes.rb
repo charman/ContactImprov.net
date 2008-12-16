@@ -45,6 +45,8 @@ ActionController::Routing::Routes.draw do |map|
   map.logout '/logout', :controller => 'sessions', :action => 'destroy'
   
   map.index '/', :controller => 'user', :action => 'index'
+
+  map.admin_index '/admin', :controller => 'Admin::Users', :action => 'index'
   # [/CTH]
 
   # Install the default routes as the lowest priority.

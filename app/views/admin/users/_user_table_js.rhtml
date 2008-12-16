@@ -1,0 +1,25 @@
+<script type="text/javascript">
+var myDataSource = new YAHOO.util.DataSource(YAHOO.util.Dom.get("userTable"));
+myDataSource.responseType = YAHOO.util.DataSource.TYPE_HTMLTABLE;
+myDataSource.responseSchema = {
+    fields: [
+	    {key:"id"},
+		{key:"first_name"},
+		{key:"last_name"},
+	    {key:"email"},
+	    {key:"created_at"},
+	    {key:"state"}
+    ]
+};
+
+var myColumnDefs = [ 
+	{key:"id", label:"ID", sortable:true},
+	{key:"first_name", label:"First Name", sortable:true},
+	{key:"last_name", label:"Last Name", sortable:true},
+	{key:"email", label:"Email", sortable:true},
+	{key:"created_at", label:"Created At", sortable:true},
+	{key:"state", label:"State", sortable:true}
+];
+
+var myDataTable = new YAHOO.widget.DataTable("userTableContainer", myColumnDefs, myDataSource);
+</script>

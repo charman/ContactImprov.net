@@ -1,0 +1,55 @@
+<%= render(:partial => "shared/admin/header", 
+           :locals => { :subsection => 'users', :title => 'List User Account Requests' }) %>
+
+<h2>
+	Total Account Requests: <%= @account_requests.size %>
+</h2>
+
+<div id="accountRequestTableContainer" class="yui-skin-sam">
+	<table id="accountRequestTable">
+		<thead>
+			<tr>
+				<th><i>Action</i></th>
+				<th>Name</th>
+				<th>State</th>
+				<th>Date Applied</th>
+			</tr>
+		</thead>
+		<tbody>
+			<% @account_requests.each do |account_request| %>
+				<tr>
+					<td><a href="show_account_request/<%= account_request.id %>">Show</a></td>
+					<td><%= account_request.person.last_comma_first %></td>
+					<td><%= account_request.state %></td>
+					<td><%= account_request.created_at.strftime('%Y-%m-%d %I:%M %p') %></td>
+				</tr>
+			<% end %>
+		</tbody>
+	</table>
+</div>
+
+
+<script type="text/javascript">
+var myDataSource = new YAHOO.util.DataSource(YAHOO.util.Dom.get("accountRequestTable"));
+myDataSource.responseType = YAHOO.util.DataSource.TYPE_HTMLTABLE;
+myDataSource.responseSchema = {
+    fields: [
+		{key:"action"},
+		{key:"name"},
+		{key:"state"},
+		{key:"date"}
+    ]
+};
+
+var myColumnDefs = [ 
+	{key:"action",            label:"Action",            sortable:true},
+	{key:"name",              label:"Name",              sortable:true},
+	{key:"state",             label:"State",             sortable:true},
+	{key:"date",              label:"Date Applied",      sortable:true}
+];
+
+var myDataTable = new YAHOO.widget.DataTable("accountRequestTableContainer", myColumnDefs, myDataSource);
+</script>
+
+
+<%= render(:partial => "shared/admin/footer" )%>

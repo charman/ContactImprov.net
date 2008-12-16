@@ -1,0 +1,29 @@
+<div id="userTableContainer" class="yui-skin-sam">
+	<table id="userTable">
+		<thead>
+			<tr>
+				<th>ID</th>
+				<th>First Name</th>
+				<th>Last</th>
+				<th>Email</th>
+				<th>Created At</th>
+				<th>State</th>
+			</tr>
+		</thead>
+		<tbody>
+		<% for user in @users %>
+			<tr>
+				<td><a href="show/<%= user.user_id %>"><%= user.user_id %></a></td>
+				<td><%= user.person ? user.person.first_name : '' %></td>
+				<td><%= user.person ? user.person.last_name : '' %></td>
+				<td><%= user.email %></td>
+				<td><%= user.created_at.strftime('%F %T') %></td>
+				<td>
+					<%= user.state %>
+					<% if user.state == 'pending' %>(<a href="activate/<%= user.user_id %>">activate</a>)<% end %>
+				</td>
+			</tr>
+		<% end %>
+		</tbody>
+	</table>
+</div>

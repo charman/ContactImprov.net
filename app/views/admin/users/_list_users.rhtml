@@ -1,0 +1,20 @@
+<h3>User Account States:</h3>
+<p>
+	<ul>
+		<li><b>passive</b>   - We have created an account for a user, but haven't notified them yet</li>
+		<li><b>pending</b>   - We have created an account and notified the user, but they haven't logged in and chosen a password yet</li>
+		<li><b>active</b>    - The user has logged in and chosen a password</li>
+		<li><b>suspended</b> - The user's account has been suspended (NOTE: We don't currently use this state)</li>
+		<li><b>deleted</b>   - The user's account has been deleted (NOTE: We don't currently use this state)</li>
+	</ul>
+</p>
+
+<hr />
+
+<h2>
+	Total Users: <%= @users.size %>
+</h2>
+
+<%= render(:partial => "user_table" )%>
+<%= render(:partial => "user_table_js" )%>
+

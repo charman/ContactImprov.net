@@ -199,20 +199,17 @@ class UserController < ApplicationController
       @user_account_request = UserAccountRequest.new
       @uar_person   = Person.new
       @uar_email    = Email.new
-      @uar_location = Location.new
 
       if request.post?
         @user_account_request.attributes   = params[:user_account_request]
         @uar_person.attributes             = params[:uar_person]
         @uar_email.attributes              = params[:uar_email]
-        @uar_location.initialize_from_params(params[:uar_location])
 
         #  Validate each set of fields, regardless of whether or not the other sets are valid
         person_valid   = @uar_person.valid?
         email_valid    = @uar_email.valid?
-        location_valid = @uar_location.valid?
 
-        if @user_account_request.valid? && person_valid && email_valid && location_valid
+        if @user_account_request.valid? && person_valid && email_valid
           user = User.find_by_email(params[:uar_email][:address])
           if user
             process_password_reset_request(user, params[:uar_email][:address])
@@ -221,11 +218,9 @@ class UserController < ApplicationController
             @uar_person.reload                                 #  reload the Person object to retrieve its entity
 #            @uar_email.for_entity_id = @uar_person.entity.id   #  email addresses must be linked to an entity
             @uar_email.save!
-            @uar_location.save!
 
             @user_account_request.person   = @uar_person
             @user_account_request.email    = @uar_email
-            @user_account_request.location = @uar_location
             @user_account_request.save!
 
             UserMailer.deliver_account_request(

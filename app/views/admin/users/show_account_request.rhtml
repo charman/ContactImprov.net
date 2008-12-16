@@ -1,0 +1,63 @@
+<%= render(:partial => "shared/admin/header", 
+           :locals => { :subsection => 'users', :title => 'Show User Account Requests' }) %>
+
+<% if flash[:notice] %>
+	<div class="errorExplanation" id="errorExplanation">
+		<%= flash[:notice] %>
+	</div>
+<% end %>
+
+<% if @account_request %>
+
+	<div class="admin_form">
+		<% form_for @account_request, :url => { :action => 'process_account_request' } do |account_request| %>
+			<table>
+				<tr>
+					<th>Applicant Name:</th>
+					<td>
+						<%= @account_request.person.last_comma_first %>
+					</td>
+				</tr>
+				<tr>
+					<th>email:</th>
+					<td>
+						<%= @account_request.email.address %>
+					</td>
+				</tr>
+			</table>
+
+			<p>
+				<span style="font-size: large; font-weight: bold;">Notes - Describe reason for acceptance/rejection</span>
+				<br />
+				This information is <i>not</i> sent to the applicant.
+				<br />
+				<%= account_request.text_area :ci_notes, :rows => 10, :cols => 60 %>
+			</p>
+			<%= hidden_field_tag 'account_request_id', @account_request.id %>
+			<table>
+				<tr>
+					<th><%= submit_tag 'Save Comments' %></th>
+					<td>
+						No email is sent to applicant.
+					</td>
+				</tr>
+				<tr>
+					<th><%= submit_tag 'Accept' %></th>
+					<td>
+						No email is sent to applicant.
+					</td>
+				</tr>
+				<tr>
+					<th><%= submit_tag 'Reject' %></th>
+					<td>
+						No email is sent to applicant.
+					</td>
+				</tr>
+			</table>
+		<% end %>
+	</div>
+<% else %>
+	TODO: Write error message text explaining what went wrong...
+<% end %>
+
+<%= render(:partial => "shared/admin/footer" )%>

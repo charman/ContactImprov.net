@@ -365,8 +365,7 @@ class UserControllerTest < ActionController::TestCase
 
   def test_should_not_allow_request_account_with_empty_last_name
     post :request_account, :uar_person => { :first_name => 'first_name', :last_name => '' },
-                           :uar_email => { :address => 'new_email@foo.com' },
-                           :uar_location => @@default_location_fields
+                           :uar_email => { :address => 'new_email@foo.com' }
     assert_response :success
     assert_select "[class=errorExplanation]"
     assert_match /Last name can.t be blank/, @response.body
@@ -374,8 +373,7 @@ class UserControllerTest < ActionController::TestCase
   
   def test_should_not_allow_request_account_with_empty_email
     post :request_account, :uar_person => { :first_name => 'first_name', :last_name => 'last_name' },
-                           :uar_email => { :address => '' },
-                           :uar_location => @@default_location_fields
+                           :uar_email => { :address => '' }
     assert_response :success
     assert_select "[class=errorExplanation]"
     assert_match /Address can.t be blank/, @response.body
@@ -383,8 +381,7 @@ class UserControllerTest < ActionController::TestCase
 
   def test_should_allow_request_account
     post :request_account, :uar_person => { :first_name => 'first_name', :last_name => 'last_name' },
-                           :uar_email => { :address => 'new_email@foo.com' },
-                           :uar_location => @@default_location_fields
+                           :uar_email => { :address => 'new_email@foo.com' }
     assert_redirected_to :action => 'account_requested'
   
     uar = UserAccountRequest.find(:last)
@@ -392,7 +389,6 @@ class UserControllerTest < ActionController::TestCase
     assert_equal 'first_name', uar.person.first_name
     assert_equal 'last_name',  uar.person.last_name
     assert_equal 'new_email@foo.com', uar.email.address
-    verify_default_location_fields(uar.location)
   
     assert_equal(1, @emails.size)
     assert_match /ACCOUNT REQUEST/, @emails.first.body
@@ -400,8 +396,7 @@ class UserControllerTest < ActionController::TestCase
 
   def test_should_send_pending_users_activation_email_when_they_request_account
    post :request_account, :uar_person => { :first_name => 'first_name', :last_name => 'last_name' },
-                          :uar_email => { :address => users(:pending_user).email },
-                          :uar_location => @@default_location_fields
+                          :uar_email => { :address => users(:pending_user).email }
    assert_response :success
    assert_select "[class=errorExplanation]"
    assert_match /You need to activate your account/, @response.body
@@ -412,8 +407,7 @@ class UserControllerTest < ActionController::TestCase
 
   def test_should_send_active_users_password_reset_email_when_they_request_account
     post :request_account, :uar_person => { :first_name => 'first_name', :last_name => 'last_name' },
-                           :uar_email => { :address => users(:quentin).email },
-                           :uar_location => @@default_location_fields
+                           :uar_email => { :address => users(:quentin).email }
     assert_redirected_to :action => 'password_reset_requested'
     assert_select "[class=errorExplanation]", false
     assert_equal(1, @emails.size)

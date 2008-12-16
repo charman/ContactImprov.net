@@ -55,6 +55,14 @@ class Test::Unit::TestCase
 end
 
 
+def get_page_as_admin_with_no_errors(page)
+  login_as :admin
+  get page
+  assert_response :success
+  assert_select "[class=errorExplanation]", false
+end
+
+
 def verify_default_location_fields(location)
   assert_equal 'new_address_1', location.street_address_line_1
   assert_equal 'new_address_2', location.street_address_line_2

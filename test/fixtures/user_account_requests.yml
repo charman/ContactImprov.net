@@ -1,3 +1,5 @@
 request1:
     user_account_request_id: 1
+    email_id: 101
+    person_id: 1
     state: 'new'

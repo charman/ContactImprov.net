@@ -1,0 +1,120 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+	
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8;" />
+	<title>
+		CQ-Admin:
+		<%= defined?(subsection) && !subsection.nil? ? " #{subsection.titleize.gsub('_', ' ')}: " : '' %>
+		<%= title %>
+	</title>
+	
+	<%= javascript_include_tag :defaults, :include_google_js => true, 
+          :versions => {:scriptaculous => "1.8", :prototype => "1.6"} %>
+	
+	<!--CSS file (default YUI Sam Skin) -->
+	<link type="text/css" rel="stylesheet" href="http://yui.yahooapis.com/2.5.1/build/datatable/assets/skins/sam/datatable.css">
+
+	<!-- Dependencies -->
+	<script type="text/javascript" src="http://yui.yahooapis.com/2.5.1/build/yahoo-dom-event/yahoo-dom-event.js"></script>
+	<script type="text/javascript" src="http://yui.yahooapis.com/2.5.1/build/element/element-beta-min.js"></script>
+	<script type="text/javascript" src="http://yui.yahooapis.com/2.5.1/build/datasource/datasource-beta-min.js"></script>
+
+	<!-- OPTIONAL: JSON Utility -->
+	<script type="text/javascript" src="http://yui.yahooapis.com/2.5.1/build/json/json-min.js"></script>
+
+	<!-- OPTIONAL: Connection (enables XHR) -->
+	<script type="text/javascript" src="http://yui.yahooapis.com/2.5.1/build/connection/connection-min.js"></script>
+
+	<!-- OPTIONAL: Drag Drop (enables resizeable or reorderable columns) -->
+	<script type="text/javascript" src="http://yui.yahooapis.com/2.5.1/build/dragdrop/dragdrop-min.js"></script>
+
+	<!-- OPTIONAL: Calendar (enables calendar editors) -->
+	<script type="text/javascript" src="http://yui.yahooapis.com/2.5.1/build/calendar/calendar-min.js"></script>
+
+	<!-- Source files -->
+	<script type="text/javascript" src="http://yui.yahooapis.com/2.5.1/build/datatable/datatable-beta-min.js"></script>
+
+
+	<style type="text/css">
+		.admin_form th {
+			border-bottom: 1px solid #ccc;
+			color: #039;
+			padding-right: 1em;
+			text-align: right;
+			vertical-align: top;
+		}
+		.admin_form td {
+			border-bottom: 1px solid #ccc;
+			padding-bottom: 0.5em;
+			vertical-align: top;
+		}
+
+
+		#hor-minimalist-b th{font-size:14px;font-weight:normal;color:#039;border-bottom:2px solid #6678b1;padding:10px 8px;}
+		#hor-minimalist-b td{border-bottom:1px solid #ccc;color:#669;padding:6px 8px;}
+		#hor-minimalist-b tbody tr:hover td{color:#009;}
+
+		/* === ERROR MESSAGES === */
+
+		.fieldWithErrors {
+		  padding: 2px;
+		  background-color: red;
+		  display: table;
+		}
+
+		#errorExplanation {
+		  width: 500px;
+		  border: 2px solid red;
+		  padding: 7px;
+		  padding-bottom: 12px;
+		  margin-bottom: 20px;
+		  background-color: #f0f0f0;
+		}
+
+		#errorExplanation h2 {
+		  text-align: left;
+		  font-weight: bold;
+		  padding: 5px 5px 5px 15px;
+		  /* font-size: 12px; */
+		  font-size: big;
+		  margin: -7px;
+		  background-color: #c00;
+		  color: #fff;
+		}
+
+		#errorExplanation p {
+		  color: #333;
+		  margin-bottom: 0;
+		  padding: 5px;
+		}
+
+		#errorExplanation ul li {
+		  /* font-size: 12px; */
+		  list-style: square;
+		}
+	</style>
+
+</head>
+
+<body>
+
+<h1><a href="/">CQ</a>-<a href="/admin">Admin</a><%= 
+	defined?(subsection) && !subsection.nil? ? "-<a href=\"/admin/#{subsection.downcase}\">#{subsection.titleize.gsub('_', ' ')}</a>" : '' 
+%>:
+<%= title %></h1>
+
+	<div style="margin-left: 2em;">
+
+		<p style="font-weight: bold;">
+		<%=
+		if logged_in?
+			"Logged in as " + current_user.email + ' - <a href="/logout">Logout</a>'
+		else
+			'Not logged in - <a href="/login">Login</a>'
+		end
+		%>
+		</p>
+
+		<hr />
