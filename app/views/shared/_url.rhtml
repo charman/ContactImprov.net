@@ -1,0 +1,9 @@
+<% fields_for prefix, url do |u| %>
+<fieldset>
+	<legend><%= defined?(legend) && !legend.nil? ? legend : 'URL' %></legend>
+	<ol>
+		<label>Address:</label>
+		<%= u.text_field :address %>
+	</ol>
+</fieldset>
+<% end %>

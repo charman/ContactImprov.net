@@ -1,0 +1,75 @@
+<% fields_for prefix, location do |location_form| %>
+<fieldset>
+	<legend><%= defined?(legend) && !legend.nil? ? legend : 'Location' %></legend>
+	<ol>
+		<% 
+			#  When fields_for is given a prefix with empty square brackets (e.g. 'email[]'),
+			#   it checks to see if the object it is being used on is a new or existing object.
+			#   If it is an existing object, the form helper functions (text_field, check_box, etc)
+			#   auto-magically inserts the object's ID into the empty brackets when generating the
+			#   HTML (e.g., 'email[][address]' is changed to 'email[1000][address] in the generated
+			#   HTML).  Because we manually specify the name for the auto-complete form fields, we
+			#   need to manually insert the object ID into the brackets if the object already exists.
+			if prefix =~ /(.*)\[\]/ && !location.new_record?
+				prefix = "#{$1}[#{location.id}]"
+			end
+		%>
+		<li>
+			<label>Address - Line 1:</label>
+			<%= location_form.text_field :street_address_line_1, :size => 40  %>
+		</li>
+		<li>
+			<label>Address - Line 2:</label>
+			<%= location_form.text_field :street_address_line_2, :size => 40  %>
+		</li>
+		<li>
+			<label>City:</label>
+			<%= location_form.text_field :city_name %>
+		</li>
+		<li>
+			<label>State/Region:</label>
+			<%
+				#  We are using a dirty, dirty hack for the form field labeled 'State/Region'.
+			    #   The issue that we're trying to work around is that we store US states
+			    #   in one field (Location.us_state_id, which links to UsState), and non-US
+			    #   regions in another field (Location.region_name) - but we are using the 
+			    #   'State/Region' form field for both object fields.
+				#
+			    #  TODO: Should we create a separate 'regions' table containing both US and 
+			    #         Canadian (and ...) regions?
+				if location && location.is_in_usa?
+	        		@us_state = location.us_state
+	      		else
+	        		@us_state = UsState.new
+					if location
+	        			@us_state.name = location.region_name
+					end
+	      		end
+			%>
+			<% #  We use a custom validation for the us_state field here and country_name field below,
+			   #   and so we need to do custom error highlighting here (and below) in the form.
+			   if location.errors.on(:us_state) %><div class="fieldWithErrors"><% end %>
+			<%= text_field_with_prefix_and_auto_complete prefix, :us_state, :name, {:name => "#{prefix}[us_state][name]"} %>
+			<% if location.errors.on(:us_state) %></div><% end %>
+		</li>
+		<li>
+			<label>Postal Code:</label>
+			<%= location_form.text_field :postal_code, :size => 10 %>
+		</li>
+		<li>
+			<label>Country:</label>
+			<%  if location
+					@country_name = location.country_name 
+				end
+			%>
+			<% if location.errors.on(:country_name) %><div class="fieldWithErrors"><% end %>
+			<% if @user_submitted_unknown_country_name %>
+				<%= country_select("country_name", "english_name", @priority_countries, {}, {:name => "#{prefix}[country_name][english_name]"}) %>
+			<% else %>
+				<%= text_field_with_prefix_and_auto_complete prefix, :country_name, :english_name, {:name => "#{prefix}[country_name][english_name]"} %>
+			<% end %>
+			<% if location.errors.on(:country_name) %></div><% end %>
+		</li>
+	</ol>
+</fieldset>
+<% end %>

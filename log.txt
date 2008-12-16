@@ -16,7 +16,12 @@ WHEN UPDATING PRODUCTION SERVER:
 
 THIS COMMIT:
 
-Copied/adapted the PhoneNumber class.
+Added shared views for the Email, Location, Person, PhoneNumber and
+Url classes.
+
+The /user/edit action is now working, though it now has less
+functionality than it used to because the form is no longer used to
+edit a subscriber's address.
 
 
 ======================================================================
@@ -24,8 +29,7 @@ Copied/adapted the PhoneNumber class.
 TODO:
 
 @ Functional tests
-  - user controller
-    - edit actions
+  ...
 
 @ Copy/adapt:
   - models

@@ -1,0 +1,11 @@
+<% fields_for prefix, phone_number do |p| %>
+<fieldset>
+	<legend><%= defined?(legend) && !legend.nil? ? legend : 'Phone Number' %></legend>
+	<ol>
+		<li>
+			<label>Number:</label>
+			<%= p.text_field :number %>
+		</li>
+	</ol>
+</fieldset>
+<% end %>

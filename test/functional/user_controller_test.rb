@@ -144,42 +144,6 @@ class UserControllerTest < ActionController::TestCase
 
   #  Test 'edit' action
 
-  # def test_should_email_admin_when_user_edits_address
-  #   login_as :quentin
-  #   #  Save current address to the database.  We want to compare the previous version of the address
-  #   #   to the new version of the address.  This comparison is between two versions of the address
-  #   #   *in the database*.  When we access an object using a fixture (e.g. users(:quentin)), the
-  #   #   fixture data is loaded into memory - but has not necessarily been saved to the database.
-  #   #   If another test used the same "new address" that we are supplying in the POST request,
-  #   #   then the "new address" won't differ from the "old address" (which was saved by another
-  #   #   test).  Saving the fixture data to the database ensures that we are using the correct
-  #   #   "old address".
-  #   assert users(:quentin).subscriber_address.save!
-  #   users(:quentin).subscriber_address.city_name = 'force save second version'
-  #   assert users(:quentin).subscriber_address.save!
-  #   put :edit, :user => {:person => {:first_name => 'new_first', :last_name => 'new_last'},
-  #                        :subscriber_address => {:street_address_line_1 => 'new_line_1', :street_address_line_2 => 'new_line_2', 
-  #                                                :city_name => 'new_city', :postal_code => '60606',
-  #                                                :us_state => {:name => 'Pennsylvania'}, 
-  #                                                :country_name => {:english_name => 'United States'}}}
-  #   users(:quentin).reload
-  #   users(:quentin).subscriber_address.reload
-  #   assert_redirected_to :action => 'index'
-  #   assert_equal 'new_first', users(:quentin).person.first_name
-  #   assert_equal 'new_last', users(:quentin).person.last_name
-  #   assert_equal 'new_line_1', users(:quentin).subscriber_address.street_address_line_1
-  #   assert_equal 'new_line_2', users(:quentin).subscriber_address.street_address_line_2 
-  #   assert_equal 'new_city', users(:quentin).subscriber_address.city_name
-  #   assert_equal '60606', users(:quentin).subscriber_address.postal_code
-  #   assert_equal 'PA', users(:quentin).subscriber_address.us_state.abbreviation
-  #   assert_equal 'US', users(:quentin).subscriber_address.country_name.iso_3166_1_a2_code
-  #   assert_equal 1, @emails.size
-  #   assert_match /#{users(:quentin).person.first_name}/, @emails.first.header["subject"].body
-  #   assert_match /#{users(:quentin).person.last_name}/, @emails.first.header["subject"].body
-  #   assert_match /NEW ADDRESS/, @emails.first.body
-  #   assert_select "[class=errorExplanation]", false
-  # end
-
   # def test_should_email_admin_with_name_in_subject_when_user_edits_address_but_not_name
   #   login_as :only_used_once_user
   #   #  TODO: Figure out the strange fixture/version interactions.
@@ -363,20 +327,25 @@ class UserControllerTest < ActionController::TestCase
   #   #  We're not really testing for 'success' here, but rather if the form has been redisplayed
   #   assert_response :success
   # end
-  # 
-  # def test_should_not_edit_with_empty_last_name
-  #   login_as :quentin
-  #   put :edit, :user => {:person => {:first_name => '', :last_name => ''},
-  #                        :subscriber_address => {:street_address_line_1 => 'new_line_1', :street_address_line_2 => 'new_line_2', 
-  #                                                :city_name => 'new_city', :postal_code => '60606',
-  #                                                :us_state => {:name => 'pa'}, 
-  #                                                :country_name => {:english_name => 'United States'}}}
-  #   users(:quentin).reload
-  #   assert_select "[class=errorExplanation]"
-  #   assert_match /Last name can.t be blank/, @response.body
-  #   #  We're not really testing for 'success' here, but rather if the form has been redisplayed
-  #   assert_response :success
-  # end
+
+  def test_should_edit_user
+    login_as :quentin
+    put :edit, :user => {:person => {:first_name => 'newfirst', :last_name => 'newlast'}}
+    users(:quentin).reload
+    assert_redirected_to :action => 'index'
+    assert_equal 'newfirst', users(:quentin).person.first_name
+    assert_equal 'newlast',  users(:quentin).person.last_name
+    assert_select "[class=errorExplanation]", false
+  end
+
+  def test_should_not_edit_with_empty_last_name
+    login_as :quentin
+    put :edit, :user => {:person => {:first_name => '', :last_name => ''}}
+    users(:quentin).reload
+    assert_select "[class=errorExplanation]"
+    assert_match /Last name can.t be blank/, @response.body
+    assert_response :success
+  end
 
 
   #  Test 'index' action

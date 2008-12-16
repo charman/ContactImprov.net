@@ -10,7 +10,7 @@ class CreatePeople < ActiveRecord::Migration
 
     create_table :person_versions, :id => false, :options => "auto_increment = 15000" do |t|
       t.column   :person_version_id, :primary_key, :null => false
-      t.integer  :persion_id
+      t.integer  :person_id
       t.integer  :version
       t.string   :first_name
       t.string   :last_name

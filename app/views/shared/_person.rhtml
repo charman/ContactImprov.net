@@ -1,0 +1,15 @@
+<% fields_for prefix, person do |p| %>
+<fieldset>
+	<legend><%= defined?(legend) && !legend.nil? ? legend : 'Person' %></legend>
+	<ol>
+		<li>
+			<label>First Name:</label>
+			<%= p.text_field :first_name %>
+		</li>
+		<li>
+			<label>Last Name:</label>
+			<%= p.text_field :last_name %>
+		</li>
+	</ol>
+</fieldset>
+<% end %>

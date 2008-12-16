@@ -18,12 +18,6 @@
 	<% form_for @user, :url => { :action => 'edit' } do |f| -%>
 		<%= render :partial => 'shared/person', :object => @user.person, 
 				:locals => { :prefix => 'user[person]', :legend => 'Your Name' } %>
-		<% if @user.subscriber_address %>
-			<div style="margin-top: 2em;">
-			<%= render :partial => 'shared/location', :object => @user.subscriber_address, 
-					:locals => { :prefix => 'user[subscriber_address]', :legend => 'Mailing Address' } %>
-			</div>
-		<% end %>
 		<fieldset class="cq_form_submit">
 			<p>
 				<%= submit_tag 'Update' %>
