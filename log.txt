@@ -16,8 +16,8 @@ WHEN UPDATING PRODUCTION SERVER:
 
 THIS COMMIT:
 
-Added svn:externals dependency to the cq_rails installation of the
-acts_as_state_machine plugin.
+Added svn:externals dependency to the rest of the plugins I intend to
+use from the cq_rails project.
 
 	
 ======================================================================
