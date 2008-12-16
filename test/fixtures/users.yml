@@ -1,0 +1,99 @@
+quentin:
+    user_id: 1
+    person_id: 1
+    email: 'quentin@contactimprov.org'
+    salt: '7e3041ebc2fc05a40c60028e2c4901a81035d3cd'
+    crypted_password: '00742970dc9e6319f8019fd54864d3ea740f04b1' # test
+    created_at: <%= 5.days.ago.to_s :db %>
+    activated_at: <%= 5.days.ago.to_s :db %> 
+    state: 'active'
+  
+aaron:
+    user_id: 2
+    person_id: 2
+    email: 'aaron@contactimprov.org'
+    salt: '7e3041ebc2fc05a40c60028e2c4901a81035d3cd'
+    crypted_password: '00742970dc9e6319f8019fd54864d3ea740f04b1' # test
+    created_at: <%= 1.days.ago.to_s :db %>
+    activation_code: '8f24789ae988411ccf33ab0c30fe9106fab32e9a'
+    state: 'pending'
+
+empty_email:
+    user_id: 3
+    email: ''
+    salt: '7e3041ebc2fc05a40c60028e2c4901a81035d3cd'
+    crypted_password: '00742970dc9e6319f8019fd54864d3ea740f04b1' # test
+    created_at: <%= 5.days.ago.to_s :db %>
+    state: 'active'
+    
+admin:
+    user_id: 4
+    email: 'admin@contactimprov.org'
+    salt: '7e3041ebc2fc05a40c60028e2c4901a81035d3cd'
+    crypted_password: '00742970dc9e6319f8019fd54864d3ea740f04b1' # test
+    created_at: <%= 5.days.ago.to_s :db %>
+    activated_at: <%= 5.days.ago.to_s :db %> 
+    state: 'active'
+    admin: true
+
+passive_user:
+    user_id: 5
+    email: 'passive_user@contactimprov.org'
+    salt: '7e3041ebc2fc05a40c60028e2c4901a81035d3cd'
+    crypted_password: '00742970dc9e6319f8019fd54864d3ea740f04b1' # test
+    state: 'passive'
+
+suspended_user:
+    user_id: 6
+    email: 'suspended_user@contactimprov.org'
+    salt: '7e3041ebc2fc05a40c60028e2c4901a81035d3cd'
+    crypted_password: '00742970dc9e6319f8019fd54864d3ea740f04b1' # test
+    state: 'suspended'
+
+deleted_user:
+    user_id: 7
+    email: 'deleted_user@contactimprov.org'
+    salt: '7e3041ebc2fc05a40c60028e2c4901a81035d3cd'
+    crypted_password: '00742970dc9e6319f8019fd54864d3ea740f04b1' # test
+    state: 'deleted'
+
+pending_user:
+    user_id: 8
+    email: 'pending_user@contactimprov.org'
+    salt: '7e3041ebc2fc05a40c60028e2c4901a81035d3cd'
+    crypted_password: '00742970dc9e6319f8019fd54864d3ea740f04b1' # test
+    state: 'pending'
+
+non_subscriber_user:
+    user_id: 9
+    email: 'non_subscriber@contactimprov.org'
+    salt: '7e3041ebc2fc05a40c60028e2c4901a81035d3cd'
+    crypted_password: '00742970dc9e6319f8019fd54864d3ea740f04b1' # test
+    state: 'active'
+
+only_used_once_user:
+    user_id: 10
+    person_id: 10
+    email: 'only_used_once@contactimprov.org'
+    salt: '7e3041ebc2fc05a40c60028e2c4901a81035d3cd'
+    crypted_password: '00742970dc9e6319f8019fd54864d3ea740f04b1' # test
+    state: 'active'
+
+contacts_applicant_user:
+    user_id: 401
+    person_id: 401
+    email: 'contacts_applicant@contactimprov.org'
+    salt: '7e3041ebc2fc05a40c60028e2c4901a81035d3cd'
+    crypted_password: '00742970dc9e6319f8019fd54864d3ea740f04b1' # test
+    state: 'active'
+
+#  duplicate1 has an account, duplicate2 has applied to be on the Contacts List but
+#   but his application uses the same email address as duplicate1.
+duplicate1_applicant_user:
+    user_id: 402
+    person_id: 402
+    email: 'duplicate@contactimprov.org'
+    salt: '7e3041ebc2fc05a40c60028e2c4901a81035d3cd'
+    crypted_password: '00742970dc9e6319f8019fd54864d3ea740f04b1' # test
+    state: 'active'
+

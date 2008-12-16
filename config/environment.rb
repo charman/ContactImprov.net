@@ -59,6 +59,30 @@ Rails::Initializer.run do |config|
     :secret      => 'bb35e168458d5f671fbfe6567c43baec61075e850b361ae66e3547388979c43d837601d76daab0b48f03760228241355c519e91d57dbeb6e4a11d58b4197b067'
   }
 
+  #  [CTH]
+  config.active_record.table_name_prefix = "ci_"
+  config.active_record.primary_key_prefix_type = :table_name_with_underscore
+
+  #  [CTH]  When the command 'rake db:test:prepare' was run, the tables it created
+  #          in the cq_rails_test database would have the ci_ prefix prepended to
+  #          all table names that were in the cq_rails database - so we ended up 
+  #          with table names like:
+  #            ci_ci_companies, ci_ci_contacts_list_downloads, ci_cq_company_field_display_order
+  #         It's possible that this rake task was confused because (at the moment)
+  #          some tables have a cq_ prefix instead of a ci_ prefix.
+  #         The line below fixes the problem with the duplicate ci_ prefixes.  Unfortunately,
+  #          the configuration option is not well documented.  The only references to 
+  #          it on the api.rubyonrails.org site are in the changelogs.  Apparently, the object
+  #          config.active_record has type ActiveRecord::Base.  The default value for this
+  #          option is ':ruby', which apparently causes the schemas to be generated from the
+  #          db/schema.rb file (according to the comments in db/schema.rb, the file is 
+  #          auto-generated based on the current database tables).  I believe the ':sql' value
+  #          causes the cq_rails_test tables to be generated using an SQL dump.
+  #
+  #         TODO: Once we no longer have any tables with a ci_ prefix, check to see if this
+  #                configuration option is still necessary.
+  config.active_record.schema_format = :sql
+
   # Use the database for sessions instead of the cookie-based default,
   # which shouldn't be used to store highly confidential information
   # (create the session table with "rake db:sessions:create")
@@ -73,3 +97,66 @@ Rails::Initializer.run do |config|
   # Please note that observers generated using script/generate observer need to have an _observer suffix
   # config.active_record.observers = :cacher, :garbage_collector, :forum_observer
 end
+
+
+# Include your application configuration below
+
+ActionController::Base.cache_store = :mem_cache_store
+
+#  List of people who should receive email when an unhandled exception occurs
+ExceptionNotifier.exception_recipients = %w(charman@acm.org)
+ExceptionNotifier.sender_address = %("CQadmin" <app.error@contactquarterly.com>)
+ExceptionNotifier.email_prefix = "[RailsError] "
+
+
+# These defaults are used in GeoKit::Mappable.distance_to and in acts_as_mappable
+GeoKit::default_units = :miles
+GeoKit::default_formula = :sphere
+
+# This is the timeout value in seconds to be used for calls to the geocoder web
+# services.  For no timeout at all, comment out the setting.  The timeout unit
+# is in seconds. 
+GeoKit::Geocoders::timeout = 3
+
+# These settings are used if web service calls must be routed through a proxy.
+# These setting can be nil if not needed, otherwise, addr and port must be 
+# filled in at a minimum.  If the proxy requires authentication, the username
+# and password can be provided as well.
+GeoKit::Geocoders::proxy_addr = nil
+GeoKit::Geocoders::proxy_port = nil
+GeoKit::Geocoders::proxy_user = nil
+GeoKit::Geocoders::proxy_pass = nil
+
+# This is your yahoo application key for the Yahoo Geocoder.
+# See http://developer.yahoo.com/faq/index.html#appid
+# and http://developer.yahoo.com/maps/rest/V1/geocode.html
+GeoKit::Geocoders::yahoo = 'REPLACE_WITH_YOUR_YAHOO_KEY'
+    
+# This is your Google Maps geocoder key. 
+# See http://www.google.com/apis/maps/signup.html
+# and http://www.google.com/apis/maps/documentation/#Geocoding_Examples
+#GeoKit::Geocoders::google = 'ABQIAAAAmYdKm0AsUr2XPtjTCC8gNBT2yXp_ZAY8_ufC3CFXhHIE1NvwkxTaHbyRAvbHi_paAVWJ5_92eHrxYQ'
+GeoKit::Geocoders::google = File.open('config/google_maps_api_key.txt') { |f| f.read }    
+
+# This is your username and password for geocoder.us.
+# To use the free service, the value can be set to nil or false.  For 
+# usage tied to an account, the value should be set to username:password.
+# See http://geocoder.us
+# and http://geocoder.us/user/signup
+GeoKit::Geocoders::geocoder_us = false 
+
+# This is your authorization key for geocoder.ca.
+# To use the free service, the value can be set to nil or false.  For 
+# usage tied to an account, set the value to the key obtained from
+# Geocoder.ca.
+# See http://geocoder.ca
+# and http://geocoder.ca/?register=1
+GeoKit::Geocoders::geocoder_ca = false
+
+# This is the order in which the geocoders are called in a failover scenario
+# If you only want to use a single geocoder, put a single symbol in the array.
+# Valid symbols are :google, :yahoo, :us, and :ca.
+# Be aware that there are Terms of Use restrictions on how you can use the 
+# various geocoders.  Make sure you read up on relevant Terms of Use for each
+# geocoder you are going to use.
+GeoKit::Geocoders::provider_order = [:google]

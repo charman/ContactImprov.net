@@ -83,7 +83,7 @@ class UserController < ApplicationController
 #              @user.activate!
 #              flash[:notice] = "Signup complete!"
 #              self.current_user = @user   # Log the user in 
-            end
+#            end
             #  TODO: Should we display some sort of error message here if no subscriber id was provided?
           when 'pending'
             @user.activate!

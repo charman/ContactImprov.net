@@ -1,0 +1,49 @@
+quentin:
+    person_id: 1
+    first_name: 'Quentin'
+    last_name:  'Quackenbush'
+
+aaron:
+    person_id: 2
+    first_name: 'Aaron'
+    last_name:  'Moses'
+
+only_used_once_user:
+    person_id: 10
+    first_name: 'Only'
+    last_name:  'UsedOnce'
+
+doomed_person:
+    person_id: 200
+    first_name: 'Doctor'
+    last_name:  'Doomed'
+
+teacher:
+    person_id: 301
+    first_name: 'Mr.'
+    last_name:  'Teacher'
+    
+not_a_teacher:
+    person_id: 311
+    first_name: 'Mr.'
+    last_name:  'Notateacher'
+
+stranger_contacts_applicant:
+    person_id: 400
+    first_name: 'Stranger'
+    last_name:  'Applicant'
+
+user_contacts_applicant:
+    person_id: 401
+    first_name: 'User'
+    last_name:  'Applicant'
+
+duplicate1_contacts_applicant:
+    person_id: 402
+    first_name: 'Duplicate1'
+    last_name:  'Applicant'
+
+duplicate2_contacts_applicant:
+    person_id: 403
+    first_name: 'Duplicate2'
+    last_name:  'Applicant'
