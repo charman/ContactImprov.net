@@ -4,6 +4,27 @@
 class ApplicationController < ActionController::Base
   helper :all # include all helpers, all the time
 
+  # Be sure to include AuthenticationSystem [sic] in Application Controller instead
+  include AuthenticatedSystem
+
+  # Send an email when an unhandled exception occurs
+  include ExceptionNotifiable
+
+  include AutoCompleteWithParamsPrefix
+
+  include SslRequirement
+
+  #  Allow SSL to be used on all pages.  Prevents an https -> http -> https redirection
+  #   loop when using mod_rewrite in Apache to force an https connection.
+  def ssl_allowed?
+    true
+  end
+
+
+  # Pick a unique cookie name to distinguish our session data from others'
+  session :session_key => 'www.contactimprov.net'
+
+
   # See ActionController::RequestForgeryProtection for details
   # Uncomment the :secret if you're not using the cookie session store
   protect_from_forgery # :secret => 'c8e85940919a6ceaff914a3afcaedd25'

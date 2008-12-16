@@ -1,0 +1,29 @@
+<%= render(:partial => "shared/header", :locals => { :title => 'Error logging in to your account' } )%>
+
+<h1>Do you have cookies disabled?</h1>
+
+<p>
+	We encountered a problem logging you in to your ContactImprov.net online account.
+</p>
+<p>
+	<b>This particular problem can occur when you have disabled cookies in your browser</b>,
+	either for all websites or just for this website.  Please try enabling cookies
+	and going back to the <a href="/login">Login</a> page.  You may need to restart
+	your browser after enabling cookies.
+</p>
+<p>
+	If this does not fix the problem, please
+	<a href="mailto:charman@acm.org?subject=Unable to login to ContactImprov.net!">
+		send us an email</a>.
+	It will help us fix the problem if you could include the following information in the email:
+	<ul>
+		<li>Your operating system and version (e.g. Windows XP, OS X 10.5)</li>
+		<li>The browser and version you are using (e.g. Internet Explorer 7, Firefox 3, Safari 3.1)</li>
+	</ul>
+</p>
+<p>
+	We apologize for the trouble.
+</p>
+
+
+<%= render(:partial => "shared/footer" )%>

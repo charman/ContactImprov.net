@@ -1,0 +1,53 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+	
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8;" />
+	<title>Contact Improv . net - <%= title %></title>
+	<link rel="stylesheet" href="/ci_net.css" type="text/css" />
+	
+	<%= javascript_include_tag :defaults, :include_google_js => true, 
+          :versions => {:scriptaculous => "1.8", :prototype => "1.6"} %>
+
+</head>
+
+<body>
+
+	<div class="main">
+		<div id="titlebar_ci">
+		</div>
+
+		<div class="sidebar">
+			<ul class="sidebar_menu">
+					<li style="font-weight: bold; font-style: italic;">
+						<a href="/user">Online Account Home</a>
+					</li>
+				<% if logged_in? %>
+					<li>
+						<a href="/user/change_email">Change your email address</a>
+					</li>
+					<li>
+						<a href="/user/change_password">Change your password</a>
+					</li>
+					<li>
+						<a href="/user/edit">Change your mailing address</a>
+					</li>
+				<% end %>
+			</ul>
+		</div>
+		<div class="content">
+			<p style="font-size: small; margin-top: 0em; text-align: right; width: 100%;">
+				<% if logged_in? %>
+					<b>Logged in</b> as
+					<% if current_user.person %>
+						<%= "#{current_user.first_name} #{current_user.last_name}"%>
+					<% else %>
+						<%= current_user.email %>
+					<% end %>
+					| <a href="/logout">Logout</a>
+				<% else %>
+					<b>You are not logged in</b>
+					| <a href="/login">Login</a>
+				<% end %>
+			</p>

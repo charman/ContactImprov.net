@@ -16,12 +16,20 @@ WHEN UPDATING PRODUCTION SERVER:
 
 THIS COMMIT:
 
-Removed subscriber specific code from lib/authenticated_system.rb.
+Created the sessions controller.
 
-	
+
 ======================================================================
 
 TODO:
+
+@ Copy over sessions functional tests.
+
+@ Create/copy User model.
+
+@ Create User controller.
+
+@ Create/copy Location model
 
 
 ==[ LOG ]=============================================================
@@ -48,3 +56,8 @@ which opened up a text editor, where I added this line:
 
   acts_as_state_machine https://craigharman.net/svn/cq_rails/vendor/plugins/acts_as_state_machine
 
+Subversion 1.5 supports a different syntax for svn:externals
+properties, but Leopard still ships with Subversion 1.4, so I'm
+currently sticking with the older syntax.
+
+@ 
