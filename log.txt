@@ -16,7 +16,8 @@ WHEN UPDATING PRODUCTION SERVER:
 
 THIS COMMIT:
 
-Added (empty) CSS file for the site.
+Create init_db script to recreate database, import the CountryName and
+UsState data, and create an admin account.
 
 
 ======================================================================
@@ -32,8 +33,6 @@ TODO:
     - uncomment functional tests
 
 @ Prune UserMailer model
-
-@ Copy over country name and us state data
 
 ---
 
