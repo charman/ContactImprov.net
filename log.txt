@@ -16,9 +16,7 @@ WHEN UPDATING PRODUCTION SERVER:
 
 THIS COMMIT:
 
-Copied over funk and unk testing scripts from cq_rails.
-
-Copied over lib/*.rb files from cq_rails.
+Removed subscriber specific code from lib/authenticated_system.rb.
 
 	
 ======================================================================

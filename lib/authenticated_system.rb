@@ -64,35 +64,6 @@ module AuthenticatedSystem
       end
     end
 
-    def current_subscriber_required
-      if logged_in?
-        if @current_user.is_current_subscriber?
-          true
-        else
-          access_denied_to_non_subscriber
-        end
-      else
-        access_denied_to_stranger
-      end
-    end
-
-    def current_subscriber_or_admin_required
-      if logged_in?
-        if @current_user.is_current_subscriber? || @current_user.admin?
-          true
-        else
-          access_denied_to_non_subscriber
-        end
-      else
-        access_denied_to_stranger
-      end
-    end
-
-    #  User is logged in, but is trying to access content that is restricted to subscribers
-    def access_denied_to_non_subscriber
-      redirect_to '/denied/non_member'
-    end
-
     # Redirect as appropriate when an access request fails.
     #
     # The default action is to redirect to the login screen.
