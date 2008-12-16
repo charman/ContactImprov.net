@@ -16,14 +16,7 @@ WHEN UPDATING PRODUCTION SERVER:
 
 THIS COMMIT:
 
-Copied/adapted the Url class.
-
-Fixed a problem with initialize_db/create_initial_accounts.rb where
-the user account wasn't being created.  user.save! needs to be called
-before user.activate!
-
-Fixed a problem with the init_db script where the password for the
-ci_rails_test database was not being set properly.
+Copied/adapted the PhoneNumber class.
 
 
 ======================================================================
@@ -36,8 +29,6 @@ TODO:
 
 @ Copy/adapt:
   - models
-    - Email
-    - PhoneNumber
     - Entry
     - Entity
     - UserAccountRequest

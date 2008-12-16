@@ -1,0 +1,44 @@
+p_e_l_email:
+    email_id: 101
+    address: 'charman@acm.org'
+
+
+doomed_person:
+    email_id: 200
+    for_entity_id: 200
+    address: 'doomed@doom.com'
+
+doomed_email:
+    email_id: 201
+    for_entity_id: 201
+    address: 'dooooomed@doom.com'
+
+teacher_email:
+    email_id: 302
+    for_entity_id: 301
+    address: 'teacher@taught.com'
+    
+not_a_teacher_email:
+    email_id: 312
+    for_entity_id: 311
+    address: 'notateacher@untaught.com'
+
+stranger_contacts_applicant_email:
+    email_id: 400
+    for_entity_id: 400
+    address: 'applicant@contactimprov.org'
+
+user_contacts_applicant_email:
+    email_id: 401
+    for_entity_id: 401
+    address: 'applicant@contactimprov.org'
+
+duplicate1_contacts_applicant_email:
+    email_id: 402
+    for_entity_id: 402
+    address: 'duplicate@contactimprov.org'
+
+duplicate2_contacts_applicant_email:
+    email_id: 403
+    for_entity_id: 403
+    address: 'duplicate@contactimprov.org'
