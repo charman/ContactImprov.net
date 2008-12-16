@@ -35,7 +35,6 @@ class UserControllerTest < ActionController::TestCase
   def test_should_not_show_form_with_invalid_activation_code
     get :activate, :activation_code => 'randomgarbage'
     assert_select "[class=errorExplanation]"
-    #  We're not really testing for 'success' here, but rather if the form has been redisplayed
     assert_response :success
   end
 
@@ -61,7 +60,6 @@ class UserControllerTest < ActionController::TestCase
     users(:passive_user).reload
     assert users(:passive_user).pending?
     assert_select "[class=errorExplanation]"
-    #  We're not really testing for 'success' here, but rather if the form has been redisplayed
     assert_response :success
   end
 
@@ -365,83 +363,69 @@ class UserControllerTest < ActionController::TestCase
 
   #  Test 'request_account' action
 
-  # def test_should_not_allow_request_account_with_empty_last_name
-  #   post :request_account, :uar_person => { :first_name => 'first_name', :last_name => '' },
-  #                          :uar_email => { :address => 'new_email@foo.com' },
-  #                          :uar_location => @@default_location_fields,
-  #                          :user_account_request => { :subscriber_status => 'new_subscriber' }
-  #   assert_response :success
-  #   assert_select "[class=errorExplanation]"
-  #   assert_match /Last name can.t be blank/, @response.body
-  # end
-  # 
-  # def test_should_not_allow_request_account_with_empty_email
-  #   post :request_account, :uar_person => { :first_name => 'first_name', :last_name => 'last_name' },
-  #                          :uar_email => { :address => '' },
-  #                          :uar_location => @@default_location_fields,
-  #                          :user_account_request => { :subscriber_status => 'new_subscriber' }
-  #   assert_response :success
-  #   assert_select "[class=errorExplanation]"
-  #   assert_match /Address can.t be blank/, @response.body
-  # end
+  def test_should_not_allow_request_account_with_empty_last_name
+    post :request_account, :uar_person => { :first_name => 'first_name', :last_name => '' },
+                           :uar_email => { :address => 'new_email@foo.com' },
+                           :uar_location => @@default_location_fields
+    assert_response :success
+    assert_select "[class=errorExplanation]"
+    assert_match /Last name can.t be blank/, @response.body
+  end
+  
+  def test_should_not_allow_request_account_with_empty_email
+    post :request_account, :uar_person => { :first_name => 'first_name', :last_name => 'last_name' },
+                           :uar_email => { :address => '' },
+                           :uar_location => @@default_location_fields
+    assert_response :success
+    assert_select "[class=errorExplanation]"
+    assert_match /Address can.t be blank/, @response.body
+  end
 
-#  def test_should_not_allow_request_account_with_mismatched_emails
-#    post :request_account, :last_name => 'lastname', :email => 'some_address@contactimprov.org', :email_confirmation => 'some_other_address@contactimprov.org'
-#    assert flash[:notice]
-#    #  We're not really testing for 'success' here, but rather if the form has been redisplayed
-#    assert_response :success
-#    assert_match /The email addresses you provided do not match/, @response.body
-#  end
+  def test_should_allow_request_account
+    post :request_account, :uar_person => { :first_name => 'first_name', :last_name => 'last_name' },
+                           :uar_email => { :address => 'new_email@foo.com' },
+                           :uar_location => @@default_location_fields
+    assert_redirected_to :action => 'account_requested'
+  
+    uar = UserAccountRequest.find(:last)
+    assert_not_nil uar
+    assert_equal 'first_name', uar.person.first_name
+    assert_equal 'last_name',  uar.person.last_name
+    assert_equal 'new_email@foo.com', uar.email.address
+    verify_default_location_fields(uar.location)
+  
+    assert_equal(1, @emails.size)
+    assert_match /ACCOUNT REQUEST/, @emails.first.body
+  end
 
-  # def test_should_allow_request_account
-  #   post :request_account, :uar_person => { :first_name => 'first_name', :last_name => 'last_name' },
-  #                          :uar_email => { :address => 'new_email@foo.com' },
-  #                          :uar_location => @@default_location_fields,
-  #                          :user_account_request => { :subscriber_status => 'new_subscriber' }
-  #   assert_redirected_to :action => 'account_requested'
-  # 
-  #   uar = UserAccountRequest.find(:last)
-  #   assert_not_nil uar
-  #   assert_equal 'first_name', uar.person.first_name
-  #   assert_equal 'last_name',  uar.person.last_name
-  #   assert_equal 'new_email@foo.com', uar.email.address
-  #   verify_default_location_fields(uar.location)
-  # 
-  #   assert_equal(1, @emails.size)
-  #   assert_match /ACCOUNT REQUEST/, @emails.first.body
-  # end
+  def test_should_send_pending_users_activation_email_when_they_request_account
+   post :request_account, :uar_person => { :first_name => 'first_name', :last_name => 'last_name' },
+                          :uar_email => { :address => users(:pending_user).email },
+                          :uar_location => @@default_location_fields
+   assert_response :success
+   assert_select "[class=errorExplanation]"
+   assert_match /You need to activate your account/, @response.body
+   assert_equal(1, @emails.size)
+   assert_match /We have created a ContactImprov.net account for you/, @emails.first.subject
+   assert_match /A ContactImprov.net account has been created for you/, @emails.first.body
+  end
 
-#  def test_should_send_pending_users_activation_email_when_they_request_account
-#    post :request_account, :uar_person => { :first_name => 'first_name', :last_name => 'last_name' },
-#                           :uar_email => { :address => users(:pending_user).email },
-#                           :uar_location => @@default_location_fields,
-#                           :user_account_request => { :subscriber_status => 'new_subscriber' }
-#    assert_response :success
-#    assert_select "[class=errorExplanation]"
-#    assert_match /You need to activate your account/, @response.body
-#    assert_equal(1, @emails.size)
-#    assert_match /We have created a Contact Quarterly online account for you/, @emails.first.subject
-#    assert_match /A ContactQuarterly\.com account has been created for you/, @emails.first.body
-#  end
-
-  # def test_should_send_active_users_password_reset_email_when_they_request_account
-  #   post :request_account, :uar_person => { :first_name => 'first_name', :last_name => 'last_name' },
-  #                          :uar_email => { :address => users(:quentin).email },
-  #                          :uar_location => @@default_location_fields,
-  #                          :user_account_request => { :subscriber_status => 'new_subscriber' }
-  #   assert_redirected_to :action => 'password_reset_requested'
-  #   assert_select "[class=errorExplanation]", false
-  #   assert_equal(1, @emails.size)
-  #   assert_match /Instructions for resetting your Contact Quarterly online account password/, @emails.first.subject
-  #   assert_match /We have received a request to reset the password/, @emails.first.body
-  # end
+  def test_should_send_active_users_password_reset_email_when_they_request_account
+    post :request_account, :uar_person => { :first_name => 'first_name', :last_name => 'last_name' },
+                           :uar_email => { :address => users(:quentin).email },
+                           :uar_location => @@default_location_fields
+    assert_redirected_to :action => 'password_reset_requested'
+    assert_select "[class=errorExplanation]", false
+    assert_equal(1, @emails.size)
+    assert_match /Instructions for resetting your ContactImprov.net account password/, @emails.first.subject
+    assert_match /We have received a request to reset the password/, @emails.first.body
+  end
 
 
   #  Test 'request_password_reset' action
 
   def test_should_not_allow_request_password_reset_with_empty_email
     post :request_password_reset, :email => ''
-    #  We're not really testing for 'success' here, but rather if the form has been redisplayed
     assert_response :success
     assert flash[:notice]
     assert_match /You must provide an email address/, @response.body
@@ -449,7 +433,6 @@ class UserControllerTest < ActionController::TestCase
 
   def test_should_not_allow_request_password_reset_with_mismatched_emails
     post :request_password_reset, :email => 'quentin@contactimprov.org', :email_confirmation => 'notquentin@contactimprov.org'
-    #  We're not really testing for 'success' here, but rather if the form has been redisplayed
     assert_response :success
     assert flash[:notice]
     assert_match /The email addresses you provided do not match/, @response.body
@@ -457,7 +440,6 @@ class UserControllerTest < ActionController::TestCase
 
   def test_should_not_allow_request_password_for_unknown_email
     post :request_password_reset, :email => 'unknown_user@contactimprov.org', :email_confirmation => 'unknown_user@contactimprov.org'
-    #  We're not really testing for 'success' here, but rather if the form has been redisplayed
     assert_response :success
     assert flash[:notice]
     assert_match /We don.t seem to have any records of a user with the email address/, @response.body
@@ -465,7 +447,6 @@ class UserControllerTest < ActionController::TestCase
 
   def test_should_not_allow_request_password_for_pending_user
     post :request_password_reset, :email => 'aaron@contactimprov.org', :email_confirmation => 'aaron@contactimprov.org'
-    #  We're not really testing for 'success' here, but rather if the form has been redisplayed
     assert_response :success
     assert flash[:notice]
     assert_match /You need to activate your account/, @response.body
@@ -475,7 +456,6 @@ class UserControllerTest < ActionController::TestCase
 
   def test_should_not_allow_request_password_for_passive_user
     post :request_password_reset, :email => 'passive_user@contactimprov.org', :email_confirmation => 'passive_user@contactimprov.org'
-    #  We're not really testing for 'success' here, but rather if the form has been redisplayed
     assert_response :success
     assert flash[:notice]
     assert_match /Your account is not set up yet/, @response.body
@@ -503,7 +483,6 @@ class UserControllerTest < ActionController::TestCase
   def test_should_not_find_user_to_reset_password_for_with_get
     get :reset_password, :password_reset_code => ''
     assert_select "form", false
-    #  We're not really testing for 'success' here, but rather if the form has been redisplayed
     assert_response :success
     assert_match /Invalid password reset code/, @response.body
   end
@@ -511,7 +490,6 @@ class UserControllerTest < ActionController::TestCase
   def test_should_not_find_user_to_reset_password_for_with_post
     post :reset_password, :password_reset_code => ''
     assert_select "form", false
-    #  We're not really testing for 'success' here, but rather if the form has been redisplayed
     assert_response :success
     assert_match /Invalid password reset code/, @response.body
   end
@@ -520,7 +498,6 @@ class UserControllerTest < ActionController::TestCase
     code = users(:quentin).make_password_reset_code
     post :reset_password, :password_reset_code => code, :user => { :password => 'password', :password_confirmation => 'mismatched'}
     assert_select "[class=errorExplanation]"
-    #  We're not really testing for 'success' here, but rather if the form has been redisplayed
     assert_response :success
     assert_match /Password doesn.t match confirmation/, @response.body
   end

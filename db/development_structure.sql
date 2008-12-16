@@ -157,6 +157,18 @@ CREATE TABLE `ci_us_states` (
   KEY `name_index` (`name`(10))
 ) ENGINE=MyISAM AUTO_INCREMENT=1059 DEFAULT CHARSET=utf8;
 
+CREATE TABLE `ci_user_account_requests` (
+  `user_account_request_id` int(11) NOT NULL auto_increment,
+  `state` varchar(12) default NULL,
+  `ci_notes` text,
+  `person_id` int(11) default NULL,
+  `email_id` int(11) default NULL,
+  `location_id` int(11) default NULL,
+  `created_at` datetime default NULL,
+  `updated_at` datetime default NULL,
+  PRIMARY KEY  (`user_account_request_id`)
+) ENGINE=MyISAM AUTO_INCREMENT=15000 DEFAULT CHARSET=utf8;
+
 CREATE TABLE `ci_users` (
   `user_id` int(11) NOT NULL auto_increment,
   `email` varchar(255) default NULL,
@@ -197,3 +209,5 @@ INSERT INTO ci_schema_migrations (version) VALUES ('20081216194845');
 INSERT INTO ci_schema_migrations (version) VALUES ('20081216200339');
 
 INSERT INTO ci_schema_migrations (version) VALUES ('20081216201129');
+
+INSERT INTO ci_schema_migrations (version) VALUES ('20081216204531');

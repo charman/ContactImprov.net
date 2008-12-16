@@ -219,7 +219,7 @@ class UserController < ApplicationController
           else
             @uar_person.save!
             @uar_person.reload                                 #  reload the Person object to retrieve its entity
-            @uar_email.for_entity_id = @uar_person.entity.id   #  email addresses must be linked to an entity
+#            @uar_email.for_entity_id = @uar_person.entity.id   #  email addresses must be linked to an entity
             @uar_email.save!
             @uar_location.save!
 

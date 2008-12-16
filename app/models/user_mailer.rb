@@ -10,14 +10,14 @@ class UserMailer < ActionMailer::Base
 
   def activation(user)
     setup_user_email(user)
-    @subject    = 'Your Contact Quarterly online account has been activated'
+    @subject    = 'Your ContactImprov.net account has been activated'
     @body[:password] = user.password
     @body[:url] = "#{@base_url}"
   end
 
   def contacts_application_accepted(application)
     setup_email(application.email.address)
-    @subject    = "Contact Quarterly's Contacts List"
+    @subject    = "ContactImprov.net's Contacts List"
     @body[:user_name] = "#{application.person.first_name} #{application.person.last_name}"
   end
 
@@ -35,7 +35,7 @@ class UserMailer < ActionMailer::Base
 
   def contacts_application_rejected(application)
     setup_email(application.email.address)
-    @subject    = "Contact Quarterly's Contacts List"
+    @subject    = "ContactImprov.net's Contacts List"
     @body[:user_name] = "#{application.person.first_name} #{application.person.last_name}"
   end
 
@@ -63,13 +63,13 @@ class UserMailer < ActionMailer::Base
 
   def password_reset(user)
     setup_user_email(user)
-    @subject    = 'Instructions for resetting your Contact Quarterly online account password'
+    @subject    = 'Instructions for resetting your ContactImprov.net account password'
     @body[:url] = "#{@base_url}reset_password/#{user.password_reset_code}"
   end
 
   def password_reset_by_admin(user, new_password)
     setup_user_email(user)
-    @subject = 'New password for your Contact Quarterly online account'
+    @subject = 'New password for your ContactImprov.net account'
     @body[:new_password] = new_password
   end
   
@@ -77,7 +77,7 @@ class UserMailer < ActionMailer::Base
   #         classes of users?
   def signup_notification(user)
     setup_user_email(user)
-    @subject     = 'We have created a Contact Quarterly online account for you'
+    @subject     = 'We have created a ContactImprov.net account for you'
     @body[:url]  = "#{@base_url}activate/#{user.activation_code}"
     if user && user.person
       @body[:name_of_user] = "#{user.person.first_name} #{user.person.last_name} -\n"
@@ -88,7 +88,7 @@ class UserMailer < ActionMailer::Base
 
   def subscriber_notification(user)
     setup_user_email(user)
-    @subject     = 'New online subscriber-only features on Contact Quarterly website!'
+    @subject     = 'New online subscriber-only features on ContactImprov.net website!'
     @body[:url]  = "#{@base_url}activate/#{user.activation_code}"
     if user && user.person
       @body[:user_greeting] = "Dear #{user.person.first_name} #{user.person.last_name},"
@@ -184,7 +184,7 @@ class UserMailer < ActionMailer::Base
 
     def setup_email(email_addresses)
       filter_recipients(email_addresses)
-      @from        = "Contact Quarterly <web@contactquarterly.com>"
+      @from        = "ContactImprov.net <web@contactquarterly.com>"
       @sent_on     = Time.now
     end
   

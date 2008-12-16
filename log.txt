@@ -16,13 +16,17 @@ WHEN UPDATING PRODUCTION SERVER:
 
 THIS COMMIT:
 
-Copied the contents of the CQ CSS file to the CSS file for this
-project.
+Copied/adapted the UserAccountRequest class.
 
 
 ======================================================================
 
 TODO:
+
+@ Admin interface
+  - Users
+    - list(*)
+    - account requests
 
 @ Functional tests
   ...
@@ -31,14 +35,16 @@ TODO:
   - models
     - Entry
     - Entity
-    - UserAccountRequest
-      - uncomment functional tests
 
 @ Prune UserMailer model
 
 ---
 
 @ ack for instances of 'uarterly' or 'CQ'
+
+--
+
+@ Add FourOhFour model/controller
 
 
 ==[ LOG ]=============================================================
