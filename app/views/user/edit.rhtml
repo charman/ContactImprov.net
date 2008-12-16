@@ -1,0 +1,38 @@
+<%= render(:partial => "shared/header", :locals => { :title => 'Change your mailing address' } )%>
+
+<% if flash[:notice] %>
+	<div class="errorExplanation" id="errorExplanation">
+		<%= flash[:notice] %>
+	</div>
+<% end %>
+
+<% if @user && @user.person %>
+
+	<% if defined?(@error_messages) && !@error_messages.empty? %>
+		<div class="errorExplanation" id="errorExplanation">
+			<h2>Unable to update your mailing address</h2>
+			<p><%= content_tag(:ul, @error_messages.map {|m| content_tag(:li, m)}) %></p>
+		</div>
+	<% end %>
+		
+	<% form_for @user, :url => { :action => 'edit' } do |f| -%>
+		<%= render :partial => 'shared/person', :object => @user.person, 
+				:locals => { :prefix => 'user[person]', :legend => 'Your Name' } %>
+		<% if @user.subscriber_address %>
+			<div style="margin-top: 2em;">
+			<%= render :partial => 'shared/location', :object => @user.subscriber_address, 
+					:locals => { :prefix => 'user[subscriber_address]', :legend => 'Mailing Address' } %>
+			</div>
+		<% end %>
+		<fieldset class="cq_form_submit">
+			<p>
+				<%= submit_tag 'Update' %>
+			</p>
+		</fieldset>
+	<% end -%>
+
+<% end %>
+
+
+
+<%= render(:partial => "shared/footer" )%>

@@ -1,0 +1,64 @@
+<%= render(:partial => "shared/header", :locals => { :title => 'Change your email address' } )%>
+
+
+<% if flash[:notice] %>
+	<div class="errorExplanation" id="errorExplanation">
+		<%= flash[:notice] %>
+	</div>
+<% end %>
+
+
+<% if @user %>
+
+	<%= error_messages_for :user, :header_message => 'Unable to change email address' %>
+
+	<h2>Please choose a new email address</h2>
+	<div style="margin-left: 2em; margin-bottom: 2em;">
+		<p>You must enter your password in order to change your email address.</p>
+		<p>
+			<b>CAUTION:</b> This will change the email address that you use to log in.
+		</p>
+	</div>
+
+	
+
+	<% form_tag(:action => 'change_email') do %>
+		<fieldset style="width: 70%;">
+			<ol>
+				<li>
+					<label>Password:</label>
+					<%= password_field_tag 'password', '', :size => 30 %>
+				</li>
+				<li>
+					<label>New email:</label>
+					<%= text_field_tag 'email', '', :size => 30 %>
+				</li>
+				<li>
+					<label>Confirm email:</label>
+					<%= text_field_tag 'email_confirmation', '', :size => 30 %>
+				</li>
+			</ol>
+		</fieldset>
+        <fieldset class="cq_form_submit">
+                <p>
+                        <%= submit_tag 'Change my email address' %>
+                </p>
+        </fieldset>
+	<% end %>
+
+
+	<% if flash[:change_successful] %>
+		<div>
+			<h2 id="change_successful">Your email address has been changed</h2>
+		</div>
+		<script type="text/javascript">
+			<%= # TODO: (?) Change this visual effect - should only change text, not entire width of the <div>
+				visual_effect(:highlight, "change_successful", :duration => 5,
+							  :startcolor => "#FFFFFF", :endcolor => "#FFFFCC") %>
+		</script>
+	<% end %>
+
+<% end %>
+
+
+<%= render(:partial => "shared/footer" )%>

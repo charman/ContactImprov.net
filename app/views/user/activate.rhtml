@@ -1,0 +1,74 @@
+<%= render(:partial => "shared/header", :locals => { :title => 'Activate your CQ online account' } )%>
+
+<h2>
+	<% if @user %>
+		<%= "#{@user.first_name} #{@user.last_name} - <br />" %>
+	<% end %>
+	Activate your ContactImprov.net account
+</h2>
+
+
+<% if flash[:notice] %>
+	<div class="errorExplanation" id="errorExplanation">
+		<%= flash[:notice] %>
+	</div>
+<% end %>
+
+<% if @user %>
+
+  <%= error_messages_for :user, :header => 'Unable to activate your account' %>
+
+  <% form_for :user, :url => { :action => "activate" } do |f| -%>
+
+  <% 
+  	#  If the activation_code parameter exists, then this page was reached
+	#  	by clicking on a link in an activation email.  In this case, we 
+	# 	don't want the user to provide another email address (we're trying
+	# 	to confirm the one they already provided), so we hide the email field.
+	if !params.has_key?('activation_code') %>
+    <p><label for="email">email address</label><br/>
+    <%= f.text_field :email %>
+	</p>
+  <% end %>
+
+
+  <p>
+	We need you to select a password for your account.
+	You will be able to log on using your email address and the
+	password you provide below.
+  </p>
+
+  <p style="font-weight: bold;"><label for="password">New Password:</label><br/>
+  <%= f.password_field :password %></p>
+
+  <p style="font-weight: bold;"><label for="password_confirmation">Confirm New Password:</label><br/>
+  <%= f.password_field :password_confirmation %></p>
+
+  <p><%= submit_tag 'Activate my Account' %></p>
+  <% end -%>
+
+<% else %>
+  <% 
+	# TODO: An invalid activation code has been provided; provide helpful instructions about what
+	# 		 to do (based on whether activation code was in URL?)
+	# TODO: Send some sort of error alert to the sysadmins
+	%>
+	<div class="errorExplanation" id="errorExplanation">
+		<h2>We are having trouble activating your account</h2>
+		<p>
+			This could be because your account has already been activated,
+			or because the activation code in the URL was not entered
+			properly.
+		</p>
+		<p>
+			If you have lost your activation code, please go to the 
+			<%= link_to "password reset page", :action => 'reset_password' %>
+			and we will send you another email with an activation code and
+			instructions for activating your account. 
+			Otherwise, please send an email to 
+			<a href="charman@acm.org">charman@acm.org</a>.
+		</p>
+	</div>
+<% end %>
+
+<%= render(:partial => "shared/footer" )%>

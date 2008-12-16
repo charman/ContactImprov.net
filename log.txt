@@ -16,18 +16,18 @@ WHEN UPDATING PRODUCTION SERVER:
 
 THIS COMMIT:
 
-Created the sessions controller.
+Created the user controller.
 
 
 ======================================================================
 
 TODO:
 
-@ Copy over sessions functional tests.
-
 @ Create/copy User model.
 
-@ Create User controller.
+@ Functional tests
+  - sessions controller
+  - user controller
 
 @ Create/copy Location model
 

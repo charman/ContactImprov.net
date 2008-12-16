@@ -1,0 +1,17 @@
+<%= render(:partial => "shared/header", :locals => { :title => 'Manage your CQ online account' } )%>
+
+<% if @user %> 
+	<h2>Online Account Information</h2>
+	<div style="margin-left: 2em; margin-bottom: 2em;">
+		<p>
+			<a href="<%= url_for :action => 'change_email' %>">
+				Change your email address</a> from <b><%= @user.email %></b>
+		</p>
+		<p>
+			<a href="<%= url_for :action => 'change_password' %>">
+				Change your password</a>
+		</p>
+	</div>
+<% end %>
+
+<%= render(:partial => "shared/footer" )%>

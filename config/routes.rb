@@ -38,6 +38,13 @@ ActionController::Routing::Routes.draw do |map|
   # [CTH]
   map.resource :session, :collection => { :no_cookies_for_you => :get }
 
+  map.activate '/activate/:activation_code', :controller => 'user', :action => 'activate'
+  map.activate '/reset_password/:password_reset_code', :controller => 'user', :action => 'reset_password'
+
+  map.login '/login', :controller => 'sessions', :action => 'new'
+  map.logout '/logout', :controller => 'sessions', :action => 'destroy'
+  
+  map.index '/', :controller => 'user', :action => 'index'
   # [/CTH]
 
   # Install the default routes as the lowest priority.
