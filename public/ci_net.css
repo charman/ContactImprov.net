@@ -1,0 +1,460 @@
+/* === SITE WIDE === */
+body { 
+	background: #FFFFCC;
+	font-family: Arial, Helvetica, sans-serif;
+	
+	/* Center page content */
+	margin-left: auto;
+	margin-right: auto;
+	text-align: center;
+}
+a:link {
+	/* color: #000033; */
+}
+a:visited {
+	/* color: #000033; */
+}
+
+img {
+	display: block;
+}
+
+/*
+PAGE TEMPLATE: 
+
+   div class="main"
+       div id="titlebar_XX"
+           include virtual="/includes/titlebar.html"
+       div class="sidebar"
+	   div class="content"
+*/
+
+.main {
+	width: 880px;
+	
+	margin-left: auto;
+	margin-right: auto;
+	text-align: left;
+}
+.sidebar {
+	float: left; 
+	width: 160px;
+	
+	top : 5em;
+	left : 1%;
+	width : 10em;
+	z-index : 1;
+	padding : 0em;
+}
+.content {
+	float: right; 
+	width: 720px;
+}
+
+
+/* === FORMS === */
+
+.cq_form_fieldname {
+	font-weight: bold;
+	text-align: right;
+	vertical-align: top;
+}
+
+.cq_form_field {
+	text-align: left;
+	vertical-align: top;
+}
+
+fieldset {
+    width: 100%;
+    margin: 0em 0em 0em 0em;
+    padding: 0em;
+    border: 1px solid #BFBAB0;
+    background-color: #FFFFE6;
+}
+legend {
+    margin-left: 1em;
+    color: #000000;
+    font-weight: bold;
+}
+fieldset ol {
+    padding: 0em 0em 0em 0em;
+    list-style: none;
+}
+fieldset li {
+    padding-bottom: 0em;
+}
+label {
+    float: left;
+    width: 10em;
+    margin-right: 1em;
+    text-align: right;
+}
+fieldset.cq_form_submit {
+    float: none;
+	clear: left;
+    width: auto;
+    padding-left: 12em;
+    border: 0 none #FFF;
+    background-color: transparent;
+}
+
+.cq_form table {
+	padding: 1em 0em 0em 0em;
+	width: 100%;
+}
+.cq_form th {
+	font-size: 2.5em;
+	padding-left: 0em;
+	padding-right: 0.4em;
+	text-align: right;
+	vertical-align: top;
+	width: 4em;
+}
+.cq_form td {
+	padding-bottom: 1em;
+	padding-left: 0em;
+}
+
+
+/* === ERROR MESSAGES === */
+
+.fieldWithErrors {
+  padding: 2px;
+  background-color: red;
+  display: table;
+}
+
+#errorExplanation {
+  width: 400px;
+  border: 2px solid red;
+  padding: 7px;
+  padding-bottom: 12px;
+  margin-bottom: 20px;
+  background-color: #f0f0f0;
+}
+
+#errorExplanation h2 {
+  text-align: left;
+  font-weight: bold;
+  padding: 5px 5px 5px 15px;
+  /* font-size: 12px; */
+  font-size: big;
+  margin: -7px;
+  background-color: #c00;
+  color: #fff;
+}
+
+#errorExplanation p {
+  color: #333;
+  margin-bottom: 0;
+  padding: 5px;
+}
+
+#errorExplanation ul li {
+  /* font-size: 12px; */
+  list-style: square;
+}
+
+
+/* === TITLEBAR === */
+
+.titlebar * {
+	margin: 0px;
+	padding: 0px;
+	top: 0px;
+	background: #CCCCFF;
+}
+
+.titlebar table {
+	border-collapse: collapse;
+	width: 880px;
+}
+
+.titlebar_banner a {
+	display: block;
+	background: url("/Images/titlebar_cc.jpg") 0 0 no-repeat;
+	height: 39px;
+	width: 880px;
+	text-decoration: none;
+}
+.titlebar_banner a:hover {
+	background-position: 0 -39px;
+}
+
+.titlebar_button a {
+	display: block;
+	height: 70px;
+	text-decoration: none;
+}
+.titlebar_button.titlebar_cq a {
+	background: url("/Images/titlebar_cq.jpg") 0 0 no-repeat;
+	width: 198px;
+}
+.titlebar_button_spacer1 div {
+	width: 42px;
+}
+.titlebar_button.titlebar_ce a {
+	background: url("/Images/titlebar_ce.jpg") 0 0 no-repeat;
+	width: 177px;
+}
+.titlebar_button_spacer2 div {
+	width: 65px;
+}
+.titlebar_button.titlebar_videoda a {
+	background: url("/Images/titlebar_videoda.jpg") 0 0 no-repeat;
+	width: 113px;
+}
+.titlebar_button_spacer3 div {
+	width: 45px;
+}
+.titlebar_button.titlebar_performance a {
+	background: url("/Images/titlebar_performance.jpg") 0 0 no-repeat;
+	width: 240px;
+}
+.titlebar_button a:hover {
+	background-position: 0 -70px;
+}
+
+#titlebar_cq .titlebar_cq a, #titlebar_ce .titlebar_ce a, 
+#titlebar_videoda .titlebar_videoda a, #titlebar_performance .titlebar_performance a { 
+	background-position: 0 -140px;
+}
+#titlebar_cq .titlebar_cq a:hover, #titlebar_ce .titlebar_ce a:hover, 
+#titlebar_videoda .titlebar_videoda a:hover, #titlebar_performance .titlebar_performance a:hover { 
+	background-position: 0 -210px;
+}
+
+.titlebar_bottom a {
+	display: block;
+	height: 23px;
+	text-decoration: none;
+}
+.titlebar_bottom.titlebar_about a {
+	background: url("/Images/bottombar_about.jpg") 0 0 no-repeat;
+	width: 105px;
+}
+.titlebar_bottom_spacer1 div {
+	width: 110px;
+}
+.titlebar_bottom.titlebar_links a {
+	background: url("/Images/bottombar_links.jpg") 0 0 no-repeat;
+	width: 80px;
+}
+.titlebar_bottom_spacer2 div {
+	width: 125px;
+}
+.titlebar_bottom.titlebar_order a {
+	background: url("/Images/bottombar_order.jpg") 0 0 no-repeat;
+	width: 209px;
+}
+.titlebar_bottom_spacer3 div {
+	width: 115px;
+}
+.titlebar_bottom.titlebar_shopping a {
+	background: url("/Images/bottombar_shopping.jpg") 0 0 no-repeat;
+	width: 136px;
+}
+.titlebar_bottom a:hover {
+	background-position: 0 -23px;
+}
+
+#titlebar_about .titlebar_about a, #titlebar_links .titlebar_links a,
+#titlebar_order .titlebar_order a, #titlebar_shopping .titlebar_shopping a {
+	background-position: 0 -46px;
+}
+#titlebar_about .titlebar_about a:hover, #titlebar_links .titlebar_links a:hover,
+#titlebar_order .titlebar_order a:hover, #titlebar_shopping .titlebar_shopping a:hover {
+	background-position: 0 -69px;
+}
+
+
+/* === SIDEBAR === */
+
+.sidebar_menu {
+	padding : 0.5em;
+	padding-right: 1.5em;
+
+	text-align : left;
+	border-left: solid black thin;
+}
+.sidebar_menu a {
+	display : block;
+	background-color : inherit;
+	text-decoration: none;
+ 	font-size: small;
+}
+.sidebar_menu a:hover {
+	text-decoration: underline;
+}
+ul.sidebar_menu {
+	list-style: none;
+	margin:   0px;
+}
+ul.sidebar_menu li 	{
+	padding-bottom: 1em;
+}
+
+#cq_sidebar_cq .cq_sidebar_cq a,               #cq_sidebar_subscribe .cq_sidebar_subscribe a, 
+#cq_sidebar_current .cq_sidebar_current a,     #cq_sidebar_previous .cq_sidebar_previous a, 
+#cq_sidebar_back .cq_sidebar_back a,           #cq_sidebar_coming .cq_sidebar_coming a, 
+#cq_sidebar_advertise .cq_sidebar_advertise a, #cq_sidebar_dancemap .cq_sidebar_dancemap a, 
+#cq_sidebar_kneepads .cq_sidebar_kneepads a,   #cq_sidebar_contacts .cq_sidebar_contacts a {
+	background-color : rgb(204,204,254);
+}
+
+
+
+/* === CQ PAGE === */
+
+.cq_serves_list {
+	padding-left: 1em;
+}
+.cq_serves_list span {
+	font-weight: bold;
+}
+.cq_serves_list ul {
+	margin: 0px;
+	padding-top: 0px;
+	padding-bottom: 1em;
+}
+
+
+
+/* === CQ BACK ISSUES === */
+
+.cq_back_issue_name {
+	padding-right: 1em;
+}
+.cq_back_issue_price {
+	text-align: right;
+	padding-right: 1em;
+}
+
+.cq_back_issue td {
+	vertical-align: top;
+}
+
+
+/* === VIDEODA === */
+
+.videoda_emphasis {
+	color: #FF0000;
+}
+
+
+
+/* ==== ORDER FORM === */
+
+.orderform_title {
+	font-size: large;
+	font-weight: bold;
+}
+
+.orderform_section {
+	padding-left: 2em;
+	padding-bottom: 1.5em;
+}		
+
+
+
+/* === CONTACT CONTACTS LIST === */
+.listing {
+	font-size: small;
+}
+
+td.listing {
+    vertical-align: top;
+    text-indent: -1em;					/* Hanging indent */
+    padding-left: 1em;
+    padding-right: 1em;
+}
+
+td.listing_title {
+    vertical-align: bottom; 
+    height: 2em;
+}
+
+.cq_banner {
+    border: 0em;
+}
+
+
+/* === CONTACT EDITIONS === 
+
+	Nesting order for elements:
+		ce_item_list 				TABLE,TR 
+			ce_cover				TD containing image of item
+			ce_information			TD containing text describing item
+				ce_bookinfo			DIV containing publication info
+					ce_title		DIV
+					ce_subititle	DIV
+					ce_author		DIV
+					ce_publisher	DIV
+					ce_pagecount	DIV
+					ce_price		DIV
+				ce_description		DIV containing CQ-penned description
+*/
+
+img.ce_cover {
+	border-color: #666666;
+	border-width: 1px;
+	border-style: solid;
+}
+
+table.ce_item_list {
+	border-collapse: collapse;			/* Allows us to add borders to TR elements */
+	width: 720px;
+}
+td.ce_cover {
+	text-align: left;
+	padding-right: 25px;				/* Padding between cover on left and text on right */
+	vertical-align: top;
+	padding-top: 0.5em; 				/* Padding between cover and horizontal lines */
+	padding-bottom: 0.5em;
+}
+td.ce_information {
+	vertical-align: top;
+	padding-top: 0.5em; 				/* Padding between text and horizontal lines */
+	padding-bottom: 0.5em;
+}
+tr.ce_item_list {
+	vertical-align: top;
+}
+tr.ce_item_list + tr.ce_item_list {
+	border-top: 2px solid #BBBBBB; 		/* Insert a line between pairs of rows */
+}
+
+.ce_bookinfo {
+	font-size: large;
+}
+div.ce_bookinfo {
+	margin-bottom: 0.6em;
+}
+.ce_title {
+	display: block;
+	font-style: italic;
+	font-weight: bold;
+}
+.ce_subtitle {
+	display: block;
+	font-style: italic;
+}
+.ce_author {
+	display: block;
+}
+.ce_publisher {
+	display: block;
+}
+.ce_pagecount {
+}
+.ce_price {
+}
+
+.ce_description {
+	font-size: small;
+}
+div.ce_description {
+	margin-bottom: 0.6em;
+}
+
