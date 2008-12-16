@@ -1,13 +1,12 @@
 CREATE TABLE `ci_country_names` (
   `country_name_id` int(11) NOT NULL auto_increment,
-  `iso_3166_1_a2_code` varchar(2) default NULL,
+  `iso_3166_1_a2_code` char(2) default NULL,
   `english_name` varchar(255) default NULL,
   `underlined_english_name` varchar(255) default NULL,
   PRIMARY KEY  (`country_name_id`),
-  KEY `index_ci_country_names_on_iso_3166_1_a2_code` (`iso_3166_1_a2_code`),
-  KEY `index_ci_country_names_on_english_name` (`english_name`),
-  KEY `index_ci_country_names_on_underlined_english_name` (`underlined_english_name`)
-) ENGINE=MyISAM AUTO_INCREMENT=15000 DEFAULT CHARSET=latin1;
+  KEY `iso_index` (`iso_3166_1_a2_code`),
+  KEY `english_name_index` (`english_name`(10))
+) ENGINE=MyISAM AUTO_INCREMENT=1245 DEFAULT CHARSET=utf8;
 
 CREATE TABLE `ci_location_versions` (
   `location_version_id` int(11) NOT NULL auto_increment,
@@ -28,7 +27,7 @@ CREATE TABLE `ci_location_versions` (
   KEY `index_ci_location_versions_on_location_id` (`location_id`),
   KEY `index_ci_location_versions_on_us_state_id` (`us_state_id`),
   KEY `index_ci_location_versions_on_country_name_id` (`country_name_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=15000 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=15000 DEFAULT CHARSET=utf8;
 
 CREATE TABLE `ci_locations` (
   `location_id` int(11) NOT NULL auto_increment,
@@ -48,7 +47,7 @@ CREATE TABLE `ci_locations` (
   PRIMARY KEY  (`location_id`),
   KEY `index_ci_locations_on_us_state_id` (`us_state_id`),
   KEY `index_ci_locations_on_country_name_id` (`country_name_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=15000 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=15000 DEFAULT CHARSET=utf8;
 
 CREATE TABLE `ci_people` (
   `person_id` int(11) NOT NULL auto_increment,
@@ -58,7 +57,7 @@ CREATE TABLE `ci_people` (
   `created_at` datetime default NULL,
   `updated_at` datetime default NULL,
   PRIMARY KEY  (`person_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=15000 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=15000 DEFAULT CHARSET=utf8;
 
 CREATE TABLE `ci_person_versions` (
   `person_version_id` int(11) NOT NULL auto_increment,
@@ -68,23 +67,45 @@ CREATE TABLE `ci_person_versions` (
   `last_name` varchar(255) default NULL,
   `updated_at` datetime default NULL,
   PRIMARY KEY  (`person_version_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=15000 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=15000 DEFAULT CHARSET=utf8;
 
 CREATE TABLE `ci_schema_migrations` (
   `version` varchar(255) NOT NULL,
   UNIQUE KEY `unique_schema_migrations` (`version`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+CREATE TABLE `ci_url_versions` (
+  `url_version_id` int(11) NOT NULL auto_increment,
+  `url_id` int(11) default NULL,
+  `version` int(11) default NULL,
+  `for_entity_id` int(11) default NULL,
+  `address` varchar(255) default NULL,
+  `updated_at` datetime default NULL,
+  PRIMARY KEY  (`url_version_id`),
+  KEY `index_ci_url_versions_on_url_id` (`url_id`),
+  KEY `index_ci_url_versions_on_for_entity_id` (`for_entity_id`)
+) ENGINE=MyISAM AUTO_INCREMENT=15000 DEFAULT CHARSET=utf8;
+
+CREATE TABLE `ci_urls` (
+  `url_id` int(11) NOT NULL auto_increment,
+  `version` int(11) default NULL,
+  `for_entity_id` int(11) default NULL,
+  `address` varchar(255) default NULL,
+  `created_at` datetime default NULL,
+  `updated_at` datetime default NULL,
+  PRIMARY KEY  (`url_id`),
+  KEY `index_ci_urls_on_for_entity_id` (`for_entity_id`)
+) ENGINE=MyISAM AUTO_INCREMENT=15000 DEFAULT CHARSET=utf8;
 
 CREATE TABLE `ci_us_states` (
   `us_state_id` int(11) NOT NULL auto_increment,
-  `abbreviation` varchar(2) default NULL,
+  `abbreviation` char(2) default NULL,
   `name` varchar(50) default NULL,
-  `underlined_name` varchar(50) default NULL,
+  `underlined_name` varchar(255) default NULL,
   PRIMARY KEY  (`us_state_id`),
-  KEY `index_ci_us_states_on_abbreviation` (`abbreviation`),
-  KEY `index_ci_us_states_on_name` (`name`),
-  KEY `index_ci_us_states_on_underlined_name` (`underlined_name`)
-) ENGINE=MyISAM AUTO_INCREMENT=15000 DEFAULT CHARSET=latin1;
+  KEY `abbreviation_index` (`abbreviation`),
+  KEY `name_index` (`name`(10))
+) ENGINE=MyISAM AUTO_INCREMENT=1059 DEFAULT CHARSET=utf8;
 
 CREATE TABLE `ci_users` (
   `user_id` int(11) NOT NULL auto_increment,
@@ -109,7 +130,7 @@ CREATE TABLE `ci_users` (
   KEY `index_ci_users_on_state` (`state`),
   KEY `index_ci_users_on_password_reset_code` (`password_reset_code`),
   KEY `index_ci_users_on_activation_code` (`activation_code`)
-) ENGINE=MyISAM AUTO_INCREMENT=15000 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=15001 DEFAULT CHARSET=utf8;
 
 INSERT INTO ci_schema_migrations (version) VALUES ('20081216170645');
 
@@ -120,3 +141,5 @@ INSERT INTO ci_schema_migrations (version) VALUES ('20081216172610');
 INSERT INTO ci_schema_migrations (version) VALUES ('20081216174522');
 
 INSERT INTO ci_schema_migrations (version) VALUES ('20081216185405');
+
+INSERT INTO ci_schema_migrations (version) VALUES ('20081216194845');

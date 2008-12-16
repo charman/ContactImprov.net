@@ -1,6 +1,6 @@
 class CreateLocations < ActiveRecord::Migration
   def self.up
-    create_table :locations, :id => false, :options => "auto_increment = 15000"  do |t|
+    create_table :locations, :id => false, :options => "auto_increment = 15000" do |t|
       t.column   :location_id, :primary_key, :null => false
       t.integer  :version
       t.string   :street_address_line_1
@@ -18,7 +18,7 @@ class CreateLocations < ActiveRecord::Migration
     add_index :locations, :us_state_id
     add_index :locations, :country_name_id
 
-    create_table :location_versions, :id => false, :options => "auto_increment = 15000"  do |t|
+    create_table :location_versions, :id => false, :options => "auto_increment = 15000" do |t|
       t.column   :location_version_id, :primary_key, :null => false
       t.integer  :location_id
       t.integer  :version

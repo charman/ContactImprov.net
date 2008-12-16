@@ -1,0 +1,4 @@
+doomed_person:
+    url_id: 200
+    for_entity_id: 200
+    address: 'doom.com'
