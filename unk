@@ -1,0 +1,2 @@
+#!/bin/bash
+/usr/bin/ruby -Ilib:test "/Library/Ruby/Gems/1.8/gems/rake-0.8.3/lib/rake/rake_test_loader.rb" "test/unit/$1_test.rb"

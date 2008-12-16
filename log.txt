@@ -16,8 +16,9 @@ WHEN UPDATING PRODUCTION SERVER:
 
 THIS COMMIT:
 
-Added svn:externals dependency to the rest of the plugins I intend to
-use from the cq_rails project.
+Copied over funk and unk testing scripts from cq_rails.
+
+Copied over lib/*.rb files from cq_rails.
 
 	
 ======================================================================
