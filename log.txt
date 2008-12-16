@@ -16,7 +16,7 @@ WHEN UPDATING PRODUCTION SERVER:
 
 THIS COMMIT:
 
-Copied/adapted the Location class.
+Added (empty) CSS file for the site.
 
 
 ======================================================================
