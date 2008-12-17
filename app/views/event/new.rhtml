@@ -36,13 +36,13 @@
 				<tr style="vertical-align: top;">
 					<td style="width: 10em; text-align: right;">Start Date:</td>
 					<td style="padding: 0em 1em 1em 1em;">
-						<%= event.calendar_date_select :start_date, :embedded => true %>
+						<%= event.calendar_date_select :start_date, :embedded => true, :year_range => 0.years.ago..2.years.from_now %>
 					</td>
 				</tr>
 				<tr style="vertical-align: top;">
 					<td style="width: 10em; text-align: right;">End Date:</td>
 					<td style="padding: 0em 1em 1em 1em;">
-						<%= event.calendar_date_select :end_date, :embedded => true %>
+						<%= event.calendar_date_select :end_date, :embedded => true, :year_range => 0.years.ago..2.years.from_now %>
 					</td>
 				</tr>
 			</table>

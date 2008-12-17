@@ -14,14 +14,11 @@ gem install calendar_date_select
 
 THIS COMMIT:
 
-In lib/authenticated_system.rb, changed the symbol ':false' to the
-boolean value 'false'.
+Modified the calendar_date_select fields on /event/new to limit the
+year range from the current year to two years from now.
 
-Configured the project to use the CalendarSelect gem from:
-
-  http://code.google.com/p/calendardateselect/
-
-Modifed the /event/new form to use the date picker.
+Also changed the default color scheme for calendar_date_select
+widgets.
 
 
 ======================================================================
