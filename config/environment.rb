@@ -83,6 +83,9 @@ Rails::Initializer.run do |config|
   #                configuration option is still necessary.
   config.active_record.schema_format = :sql
 
+  config.gem "calendar_date_select"
+  #  [/CTH]
+
   # Use the database for sessions instead of the cookie-based default,
   # which shouldn't be used to store highly confidential information
   # (create the session table with "rake db:sessions:create")

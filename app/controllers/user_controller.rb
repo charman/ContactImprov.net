@@ -1,6 +1,6 @@
 class UserController < ApplicationController
 
-    before_filter :login_required, :only => [:change_email, :change_password, :edit]
+    before_filter :login_required, :only => [:change_email, :change_password, :edit, :index]
 
     ssl_allowed :index, :request_password_reset, :password_reset_requested, 
       :reset_password, :request_account, :account_requested, :edit,

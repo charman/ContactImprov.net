@@ -3,19 +3,19 @@ module AuthenticatedSystem
     # Returns true or false if the user is logged in.
     # Preloads @current_user with the user model if they're logged in.
     def logged_in?
-      current_user != :false
+      current_user != false
     end
 
     # Accesses the current user from the session.  Set it to :false if login fails
     # so that future calls do not hit the database.
     def current_user
-      @current_user ||= (login_from_session || login_from_cookie || :false)
+      @current_user ||= (login_from_session || login_from_cookie || false)
     end
 
     # Store the given user id in the session.
     def current_user=(new_user)
       session[:user_id] = (new_user.nil? || new_user.is_a?(Symbol)) ? nil : new_user.user_id
-      @current_user = new_user || :false
+      @current_user = new_user || false
     end
 
     # Check if the user is authorized

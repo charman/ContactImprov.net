@@ -14,9 +14,14 @@ gem install calendar_date_select
 
 THIS COMMIT:
 
-Created the ContactEvent model and the event controller.
+In lib/authenticated_system.rb, changed the symbol ':false' to the
+boolean value 'false'.
 
-Deleted the default index.html.
+Configured the project to use the CalendarSelect gem from:
+
+  http://code.google.com/p/calendardateselect/
+
+Modifed the /event/new form to use the date picker.
 
 
 ======================================================================
@@ -24,8 +29,8 @@ Deleted the default index.html.
 TODO:
 
 @ Event model
-  - process form results
-  - add date pickers (from gem)
+  - process form results with 'create' action
+  - functional tests
 
 @ Copy/adapt:
   - models

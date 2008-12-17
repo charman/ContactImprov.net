@@ -20,6 +20,11 @@ class ApplicationController < ActionController::Base
     true
   end
 
+  # [CTH]  We use :logged_in? as a before_filter in order to check if a user is logged in,
+  #        and :login_required to force a user to log in.  This is useful if we want to
+  #        display a user's current login status without redirecting them to a login page.
+  before_filter :logged_in?
+
 
   # Pick a unique cookie name to distinguish our session data from others'
   session :session_key => 'www.contactimprov.net'

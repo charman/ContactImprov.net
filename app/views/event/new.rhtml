@@ -32,8 +32,24 @@
 					<%= event.text_area :description, :rows => 12, :cols => 60 %>
 				</li>
 			</ol>
+			<table>
+				<tr style="vertical-align: top;">
+					<td style="width: 10em; text-align: right;">Start Date:</td>
+					<td style="padding: 0em 1em 1em 1em;">
+						<%= event.calendar_date_select :start_date, :embedded => true %>
+					</td>
+				</tr>
+				<tr style="vertical-align: top;">
+					<td style="width: 10em; text-align: right;">End Date:</td>
+					<td style="padding: 0em 1em 1em 1em;">
+						<%= event.calendar_date_select :end_date, :embedded => true %>
+					</td>
+				</tr>
+			</table>
 		</fieldset>
 	</p>
+
+
 	<p>
 		<%= render :partial => 'shared/url', :object => @contact_event.url,
 			:locals => { :prefix => 'event[url]', :legend => 'URL' } %>

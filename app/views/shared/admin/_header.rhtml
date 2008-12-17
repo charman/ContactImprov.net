@@ -9,9 +9,10 @@
 		<%= defined?(subsection) && !subsection.nil? ? " #{subsection.titleize.gsub('_', ' ')}: " : '' %>
 		<%= title %>
 	</title>
-	
+
 	<%= javascript_include_tag :defaults, :include_google_js => true, 
           :versions => {:scriptaculous => "1.8", :prototype => "1.6"} %>
+	<%= calendar_date_select_includes "silver" %>
 	
 	<!--CSS file (default YUI Sam Skin) -->
 	<link type="text/css" rel="stylesheet" href="http://yui.yahooapis.com/2.5.1/build/datatable/assets/skins/sam/datatable.css">
