@@ -1,4 +1,4 @@
-<%= render(:partial => "shared/header", :locals => { :title => 'Change your mailing address' } )%>
+<%= render(:partial => "shared/header", :locals => { :title => 'Change your account info' } )%>
 
 <% if flash[:notice] %>
 	<div class="errorExplanation" id="errorExplanation">
@@ -10,7 +10,7 @@
 
 	<% if defined?(@error_messages) && !@error_messages.empty? %>
 		<div class="errorExplanation" id="errorExplanation">
-			<h2>Unable to update your mailing address</h2>
+			<h2>Unable to update your account info</h2>
 			<p><%= content_tag(:ul, @error_messages.map {|m| content_tag(:li, m)}) %></p>
 		</div>
 	<% end %>
@@ -26,7 +26,5 @@
 	<% end -%>
 
 <% end %>
-
-
 
 <%= render(:partial => "shared/footer" )%>

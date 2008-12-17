@@ -3,6 +3,7 @@ class Email < ActiveRecord::Base
 #  has_one :contacts_application
 #  has_one :entity, :as => :resource
 #  has_one :user_account_request
+  has_one :contact_event
 
   acts_as_list
   acts_as_versioned

@@ -3,6 +3,7 @@ class User < ActiveRecord::Base
   belongs_to :person
 #  has_many :entries, :foreign_key => 'owner_user_id'
 #  has_one :entity, :as => :resource
+  has_one :contact_event
   
   # Virtual attribute for the unencrypted password
   attr_accessor :password

@@ -1,9 +1,5 @@
 ======================================================================
 
-
-
-======================================================================
-
 WAITING FOR:
 
 
@@ -11,19 +7,25 @@ WAITING FOR:
 
 WHEN UPDATING PRODUCTION SERVER:
 
+gem install calendar_date_select
+
 
 ======================================================================
 
 THIS COMMIT:
 
-Copied/adapted the /admin/users pages.
+Created the ContactEvent model and the event controller.
+
+Deleted the default index.html.
 
 
 ======================================================================
 
 TODO:
 
-@ Calendar input
+@ Event model
+  - process form results
+  - add date pickers (from gem)
 
 @ Copy/adapt:
   - models
@@ -32,7 +34,6 @@ TODO:
 
 @ Create
   - Jam model
-  - Event model
 
 @ Prune UserMailer model
 
@@ -73,4 +74,13 @@ Subversion 1.5 supports a different syntax for svn:externals
 properties, but Leopard still ships with Subversion 1.4, so I'm
 currently sticking with the older syntax.
 
-@ 
+@ Took a quick look around for Rails date/time pickers.  There is an
+amazing one hosted here:
+
+  http://code.google.com/p/calendardateselect/
+
+which can be installed using:
+
+  gem install calendar_date_select
+
+

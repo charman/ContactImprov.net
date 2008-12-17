@@ -3,6 +3,7 @@ class Location < ActiveRecord::Base
 #  has_one :entity, :as => :resource
 #  has_one :user, :foreign_key => 'subscriber_address_id'
 #  has_one :user_account_request
+  has_one :contact_event
   belongs_to :country_name
   belongs_to :us_state
   
