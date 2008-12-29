@@ -1,3 +1,8 @@
+complete_contact_event:
+    email_id: 100
+    address: 'charman@acm.org'
+
+
 p_e_l_email:
     email_id: 101
     address: 'charman@acm.org'

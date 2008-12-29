@@ -28,6 +28,16 @@ only_used_once_address:
     postal_code: '12345'
     country_name_id: 2
 
+complete_contact_event:
+    location_id: 100
+    street_address_line_1: 'street_address_line_1'
+    street_address_line_2: 'street_address_line_2'
+    city_name: 'city_name'
+    region_name: 'Ontario'
+    us_state_id: nil
+    postal_code: '12345'
+    country_name_id: 2
+
 stranger_contacts_applicant_address:
     location_id: 400
     street_address_line_1: 'street_address_line_1'

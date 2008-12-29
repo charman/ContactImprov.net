@@ -23,4 +23,9 @@ class PhoneNumber < ActiveRecord::Base
     for_entity_id_changed? || phone_type_id_changed? || number_changed?
   end
 
+
+  def completely_blank?
+    self.number.blank?
+  end
+
 end

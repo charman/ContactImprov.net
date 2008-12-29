@@ -21,11 +21,11 @@ class Location < ActiveRecord::Base
 
   #  Verify that this Location object is linked to a valid CountryName and (if in US) UsState objects.
   #
-  #  TODO: Potential bug - if initialize_from_params is called, and then Location is later linked to
+  #  TODO: Potential bug - if attributes= is called, and then Location is later linked to
   #         valid CountryName and UsState objects, validation will still fail.
   def validate_country_name_and_us_state
-    #  If initialize_from_params was called, then it already checked that Location.country_name and (if in
-    #   US) Location.us_state were non-nil.  initialize_from_params also saved error messages *with the
+    #  If attributes= was called, then it already checked that Location.country_name and (if in
+    #   US) Location.us_state were non-nil.  attributes= also saved error messages *with the
     #   user-provided invalid form values* to the @param_initialization_errors array.  We want the validation
     #   error messages to tell the user what invalid value they entered, not just that they entered some 
     #   unknown invalid value.  The user may have fat-fingered the country name (an error on their end), or 
@@ -34,7 +34,7 @@ class Location < ActiveRecord::Base
     if @param_initialization_errors  && !@param_initialization_errors.empty?
       @param_initialization_errors.each { |param, error_message| errors.add(param, error_message) }
     else
-      #  If initialize_from_params was *not* called, then we still validate the country_name and us_state links.
+      #  If attributes= was *not* called, then we still validate the country_name and us_state links.
       #   This is equivalent to validating these fields using:
       #     validates_presence_of :country_name
       #     validates_presence_of :us_state_name, :if => :is_in_usa?
@@ -60,6 +60,43 @@ class Location < ActiveRecord::Base
 #      e.resource = self
 #      e.save!
 #    end  
+  end
+
+  #  TODO: This method introduces some coupling between the model and the view.
+  #        This function cannot be moved to a helper file because the @param_initialization_errors 
+  #         member variable is used by validate_country_name_and_us_state.
+  def attributes=(params)
+    #  This method verifies that the user has provided us with a valid country name and, if in the US, a
+    #   valid US state name.  If either value is invalid, we save an error message *with the user's invalid
+    #   form data* (e.g. a misspelled country name) to the @param_initialization_errors.
+    #  See validate_country_name_and_us_state for more details.
+    #
+    #  TODO: I tried calling errors.add_to_base() from this function, but none of the errors
+    #         that I added to the model caused validation to fail - so instead, I am using 
+    #         the admitted hack of storing my error messages in @param_initialization_errors,
+    #         and then checking for the presence of those error messages with 
+    #         validate_country_name_and_us_state.  There *has* to be a better way to do this.
+    #
+    @param_initialization_errors = Hash.new
+
+    self.street_address_line_1 = params[:street_address_line_1]
+    self.street_address_line_2 = params[:street_address_line_2]
+    self.city_name             = params[:city_name]
+    self.postal_code           = params[:postal_code]
+
+    self.country_name = CountryName.find_by_english_name_or_altname(params[:country_name][:english_name])
+    if !self.country_name
+      @param_initialization_errors[:country_name] = "'#{params[:country_name][:english_name]}' is not the name of a country in our database"
+    end
+ 
+    if self.is_in_usa?
+      self.us_state = UsState.find_by_name_or_abbreviation(params[:us_state][:name])
+      if !self.us_state
+        @param_initialization_errors[:us_state] = "'#{params[:us_state][:name]}' is not the name of a US state"
+      end
+    else 
+      self.region_name = params[:us_state][:name]
+    end
   end
 
   def attributes_that_differ_from(other_version)
@@ -136,43 +173,6 @@ class Location < ActiveRecord::Base
       end
     else
       self.send(attribute_name)
-    end
-  end
-
-  #  TODO: This method introduces some coupling between the model and the view.
-  #        This function cannot be moved to a helper file because the @param_initialization_errors 
-  #         member variable is used by validate_country_name_and_us_state.
-  def initialize_from_params(params)
-    #  This method verifies that the user has provided us with a valid country name and, if in the US, a
-    #   valid US state name.  If either value is invalid, we save an error message *with the user's invalid
-    #   form data* (e.g. a misspelled country name) to the @param_initialization_errors.
-    #  See validate_country_name_and_us_state for more details.
-    #
-    #  TODO: I tried calling errors.add_to_base() from this function, but none of the errors
-    #         that I added to the model caused validation to fail - so instead, I am using 
-    #         the admitted hack of storing my error messages in @param_initialization_errors,
-    #         and then checking for the presence of those error messages with 
-    #         validate_country_name_and_us_state.  There *has* to be a better way to do this.
-    #
-    @param_initialization_errors = Hash.new
-
-    self.street_address_line_1 = params[:street_address_line_1]
-    self.street_address_line_2 = params[:street_address_line_2]
-    self.city_name             = params[:city_name]
-    self.postal_code           = params[:postal_code]
-
-    self.country_name = CountryName.find_by_english_name_or_altname(params[:country_name][:english_name])
-    if !self.country_name
-      @param_initialization_errors[:country_name] = "'#{params[:country_name][:english_name]}' is not the name of a country in our database"
-    end
- 
-    if self.is_in_usa?
-      self.us_state = UsState.find_by_name_or_abbreviation(params[:us_state][:name])
-      if !self.us_state
-        @param_initialization_errors[:us_state] = "'#{params[:us_state][:name]}' is not the name of a US state"
-      end
-    else 
-      self.region_name = params[:us_state][:name]
     end
   end
 

@@ -2,6 +2,7 @@ class ContactEvent < ActiveRecord::Base
   #  has_one :entity, :as => :resource
   belongs_to :email
   belongs_to :location
+  belongs_to :owner_user, :class_name => 'User', :foreign_key => 'owner_user_id'
   belongs_to :phone_number
   belongs_to :url
 

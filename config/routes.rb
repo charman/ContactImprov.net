@@ -47,6 +47,8 @@ ActionController::Routing::Routes.draw do |map|
   map.index '/', :controller => 'user', :action => 'index'
 
   map.admin_index '/admin', :controller => 'Admin::Users', :action => 'index'
+  
+  map.event_index '/event', :controller => 'event', :action => 'list'
   # [/CTH]
 
   # Install the default routes as the lowest priority.

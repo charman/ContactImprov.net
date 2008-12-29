@@ -44,4 +44,8 @@ class Url < ActiveRecord::Base
     end
   end
 
+  def completely_blank?
+    self.address.blank?
+  end
+
 end

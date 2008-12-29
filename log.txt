@@ -14,11 +14,13 @@ gem install calendar_date_select
 
 THIS COMMIT:
 
-Modified the calendar_date_select fields on /event/new to limit the
-year range from the current year to two years from now.
+Refactored Location.initialize_from_params to Location.attributes=
 
-Also changed the default color scheme for calendar_date_select
-widgets.
+The Email, PhoneNumber and Url fields can now be empty when creating a
+new event.
+
+The /event/new and /event/create actions can now only be accessed by a
+logged in user.
 
 
 ======================================================================
@@ -26,8 +28,11 @@ widgets.
 TODO:
 
 @ Event model
-  - process form results with 'create' action
-  - functional tests
+  - new
+    - display error messages
+  - edit page
+    - display error messages
+  - (?) integration test to follow redirect and validate error messages
 
 @ Copy/adapt:
   - models
@@ -35,7 +40,8 @@ TODO:
     - Entity
 
 @ Create
-  - Jam model
+  - ContactJam model
+  - ContactPerson model
 
 @ Prune UserMailer model
 

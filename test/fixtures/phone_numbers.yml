@@ -1,3 +1,8 @@
+complete_contact_event:
+    phone_number_id: 100
+    for_entity_id: 100
+    number: '666-666-6666'
+
 doomed_person:
     phone_number_id: 200
     for_entity_id: 200

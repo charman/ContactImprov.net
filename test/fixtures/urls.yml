@@ -1,3 +1,8 @@
+complete_contact_event:
+    url_id: 100
+    for_entity_id: 100
+    address: 'www.contactimprov.net'
+
 doomed_person:
     url_id: 200
     for_entity_id: 200

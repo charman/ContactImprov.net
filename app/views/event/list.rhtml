@@ -1,0 +1,13 @@
+<%= render(:partial => "shared/header", :locals => { :title => 'List Events' } )%>
+
+<% @events.each do |event| %>
+	<p>
+		Title: <%= event.title %>
+		<br />
+		Subtitle: <%= event.subtitle %>
+	</p>
+
+<% end %>
+
+
+<%= render(:partial => "shared/footer" )%>

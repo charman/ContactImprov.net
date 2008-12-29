@@ -12,6 +12,20 @@
 				Change your password</a>
 		</p>
 	</div>
+
+	<h2>Events</h2>
+	<div style="margin-left: 2em; margin-bottom: 2em;">
+		<p>
+			<a href="<%= url_for :controller => 'event', :action => 'new' %>">Create a new Event</a>
+		</p>
+		<% @user.contact_events.each do |event| %>
+			<p>
+				<a href="<%= url_for :controller => 'event', :action => 'edit', :id => event.id %>">
+					Edit event '<%= event.title %>'
+				</a>
+			</p>
+		<% end %>
+	</div>
 <% end %>
 
 <%= render(:partial => "shared/footer" )%>

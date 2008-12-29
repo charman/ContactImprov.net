@@ -26,4 +26,9 @@ class Email < ActiveRecord::Base
     for_entity_id_changed? || position_changed? || address_changed?
   end
 
+
+  def completely_blank?
+    self.address.blank?
+  end
+
 end

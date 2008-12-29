@@ -8,7 +8,9 @@ class CreateContactEvents < ActiveRecord::Migration
       t.text     :description
       t.date     :start_date
       t.date     :end_date
+      t.integer  :owner_user_id
       t.integer  :person_id
+      t.integer  :location_id
       t.integer  :email_id
       t.integer  :phone_number_id
       t.integer  :url_id
@@ -27,7 +29,9 @@ class CreateContactEvents < ActiveRecord::Migration
       t.text     :description
       t.date     :start_date
       t.date     :end_date
+      t.integer  :owner_user_id
       t.integer  :person_id
+      t.integer  :location_id
       t.integer  :email_id
       t.integer  :phone_number_id
       t.integer  :url_id
