@@ -16,14 +16,13 @@ Recreate log directory.
 
 THIS COMMIT:
 
-Copied over unit tests for Person model from cq_rails project.
+In the sidebar, changed 'Change your mailing address' to 'Change your
+name'.
 
 
 ======================================================================
 
 TODO:
-
-@ Sidebar - change 'change your address'
 
 @ Event model
   ...
