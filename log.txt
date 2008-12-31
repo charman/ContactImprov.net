@@ -16,33 +16,28 @@ Recreate log directory.
 
 THIS COMMIT:
 
-Added unit tests to catch when the version_conditions_met? function
-fails.
-
-Added functional tests for /event/create and /event/edit actions.
+Copied over unit tests for Person model from cq_rails project.
 
 
 ======================================================================
 
 TODO:
 
-@ Event model
-  ...
-
-@ Copy over person unit tests
-
 @ Sidebar - change 'change your address'
 
-@ Copy/adapt:
-  - models
-    - Entry
-    - Entity
+@ Event model
+  ...
 
 @ Create
   - ContactJam model
   - ContactPerson model
 
 @ Prune UserMailer model
+
+@ Copy/adapt:
+  - models
+    - Entry
+    - Entity
 
 ---
 
