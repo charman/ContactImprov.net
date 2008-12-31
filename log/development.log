@@ -31714,3 +31714,964 @@ Completed in 112ms (View: 23, DB: 4) | 200 OK [http://localhost/event/]
   [4;36;1mSQL (0.9ms)[0m   [0;1mINSERT INTO ci_schema_migrations (version) VALUES ('20081216222210');[0m
   [4;35;1mSQL (0.9ms)[0m   [0mINSERT INTO ci_schema_migrations (version) VALUES ('20081216222634');[0m
   [4;36;1mSQL (0.7ms)[0m   [0;1mINSERT INTO ci_schema_migrations (version) VALUES ('20081217000434');[0m
+
+
+Processing UserController#index (for 127.0.0.1 at 2008-12-30 19:43:52) [GET]
+  [4;36;1mSQL (109.2ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (26.4ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+  [4;36;1mUser Columns (156.6ms)[0m   [0;1mSHOW FIELDS FROM `ci_users`[0m
+  [4;35;1mUser Load (14.5ms)[0m   [0mSELECT * FROM `ci_users` WHERE (`ci_users`.`remember_token` = '276d2423610d1700f1b25a49e24be96ec238d2b3') LIMIT 1[0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM `ci_users` WHERE (`ci_users`.`remember_token` = '276d2423610d1700f1b25a49e24be96ec238d2b3') LIMIT 1[0m
+Redirected to /session/new
+Filter chain halted as [:login_required] rendered_or_redirected.
+Completed in 201ms (DB: 307) | 302 Found [http://localhost/]
+
+
+Processing SessionsController#new (for 127.0.0.1 at 2008-12-30 19:43:53) [GET]
+  [4;35;1mSQL (0.3ms)[0m   [0mSET NAMES 'utf8'[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+  [4;35;1mUser Columns (2.1ms)[0m   [0mSHOW FIELDS FROM `ci_users`[0m
+  [4;36;1mUser Load (0.2ms)[0m   [0;1mSELECT * FROM `ci_users` WHERE (`ci_users`.`remember_token` = '276d2423610d1700f1b25a49e24be96ec238d2b3') LIMIT 1[0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM `ci_users` WHERE (`ci_users`.`remember_token` = '276d2423610d1700f1b25a49e24be96ec238d2b3') LIMIT 1[0m
+Rendering sessions/new
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM `ci_users` WHERE (`ci_users`.`remember_token` = '276d2423610d1700f1b25a49e24be96ec238d2b3') LIMIT 1[0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM `ci_users` WHERE (`ci_users`.`remember_token` = '276d2423610d1700f1b25a49e24be96ec238d2b3') LIMIT 1[0m
+Rendered shared/_header (5.4ms)
+Rendered shared/_footer (0.3ms)
+Completed in 85ms (View: 70, DB: 3) | 200 OK [http://localhost/session/new]
+
+
+Processing SessionsController#create (for 127.0.0.1 at 2008-12-30 19:43:58) [POST]
+  Parameters: {"commit"=>"Sign in", "authenticity_token"=>"483f8ed99567cdba5aa58b2ccdade29b70e3dacf", "password"=>"huggermugger", "email"=>"charman@acm.org", "remember_me"=>"1"}
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+  [4;36;1mUser Columns (1.9ms)[0m   [0;1mSHOW FIELDS FROM `ci_users`[0m
+  [4;35;1mUser Load (0.2ms)[0m   [0mSELECT * FROM `ci_users` WHERE (`ci_users`.`remember_token` = '276d2423610d1700f1b25a49e24be96ec238d2b3') LIMIT 1[0m
+  [4;36;1mUser Load (95.8ms)[0m   [0;1mSELECT * FROM `ci_users` WHERE (`ci_users`.`email` = 'charman@acm.org') LIMIT 1[0m
+  [4;35;1mUser Load (1.2ms)[0m   [0mSELECT * FROM `ci_users` WHERE (email = 'charman@acm.org') AND (ci_users.state = 'active') LIMIT 1[0m
+  [4;36;1mSQL (0.2ms)[0m   [0;1mBEGIN[0m
+  [4;35;1mUser Update (17.5ms)[0m   [0mUPDATE `ci_users` SET `last_login_at` = '2008-12-31 00:43:58', `updated_at` = '2008-12-31 00:43:58' WHERE `user_id` = 15000[0m
+  [4;36;1mSQL (0.2ms)[0m   [0;1mCOMMIT[0m
+  [4;35;1mSQL (0.2ms)[0m   [0mBEGIN[0m
+  [4;36;1mUser Update (0.4ms)[0m   [0;1mUPDATE `ci_users` SET `remember_token_expires_at` = '2009-01-14 00:43:58', `remember_token` = '9a1297e21a69371368a6cb58f7cdc6710ecb8030', `updated_at` = '2008-12-31 00:43:58' WHERE `user_id` = 15000[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mCOMMIT[0m
+Cookie set: auth_token=9a1297e21a69371368a6cb58f7cdc6710ecb8030; path=/; expires=Wed, 14 Jan 2009 00:43:58 GMT
+Redirected to /
+Completed in 289ms (DB: 118) | 302 Found [http://localhost/session]
+
+
+Processing UserController#index (for 127.0.0.1 at 2008-12-30 19:43:58) [GET]
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+  [4;36;1mUser Columns (1.9ms)[0m   [0;1mSHOW FIELDS FROM `ci_users`[0m
+  [4;35;1mUser Load (0.3ms)[0m   [0mSELECT * FROM `ci_users` WHERE (`ci_users`.`user_id` = 15000) LIMIT 1[0m
+Rendering user/index
+  [4;36;1mPerson Columns (2.7ms)[0m   [0;1mSHOW FIELDS FROM `ci_people`[0m
+  [4;35;1mPerson Load (32.4ms)[0m   [0mSELECT * FROM `ci_people` WHERE (`ci_people`.`person_id` = 15000) [0m
+Rendered shared/_header (73.7ms)
+  [4;36;1mContactEvent Load (37.1ms)[0m   [0;1mSELECT * FROM `ci_contact_events` WHERE (`ci_contact_events`.owner_user_id = 15000) [0m
+  [4;35;1mContactEvent Columns (4.2ms)[0m   [0mSHOW FIELDS FROM `ci_contact_events`[0m
+Rendered shared/_footer (0.3ms)
+Completed in 187ms (View: 169, DB: 2) | 200 OK [http://localhost/]
+
+
+Processing EventController#edit (for 127.0.0.1 at 2008-12-30 19:44:01) [GET]
+  Parameters: {"id"=>"15000"}
+  [4;36;1mSQL (0.2ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+  [4;36;1mUser Columns (2.0ms)[0m   [0;1mSHOW FIELDS FROM `ci_users`[0m
+  [4;35;1mUser Load (0.3ms)[0m   [0mSELECT * FROM `ci_users` WHERE (`ci_users`.`user_id` = 15000) LIMIT 1[0m
+  [4;36;1mContactEvent Columns (1.9ms)[0m   [0;1mSHOW FIELDS FROM `ci_contact_events`[0m
+  [4;35;1mContactEvent Load (0.5ms)[0m   [0mSELECT * FROM `ci_contact_events` WHERE (`ci_contact_events`.`contact_event_id` = 15000) [0m
+  [4;36;1mUser Load (0.2ms)[0m   [0;1mSELECT * FROM `ci_users` WHERE (`ci_users`.`user_id` = 15000) [0m
+  [4;35;1mEmail Columns (2.1ms)[0m   [0mSHOW FIELDS FROM `ci_emails`[0m
+  [4;36;1mPhoneNumber Columns (1.8ms)[0m   [0;1mSHOW FIELDS FROM `ci_phone_numbers`[0m
+  [4;35;1mUrl Columns (2.1ms)[0m   [0mSHOW FIELDS FROM `ci_urls`[0m
+Rendering event/edit
+  [4;36;1mPerson Columns (1.8ms)[0m   [0;1mSHOW FIELDS FROM `ci_people`[0m
+  [4;35;1mPerson Load (0.3ms)[0m   [0mSELECT * FROM `ci_people` WHERE (`ci_people`.`person_id` = 15000) [0m
+Rendered shared/_header (19.0ms)
+Rendered shared/_url (3.3ms)
+Rendered shared/_email (3.8ms)
+Rendered shared/_phone_number (2.7ms)
+  [4;36;1mLocation Columns (2.4ms)[0m   [0;1mSHOW FIELDS FROM `ci_locations`[0m
+  [4;35;1mLocation Load (7.8ms)[0m   [0mSELECT * FROM `ci_locations` WHERE (`ci_locations`.`location_id` = 15000) [0m
+  [4;36;1mCountryName Columns (1.9ms)[0m   [0;1mSHOW FIELDS FROM `ci_country_names`[0m
+  [4;35;1mCountryName Load (24.3ms)[0m   [0mSELECT * FROM `ci_country_names` WHERE (`ci_country_names`.`country_name_id` = 1038) [0m
+  [4;36;1mUsState Columns (1.7ms)[0m   [0;1mSHOW FIELDS FROM `ci_us_states`[0m
+Rendered shared/_location (79.9ms)
+Rendered shared/_footer (0.3ms)
+Completed in 317ms (View: 236, DB: 11) | 200 OK [http://localhost/event/edit/15000]
+
+
+Processing EventController#edit (for 127.0.0.1 at 2008-12-30 19:44:08) [PUT]
+  Parameters: {"commit"=>"Update", "authenticity_token"=>"483f8ed99567cdba5aa58b2ccdade29b70e3dacf", "event"=>{"phone_number"=>{"number"=>""}, "ci_url"=>{"address"=>""}, "location"=>{"postal_code"=>"", "street_address_line_1"=>"", "street_address_line_2"=>"", "country_name"=>{"english_name"=>"Canada"}, "us_state"=>{"name"=>""}, "city_name"=>"Toronto"}, "email"=>{"address"=>""}}, "id"=>"15000", "contact_event"=>{"end_date"=>"December 19, 2008", "start_date"=>"December 17, 2008", "title"=>"newtitle", "description"=>"description", "subtitle"=>"subtitle"}}
+  [4;35;1mSQL (0.1ms)[0m   [0mSET NAMES 'utf8'[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+  [4;35;1mUser Columns (1.9ms)[0m   [0mSHOW FIELDS FROM `ci_users`[0m
+  [4;36;1mUser Load (0.3ms)[0m   [0;1mSELECT * FROM `ci_users` WHERE (`ci_users`.`user_id` = 15000) LIMIT 1[0m
+  [4;35;1mContactEvent Columns (1.9ms)[0m   [0mSHOW FIELDS FROM `ci_contact_events`[0m
+  [4;36;1mContactEvent Load (0.8ms)[0m   [0;1mSELECT * FROM `ci_contact_events` WHERE (`ci_contact_events`.`contact_event_id` = 15000) [0m
+  [4;35;1mUser Load (0.2ms)[0m   [0mSELECT * FROM `ci_users` WHERE (`ci_users`.`user_id` = 15000) [0m
+  [4;36;1mEmail Columns (1.3ms)[0m   [0;1mSHOW FIELDS FROM `ci_emails`[0m
+  [4;35;1mPhoneNumber Columns (1.4ms)[0m   [0mSHOW FIELDS FROM `ci_phone_numbers`[0m
+  [4;36;1mUrl Columns (1.4ms)[0m   [0;1mSHOW FIELDS FROM `ci_urls`[0m
+Rendering event/edit
+  [4;35;1mPerson Columns (2.3ms)[0m   [0mSHOW FIELDS FROM `ci_people`[0m
+  [4;36;1mPerson Load (0.3ms)[0m   [0;1mSELECT * FROM `ci_people` WHERE (`ci_people`.`person_id` = 15000) [0m
+Rendered shared/_header (14.6ms)
+Rendered shared/_url (2.0ms)
+Rendered shared/_email (2.3ms)
+Rendered shared/_phone_number (2.0ms)
+  [4;35;1mLocation Columns (1.8ms)[0m   [0mSHOW FIELDS FROM `ci_locations`[0m
+  [4;36;1mLocation Load (0.5ms)[0m   [0;1mSELECT * FROM `ci_locations` WHERE (`ci_locations`.`location_id` = 15000) [0m
+  [4;35;1mCountryName Columns (1.4ms)[0m   [0mSHOW FIELDS FROM `ci_country_names`[0m
+  [4;36;1mCountryName Load (1.1ms)[0m   [0;1mSELECT * FROM `ci_country_names` WHERE (`ci_country_names`.`country_name_id` = 1038) [0m
+  [4;35;1mUsState Columns (1.5ms)[0m   [0mSHOW FIELDS FROM `ci_us_states`[0m
+Rendered shared/_location (22.2ms)
+Rendered shared/_footer (0.6ms)
+Completed in 203ms (View: 88, DB: 10) | 200 OK [http://localhost/event/edit/15000]
+
+
+Processing EventController#edit (for 127.0.0.1 at 2008-12-30 19:44:12) [GET]
+  Parameters: {"id"=>"15000"}
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.2ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+  [4;36;1mUser Columns (1.8ms)[0m   [0;1mSHOW FIELDS FROM `ci_users`[0m
+  [4;35;1mUser Load (0.3ms)[0m   [0mSELECT * FROM `ci_users` WHERE (`ci_users`.`user_id` = 15000) LIMIT 1[0m
+  [4;36;1mContactEvent Columns (2.9ms)[0m   [0;1mSHOW FIELDS FROM `ci_contact_events`[0m
+  [4;35;1mContactEvent Load (0.6ms)[0m   [0mSELECT * FROM `ci_contact_events` WHERE (`ci_contact_events`.`contact_event_id` = 15000) [0m
+  [4;36;1mUser Load (0.4ms)[0m   [0;1mSELECT * FROM `ci_users` WHERE (`ci_users`.`user_id` = 15000) [0m
+  [4;35;1mEmail Columns (2.3ms)[0m   [0mSHOW FIELDS FROM `ci_emails`[0m
+  [4;36;1mPhoneNumber Columns (2.1ms)[0m   [0;1mSHOW FIELDS FROM `ci_phone_numbers`[0m
+  [4;35;1mUrl Columns (2.1ms)[0m   [0mSHOW FIELDS FROM `ci_urls`[0m
+Rendering event/edit
+  [4;36;1mPerson Columns (2.2ms)[0m   [0;1mSHOW FIELDS FROM `ci_people`[0m
+  [4;35;1mPerson Load (0.3ms)[0m   [0mSELECT * FROM `ci_people` WHERE (`ci_people`.`person_id` = 15000) [0m
+Rendered shared/_header (15.2ms)
+Rendered shared/_url (2.0ms)
+Rendered shared/_email (2.1ms)
+Rendered shared/_phone_number (1.9ms)
+  [4;36;1mLocation Columns (1.8ms)[0m   [0;1mSHOW FIELDS FROM `ci_locations`[0m
+  [4;35;1mLocation Load (0.2ms)[0m   [0mSELECT * FROM `ci_locations` WHERE (`ci_locations`.`location_id` = 15000) [0m
+  [4;36;1mCountryName Columns (1.4ms)[0m   [0;1mSHOW FIELDS FROM `ci_country_names`[0m
+  [4;35;1mCountryName Load (0.5ms)[0m   [0mSELECT * FROM `ci_country_names` WHERE (`ci_country_names`.`country_name_id` = 1038) [0m
+  [4;36;1mUsState Columns (1.3ms)[0m   [0;1mSHOW FIELDS FROM `ci_us_states`[0m
+Rendered shared/_location (18.6ms)
+Rendered shared/_footer (0.2ms)
+Completed in 215ms (View: 85, DB: 13) | 200 OK [http://localhost/event/edit/15000]
+
+
+Processing UserController#index (for 127.0.0.1 at 2008-12-30 19:44:13) [GET]
+  [4;35;1mSQL (0.1ms)[0m   [0mSET NAMES 'utf8'[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+  [4;35;1mUser Columns (1.9ms)[0m   [0mSHOW FIELDS FROM `ci_users`[0m
+  [4;36;1mUser Load (0.3ms)[0m   [0;1mSELECT * FROM `ci_users` WHERE (`ci_users`.`user_id` = 15000) LIMIT 1[0m
+Rendering user/index
+  [4;35;1mPerson Columns (1.5ms)[0m   [0mSHOW FIELDS FROM `ci_people`[0m
+  [4;36;1mPerson Load (0.6ms)[0m   [0;1mSELECT * FROM `ci_people` WHERE (`ci_people`.`person_id` = 15000) [0m
+Rendered shared/_header (12.0ms)
+  [4;35;1mContactEvent Load (0.4ms)[0m   [0mSELECT * FROM `ci_contact_events` WHERE (`ci_contact_events`.owner_user_id = 15000) [0m
+  [4;36;1mContactEvent Columns (1.9ms)[0m   [0;1mSHOW FIELDS FROM `ci_contact_events`[0m
+Rendered shared/_footer (0.2ms)
+Completed in 50ms (View: 34, DB: 2) | 200 OK [http://localhost/]
+
+
+Processing EventController#new (for 127.0.0.1 at 2008-12-30 19:44:16) [GET]
+  [4;35;1mSQL (0.1ms)[0m   [0mSET NAMES 'utf8'[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+  [4;35;1mUser Columns (3.0ms)[0m   [0mSHOW FIELDS FROM `ci_users`[0m
+  [4;36;1mUser Load (0.4ms)[0m   [0;1mSELECT * FROM `ci_users` WHERE (`ci_users`.`user_id` = 15000) LIMIT 1[0m
+  [4;35;1mContactEvent Columns (2.0ms)[0m   [0mSHOW FIELDS FROM `ci_contact_events`[0m
+  [4;36;1mEmail Columns (1.6ms)[0m   [0;1mSHOW FIELDS FROM `ci_emails`[0m
+  [4;35;1mLocation Columns (2.9ms)[0m   [0mSHOW FIELDS FROM `ci_locations`[0m
+  [4;36;1mPhoneNumber Columns (1.9ms)[0m   [0;1mSHOW FIELDS FROM `ci_phone_numbers`[0m
+  [4;35;1mUrl Columns (2.0ms)[0m   [0mSHOW FIELDS FROM `ci_urls`[0m
+Rendering event/new
+  [4;36;1mPerson Columns (1.5ms)[0m   [0;1mSHOW FIELDS FROM `ci_people`[0m
+  [4;35;1mPerson Load (0.3ms)[0m   [0mSELECT * FROM `ci_people` WHERE (`ci_people`.`person_id` = 15000) [0m
+Rendered shared/_header (19.1ms)
+Rendered shared/_url (1.9ms)
+Rendered shared/_email (2.2ms)
+Rendered shared/_phone_number (1.8ms)
+  [4;36;1mUsState Columns (1.4ms)[0m   [0;1mSHOW FIELDS FROM `ci_us_states`[0m
+Rendered shared/_location (12.1ms)
+Rendered shared/_footer (0.2ms)
+Completed in 231ms (View: 81, DB: 14) | 200 OK [http://localhost/event/new]
+
+
+Processing UserController#index (for 127.0.0.1 at 2008-12-30 19:44:26) [GET]
+  [4;35;1mSQL (0.1ms)[0m   [0mSET NAMES 'utf8'[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+  [4;35;1mUser Columns (1.8ms)[0m   [0mSHOW FIELDS FROM `ci_users`[0m
+  [4;36;1mUser Load (0.2ms)[0m   [0;1mSELECT * FROM `ci_users` WHERE (`ci_users`.`user_id` = 15000) LIMIT 1[0m
+Rendering user/index
+  [4;35;1mPerson Columns (1.5ms)[0m   [0mSHOW FIELDS FROM `ci_people`[0m
+  [4;36;1mPerson Load (0.4ms)[0m   [0;1mSELECT * FROM `ci_people` WHERE (`ci_people`.`person_id` = 15000) [0m
+Rendered shared/_header (11.8ms)
+  [4;35;1mContactEvent Load (0.3ms)[0m   [0mSELECT * FROM `ci_contact_events` WHERE (`ci_contact_events`.owner_user_id = 15000) [0m
+  [4;36;1mContactEvent Columns (1.7ms)[0m   [0;1mSHOW FIELDS FROM `ci_contact_events`[0m
+Rendered shared/_footer (0.2ms)
+Completed in 50ms (View: 33, DB: 2) | 200 OK [http://localhost/]
+
+
+Processing EventController#edit (for 127.0.0.1 at 2008-12-30 20:00:17) [GET]
+  Parameters: {"id"=>"15000"}
+  [4;35;1mSQL (0.1ms)[0m   [0mSET NAMES 'utf8'[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+  [4;35;1mUser Columns (1.9ms)[0m   [0mSHOW FIELDS FROM `ci_users`[0m
+  [4;36;1mUser Load (0.2ms)[0m   [0;1mSELECT * FROM `ci_users` WHERE (`ci_users`.`user_id` = 15000) LIMIT 1[0m
+  [4;35;1mContactEvent Columns (2.0ms)[0m   [0mSHOW FIELDS FROM `ci_contact_events`[0m
+  [4;36;1mContactEvent Load (2.2ms)[0m   [0;1mSELECT * FROM `ci_contact_events` WHERE (`ci_contact_events`.`contact_event_id` = 15000) [0m
+  [4;35;1mUser Load (0.6ms)[0m   [0mSELECT * FROM `ci_users` WHERE (`ci_users`.`user_id` = 15000) [0m
+  [4;36;1mEmail Columns (1.8ms)[0m   [0;1mSHOW FIELDS FROM `ci_emails`[0m
+  [4;35;1mPhoneNumber Columns (2.3ms)[0m   [0mSHOW FIELDS FROM `ci_phone_numbers`[0m
+  [4;36;1mUrl Columns (1.5ms)[0m   [0;1mSHOW FIELDS FROM `ci_urls`[0m
+Rendering event/edit
+  [4;35;1mPerson Columns (1.5ms)[0m   [0mSHOW FIELDS FROM `ci_people`[0m
+  [4;36;1mPerson Load (1.0ms)[0m   [0;1mSELECT * FROM `ci_people` WHERE (`ci_people`.`person_id` = 15000) [0m
+Rendered shared/_header (14.0ms)
+Rendered shared/_footer (0.4ms)
+Completed in 89ms (View: 28, DB: 13) | 200 OK [http://localhost/event/edit/15000]
+
+
+Processing EventController#edit (for 127.0.0.1 at 2008-12-30 20:00:53) [GET]
+  Parameters: {"id"=>"15000"}
+  [4;35;1mSQL (0.1ms)[0m   [0mSET NAMES 'utf8'[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+  [4;35;1mUser Columns (1.8ms)[0m   [0mSHOW FIELDS FROM `ci_users`[0m
+  [4;36;1mUser Load (0.6ms)[0m   [0;1mSELECT * FROM `ci_users` WHERE (`ci_users`.`user_id` = 15000) LIMIT 1[0m
+  [4;35;1mContactEvent Columns (1.9ms)[0m   [0mSHOW FIELDS FROM `ci_contact_events`[0m
+  [4;36;1mContactEvent Load (1.2ms)[0m   [0;1mSELECT * FROM `ci_contact_events` WHERE (`ci_contact_events`.`contact_event_id` = 15000) [0m
+  [4;35;1mUser Load (0.5ms)[0m   [0mSELECT * FROM `ci_users` WHERE (`ci_users`.`user_id` = 15000) [0m
+  [4;36;1mEmail Columns (1.7ms)[0m   [0;1mSHOW FIELDS FROM `ci_emails`[0m
+  [4;35;1mPhoneNumber Columns (1.5ms)[0m   [0mSHOW FIELDS FROM `ci_phone_numbers`[0m
+  [4;36;1mUrl Columns (1.4ms)[0m   [0;1mSHOW FIELDS FROM `ci_urls`[0m
+Rendering event/edit
+  [4;35;1mPerson Columns (1.6ms)[0m   [0mSHOW FIELDS FROM `ci_people`[0m
+  [4;36;1mPerson Load (0.2ms)[0m   [0;1mSELECT * FROM `ci_people` WHERE (`ci_people`.`person_id` = 15000) [0m
+Rendered shared/_header (12.8ms)
+Rendered shared/_footer (0.4ms)
+Completed in 143ms (View: 24, DB: 11) | 200 OK [http://localhost/event/edit/15000]
+
+
+Processing EventController#edit (for 127.0.0.1 at 2008-12-30 20:01:14) [GET]
+  Parameters: {"id"=>"15000"}
+  [4;35;1mSQL (0.2ms)[0m   [0mSET NAMES 'utf8'[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+  [4;35;1mUser Columns (1.8ms)[0m   [0mSHOW FIELDS FROM `ci_users`[0m
+  [4;36;1mUser Load (0.4ms)[0m   [0;1mSELECT * FROM `ci_users` WHERE (`ci_users`.`user_id` = 15000) LIMIT 1[0m
+  [4;35;1mContactEvent Columns (2.3ms)[0m   [0mSHOW FIELDS FROM `ci_contact_events`[0m
+  [4;36;1mContactEvent Load (0.4ms)[0m   [0;1mSELECT * FROM `ci_contact_events` WHERE (`ci_contact_events`.`contact_event_id` = 15000) [0m
+  [4;35;1mUser Load (0.2ms)[0m   [0mSELECT * FROM `ci_users` WHERE (`ci_users`.`user_id` = 15000) [0m
+  [4;36;1mEmail Columns (1.3ms)[0m   [0;1mSHOW FIELDS FROM `ci_emails`[0m
+  [4;35;1mPhoneNumber Columns (2.2ms)[0m   [0mSHOW FIELDS FROM `ci_phone_numbers`[0m
+  [4;36;1mUrl Columns (2.0ms)[0m   [0;1mSHOW FIELDS FROM `ci_urls`[0m
+Rendering event/edit
+  [4;35;1mPerson Columns (2.5ms)[0m   [0mSHOW FIELDS FROM `ci_people`[0m
+  [4;36;1mPerson Load (0.3ms)[0m   [0;1mSELECT * FROM `ci_people` WHERE (`ci_people`.`person_id` = 15000) [0m
+Rendered shared/_header (16.3ms)
+
+
+ActionView::TemplateError (undefined local variable or method `event' for #<ActionView::Base:0x22f4b88>) on line #7 of app/views/event/_form_fields.rhtml:
+4: 		<ol>
+5: 			<li style="clear: both; padding-bottom: 0.4em;">
+6: 				<label>Title:</label>
+7: 				<%= event.text_field :title, :size => 60 %>
+8: 			</li>
+9: 			<li style="clear: both; padding-bottom: 0.4em;">
+10: 				<label>Subtitle:</label>
+
+    app/views/event/_form_fields.rhtml:7
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.2.2/lib/action_view/renderable.rb:39:in `send'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.2.2/lib/action_view/renderable.rb:39:in `render'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.2.2/lib/action_view/renderable_partial.rb:20:in `render'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.2.2/lib/action_controller/benchmarking.rb:26:in `benchmark'
+    /Library/Ruby/Gems/1.8/gems/activesupport-2.2.2/lib/active_support/core_ext/benchmark.rb:8:in `realtime'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.2.2/lib/action_controller/benchmarking.rb:26:in `benchmark'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.2.2/lib/action_view/renderable_partial.rb:19:in `render'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.2.2/lib/action_view/template.rb:73:in `render_template'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.2.2/lib/action_view/renderable_partial.rb:45:in `render_partial'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.2.2/lib/action_view/partials.rb:152:in `render_partial'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.2.2/lib/action_view/base.rb:258:in `render'
+    app/views/event/edit.rhtml:18
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.2.2/lib/action_view/helpers/form_helper.rb:313:in `fields_for'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.2.2/lib/action_view/helpers/form_helper.rb:253:in `form_for'
+    app/views/event/edit.rhtml:17
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.2.2/lib/action_view/renderable.rb:39:in `send'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.2.2/lib/action_view/renderable.rb:39:in `render'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.2.2/lib/action_view/template.rb:73:in `render_template'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.2.2/lib/action_view/base.rb:256:in `render'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.2.2/lib/action_controller/base.rb:1174:in `render_for_file'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.2.2/lib/action_controller/base.rb:896:in `render_without_benchmark'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.2.2/lib/action_controller/benchmarking.rb:51:in `render'
+    /Library/Ruby/Gems/1.8/gems/activesupport-2.2.2/lib/active_support/core_ext/benchmark.rb:8:in `realtime'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.2.2/lib/action_controller/benchmarking.rb:51:in `render'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.2.2/lib/action_controller/base.rb:868:in `render_without_benchmark'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.2.2/lib/action_controller/benchmarking.rb:51:in `render'
+    /Library/Ruby/Gems/1.8/gems/activesupport-2.2.2/lib/active_support/core_ext/benchmark.rb:8:in `realtime'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.2.2/lib/action_controller/benchmarking.rb:51:in `render'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.2.2/lib/action_controller/base.rb:1248:in `default_render'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.2.2/lib/action_controller/base.rb:1254:in `perform_action_without_filters'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.2.2/lib/action_controller/filters.rb:617:in `call_filters'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.2.2/lib/action_controller/filters.rb:610:in `perform_action_without_benchmark'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.2.2/lib/action_controller/benchmarking.rb:68:in `perform_action_without_rescue'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/benchmark.rb:293:in `measure'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.2.2/lib/action_controller/benchmarking.rb:68:in `perform_action_without_rescue'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.2.2/lib/action_controller/rescue.rb:136:in `perform_action_without_caching'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.2.2/lib/action_controller/caching/sql_cache.rb:13:in `perform_action'
+    /Library/Ruby/Gems/1.8/gems/activerecord-2.2.2/lib/active_record/connection_adapters/abstract/query_cache.rb:34:in `cache'
+    /Library/Ruby/Gems/1.8/gems/activerecord-2.2.2/lib/active_record/query_cache.rb:8:in `cache'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.2.2/lib/action_controller/caching/sql_cache.rb:12:in `perform_action'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.2.2/lib/action_controller/base.rb:524:in `send'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.2.2/lib/action_controller/base.rb:524:in `process_without_filters'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.2.2/lib/action_controller/filters.rb:606:in `process_without_session_management_support'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.2.2/lib/action_controller/session_management.rb:134:in `process'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.2.2/lib/action_controller/base.rb:392:in `process'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.2.2/lib/action_controller/dispatcher.rb:183:in `handle_request'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.2.2/lib/action_controller/dispatcher.rb:110:in `dispatch_unlocked'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.2.2/lib/action_controller/dispatcher.rb:123:in `dispatch'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.2.2/lib/action_controller/dispatcher.rb:122:in `synchronize'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.2.2/lib/action_controller/dispatcher.rb:122:in `dispatch'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.2.2/lib/action_controller/dispatcher.rb:132:in `dispatch_cgi'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.2.2/lib/action_controller/dispatcher.rb:39:in `dispatch'
+    /Library/Ruby/Gems/1.8/gems/mongrel-1.1.5/lib/mongrel/rails.rb:76:in `process'
+    /Library/Ruby/Gems/1.8/gems/mongrel-1.1.5/lib/mongrel/rails.rb:74:in `synchronize'
+    /Library/Ruby/Gems/1.8/gems/mongrel-1.1.5/lib/mongrel/rails.rb:74:in `process'
+    /Library/Ruby/Gems/1.8/gems/mongrel-1.1.5/lib/mongrel.rb:159:in `process_client'
+    /Library/Ruby/Gems/1.8/gems/mongrel-1.1.5/lib/mongrel.rb:158:in `each'
+    /Library/Ruby/Gems/1.8/gems/mongrel-1.1.5/lib/mongrel.rb:158:in `process_client'
+    /Library/Ruby/Gems/1.8/gems/mongrel-1.1.5/lib/mongrel.rb:285:in `run'
+    /Library/Ruby/Gems/1.8/gems/mongrel-1.1.5/lib/mongrel.rb:285:in `initialize'
+    /Library/Ruby/Gems/1.8/gems/mongrel-1.1.5/lib/mongrel.rb:285:in `new'
+    /Library/Ruby/Gems/1.8/gems/mongrel-1.1.5/lib/mongrel.rb:285:in `run'
+    /Library/Ruby/Gems/1.8/gems/mongrel-1.1.5/lib/mongrel.rb:268:in `initialize'
+    /Library/Ruby/Gems/1.8/gems/mongrel-1.1.5/lib/mongrel.rb:268:in `new'
+    /Library/Ruby/Gems/1.8/gems/mongrel-1.1.5/lib/mongrel.rb:268:in `run'
+    /Library/Ruby/Gems/1.8/gems/mongrel-1.1.5/lib/mongrel/configurator.rb:282:in `run'
+    /Library/Ruby/Gems/1.8/gems/mongrel-1.1.5/lib/mongrel/configurator.rb:281:in `each'
+    /Library/Ruby/Gems/1.8/gems/mongrel-1.1.5/lib/mongrel/configurator.rb:281:in `run'
+    /Library/Ruby/Gems/1.8/gems/mongrel-1.1.5/bin/mongrel_rails:128:in `run'
+    /Library/Ruby/Gems/1.8/gems/mongrel-1.1.5/lib/mongrel/command.rb:212:in `run'
+    /Library/Ruby/Gems/1.8/gems/mongrel-1.1.5/bin/mongrel_rails:281
+    /Library/Ruby/Gems/1.8/gems/activesupport-2.2.2/lib/active_support/dependencies.rb:142:in `load_without_new_constant_marking'
+    /Library/Ruby/Gems/1.8/gems/activesupport-2.2.2/lib/active_support/dependencies.rb:142:in `load'
+    /Library/Ruby/Gems/1.8/gems/activesupport-2.2.2/lib/active_support/dependencies.rb:521:in `new_constants_in'
+    /Library/Ruby/Gems/1.8/gems/activesupport-2.2.2/lib/active_support/dependencies.rb:142:in `load'
+    /Library/Ruby/Gems/1.8/gems/rails-2.2.2/lib/commands/servers/mongrel.rb:64
+    /Library/Ruby/Site/1.8/rubygems/custom_require.rb:31:in `gem_original_require'
+    /Library/Ruby/Site/1.8/rubygems/custom_require.rb:31:in `require'
+    /Library/Ruby/Gems/1.8/gems/activesupport-2.2.2/lib/active_support/dependencies.rb:153:in `require'
+    /Library/Ruby/Gems/1.8/gems/activesupport-2.2.2/lib/active_support/dependencies.rb:521:in `new_constants_in'
+    /Library/Ruby/Gems/1.8/gems/activesupport-2.2.2/lib/active_support/dependencies.rb:153:in `require'
+    /Library/Ruby/Gems/1.8/gems/rails-2.2.2/lib/commands/server.rb:49
+    /Library/Ruby/Site/1.8/rubygems/custom_require.rb:31:in `gem_original_require'
+    /Library/Ruby/Site/1.8/rubygems/custom_require.rb:31:in `require'
+    script/server:3
+
+Rendered /Library/Ruby/Gems/1.8/gems/actionpack-2.2.2/lib/action_controller/templates/rescues/_trace (69.2ms)
+Rendered /Library/Ruby/Gems/1.8/gems/actionpack-2.2.2/lib/action_controller/templates/rescues/_request_and_response (16.3ms)
+Rendering /Library/Ruby/Gems/1.8/gems/actionpack-2.2.2/lib/action_controller/templates/rescues/layout.erb (internal_server_error)
+
+
+Processing EventController#edit (for 127.0.0.1 at 2008-12-30 20:01:58) [GET]
+  Parameters: {"id"=>"15000"}
+  [4;35;1mSQL (0.1ms)[0m   [0mSET NAMES 'utf8'[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+  [4;35;1mUser Columns (3.9ms)[0m   [0mSHOW FIELDS FROM `ci_users`[0m
+  [4;36;1mUser Load (0.3ms)[0m   [0;1mSELECT * FROM `ci_users` WHERE (`ci_users`.`user_id` = 15000) LIMIT 1[0m
+  [4;35;1mContactEvent Columns (1.9ms)[0m   [0mSHOW FIELDS FROM `ci_contact_events`[0m
+  [4;36;1mContactEvent Load (0.2ms)[0m   [0;1mSELECT * FROM `ci_contact_events` WHERE (`ci_contact_events`.`contact_event_id` = 15000) [0m
+  [4;35;1mUser Load (0.5ms)[0m   [0mSELECT * FROM `ci_users` WHERE (`ci_users`.`user_id` = 15000) [0m
+  [4;36;1mEmail Columns (1.4ms)[0m   [0;1mSHOW FIELDS FROM `ci_emails`[0m
+  [4;35;1mPhoneNumber Columns (1.9ms)[0m   [0mSHOW FIELDS FROM `ci_phone_numbers`[0m
+  [4;36;1mUrl Columns (1.5ms)[0m   [0;1mSHOW FIELDS FROM `ci_urls`[0m
+Rendering event/edit
+  [4;35;1mPerson Columns (1.5ms)[0m   [0mSHOW FIELDS FROM `ci_people`[0m
+  [4;36;1mPerson Load (2.5ms)[0m   [0;1mSELECT * FROM `ci_people` WHERE (`ci_people`.`person_id` = 15000) [0m
+Rendered shared/_header (14.5ms)
+
+
+ActionView::TemplateError (You have a nil object when you didn't expect it!
+The error occurred while evaluating nil.text_field) on line #7 of app/views/event/_event.rhtml:
+4: 		<ol>
+5: 			<li style="clear: both; padding-bottom: 0.4em;">
+6: 				<label>Title:</label>
+7: 				<%= event.text_field :title, :size => 60 %>
+8: 			</li>
+9: 			<li style="clear: both; padding-bottom: 0.4em;">
+10: 				<label>Subtitle:</label>
+
+    app/views/event/_event.rhtml:7
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.2.2/lib/action_view/renderable.rb:39:in `send'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.2.2/lib/action_view/renderable.rb:39:in `render'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.2.2/lib/action_view/renderable_partial.rb:20:in `render'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.2.2/lib/action_controller/benchmarking.rb:26:in `benchmark'
+    /Library/Ruby/Gems/1.8/gems/activesupport-2.2.2/lib/active_support/core_ext/benchmark.rb:8:in `realtime'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.2.2/lib/action_controller/benchmarking.rb:26:in `benchmark'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.2.2/lib/action_view/renderable_partial.rb:19:in `render'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.2.2/lib/action_view/template.rb:73:in `render_template'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.2.2/lib/action_view/renderable_partial.rb:45:in `render_partial'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.2.2/lib/action_view/partials.rb:152:in `render_partial'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.2.2/lib/action_view/base.rb:258:in `render'
+    app/views/event/edit.rhtml:18
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.2.2/lib/action_view/helpers/form_helper.rb:313:in `fields_for'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.2.2/lib/action_view/helpers/form_helper.rb:253:in `form_for'
+    app/views/event/edit.rhtml:17
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.2.2/lib/action_view/renderable.rb:39:in `send'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.2.2/lib/action_view/renderable.rb:39:in `render'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.2.2/lib/action_view/template.rb:73:in `render_template'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.2.2/lib/action_view/base.rb:256:in `render'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.2.2/lib/action_controller/base.rb:1174:in `render_for_file'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.2.2/lib/action_controller/base.rb:896:in `render_without_benchmark'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.2.2/lib/action_controller/benchmarking.rb:51:in `render'
+    /Library/Ruby/Gems/1.8/gems/activesupport-2.2.2/lib/active_support/core_ext/benchmark.rb:8:in `realtime'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.2.2/lib/action_controller/benchmarking.rb:51:in `render'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.2.2/lib/action_controller/base.rb:868:in `render_without_benchmark'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.2.2/lib/action_controller/benchmarking.rb:51:in `render'
+    /Library/Ruby/Gems/1.8/gems/activesupport-2.2.2/lib/active_support/core_ext/benchmark.rb:8:in `realtime'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.2.2/lib/action_controller/benchmarking.rb:51:in `render'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.2.2/lib/action_controller/base.rb:1248:in `default_render'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.2.2/lib/action_controller/base.rb:1254:in `perform_action_without_filters'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.2.2/lib/action_controller/filters.rb:617:in `call_filters'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.2.2/lib/action_controller/filters.rb:610:in `perform_action_without_benchmark'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.2.2/lib/action_controller/benchmarking.rb:68:in `perform_action_without_rescue'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/benchmark.rb:293:in `measure'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.2.2/lib/action_controller/benchmarking.rb:68:in `perform_action_without_rescue'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.2.2/lib/action_controller/rescue.rb:136:in `perform_action_without_caching'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.2.2/lib/action_controller/caching/sql_cache.rb:13:in `perform_action'
+    /Library/Ruby/Gems/1.8/gems/activerecord-2.2.2/lib/active_record/connection_adapters/abstract/query_cache.rb:34:in `cache'
+    /Library/Ruby/Gems/1.8/gems/activerecord-2.2.2/lib/active_record/query_cache.rb:8:in `cache'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.2.2/lib/action_controller/caching/sql_cache.rb:12:in `perform_action'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.2.2/lib/action_controller/base.rb:524:in `send'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.2.2/lib/action_controller/base.rb:524:in `process_without_filters'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.2.2/lib/action_controller/filters.rb:606:in `process_without_session_management_support'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.2.2/lib/action_controller/session_management.rb:134:in `process'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.2.2/lib/action_controller/base.rb:392:in `process'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.2.2/lib/action_controller/dispatcher.rb:183:in `handle_request'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.2.2/lib/action_controller/dispatcher.rb:110:in `dispatch_unlocked'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.2.2/lib/action_controller/dispatcher.rb:123:in `dispatch'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.2.2/lib/action_controller/dispatcher.rb:122:in `synchronize'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.2.2/lib/action_controller/dispatcher.rb:122:in `dispatch'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.2.2/lib/action_controller/dispatcher.rb:132:in `dispatch_cgi'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.2.2/lib/action_controller/dispatcher.rb:39:in `dispatch'
+    /Library/Ruby/Gems/1.8/gems/mongrel-1.1.5/lib/mongrel/rails.rb:76:in `process'
+    /Library/Ruby/Gems/1.8/gems/mongrel-1.1.5/lib/mongrel/rails.rb:74:in `synchronize'
+    /Library/Ruby/Gems/1.8/gems/mongrel-1.1.5/lib/mongrel/rails.rb:74:in `process'
+    /Library/Ruby/Gems/1.8/gems/mongrel-1.1.5/lib/mongrel.rb:159:in `process_client'
+    /Library/Ruby/Gems/1.8/gems/mongrel-1.1.5/lib/mongrel.rb:158:in `each'
+    /Library/Ruby/Gems/1.8/gems/mongrel-1.1.5/lib/mongrel.rb:158:in `process_client'
+    /Library/Ruby/Gems/1.8/gems/mongrel-1.1.5/lib/mongrel.rb:285:in `run'
+    /Library/Ruby/Gems/1.8/gems/mongrel-1.1.5/lib/mongrel.rb:285:in `initialize'
+    /Library/Ruby/Gems/1.8/gems/mongrel-1.1.5/lib/mongrel.rb:285:in `new'
+    /Library/Ruby/Gems/1.8/gems/mongrel-1.1.5/lib/mongrel.rb:285:in `run'
+    /Library/Ruby/Gems/1.8/gems/mongrel-1.1.5/lib/mongrel.rb:268:in `initialize'
+    /Library/Ruby/Gems/1.8/gems/mongrel-1.1.5/lib/mongrel.rb:268:in `new'
+    /Library/Ruby/Gems/1.8/gems/mongrel-1.1.5/lib/mongrel.rb:268:in `run'
+    /Library/Ruby/Gems/1.8/gems/mongrel-1.1.5/lib/mongrel/configurator.rb:282:in `run'
+    /Library/Ruby/Gems/1.8/gems/mongrel-1.1.5/lib/mongrel/configurator.rb:281:in `each'
+    /Library/Ruby/Gems/1.8/gems/mongrel-1.1.5/lib/mongrel/configurator.rb:281:in `run'
+    /Library/Ruby/Gems/1.8/gems/mongrel-1.1.5/bin/mongrel_rails:128:in `run'
+    /Library/Ruby/Gems/1.8/gems/mongrel-1.1.5/lib/mongrel/command.rb:212:in `run'
+    /Library/Ruby/Gems/1.8/gems/mongrel-1.1.5/bin/mongrel_rails:281
+    /Library/Ruby/Gems/1.8/gems/activesupport-2.2.2/lib/active_support/dependencies.rb:142:in `load_without_new_constant_marking'
+    /Library/Ruby/Gems/1.8/gems/activesupport-2.2.2/lib/active_support/dependencies.rb:142:in `load'
+    /Library/Ruby/Gems/1.8/gems/activesupport-2.2.2/lib/active_support/dependencies.rb:521:in `new_constants_in'
+    /Library/Ruby/Gems/1.8/gems/activesupport-2.2.2/lib/active_support/dependencies.rb:142:in `load'
+    /Library/Ruby/Gems/1.8/gems/rails-2.2.2/lib/commands/servers/mongrel.rb:64
+    /Library/Ruby/Site/1.8/rubygems/custom_require.rb:31:in `gem_original_require'
+    /Library/Ruby/Site/1.8/rubygems/custom_require.rb:31:in `require'
+    /Library/Ruby/Gems/1.8/gems/activesupport-2.2.2/lib/active_support/dependencies.rb:153:in `require'
+    /Library/Ruby/Gems/1.8/gems/activesupport-2.2.2/lib/active_support/dependencies.rb:521:in `new_constants_in'
+    /Library/Ruby/Gems/1.8/gems/activesupport-2.2.2/lib/active_support/dependencies.rb:153:in `require'
+    /Library/Ruby/Gems/1.8/gems/rails-2.2.2/lib/commands/server.rb:49
+    /Library/Ruby/Site/1.8/rubygems/custom_require.rb:31:in `gem_original_require'
+    /Library/Ruby/Site/1.8/rubygems/custom_require.rb:31:in `require'
+    script/server:3
+
+Rendered /Library/Ruby/Gems/1.8/gems/actionpack-2.2.2/lib/action_controller/templates/rescues/_trace (49.2ms)
+Rendered /Library/Ruby/Gems/1.8/gems/actionpack-2.2.2/lib/action_controller/templates/rescues/_request_and_response (0.9ms)
+Rendering /Library/Ruby/Gems/1.8/gems/actionpack-2.2.2/lib/action_controller/templates/rescues/layout.erb (internal_server_error)
+
+
+Processing EventController#edit (for 127.0.0.1 at 2008-12-30 20:03:13) [GET]
+  Parameters: {"id"=>"15000"}
+  [4;35;1mSQL (0.1ms)[0m   [0mSET NAMES 'utf8'[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+  [4;35;1mUser Columns (1.9ms)[0m   [0mSHOW FIELDS FROM `ci_users`[0m
+  [4;36;1mUser Load (0.3ms)[0m   [0;1mSELECT * FROM `ci_users` WHERE (`ci_users`.`user_id` = 15000) LIMIT 1[0m
+  [4;35;1mContactEvent Columns (3.1ms)[0m   [0mSHOW FIELDS FROM `ci_contact_events`[0m
+  [4;36;1mContactEvent Load (0.6ms)[0m   [0;1mSELECT * FROM `ci_contact_events` WHERE (`ci_contact_events`.`contact_event_id` = 15000) [0m
+  [4;35;1mUser Load (0.3ms)[0m   [0mSELECT * FROM `ci_users` WHERE (`ci_users`.`user_id` = 15000) [0m
+  [4;36;1mEmail Columns (1.6ms)[0m   [0;1mSHOW FIELDS FROM `ci_emails`[0m
+  [4;35;1mPhoneNumber Columns (1.8ms)[0m   [0mSHOW FIELDS FROM `ci_phone_numbers`[0m
+  [4;36;1mUrl Columns (1.4ms)[0m   [0;1mSHOW FIELDS FROM `ci_urls`[0m
+Rendering event/edit
+  [4;35;1mPerson Columns (1.5ms)[0m   [0mSHOW FIELDS FROM `ci_people`[0m
+  [4;36;1mPerson Load (0.7ms)[0m   [0;1mSELECT * FROM `ci_people` WHERE (`ci_people`.`person_id` = 15000) [0m
+Rendered shared/_header (13.6ms)
+
+
+ActionView::TemplateError (You have a nil object when you didn't expect it!
+The error occurred while evaluating nil.text_field) on line #7 of app/views/event/_form_fields.rhtml:
+4: 		<ol>
+5: 			<li style="clear: both; padding-bottom: 0.4em;">
+6: 				<label>Title:</label>
+7: 				<%= @event.text_field :title, :size => 60 %>
+8: 			</li>
+9: 			<li style="clear: both; padding-bottom: 0.4em;">
+10: 				<label>Subtitle:</label>
+
+    app/views/event/_form_fields.rhtml:7
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.2.2/lib/action_view/renderable.rb:39:in `send'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.2.2/lib/action_view/renderable.rb:39:in `render'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.2.2/lib/action_view/renderable_partial.rb:20:in `render'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.2.2/lib/action_controller/benchmarking.rb:26:in `benchmark'
+    /Library/Ruby/Gems/1.8/gems/activesupport-2.2.2/lib/active_support/core_ext/benchmark.rb:8:in `realtime'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.2.2/lib/action_controller/benchmarking.rb:26:in `benchmark'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.2.2/lib/action_view/renderable_partial.rb:19:in `render'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.2.2/lib/action_view/template.rb:73:in `render_template'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.2.2/lib/action_view/renderable_partial.rb:45:in `render_partial'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.2.2/lib/action_view/partials.rb:152:in `render_partial'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.2.2/lib/action_view/base.rb:258:in `render'
+    app/views/event/edit.rhtml:18
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.2.2/lib/action_view/helpers/form_helper.rb:313:in `fields_for'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.2.2/lib/action_view/helpers/form_helper.rb:253:in `form_for'
+    app/views/event/edit.rhtml:17
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.2.2/lib/action_view/renderable.rb:39:in `send'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.2.2/lib/action_view/renderable.rb:39:in `render'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.2.2/lib/action_view/template.rb:73:in `render_template'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.2.2/lib/action_view/base.rb:256:in `render'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.2.2/lib/action_controller/base.rb:1174:in `render_for_file'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.2.2/lib/action_controller/base.rb:896:in `render_without_benchmark'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.2.2/lib/action_controller/benchmarking.rb:51:in `render'
+    /Library/Ruby/Gems/1.8/gems/activesupport-2.2.2/lib/active_support/core_ext/benchmark.rb:8:in `realtime'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.2.2/lib/action_controller/benchmarking.rb:51:in `render'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.2.2/lib/action_controller/base.rb:868:in `render_without_benchmark'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.2.2/lib/action_controller/benchmarking.rb:51:in `render'
+    /Library/Ruby/Gems/1.8/gems/activesupport-2.2.2/lib/active_support/core_ext/benchmark.rb:8:in `realtime'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.2.2/lib/action_controller/benchmarking.rb:51:in `render'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.2.2/lib/action_controller/base.rb:1248:in `default_render'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.2.2/lib/action_controller/base.rb:1254:in `perform_action_without_filters'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.2.2/lib/action_controller/filters.rb:617:in `call_filters'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.2.2/lib/action_controller/filters.rb:610:in `perform_action_without_benchmark'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.2.2/lib/action_controller/benchmarking.rb:68:in `perform_action_without_rescue'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/benchmark.rb:293:in `measure'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.2.2/lib/action_controller/benchmarking.rb:68:in `perform_action_without_rescue'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.2.2/lib/action_controller/rescue.rb:136:in `perform_action_without_caching'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.2.2/lib/action_controller/caching/sql_cache.rb:13:in `perform_action'
+    /Library/Ruby/Gems/1.8/gems/activerecord-2.2.2/lib/active_record/connection_adapters/abstract/query_cache.rb:34:in `cache'
+    /Library/Ruby/Gems/1.8/gems/activerecord-2.2.2/lib/active_record/query_cache.rb:8:in `cache'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.2.2/lib/action_controller/caching/sql_cache.rb:12:in `perform_action'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.2.2/lib/action_controller/base.rb:524:in `send'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.2.2/lib/action_controller/base.rb:524:in `process_without_filters'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.2.2/lib/action_controller/filters.rb:606:in `process_without_session_management_support'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.2.2/lib/action_controller/session_management.rb:134:in `process'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.2.2/lib/action_controller/base.rb:392:in `process'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.2.2/lib/action_controller/dispatcher.rb:183:in `handle_request'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.2.2/lib/action_controller/dispatcher.rb:110:in `dispatch_unlocked'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.2.2/lib/action_controller/dispatcher.rb:123:in `dispatch'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.2.2/lib/action_controller/dispatcher.rb:122:in `synchronize'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.2.2/lib/action_controller/dispatcher.rb:122:in `dispatch'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.2.2/lib/action_controller/dispatcher.rb:132:in `dispatch_cgi'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.2.2/lib/action_controller/dispatcher.rb:39:in `dispatch'
+    /Library/Ruby/Gems/1.8/gems/mongrel-1.1.5/lib/mongrel/rails.rb:76:in `process'
+    /Library/Ruby/Gems/1.8/gems/mongrel-1.1.5/lib/mongrel/rails.rb:74:in `synchronize'
+    /Library/Ruby/Gems/1.8/gems/mongrel-1.1.5/lib/mongrel/rails.rb:74:in `process'
+    /Library/Ruby/Gems/1.8/gems/mongrel-1.1.5/lib/mongrel.rb:159:in `process_client'
+    /Library/Ruby/Gems/1.8/gems/mongrel-1.1.5/lib/mongrel.rb:158:in `each'
+    /Library/Ruby/Gems/1.8/gems/mongrel-1.1.5/lib/mongrel.rb:158:in `process_client'
+    /Library/Ruby/Gems/1.8/gems/mongrel-1.1.5/lib/mongrel.rb:285:in `run'
+    /Library/Ruby/Gems/1.8/gems/mongrel-1.1.5/lib/mongrel.rb:285:in `initialize'
+    /Library/Ruby/Gems/1.8/gems/mongrel-1.1.5/lib/mongrel.rb:285:in `new'
+    /Library/Ruby/Gems/1.8/gems/mongrel-1.1.5/lib/mongrel.rb:285:in `run'
+    /Library/Ruby/Gems/1.8/gems/mongrel-1.1.5/lib/mongrel.rb:268:in `initialize'
+    /Library/Ruby/Gems/1.8/gems/mongrel-1.1.5/lib/mongrel.rb:268:in `new'
+    /Library/Ruby/Gems/1.8/gems/mongrel-1.1.5/lib/mongrel.rb:268:in `run'
+    /Library/Ruby/Gems/1.8/gems/mongrel-1.1.5/lib/mongrel/configurator.rb:282:in `run'
+    /Library/Ruby/Gems/1.8/gems/mongrel-1.1.5/lib/mongrel/configurator.rb:281:in `each'
+    /Library/Ruby/Gems/1.8/gems/mongrel-1.1.5/lib/mongrel/configurator.rb:281:in `run'
+    /Library/Ruby/Gems/1.8/gems/mongrel-1.1.5/bin/mongrel_rails:128:in `run'
+    /Library/Ruby/Gems/1.8/gems/mongrel-1.1.5/lib/mongrel/command.rb:212:in `run'
+    /Library/Ruby/Gems/1.8/gems/mongrel-1.1.5/bin/mongrel_rails:281
+    /Library/Ruby/Gems/1.8/gems/activesupport-2.2.2/lib/active_support/dependencies.rb:142:in `load_without_new_constant_marking'
+    /Library/Ruby/Gems/1.8/gems/activesupport-2.2.2/lib/active_support/dependencies.rb:142:in `load'
+    /Library/Ruby/Gems/1.8/gems/activesupport-2.2.2/lib/active_support/dependencies.rb:521:in `new_constants_in'
+    /Library/Ruby/Gems/1.8/gems/activesupport-2.2.2/lib/active_support/dependencies.rb:142:in `load'
+    /Library/Ruby/Gems/1.8/gems/rails-2.2.2/lib/commands/servers/mongrel.rb:64
+    /Library/Ruby/Site/1.8/rubygems/custom_require.rb:31:in `gem_original_require'
+    /Library/Ruby/Site/1.8/rubygems/custom_require.rb:31:in `require'
+    /Library/Ruby/Gems/1.8/gems/activesupport-2.2.2/lib/active_support/dependencies.rb:153:in `require'
+    /Library/Ruby/Gems/1.8/gems/activesupport-2.2.2/lib/active_support/dependencies.rb:521:in `new_constants_in'
+    /Library/Ruby/Gems/1.8/gems/activesupport-2.2.2/lib/active_support/dependencies.rb:153:in `require'
+    /Library/Ruby/Gems/1.8/gems/rails-2.2.2/lib/commands/server.rb:49
+    /Library/Ruby/Site/1.8/rubygems/custom_require.rb:31:in `gem_original_require'
+    /Library/Ruby/Site/1.8/rubygems/custom_require.rb:31:in `require'
+    script/server:3
+
+Rendered /Library/Ruby/Gems/1.8/gems/actionpack-2.2.2/lib/action_controller/templates/rescues/_trace (114.9ms)
+Rendered /Library/Ruby/Gems/1.8/gems/actionpack-2.2.2/lib/action_controller/templates/rescues/_request_and_response (0.9ms)
+Rendering /Library/Ruby/Gems/1.8/gems/actionpack-2.2.2/lib/action_controller/templates/rescues/layout.erb (internal_server_error)
+
+
+Processing EventController#edit (for 127.0.0.1 at 2008-12-30 20:03:50) [GET]
+  Parameters: {"id"=>"15000"}
+  [4;35;1mSQL (0.1ms)[0m   [0mSET NAMES 'utf8'[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+  [4;35;1mUser Columns (1.9ms)[0m   [0mSHOW FIELDS FROM `ci_users`[0m
+  [4;36;1mUser Load (0.2ms)[0m   [0;1mSELECT * FROM `ci_users` WHERE (`ci_users`.`user_id` = 15000) LIMIT 1[0m
+  [4;35;1mContactEvent Columns (1.9ms)[0m   [0mSHOW FIELDS FROM `ci_contact_events`[0m
+  [4;36;1mContactEvent Load (0.5ms)[0m   [0;1mSELECT * FROM `ci_contact_events` WHERE (`ci_contact_events`.`contact_event_id` = 15000) [0m
+  [4;35;1mUser Load (0.2ms)[0m   [0mSELECT * FROM `ci_users` WHERE (`ci_users`.`user_id` = 15000) [0m
+  [4;36;1mEmail Columns (1.5ms)[0m   [0;1mSHOW FIELDS FROM `ci_emails`[0m
+  [4;35;1mPhoneNumber Columns (2.7ms)[0m   [0mSHOW FIELDS FROM `ci_phone_numbers`[0m
+  [4;36;1mUrl Columns (1.6ms)[0m   [0;1mSHOW FIELDS FROM `ci_urls`[0m
+Rendering event/edit
+  [4;35;1mPerson Columns (2.0ms)[0m   [0mSHOW FIELDS FROM `ci_people`[0m
+  [4;36;1mPerson Load (0.3ms)[0m   [0;1mSELECT * FROM `ci_people` WHERE (`ci_people`.`person_id` = 15000) [0m
+Rendered shared/_header (14.9ms)
+Rendered shared/_url (1.9ms)
+Rendered shared/_email (2.2ms)
+Rendered shared/_phone_number (1.9ms)
+  [4;35;1mLocation Columns (3.1ms)[0m   [0mSHOW FIELDS FROM `ci_locations`[0m
+  [4;36;1mLocation Load (1.6ms)[0m   [0;1mSELECT * FROM `ci_locations` WHERE (`ci_locations`.`location_id` = 15000) [0m
+  [4;35;1mCountryName Columns (1.4ms)[0m   [0mSHOW FIELDS FROM `ci_country_names`[0m
+  [4;36;1mCountryName Load (15.6ms)[0m   [0;1mSELECT * FROM `ci_country_names` WHERE (`ci_country_names`.`country_name_id` = 1038) [0m
+  [4;35;1mUsState Columns (2.0ms)[0m   [0mSHOW FIELDS FROM `ci_us_states`[0m
+Rendered shared/_location (106.8ms)
+Rendered event/_form_fields (155.4ms)
+Rendered shared/_footer (0.3ms)
+Completed in 245ms (View: 189, DB: 11) | 200 OK [http://localhost/event/edit/15000]
+
+
+Processing EventController#edit (for 127.0.0.1 at 2008-12-30 20:04:30) [GET]
+  Parameters: {"id"=>"15000"}
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+  [4;36;1mUser Columns (1.8ms)[0m   [0;1mSHOW FIELDS FROM `ci_users`[0m
+  [4;35;1mUser Load (0.2ms)[0m   [0mSELECT * FROM `ci_users` WHERE (`ci_users`.`user_id` = 15000) LIMIT 1[0m
+  [4;36;1mContactEvent Columns (1.9ms)[0m   [0;1mSHOW FIELDS FROM `ci_contact_events`[0m
+  [4;35;1mContactEvent Load (0.6ms)[0m   [0mSELECT * FROM `ci_contact_events` WHERE (`ci_contact_events`.`contact_event_id` = 15000) [0m
+  [4;36;1mUser Load (0.2ms)[0m   [0;1mSELECT * FROM `ci_users` WHERE (`ci_users`.`user_id` = 15000) [0m
+  [4;35;1mEmail Columns (1.7ms)[0m   [0mSHOW FIELDS FROM `ci_emails`[0m
+  [4;36;1mPhoneNumber Columns (2.7ms)[0m   [0;1mSHOW FIELDS FROM `ci_phone_numbers`[0m
+  [4;35;1mUrl Columns (2.4ms)[0m   [0mSHOW FIELDS FROM `ci_urls`[0m
+Rendering event/edit
+  [4;36;1mPerson Columns (2.6ms)[0m   [0;1mSHOW FIELDS FROM `ci_people`[0m
+  [4;35;1mPerson Load (1.1ms)[0m   [0mSELECT * FROM `ci_people` WHERE (`ci_people`.`person_id` = 15000) [0m
+Rendered shared/_header (16.9ms)
+Rendered shared/_url (2.0ms)
+Rendered shared/_email (5.4ms)
+Rendered shared/_phone_number (2.4ms)
+  [4;36;1mLocation Columns (2.1ms)[0m   [0;1mSHOW FIELDS FROM `ci_locations`[0m
+  [4;35;1mLocation Load (1.3ms)[0m   [0mSELECT * FROM `ci_locations` WHERE (`ci_locations`.`location_id` = 15000) [0m
+  [4;36;1mCountryName Columns (2.3ms)[0m   [0;1mSHOW FIELDS FROM `ci_country_names`[0m
+  [4;35;1mCountryName Load (1.1ms)[0m   [0mSELECT * FROM `ci_country_names` WHERE (`ci_country_names`.`country_name_id` = 1038) [0m
+  [4;36;1mUsState Columns (1.5ms)[0m   [0;1mSHOW FIELDS FROM `ci_us_states`[0m
+Rendered shared/_location (23.1ms)
+Rendered event/_form_fields (62.8ms)
+Rendered shared/_footer (0.2ms)
+Completed in 150ms (View: 95, DB: 12) | 200 OK [http://localhost/event/edit/15000]
+  [4;36;1mSQL (0.3ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+  [4;36;1mSQL (18.0ms)[0m   [0;1mSHOW TABLES[0m
+  [4;35;1mSQL (128.5ms)[0m   [0mSELECT version FROM ci_schema_migrations[0m
+  [4;36;1mSQL (0.2ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.2ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+  [4;36;1mSQL (80.5ms)[0m   [0;1mSHOW FULL TABLES WHERE Table_type = 'BASE TABLE'[0m
+  [4;35;1mSQL (0.8ms)[0m   [0mSHOW CREATE TABLE `ci_companies`[0m
+  [4;36;1mSQL (0.2ms)[0m   [0;1mSHOW CREATE TABLE `ci_company_versions`[0m
+  [4;35;1mSQL (7.0ms)[0m   [0mSHOW CREATE TABLE `ci_contact_event_versions`[0m
+  [4;36;1mSQL (0.2ms)[0m   [0;1mSHOW CREATE TABLE `ci_contact_events`[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSHOW CREATE TABLE `ci_country_names`[0m
+  [4;36;1mSQL (8.5ms)[0m   [0;1mSHOW CREATE TABLE `ci_email_versions`[0m
+  [4;35;1mSQL (8.9ms)[0m   [0mSHOW CREATE TABLE `ci_emails`[0m
+  [4;36;1mSQL (1.4ms)[0m   [0;1mSHOW CREATE TABLE `ci_location_versions`[0m
+  [4;35;1mSQL (0.2ms)[0m   [0mSHOW CREATE TABLE `ci_locations`[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSHOW CREATE TABLE `ci_people`[0m
+  [4;35;1mSQL (0.9ms)[0m   [0mSHOW CREATE TABLE `ci_person_versions`[0m
+  [4;36;1mSQL (1.5ms)[0m   [0;1mSHOW CREATE TABLE `ci_phone_number_versions`[0m
+  [4;35;1mSQL (0.2ms)[0m   [0mSHOW CREATE TABLE `ci_phone_numbers`[0m
+  [4;36;1mSQL (10.3ms)[0m   [0;1mSHOW CREATE TABLE `ci_schema_migrations`[0m
+  [4;35;1mSQL (0.3ms)[0m   [0mSHOW CREATE TABLE `ci_studio_versions`[0m
+  [4;36;1mSQL (0.5ms)[0m   [0;1mSHOW CREATE TABLE `ci_studios`[0m
+  [4;35;1mSQL (0.2ms)[0m   [0mSHOW CREATE TABLE `ci_url_versions`[0m
+  [4;36;1mSQL (0.3ms)[0m   [0;1mSHOW CREATE TABLE `ci_urls`[0m
+  [4;35;1mSQL (0.2ms)[0m   [0mSHOW CREATE TABLE `ci_us_states`[0m
+  [4;36;1mSQL (0.2ms)[0m   [0;1mSHOW CREATE TABLE `ci_user_account_requests`[0m
+  [4;35;1mSQL (0.3ms)[0m   [0mSHOW CREATE TABLE `ci_users`[0m
+  [4;36;1mSQL (0.4ms)[0m   [0;1mSELECT version FROM ci_schema_migrations[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSET NAMES 'utf8'[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+  [4;35;1mSQL (890.6ms)[0m   [0mDROP DATABASE IF EXISTS `ci_rails_test`[0m
+  [4;36;1mSQL (56.1ms)[0m   [0;1mCREATE DATABASE `ci_rails_test` DEFAULT CHARACTER SET `utf8`[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSET NAMES 'utf8'[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSET foreign_key_checks = 0[0m
+  [4;36;1mSQL (54.0ms)[0m   [0;1mCREATE TABLE `ci_companies` (
+ `company_id` int(11) NOT NULL auto_increment,
+ `version` int(11) default NULL,
+ `name` varchar(255) default NULL,
+ `created_at` datetime default NULL,
+ `updated_at` datetime default NULL,
+ PRIMARY KEY (`company_id`)
+) ENGINE=MyISAM AUTO_INCREMENT=15000 DEFAULT CHARSET=utf8;[0m
+  [4;35;1mSQL (1.9ms)[0m   [0mCREATE TABLE `ci_company_versions` (
+ `company_version_id` int(11) NOT NULL auto_increment,
+ `company_id` int(11) default NULL,
+ `version` int(11) default NULL,
+ `name` varchar(255) default NULL,
+ `updated_at` datetime default NULL,
+ PRIMARY KEY (`company_version_id`)
+) ENGINE=MyISAM AUTO_INCREMENT=15000 DEFAULT CHARSET=utf8;[0m
+  [4;36;1mSQL (1.7ms)[0m   [0;1mCREATE TABLE `ci_contact_event_versions` (
+ `contact_event_version_id` int(11) NOT NULL auto_increment,
+ `contact_event_id` int(11) default NULL,
+ `version` int(11) default NULL,
+ `title` varchar(255) default NULL,
+ `subtitle` varchar(255) default NULL,
+ `description` text,
+ `start_date` date default NULL,
+ `end_date` date default NULL,
+ `owner_user_id` int(11) default NULL,
+ `person_id` int(11) default NULL,
+ `location_id` int(11) default NULL,
+ `email_id` int(11) default NULL,
+ `phone_number_id` int(11) default NULL,
+ `url_id` int(11) default NULL,
+ `company_id` int(11) default NULL,
+ `studio_id` int(11) default NULL,
+ `ci_notes` text,
+ `updated_at` datetime default NULL,
+ PRIMARY KEY (`contact_event_version_id`)
+) ENGINE=MyISAM AUTO_INCREMENT=15001 DEFAULT CHARSET=utf8;[0m
+  [4;35;1mSQL (1.4ms)[0m   [0mCREATE TABLE `ci_contact_events` (
+ `contact_event_id` int(11) NOT NULL auto_increment,
+ `version` int(11) default NULL,
+ `title` varchar(255) default NULL,
+ `subtitle` varchar(255) default NULL,
+ `description` text,
+ `start_date` date default NULL,
+ `end_date` date default NULL,
+ `owner_user_id` int(11) default NULL,
+ `person_id` int(11) default NULL,
+ `location_id` int(11) default NULL,
+ `email_id` int(11) default NULL,
+ `phone_number_id` int(11) default NULL,
+ `url_id` int(11) default NULL,
+ `company_id` int(11) default NULL,
+ `studio_id` int(11) default NULL,
+ `ci_notes` text,
+ `created_at` datetime default NULL,
+ `updated_at` datetime default NULL,
+ PRIMARY KEY (`contact_event_id`)
+) ENGINE=MyISAM AUTO_INCREMENT=15001 DEFAULT CHARSET=utf8;[0m
+  [4;36;1mSQL (1.1ms)[0m   [0;1mCREATE TABLE `ci_country_names` (
+ `country_name_id` int(11) NOT NULL auto_increment,
+ `iso_3166_1_a2_code` char(2) default NULL,
+ `english_name` varchar(255) default NULL,
+ `underlined_english_name` varchar(255) default NULL,
+ PRIMARY KEY (`country_name_id`),
+ KEY `iso_index` (`iso_3166_1_a2_code`),
+ KEY `english_name_index` (`english_name`(10))
+) ENGINE=MyISAM AUTO_INCREMENT=1245 DEFAULT CHARSET=utf8;[0m
+  [4;35;1mSQL (1.2ms)[0m   [0mCREATE TABLE `ci_email_versions` (
+ `email_version_id` int(11) NOT NULL auto_increment,
+ `email_id` int(11) default NULL,
+ `version` int(11) default NULL,
+ `for_entity_id` int(11) default NULL,
+ `position` int(11) default NULL,
+ `address` varchar(255) default NULL,
+ `updated_at` datetime default NULL,
+ PRIMARY KEY (`email_version_id`),
+ KEY `index_ci_email_versions_on_email_id` (`email_id`),
+ KEY `index_ci_email_versions_on_for_entity_id` (`for_entity_id`),
+ KEY `index_ci_email_versions_on_address` (`address`)
+) ENGINE=MyISAM AUTO_INCREMENT=15000 DEFAULT CHARSET=utf8;[0m
+  [4;36;1mSQL (1.5ms)[0m   [0;1mCREATE TABLE `ci_emails` (
+ `email_id` int(11) NOT NULL auto_increment,
+ `version` int(11) default NULL,
+ `for_entity_id` int(11) default NULL,
+ `position` int(11) default NULL,
+ `address` varchar(255) default NULL,
+ `created_at` datetime default NULL,
+ `updated_at` datetime default NULL,
+ PRIMARY KEY (`email_id`),
+ KEY `index_ci_emails_on_for_entity_id` (`for_entity_id`),
+ KEY `index_ci_emails_on_address` (`address`)
+) ENGINE=MyISAM AUTO_INCREMENT=15000 DEFAULT CHARSET=utf8;[0m
+  [4;35;1mSQL (1.7ms)[0m   [0mCREATE TABLE `ci_location_versions` (
+ `location_version_id` int(11) NOT NULL auto_increment,
+ `location_id` int(11) default NULL,
+ `version` int(11) default NULL,
+ `street_address_line_1` varchar(255) default NULL,
+ `street_address_line_2` varchar(255) default NULL,
+ `city_name` varchar(255) default NULL,
+ `region_name` varchar(255) default NULL,
+ `us_state_id` int(11) default NULL,
+ `postal_code` varchar(255) default NULL,
+ `country_name_id` int(11) default NULL,
+ `lat` float default NULL,
+ `lng` float default NULL,
+ `geocode_precision` varchar(10) default NULL,
+ `updated_at` datetime default NULL,
+ PRIMARY KEY (`location_version_id`),
+ KEY `index_ci_location_versions_on_location_id` (`location_id`),
+ KEY `index_ci_location_versions_on_us_state_id` (`us_state_id`),
+ KEY `index_ci_location_versions_on_country_name_id` (`country_name_id`)
+) ENGINE=MyISAM AUTO_INCREMENT=15001 DEFAULT CHARSET=utf8;[0m
+  [4;36;1mSQL (1.8ms)[0m   [0;1mCREATE TABLE `ci_locations` (
+ `location_id` int(11) NOT NULL auto_increment,
+ `version` int(11) default NULL,
+ `street_address_line_1` varchar(255) default NULL,
+ `street_address_line_2` varchar(255) default NULL,
+ `city_name` varchar(255) default NULL,
+ `region_name` varchar(255) default NULL,
+ `us_state_id` int(11) default NULL,
+ `postal_code` varchar(255) default NULL,
+ `country_name_id` int(11) default NULL,
+ `lat` float default NULL,
+ `lng` float default NULL,
+ `geocode_precision` varchar(10) default NULL,
+ `created_at` datetime default NULL,
+ `updated_at` datetime default NULL,
+ PRIMARY KEY (`location_id`),
+ KEY `index_ci_locations_on_us_state_id` (`us_state_id`),
+ KEY `index_ci_locations_on_country_name_id` (`country_name_id`)
+) ENGINE=MyISAM AUTO_INCREMENT=15001 DEFAULT CHARSET=utf8;[0m
+  [4;35;1mSQL (1.1ms)[0m   [0mCREATE TABLE `ci_people` (
+ `person_id` int(11) NOT NULL auto_increment,
+ `version` int(11) default NULL,
+ `first_name` varchar(255) default NULL,
+ `last_name` varchar(255) default NULL,
+ `created_at` datetime default NULL,
+ `updated_at` datetime default NULL,
+ PRIMARY KEY (`person_id`)
+) ENGINE=MyISAM AUTO_INCREMENT=15002 DEFAULT CHARSET=utf8;[0m
+  [4;36;1mSQL (1.1ms)[0m   [0;1mCREATE TABLE `ci_person_versions` (
+ `person_version_id` int(11) NOT NULL auto_increment,
+ `person_id` int(11) default NULL,
+ `version` int(11) default NULL,
+ `first_name` varchar(255) default NULL,
+ `last_name` varchar(255) default NULL,
+ `updated_at` datetime default NULL,
+ PRIMARY KEY (`person_version_id`)
+) ENGINE=MyISAM AUTO_INCREMENT=15002 DEFAULT CHARSET=utf8;[0m
+  [4;35;1mSQL (1.2ms)[0m   [0mCREATE TABLE `ci_phone_number_versions` (
+ `phone_number_version_id` int(11) NOT NULL auto_increment,
+ `phone_number_id` int(11) default NULL,
+ `version` int(11) default NULL,
+ `for_entity_id` int(11) default NULL,
+ `number` varchar(255) default NULL,
+ `updated_at` datetime default NULL,
+ PRIMARY KEY (`phone_number_version_id`),
+ KEY `index_ci_phone_number_versions_on_phone_number_id` (`phone_number_id`),
+ KEY `index_ci_phone_number_versions_on_for_entity_id` (`for_entity_id`)
+) ENGINE=MyISAM AUTO_INCREMENT=15000 DEFAULT CHARSET=utf8;[0m
+  [4;36;1mSQL (1.9ms)[0m   [0;1mCREATE TABLE `ci_phone_numbers` (
+ `phone_number_id` int(11) NOT NULL auto_increment,
+ `version` int(11) default NULL,
+ `for_entity_id` int(11) default NULL,
+ `number` varchar(255) default NULL,
+ `created_at` datetime default NULL,
+ `updated_at` datetime default NULL,
+ PRIMARY KEY (`phone_number_id`),
+ KEY `index_ci_phone_numbers_on_for_entity_id` (`for_entity_id`)
+) ENGINE=MyISAM AUTO_INCREMENT=15000 DEFAULT CHARSET=utf8;[0m
+  [4;35;1mSQL (50.6ms)[0m   [0mCREATE TABLE `ci_schema_migrations` (
+ `version` varchar(255) NOT NULL,
+ UNIQUE KEY `unique_schema_migrations` (`version`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;[0m
+  [4;36;1mSQL (2.6ms)[0m   [0;1mCREATE TABLE `ci_studio_versions` (
+ `studio_version_id` int(11) NOT NULL auto_increment,
+ `studio_id` int(11) default NULL,
+ `version` int(11) default NULL,
+ `name` varchar(255) default NULL,
+ `updated_at` datetime default NULL,
+ PRIMARY KEY (`studio_version_id`)
+) ENGINE=MyISAM AUTO_INCREMENT=15000 DEFAULT CHARSET=utf8;[0m
+  [4;35;1mSQL (8.3ms)[0m   [0mCREATE TABLE `ci_studios` (
+ `studio_id` int(11) NOT NULL auto_increment,
+ `version` int(11) default NULL,
+ `name` varchar(255) default NULL,
+ `created_at` datetime default NULL,
+ `updated_at` datetime default NULL,
+ PRIMARY KEY (`studio_id`)
+) ENGINE=MyISAM AUTO_INCREMENT=15000 DEFAULT CHARSET=utf8;[0m
+  [4;36;1mSQL (2.1ms)[0m   [0;1mCREATE TABLE `ci_url_versions` (
+ `url_version_id` int(11) NOT NULL auto_increment,
+ `url_id` int(11) default NULL,
+ `version` int(11) default NULL,
+ `for_entity_id` int(11) default NULL,
+ `address` varchar(255) default NULL,
+ `updated_at` datetime default NULL,
+ PRIMARY KEY (`url_version_id`),
+ KEY `index_ci_url_versions_on_url_id` (`url_id`),
+ KEY `index_ci_url_versions_on_for_entity_id` (`for_entity_id`)
+) ENGINE=MyISAM AUTO_INCREMENT=15000 DEFAULT CHARSET=utf8;[0m
+  [4;35;1mSQL (9.4ms)[0m   [0mCREATE TABLE `ci_urls` (
+ `url_id` int(11) NOT NULL auto_increment,
+ `version` int(11) default NULL,
+ `for_entity_id` int(11) default NULL,
+ `address` varchar(255) default NULL,
+ `created_at` datetime default NULL,
+ `updated_at` datetime default NULL,
+ PRIMARY KEY (`url_id`),
+ KEY `index_ci_urls_on_for_entity_id` (`for_entity_id`)
+) ENGINE=MyISAM AUTO_INCREMENT=15000 DEFAULT CHARSET=utf8;[0m
+  [4;36;1mSQL (62.1ms)[0m   [0;1mCREATE TABLE `ci_us_states` (
+ `us_state_id` int(11) NOT NULL auto_increment,
+ `abbreviation` char(2) default NULL,
+ `name` varchar(50) default NULL,
+ `underlined_name` varchar(255) default NULL,
+ PRIMARY KEY (`us_state_id`),
+ KEY `abbreviation_index` (`abbreviation`),
+ KEY `name_index` (`name`(10))
+) ENGINE=MyISAM AUTO_INCREMENT=1059 DEFAULT CHARSET=utf8;[0m
+  [4;35;1mSQL (4.9ms)[0m   [0mCREATE TABLE `ci_user_account_requests` (
+ `user_account_request_id` int(11) NOT NULL auto_increment,
+ `state` varchar(12) default NULL,
+ `ci_notes` text,
+ `person_id` int(11) default NULL,
+ `email_id` int(11) default NULL,
+ `location_id` int(11) default NULL,
+ `created_at` datetime default NULL,
+ `updated_at` datetime default NULL,
+ PRIMARY KEY (`user_account_request_id`)
+) ENGINE=MyISAM AUTO_INCREMENT=15000 DEFAULT CHARSET=utf8;[0m
+  [4;36;1mSQL (5.1ms)[0m   [0;1mCREATE TABLE `ci_users` (
+ `user_id` int(11) NOT NULL auto_increment,
+ `email` varchar(255) default NULL,
+ `person_id` int(11) default NULL,
+ `admin` tinyint(1) default '0',
+ `state` varchar(12) default NULL,
+ `crypted_password` varchar(40) default NULL,
+ `salt` varchar(40) default NULL,
+ `password_reset_code` varchar(40) default NULL,
+ `activation_code` varchar(40) default NULL,
+ `activated_at` datetime default NULL,
+ `deleted_at` datetime default NULL,
+ `last_login_at` datetime default NULL,
+ `remember_token` varchar(255) default NULL,
+ `remember_token_expires_at` datetime default NULL,
+ `created_at` datetime default NULL,
+ `updated_at` datetime default NULL,
+ PRIMARY KEY (`user_id`),
+ KEY `index_ci_users_on_email` (`email`),
+ KEY `index_ci_users_on_person_id` (`person_id`),
+ KEY `index_ci_users_on_state` (`state`),
+ KEY `index_ci_users_on_password_reset_code` (`password_reset_code`),
+ KEY `index_ci_users_on_activation_code` (`activation_code`)
+) ENGINE=MyISAM AUTO_INCREMENT=15002 DEFAULT CHARSET=utf8;[0m
+  [4;35;1mSQL (2.0ms)[0m   [0mINSERT INTO ci_schema_migrations (version) VALUES ('20081216170645');[0m
+  [4;36;1mSQL (1.7ms)[0m   [0;1mINSERT INTO ci_schema_migrations (version) VALUES ('20081216172545');[0m
+  [4;35;1mSQL (0.6ms)[0m   [0mINSERT INTO ci_schema_migrations (version) VALUES ('20081216172610');[0m
+  [4;36;1mSQL (0.6ms)[0m   [0;1mINSERT INTO ci_schema_migrations (version) VALUES ('20081216174522');[0m
+  [4;35;1mSQL (0.6ms)[0m   [0mINSERT INTO ci_schema_migrations (version) VALUES ('20081216185405');[0m
+  [4;36;1mSQL (0.6ms)[0m   [0;1mINSERT INTO ci_schema_migrations (version) VALUES ('20081216194845');[0m
+  [4;35;1mSQL (0.7ms)[0m   [0mINSERT INTO ci_schema_migrations (version) VALUES ('20081216200339');[0m
+  [4;36;1mSQL (0.6ms)[0m   [0;1mINSERT INTO ci_schema_migrations (version) VALUES ('20081216201129');[0m
+  [4;35;1mSQL (0.5ms)[0m   [0mINSERT INTO ci_schema_migrations (version) VALUES ('20081216204531');[0m
+  [4;36;1mSQL (0.6ms)[0m   [0;1mINSERT INTO ci_schema_migrations (version) VALUES ('20081216222210');[0m
+  [4;35;1mSQL (0.8ms)[0m   [0mINSERT INTO ci_schema_migrations (version) VALUES ('20081216222634');[0m
+  [4;36;1mSQL (0.5ms)[0m   [0;1mINSERT INTO ci_schema_migrations (version) VALUES ('20081217000434');[0m

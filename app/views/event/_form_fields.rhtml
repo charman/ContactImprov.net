@@ -1,0 +1,57 @@
+<p>
+	<fieldset>
+		<legend>Event Information</legend>
+		<ol>
+			<li style="clear: both; padding-bottom: 0.4em;">
+				<label>Title:</label>
+				<%= event.text_field :title, :size => 60 %>
+			</li>
+			<li style="clear: both; padding-bottom: 0.4em;">
+				<label>Subtitle:</label>
+				<%= event.text_field :subtitle, :size => 60 %>
+			</li>
+			<li style="clear: both; padding-bottom: 0.4em;">
+				<label>Description:</label>
+				<%= event.text_area :description, :rows => 12, :cols => 60 %>
+			</li>
+		</ol>
+		<table>
+			<tr style="vertical-align: top;">
+				<td style="width: 10em; text-align: right;">Start Date:</td>
+				<td style="padding: 0em 1em 1em 1em;">
+					<%= event.calendar_date_select :start_date, :embedded => true, :year_range => 0.years.ago..2.years.from_now %>
+				</td>
+			</tr>
+			<tr style="vertical-align: top;">
+				<td style="width: 10em; text-align: right;">End Date:</td>
+				<td style="padding: 0em 1em 1em 1em;">
+					<%= event.calendar_date_select :end_date, :embedded => true, :year_range => 0.years.ago..2.years.from_now %>
+				</td>
+			</tr>
+		</table>
+	</fieldset>
+</p>
+
+
+<p>
+	<%= render :partial => 'shared/url', :object => @contact_event.url,
+		:locals => { :prefix => 'event[ci_url]', :legend => 'URL' } %>
+</p>
+<p>
+	<%= render :partial => 'shared/email', :object => @contact_event.email,
+		:locals => { :prefix => 'event[email]', :legend => 'Email Address' } %>
+</p>
+<p>
+	<%= render :partial => 'shared/phone_number', :object => @contact_event.phone_number,
+		:locals => { :prefix => 'event[phone_number]', :legend => 'Phone Number' } %>
+</p>
+<p>
+	<%= render :partial => 'shared/location', :object => @contact_event.location,
+		:locals => { :prefix => 'event[location]', :legend => 'Location' } %>
+</p>
+
+<fieldset class="cq_form_submit">
+	<p>
+		<%= submit_tag 'Update' %>
+	</p>
+</fieldset>

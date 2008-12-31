@@ -14,13 +14,8 @@ gem install calendar_date_select
 
 THIS COMMIT:
 
-Refactored Location.initialize_from_params to Location.attributes=
-
-The Email, PhoneNumber and Url fields can now be empty when creating a
-new event.
-
-The /event/new and /event/create actions can now only be accessed by a
-logged in user.
+Refactored shared HTML/code from event/new and event/edit views into
+a partial template named form_fields.
 
 
 ======================================================================
