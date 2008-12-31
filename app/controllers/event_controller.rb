@@ -20,7 +20,7 @@ class EventController < ApplicationController
       @contact_event.save!
       redirect_to :controller => 'user', :action => 'index'
     else
-      redirect_to :action => 'new'
+      render :action => 'new'
     end
   end
 
@@ -91,13 +91,16 @@ protected
   end
 
   def event_and_linked_models_valid?
-    valid_models = @models_that_must_be_valid.reject { |model|
+    models_are_valid = @models_that_must_be_valid.reject { |model|
       model.valid?
     }.empty?
-    completely_blank_or_valid_models = @models_that_can_be_completely_blank.reject { |model|
+    models_are_completely_blank_or_valid = @models_that_can_be_completely_blank.reject { |model|
       model.completely_blank? or model.valid?
     }.empty?
-    valid_models && completely_blank_or_valid_models
+ 
+    @error_messages = @all_linked_models.collect { |m| m.errors.full_messages }.flatten
+    
+    models_are_valid && models_are_completely_blank_or_valid
   end
   
   def initialize_event_and_linked_models_from_params(p)
@@ -109,6 +112,7 @@ protected
 
     @models_that_must_be_valid = [@contact_event, @contact_event.location]
     @models_that_can_be_completely_blank = [@contact_event.email, @contact_event.phone_number, @contact_event.url]
+    @all_linked_models = @models_that_must_be_valid + @models_that_can_be_completely_blank
   end
   
 

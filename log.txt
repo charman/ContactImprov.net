@@ -14,8 +14,13 @@ gem install calendar_date_select
 
 THIS COMMIT:
 
-Refactored shared HTML/code from event/new and event/edit views into
-a partial template named form_fields.
+Error messages are now displayed on the /event/new and /event/edit
+pages.
+
+If invalid form data is now posted to the /event/create action, it now
+renders /event/new instead of redirecting to /event/new.
+
+Removed the log directory from version control.
 
 
 ======================================================================
@@ -27,7 +32,7 @@ TODO:
     - display error messages
   - edit page
     - display error messages
-  - (?) integration test to follow redirect and validate error messages
+  - functional tests for error messages
 
 @ Copy/adapt:
   - models

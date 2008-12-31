@@ -81,7 +81,8 @@ class EventControllerTest < ActionController::TestCase
         :phone_number => { :number => phone_numbers(:complete_contact_event).number },
         :ci_url => { :address => urls(:complete_contact_event).address }
       }
-    assert_redirected_to :action => 'new'   # lemma: redirected to new if application rejected
+    assert_select "[class=errorExplanation]"
+    assert_response :success
   end
 
   def test_should_restrict_access_to_create_to_logged_in_users

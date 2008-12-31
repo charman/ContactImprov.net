@@ -8,7 +8,7 @@
 
 <% if defined?(@error_messages) && !@error_messages.empty? %>
 	<div class="errorExplanation" id="errorExplanation">
-		<h2>Unable to update your account info</h2>
+		<h2>Unable to update your event info</h2>
 		<p><%= content_tag(:ul, @error_messages.map {|m| content_tag(:li, m)}) %></p>
 	</div>
 <% end %>
