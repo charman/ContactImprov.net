@@ -36,7 +36,7 @@ CREATE TABLE `ci_contact_event_versions` (
   `ci_notes` text,
   `updated_at` datetime default NULL,
   PRIMARY KEY  (`contact_event_version_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=15001 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=15003 DEFAULT CHARSET=utf8;
 
 CREATE TABLE `ci_contact_events` (
   `contact_event_id` int(11) NOT NULL auto_increment,

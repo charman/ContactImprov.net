@@ -14,13 +14,12 @@ gem install calendar_date_select
 
 THIS COMMIT:
 
-Error messages are now displayed on the /event/new and /event/edit
-pages.
+Fixed data handling for /event/edit form.  The data is being submitted
+with PUT, not POST.
 
-If invalid form data is now posted to the /event/create action, it now
-renders /event/new instead of redirecting to /event/new.
-
-Removed the log directory from version control.
+Updated version_condition_met? conditions for ContactEvent model.  The
+previous conditions were invalid as they referred to a non-existent
+member variable name.
 
 
 ======================================================================
@@ -28,11 +27,8 @@ Removed the log directory from version control.
 TODO:
 
 @ Event model
-  - new
-    - display error messages
-  - edit page
-    - display error messages
-  - functional tests for error messages
+  - functional tests for create/edit actions, to confirm error
+     messages
 
 @ Copy/adapt:
   - models

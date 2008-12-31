@@ -23,6 +23,6 @@ class ContactEvent < ActiveRecord::Base
   end
 
   def version_condition_met?
-    name_changed?
+    title_changed? || subtitle_changed? || start_date_changed? || end_date_changed? || ci_notes_changed?
   end
 end

@@ -48,7 +48,7 @@ class EventController < ApplicationController
     @contact_event.phone_number ||= PhoneNumber.new
     @contact_event.url          ||= Url.new
 
-    if request.post?
+    if request.put?
       initialize_event_and_linked_models_from_params(params)
 
       if event_and_linked_models_valid?
