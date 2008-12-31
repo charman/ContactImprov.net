@@ -9,17 +9,17 @@ WHEN UPDATING PRODUCTION SERVER:
 
 gem install calendar_date_select
 
+Recreate log directory.
+
 
 ======================================================================
 
 THIS COMMIT:
 
-Fixed data handling for /event/edit form.  The data is being submitted
-with PUT, not POST.
+Added unit tests to catch when the version_conditions_met? function
+fails.
 
-Updated version_condition_met? conditions for ContactEvent model.  The
-previous conditions were invalid as they referred to a non-existent
-member variable name.
+Added functional tests for /event/create and /event/edit actions.
 
 
 ======================================================================
@@ -27,8 +27,11 @@ member variable name.
 TODO:
 
 @ Event model
-  - functional tests for create/edit actions, to confirm error
-     messages
+  ...
+
+@ Copy over person unit tests
+
+@ Sidebar - change 'change your address'
 
 @ Copy/adapt:
   - models

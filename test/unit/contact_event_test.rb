@@ -12,6 +12,7 @@ class ContactEventTest < ActiveSupport::TestCase
     assert_nil c.version
     assert c.save!
     assert c.version == 1
+    assert c.save!    #  Verify that versions_conditions_met? does not fail
   end
 
   def test_should_validate_with_title_description_and_dates

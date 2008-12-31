@@ -12,6 +12,7 @@ class LocationTest < ActiveSupport::TestCase
     l.country_name = CountryName.find_by_english_name('Canada')
     assert l.save!
     assert l.version == 1
+    assert l.save!    #  Verify that versions_conditions_met? does not fail
   end
 
   def test_should_be_in_usa

@@ -11,6 +11,7 @@ class UrlTest < ActiveSupport::TestCase
     assert_nil u.version
     assert u.save!
     assert u.version == 1
+    assert u.save!    #  Verify that versions_conditions_met? does not fail
   end
 
   def test_should_validate_with_address

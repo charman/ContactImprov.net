@@ -11,6 +11,7 @@ class EmailTest < ActiveSupport::TestCase
     assert_nil e.version
     assert e.save!
     assert e.version == 1
+    assert e.save!    #  Verify that versions_conditions_met? does not fail
   end
 
   def test_should_validate_with_address

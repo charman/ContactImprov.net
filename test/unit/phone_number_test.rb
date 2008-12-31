@@ -11,6 +11,7 @@ class PhoneNumberTest < ActiveSupport::TestCase
     assert_nil p.version
     assert p.save!
     assert p.version == 1
+    assert p.save!    #  Verify that versions_conditions_met? does not fail
   end
 
   def test_should_validate_with_number

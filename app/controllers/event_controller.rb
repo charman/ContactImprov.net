@@ -54,7 +54,9 @@ class EventController < ApplicationController
       if event_and_linked_models_valid?
         delete_completely_blank_models
         @contact_event.owner_user = current_user
-        @contact_event.save!
+        @models_that_can_be_completely_blank.each { |m| m.save! if not m.completely_blank? }
+        @models_that_must_be_valid.each { |m| m.save! }
+        # lemma: @contact_event is the last event to be saved
         redirect_to :controller => 'user', :action => 'index'
       end
     end
@@ -91,11 +93,11 @@ protected
   end
 
   def event_and_linked_models_valid?
-    models_are_valid = @models_that_must_be_valid.reject { |model|
-      model.valid?
-    }.empty?
     models_are_completely_blank_or_valid = @models_that_can_be_completely_blank.reject { |model|
       model.completely_blank? or model.valid?
+    }.empty?
+    models_are_valid = @models_that_must_be_valid.reject { |model|
+      model.valid?
     }.empty?
  
     @error_messages = @all_linked_models.collect { |m| m.errors.full_messages }.flatten
@@ -110,8 +112,9 @@ protected
     @contact_event.phone_number.attributes = p[:event][:phone_number]
     @contact_event.url.attributes          = p[:event][:ci_url]
 
-    @models_that_must_be_valid = [@contact_event, @contact_event.location]
     @models_that_can_be_completely_blank = [@contact_event.email, @contact_event.phone_number, @contact_event.url]
+    #  @contact_event must be listed last in this array because it is the last model that should be saved
+    @models_that_must_be_valid = [@contact_event.location, @contact_event]  
     @all_linked_models = @models_that_must_be_valid + @models_that_can_be_completely_blank
   end
   

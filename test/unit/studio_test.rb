@@ -9,6 +9,7 @@ class StudioTest < ActiveSupport::TestCase
     assert_nil s.version
     assert s.save!
     assert s.version == 1
+    assert s.save!    #  Verify that versions_conditions_met? does not fail
   end
 
   def test_should_validate_with_name

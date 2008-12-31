@@ -20,7 +20,7 @@ class PhoneNumber < ActiveRecord::Base
   end
 
   def version_condition_met?
-    for_entity_id_changed? || phone_type_id_changed? || number_changed?
+    for_entity_id_changed? || number_changed?
   end
 
 

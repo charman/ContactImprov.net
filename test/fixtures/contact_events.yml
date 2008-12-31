@@ -4,7 +4,7 @@ complete_contact_event:
     description: 'A completely complete Contact Event application'
     start_date: 2008-12-26
     end_date: 2008-12-28
-    owner_user: 1
+    owner_user_id: 1
     person_id: 100
     location_id: 100
     email_id: 100
