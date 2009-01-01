@@ -1,13 +1,29 @@
 <%= render(:partial => "shared/header", :locals => { :title => 'List Events' } )%>
 
 <% @events.each do |event| %>
-	<p>
-		Title: <%= event.title %>
-		<br />
-		Subtitle: <%= event.subtitle %>
-	</p>
+	<dt>
+		<span class='date'></span>
+		<span class='event'><%= event.title %></span>
+		<span class='location'><%= "" %></span>
+	</dt>
+	<dd>
+		<span class='description'><%= event.description %></span>
+		<br>
+		<span class='fee'></span>
+		<br>
+		<span class='contact'>
+			CONTACT: <%= "#{event.person.first_name} #{event.person.last_name}" %>
+			&nbsp;&nbsp;&nbsp;&nbsp;
+			PHONE: <%= event.phone_number.number %>
+			&nbsp;&nbsp;&nbsp;&nbsp;
+			EMAIL: <%= event.email.address %>
+			&nbsp;&nbsp;&nbsp;&nbsp; 
+			WEBSITE: <%= event.url.address %>
+		</span>
+		<br>
+		<span class='updated'>[<%= event.updated_at.strftime('%b %d %Y') %>]</span>
+	</dd>
 
 <% end %>
-
 
 <%= render(:partial => "shared/footer" )%>

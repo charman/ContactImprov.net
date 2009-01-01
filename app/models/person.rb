@@ -1,8 +1,9 @@
 class Person < ActiveRecord::Base
 #  has_one :contacts_application
 #  has_one :entity, :as => :resource
-  has_one :user
 #  has_one :user_account_request
+  has_one :contact_event
+  has_one :user
   
   acts_as_versioned
   self.non_versioned_columns << 'created_at'

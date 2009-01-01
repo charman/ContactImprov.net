@@ -16,8 +16,8 @@ Recreate log directory.
 
 THIS COMMIT:
 
-In the sidebar, changed 'Change your mailing address' to 'Change your
-name'.
+Created initialize_db/add_event_info.rb to add some sample
+ContactEvent data to the database.
 
 
 ======================================================================
@@ -25,7 +25,17 @@ name'.
 TODO:
 
 @ Event model
+  - helper functions
+    - for formatting date range
+    - for formatting location data
+  - update 'list' page
+    - copy over CSS from CI.net
+  - add 'Contact Person' fields to form
+  - add 'fee' field
+  - (?) drop subtitle field
   ...
+
+@ Create /admin/events
 
 @ Create
   - ContactJam model
@@ -33,12 +43,19 @@ TODO:
 
 @ Prune UserMailer model
 
+@ Use Kuler to pick a new color scheme
+
 @ Copy/adapt:
   - models
     - Entry
     - Entity
 
 ---
+
+@ Find library to strip HTML code from fields
+
+@ Investigate ways to convert line breaks to <br />'s in form fields
+  - look at Markdown
 
 @ ack for instances of 'uarterly' or 'CQ'
 

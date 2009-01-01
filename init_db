@@ -13,3 +13,4 @@ mysql -u root --password=borkborkbork ci_rails < initialize_db/country_names.sql
 mysql -u root --password=borkborkbork ci_rails < initialize_db/us_states.sql
 
 script/runner initialize_db/create_initial_accounts.rb
+script/runner initialize_db/add_event_info.rb
