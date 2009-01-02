@@ -16,16 +16,15 @@ Recreate log directory.
 
 THIS COMMIT:
 
-Created admin/events controller.
-
-Discovered that the /admin/users/show/[ID] action was failing.
+Created admin/events/list page.
 
 
 ======================================================================
 
 TODO:
 
-@ Event model
+@ Events
+  - allow admins to edit all events
   - update 'list' page
     - allow event to be displayed if missing some fields
   ...

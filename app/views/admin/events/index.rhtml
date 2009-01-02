@@ -1,4 +1,10 @@
 <%= render(:partial => "shared/admin/header",
            :locals => { :subsection => 'events', :title => 'Overview' } )%>
 
+<p style="font-size: x-large;">
+	<%= link_to 'List Events', :action => 'list' %> 
+	(<%= @total_events %> total)
+</p>
+
+
 <%= render(:partial => "shared/admin/footer" )%>
