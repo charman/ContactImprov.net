@@ -16,8 +16,9 @@ Recreate log directory.
 
 THIS COMMIT:
 
-For ContactEvent model, removed 'subtitle' field and added
-'fee_description' field.
+Added 'Contact Person' fields to the event forms.
+
+Added a completely_blank? function to the Person model.
 
 
 ======================================================================
@@ -25,7 +26,6 @@ For ContactEvent model, removed 'subtitle' field and added
 TODO:
 
 @ Event model
-  - add 'Contact Person' fields to form
   - helper functions
     - for obfuscating email address
   - update 'list' page

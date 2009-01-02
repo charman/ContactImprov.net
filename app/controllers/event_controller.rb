@@ -44,6 +44,7 @@ class EventController < ApplicationController
       return
     end
 
+    @contact_event.person       ||= Person.new
     @contact_event.email        ||= Email.new
     @contact_event.phone_number ||= PhoneNumber.new
     @contact_event.url          ||= Url.new
@@ -75,6 +76,7 @@ protected
 
   def create_event_and_linked_models
     @contact_event = ContactEvent.new
+    @contact_event.person       = Person.new
     @contact_event.email        = Email.new
     @contact_event.location     = Location.new
     @contact_event.phone_number = PhoneNumber.new
@@ -107,14 +109,16 @@ protected
   
   def initialize_event_and_linked_models_from_params(p)
     @contact_event.attributes = p[:contact_event]
+    @contact_event.person.attributes       = p[:event][:person]
     @contact_event.email.attributes        = p[:event][:email]
     @contact_event.location.attributes     = p[:event][:location]
     @contact_event.phone_number.attributes = p[:event][:phone_number]
     @contact_event.url.attributes          = p[:event][:ci_url]
 
-    @models_that_can_be_completely_blank = [@contact_event.email, @contact_event.phone_number, @contact_event.url]
+    @models_that_can_be_completely_blank = [@contact_event.email, @contact_event.person, @contact_event.phone_number, @contact_event.url]
     #  @contact_event must be listed last in this array because it is the last model that should be saved
     @models_that_must_be_valid = [@contact_event.location, @contact_event]  
+
     @all_linked_models = @models_that_must_be_valid + @models_that_can_be_completely_blank
   end
   

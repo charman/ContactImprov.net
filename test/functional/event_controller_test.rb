@@ -22,6 +22,10 @@ class EventControllerTest < ActionController::TestCase
         :end_date         => contact_events(:complete_contact_event).end_date
       },
       :event => {
+        :person => { 
+          :first_name => people(:complete_contact_event).first_name, 
+          :last_name  => people(:complete_contact_event).last_name
+        },
         :email => { :address => emails(:complete_contact_event).address },
         :location => @@default_location_fields,
         :phone_number => { :number => phone_numbers(:complete_contact_event).number },
@@ -35,6 +39,8 @@ class EventControllerTest < ActionController::TestCase
     assert_equal contact_events(:complete_contact_event).fee_description, new_event.fee_description
     assert_equal contact_events(:complete_contact_event).start_date,      new_event.start_date
     assert_equal contact_events(:complete_contact_event).end_date,        new_event.end_date
+    assert_equal people(:complete_contact_event).first_name,              new_event.person.first_name
+    assert_equal people(:complete_contact_event).last_name,               new_event.person.last_name
     assert_equal emails(:complete_contact_event).address, new_event.email.address
     verify_default_location_fields(new_event.location)
     assert_equal phone_numbers(:complete_contact_event).number, new_event.phone_number.number

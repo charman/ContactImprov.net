@@ -22,6 +22,10 @@ class Person < ActiveRecord::Base
 #    end  
   end
 
+  def completely_blank?
+    self.first_name.blank? && self.last_name.blank?
+  end
+
   def last_comma_first
     "#{self.last_name}, #{self.first_name}"
   end

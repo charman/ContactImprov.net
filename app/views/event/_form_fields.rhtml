@@ -34,8 +34,12 @@
 
 
 <p>
+	<%= render :partial => 'shared/person', :object => @contact_event.person,
+		:locals => { :prefix => 'event[person]', :legend => 'Contact Person' } %>
+</p>
+<p>
 	<%= render :partial => 'shared/url', :object => @contact_event.url,
-		:locals => { :prefix => 'event[ci_url]', :legend => 'URL' } %>
+		:locals => { :prefix => 'event[ci_url]', :legend => 'Website' } %>
 </p>
 <p>
 	<%= render :partial => 'shared/email', :object => @contact_event.email,
