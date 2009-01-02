@@ -16,10 +16,8 @@ Recreate log directory.
 
 THIS COMMIT:
 
-Created helper function for formatting an event's location data.
-
-Added a few assertions to the ContactEvent unit tests for maintaining
-proper start/end date order.
+For ContactEvent model, removed 'subtitle' field and added
+'fee_description' field.
 
 
 ======================================================================
@@ -27,14 +25,12 @@ proper start/end date order.
 TODO:
 
 @ Event model
+  - add 'Contact Person' fields to form
   - helper functions
-    - for formatting location data
     - for obfuscating email address
   - update 'list' page
     - copy over CSS from CI.net
-  - add 'Contact Person' fields to form
-  - add 'fee' field
-  - (?) drop subtitle field
+    - allow event to be displayed if missing some fields
   ...
 
 @ Create /admin/events

@@ -4,8 +4,8 @@ class CreateContactEvents < ActiveRecord::Migration
       t.column   :contact_event_id, :primary_key, :null => false
       t.integer  :version
       t.string   :title
-      t.string   :subtitle
       t.text     :description
+      t.text     :fee_description
       t.date     :start_date
       t.date     :end_date
       t.integer  :owner_user_id
@@ -25,8 +25,8 @@ class CreateContactEvents < ActiveRecord::Migration
       t.integer  :contact_event_id
       t.integer  :version
       t.string   :title
-      t.string   :subtitle
       t.text     :description
+      t.text     :fee_description
       t.date     :start_date
       t.date     :end_date
       t.integer  :owner_user_id

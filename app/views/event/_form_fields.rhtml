@@ -7,12 +7,12 @@
 				<%= event.text_field :title, :size => 60 %>
 			</li>
 			<li style="clear: both; padding-bottom: 0.4em;">
-				<label>Subtitle:</label>
-				<%= event.text_field :subtitle, :size => 60 %>
-			</li>
-			<li style="clear: both; padding-bottom: 0.4em;">
 				<label>Description:</label>
 				<%= event.text_area :description, :rows => 12, :cols => 60 %>
+			</li>
+			<li style="clear: both; padding-bottom: 0.4em;">
+				<label>Fee:</label>
+				<%= event.text_area :fee_description, :rows => 12, :cols => 60 %>
 			</li>
 		</ol>
 		<table>

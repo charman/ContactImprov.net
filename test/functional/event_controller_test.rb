@@ -17,6 +17,7 @@ class EventControllerTest < ActionController::TestCase
       :contact_event => {
         :title            => contact_events(:complete_contact_event).title,
         :description      => contact_events(:complete_contact_event).description,
+        :fee_description  => contact_events(:complete_contact_event).fee_description,
         :start_date       => contact_events(:complete_contact_event).start_date,
         :end_date         => contact_events(:complete_contact_event).end_date
       },
@@ -29,10 +30,11 @@ class EventControllerTest < ActionController::TestCase
     assert_redirected_to :controller => 'user', :action => 'index'
     new_event = ContactEvent.find(:last)    
     assert_equal users(:quentin), new_event.owner_user
-    assert_equal contact_events(:complete_contact_event).title,       new_event.title
-    assert_equal contact_events(:complete_contact_event).description, new_event.description
-    assert_equal contact_events(:complete_contact_event).start_date,  new_event.start_date
-    assert_equal contact_events(:complete_contact_event).end_date,    new_event.end_date
+    assert_equal contact_events(:complete_contact_event).title,           new_event.title
+    assert_equal contact_events(:complete_contact_event).description,     new_event.description
+    assert_equal contact_events(:complete_contact_event).fee_description, new_event.fee_description
+    assert_equal contact_events(:complete_contact_event).start_date,      new_event.start_date
+    assert_equal contact_events(:complete_contact_event).end_date,        new_event.end_date
     assert_equal emails(:complete_contact_event).address, new_event.email.address
     verify_default_location_fields(new_event.location)
     assert_equal phone_numbers(:complete_contact_event).number, new_event.phone_number.number
@@ -163,6 +165,7 @@ class EventControllerTest < ActionController::TestCase
       :contact_event => {
         :title            => 'newtitle',
         :description      => 'newdescription',
+        :fee_description  => 'newfeedescription',
         :start_date       => '2006-06-06',
         :end_date         => '2006-06-06'
       },
@@ -179,6 +182,7 @@ class EventControllerTest < ActionController::TestCase
     assert_equal users(:quentin),                    updated_event.owner_user
     assert_equal 'newtitle',                         updated_event.title
     assert_equal 'newdescription',                   updated_event.description
+    assert_equal 'newfeedescription',                updated_event.fee_description
     assert_equal '2006-06-06',                       updated_event.start_date.strftime('%Y-%m-%d')
     assert_equal '2006-06-06',                       updated_event.end_date.strftime('%Y-%m-%d')
     assert_equal 'newaddress@contactimprov.org',     updated_event.email.address
