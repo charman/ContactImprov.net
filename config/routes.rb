@@ -46,7 +46,7 @@ ActionController::Routing::Routes.draw do |map|
   
   map.index '/', :controller => 'home', :action => 'index'
 
-  map.admin_index '/admin', :controller => 'Admin::Users', :action => 'index'
+  map.admin_index '/admin', :controller => 'admin/home', :action => 'index'
   
   map.event_index '/event', :controller => 'event', :action => 'list'
   # [/CTH]

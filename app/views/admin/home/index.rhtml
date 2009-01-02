@@ -1,0 +1,12 @@
+<%= render(:partial => "shared/admin/header",
+           :locals => { :subsection => 'home', :title => 'Overview' } )%>
+
+<p style="font-size: x-large;">
+	<%= link_to 'Administer Events', :action => 'index', :controller => 'admin/events' %> 
+</p>
+
+<p style="font-size: x-large;">
+	<%= link_to 'Administer Users', :action => 'index', :controller => 'admin/users' %> 
+</p>
+
+<%= render(:partial => "shared/admin/footer" )%>

@@ -1,6 +1,27 @@
 # Methods added to this helper will be available to all templates in the application.
 module ApplicationHelper
 
+  #  The object must belong to a class with the 'acts_as_versioned' property
+  def attribute_changed_from_previous_version?(an_object, attribute_name)
+    original_version = an_object.version
+
+    if original_version <= 1
+      return true
+    end
+    
+    an_object.revert_to(original_version - 1)
+    previous_value = an_object.send(attribute_name)
+   
+    an_object.revert_to(original_version)     #  Revert to original version before returning
+    current_value = an_object.send(attribute_name)
+    
+    if current_value != previous_value
+      return true
+    else
+      return false
+    end
+  end
+
   def obfuscate_email_with_javascript(e)
     address, server = e.split('@')
 
@@ -63,6 +84,15 @@ module ApplicationHelper
     text_field(object, method, tag_options) +
     content_tag("div", "", :id => "#{uprefix}#{object}_#{method}_auto_complete", :class => "auto_complete") +
     javascript_tag(function)
+  end
+  
+  #  The object must belong to a class with the 'acts_as_versioned' property
+  def wrap_in_span_if_attribute_changed(an_object, attribute_name, span_options = 'style="font-weight: bold;"')
+    if attribute_changed_from_previous_version?(an_object, attribute_name)
+      "<span #{span_options}>#{an_object.send(attribute_name)}</span>"
+    else
+      an_object.send(attribute_name)
+    end
   end
   
 end

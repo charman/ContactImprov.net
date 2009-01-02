@@ -36,7 +36,7 @@ class SessionsControllerTest < ActionController::TestCase
   def test_should_redirect_admin_to_admin_page
     post :create, :email => users(:admin).email, :password => 'test'
     assert session[:user_id]
-    assert_redirected_to :controller => 'user', :action => 'index'
+    assert_redirected_to :controller => 'home', :action => 'index'
   end
 
   def test_should_login_and_redirect

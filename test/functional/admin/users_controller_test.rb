@@ -401,6 +401,16 @@ class Admin::UsersControllerTest < ActionController::TestCase
   end
 
 
+  #  Test 'show' action
+
+  def test_should_allow_admin_access_to_show
+    login_as :admin
+    get :show, :id => users(:quentin).user_id
+    assert_response :success
+    assert_select "[class=errorExplanation]", false
+  end
+
+
   #  Test 'show_account_request' action
 
   def test_should_allow_admin_access_to_show_account_request

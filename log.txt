@@ -16,11 +16,9 @@ Recreate log directory.
 
 THIS COMMIT:
 
-Copied over HTML from www.contactimprov.net/index.html to the
-/home/index view.  Remapped the root index (/) to /home/index.
+Created admin/events controller.
 
-Also copied over CSS file from CI.net and an image used by the
-stylesheet.
+Discovered that the /admin/users/show/[ID] action was failing.
 
 
 ======================================================================
@@ -29,11 +27,8 @@ TODO:
 
 @ Event model
   - update 'list' page
-    - copy over CSS from CI.net
     - allow event to be displayed if missing some fields
   ...
-
-@ Create /admin/events
 
 @ Create
   - ContactJam model
