@@ -13,6 +13,11 @@ only_used_once_user:
     first_name: 'Only'
     last_name:  'UsedOnce'
 
+complete_contact_event:
+    person_id: 100
+    first_name: 'Buck'
+    last_name: 'Rogers'
+
 doomed_person:
     person_id: 200
     first_name: 'Doctor'

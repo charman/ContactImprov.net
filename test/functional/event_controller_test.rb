@@ -6,7 +6,7 @@ class EventControllerTest < ActionController::TestCase
   Debugger.start
 
 
-  fixtures :contact_events, :country_names, :emails, :locations, :phone_numbers, :urls, :us_states, :users
+  fixtures :contact_events, :country_names, :emails, :locations, :people, :phone_numbers, :urls, :us_states, :users
 
 
   #  Test 'create' action

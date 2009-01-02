@@ -58,6 +58,20 @@ class ContactEventTest < ActiveSupport::TestCase
     assert_equal c.valid?, false
   end
 
+  def test_should_reorder_start_and_end_dates
+    older_date = '1-1-2009'.to_date
+    newer_date = '1-2-2009'.to_date
+    c = ContactEvent.new
+    c.title = 'TimeTest Event'
+    c.description = 'Verify that times are ordered correctly upon save'
+    c.start_date = newer_date
+    c.end_date = older_date
+    assert c.save!
+    c.reload
+    assert_equal older_date, c.start_date
+    assert_equal newer_date, c.end_date
+  end
+
   # def test_should_create_entity
   #   c = Company.new
   #   c.name = 'Foo'

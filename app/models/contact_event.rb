@@ -23,6 +23,12 @@ class ContactEvent < ActiveRecord::Base
     # end  
   end
 
+  def before_save
+    if self.start_date > self.end_date
+      self.start_date, self.end_date = self.end_date, self.start_date
+    end
+  end
+
   def version_condition_met?
     title_changed? || subtitle_changed? || start_date_changed? || end_date_changed? || ci_notes_changed?
   end

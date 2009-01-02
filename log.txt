@@ -16,15 +16,14 @@ Recreate log directory.
 
 THIS COMMIT:
 
-Created event helper function for formatting the start/end date range.
-
+Created ContactEvent.before_save function to ensure that start dates
+always occur before end dates, swapping the two if necessary.
 
 ======================================================================
 
 TODO:
 
 @ Event model
-  - swap start/end dates if necessary in before_save
   - helper functions
     - for formatting location data
     - for obfuscating email address
