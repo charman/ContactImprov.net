@@ -16,9 +16,9 @@
 			&nbsp;&nbsp;&nbsp;&nbsp;
 			PHONE: <%= event.phone_number.number %>
 			&nbsp;&nbsp;&nbsp;&nbsp;
-			EMAIL: <%= event.email.address %>
+			EMAIL: <%= obfuscate_email_with_javascript(event.email.address) %>
 			&nbsp;&nbsp;&nbsp;&nbsp; 
-			WEBSITE: <%= event.url.address %>
+			WEBSITE: <a href="<%= event.url.address %>"><%= event.url.address %></a>
 		</span>
 		<br>
 		<span class='updated'>[<%= event.updated_at.strftime('%b %d %Y') %>]</span>

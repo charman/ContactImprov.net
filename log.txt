@@ -16,9 +16,9 @@ Recreate log directory.
 
 THIS COMMIT:
 
-Added 'Contact Person' fields to the event forms.
-
-Added a completely_blank? function to the Person model.
+Created application wide helper function
+obfuscate_email_with_javascript that uses the code that Mugsy has been
+using on ContactImprov.net.
 
 
 ======================================================================
@@ -26,8 +26,6 @@ Added a completely_blank? function to the Person model.
 TODO:
 
 @ Event model
-  - helper functions
-    - for obfuscating email address
   - update 'list' page
     - copy over CSS from CI.net
     - allow event to be displayed if missing some fields
@@ -38,6 +36,8 @@ TODO:
 @ Create
   - ContactJam model
   - ContactPerson model
+
+@ Add 'prove your humanity' question to the Account Request page
 
 @ Prune UserMailer model
 

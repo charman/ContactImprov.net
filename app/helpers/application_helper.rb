@@ -1,6 +1,18 @@
 # Methods added to this helper will be available to all templates in the application.
 module ApplicationHelper
-  
+
+  def obfuscate_email_with_javascript(e)
+    address, server = e.split('@')
+
+    '<script language="javascript" type="text/javascript"><!--' + "\n" +
+      '// email1 & email2 are the text on either side of your email address\'s @ sign.' + "\n" +
+      "var email1 = \"#{address}\"\n" +
+      "var email2 = \"#{server}\"\n" +
+      'document.write("<a href=" + "mail" + "to:" + email1 + "@" + email2 + ">" + email1 + "@" + email2 + "</a>")' + "\n" +
+      "// -->\n" + 
+      "</script>\n"
+  end
+
   #  This is a modified version of the text_field_with_auto_complete function from
   #   the auto_complete plugin.  This function also contains some (modified) code 
   #   from the auto_complete_field function from the auto_complete plugin.

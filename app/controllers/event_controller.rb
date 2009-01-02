@@ -121,6 +121,5 @@ protected
 
     @all_linked_models = @models_that_must_be_valid + @models_that_can_be_completely_blank
   end
-  
 
 end
