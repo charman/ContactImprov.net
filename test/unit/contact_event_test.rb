@@ -70,6 +70,11 @@ class ContactEventTest < ActiveSupport::TestCase
     c.reload
     assert_equal older_date, c.start_date
     assert_equal newer_date, c.end_date
+    #  Verify that saving again doesn't reorder start/end dates
+    assert c.save!
+    c.reload
+    assert_equal older_date, c.start_date
+    assert_equal newer_date, c.end_date
   end
 
   # def test_should_create_entity

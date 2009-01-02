@@ -16,8 +16,11 @@ Recreate log directory.
 
 THIS COMMIT:
 
-Created ContactEvent.before_save function to ensure that start dates
-always occur before end dates, swapping the two if necessary.
+Created helper function for formatting an event's location data.
+
+Added a few assertions to the ContactEvent unit tests for maintaining
+proper start/end date order.
+
 
 ======================================================================
 
