@@ -44,7 +44,7 @@ ActionController::Routing::Routes.draw do |map|
   map.login '/login', :controller => 'sessions', :action => 'new'
   map.logout '/logout', :controller => 'sessions', :action => 'destroy'
   
-  map.index '/', :controller => 'user', :action => 'index'
+  map.index '/', :controller => 'home', :action => 'index'
 
   map.admin_index '/admin', :controller => 'Admin::Users', :action => 'index'
   

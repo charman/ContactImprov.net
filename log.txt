@@ -16,7 +16,11 @@ Recreate log directory.
 
 THIS COMMIT:
 
-Created home and admin/home controllers.
+Copied over HTML from www.contactimprov.net/index.html to the
+/home/index view.  Remapped the root index (/) to /home/index.
+
+Also copied over CSS file from CI.net and an image used by the
+stylesheet.
 
 
 ======================================================================
