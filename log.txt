@@ -16,8 +16,7 @@ Recreate log directory.
 
 THIS COMMIT:
 
-Created initialize_db/add_event_info.rb to add some sample
-ContactEvent data to the database.
+Created event helper function for formatting the start/end date range.
 
 
 ======================================================================
@@ -25,9 +24,10 @@ ContactEvent data to the database.
 TODO:
 
 @ Event model
+  - swap start/end dates if necessary in before_save
   - helper functions
-    - for formatting date range
     - for formatting location data
+    - for obfuscating email address
   - update 'list' page
     - copy over CSS from CI.net
   - add 'Contact Person' fields to form

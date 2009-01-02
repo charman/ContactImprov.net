@@ -2,7 +2,7 @@
 
 <% @events.each do |event| %>
 	<dt>
-		<span class='date'></span>
+		<span class='date'><%= format_event_date_range(event) %></span>
 		<span class='event'><%= event.title %></span>
 		<span class='location'><%= "" %></span>
 	</dt>
@@ -23,7 +23,6 @@
 		<br>
 		<span class='updated'>[<%= event.updated_at.strftime('%b %d %Y') %>]</span>
 	</dd>
-
 <% end %>
 
 <%= render(:partial => "shared/footer" )%>
