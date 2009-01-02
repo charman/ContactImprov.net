@@ -16,9 +16,7 @@ Recreate log directory.
 
 THIS COMMIT:
 
-Created application wide helper function
-obfuscate_email_with_javascript that uses the code that Mugsy has been
-using on ContactImprov.net.
+Created home and admin/home controllers.
 
 
 ======================================================================
@@ -51,6 +49,7 @@ TODO:
 ---
 
 @ Find library to strip HTML code from fields
+  - read article bookmarked in NNW
 
 @ Investigate ways to convert line breaks to <br />'s in form fields
   - look at Markdown
