@@ -16,32 +16,28 @@ Recreate log directory.
 
 THIS COMMIT:
 
-Modified CSS file to use gray background color from CI.net instead of
-yellow from CQ.com.  Amazingly, not an improvement.
+The admin/users/show page now lists a user's Contact Events.
+
+Refactored the table that lists an array of events into a partial
+template.
+
+Added instructions to home page explaining how to submit an event.
 
 
 ======================================================================
 
 TODO:
 
-@ Home page
-  - update instructions
-  - text indicating if user is logged in
-  - link to a user's user page
+@ Add 'prove your humanity' question to the Account Request page
+
+@ Prune UserMailer model
 
 @ Events
   ...
 
-@ admin/users
-  - list a user's contact events
-
 @ Create
   - ContactJam model
   - ContactPerson model
-
-@ Add 'prove your humanity' question to the Account Request page
-
-@ Prune UserMailer model
 
 @ Use Kuler to pick a new color scheme
 

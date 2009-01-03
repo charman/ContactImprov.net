@@ -23,7 +23,7 @@
 	<h2>Actions for User Account for  <%= "#{@user.person.first_name} #{@user.person.last_name}" %>:</h2>
 	<div class="userinfo" style="font-size: large;">
 		<ul>
-			<li><a href="/admin/users/edit/<%= @user.id %>">Edit</a></li>
+			<li><a href="/admin/users/edit/<%= @user.id %>">Edit Name</a></li>
 			<% if @user.active? %>
 				<li><a href="/admin/users/reset_password/<%= @user.id %>">Reset password</a></li>
 			<% end %>
@@ -99,6 +99,13 @@
 
 	<hr />
 	
+	<h2>Contact Events owned by User</h2>
+	
+	<div style="margin-left: 2em; margin-bottom: 1em;">
+		<%= render(:partial => "shared/admin/list_events" )%>
+	</div>
+	
+	<hr />
 	
 	<script type="text/javascript">
 	//  People Table

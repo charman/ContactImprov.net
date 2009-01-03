@@ -71,7 +71,8 @@ fieldset {
     margin: 0em 0em 0em 0em;
     padding: 0em;
     border: 1px solid #BFBAB0;
-    background-color: #FFFFE6;
+    background-color: #E7E7E7;
+    /* background-color: #FFFFE6; */
 }
 legend {
     margin-left: 1em;

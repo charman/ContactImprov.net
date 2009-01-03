@@ -5,7 +5,7 @@
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8;" />
 	<title>
-		CQ-Admin:
+		CI-Admin:
 		<%= defined?(subsection) && !subsection.nil? ? " #{subsection.titleize.gsub('_', ' ')}: " : '' %>
 		<%= title %>
 	</title>
@@ -98,7 +98,7 @@
 
 <body>
 
-<h1><a href="/">CQ</a>-<a href="/admin">Admin</a><%= 
+<h1><a href="/">CI</a>-<a href="/admin">Admin</a><%= 
 	defined?(subsection) && !subsection.nil? ? "-<a href=\"/admin/#{subsection.downcase}\">#{subsection.titleize.gsub('_', ' ')}</a>" : '' 
 %>:
 <%= title %></h1>

@@ -8,6 +8,10 @@
 				Change your email address</a> from <b><%= @user.email %></b>
 		</p>
 		<p>
+			<a href="<%= url_for :action => 'edit' %>">
+				Change your name</a>
+		</p>
+		<p>
 			<a href="<%= url_for :action => 'change_password' %>">
 				Change your password</a>
 		</p>

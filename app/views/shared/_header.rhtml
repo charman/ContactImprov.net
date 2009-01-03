@@ -19,24 +19,6 @@
 		<div id="titlebar_ci">
 		</div>
 
-		<div class="sidebar">
-			<ul class="sidebar_menu">
-					<li style="font-weight: bold; font-style: italic;">
-						<a href="/user">Online Account Home</a>
-					</li>
-				<% if logged_in? %>
-					<li>
-						<a href="/user/change_email">Change your email address</a>
-					</li>
-					<li>
-						<a href="/user/change_password">Change your password</a>
-					</li>
-					<li>
-						<a href="/user/edit">Change your name</a>
-					</li>
-				<% end %>
-			</ul>
-		</div>
 		<div class="content">
 			<p style="font-size: small; margin-top: 0em; text-align: right; width: 100%;">
 				<% if logged_in? %>
