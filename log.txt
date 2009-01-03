@@ -16,17 +16,24 @@ Recreate log directory.
 
 THIS COMMIT:
 
-admins can now edit all events.
+Updated /home/index page (aka /) to not fail if a ContactEvent is
+missing some of the optional fields.
 
 
 ======================================================================
 
 TODO:
 
+@ Home page
+  - update instructions
+  - text indicating if user is logged in
+  - link to a user's user page
+
 @ Events
-  - update 'list' page
-    - allow event to be displayed if missing some fields
   ...
+
+@ admin/users
+  - list a user's contact events
 
 @ Create
   - ContactJam model
