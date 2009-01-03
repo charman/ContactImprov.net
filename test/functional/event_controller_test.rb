@@ -123,6 +123,13 @@ class EventControllerTest < ActionController::TestCase
     assert_select "[class=errorExplanation]", false
   end
   
+  def test_should_allow_access_to_edit_to_admin
+    login_as :admin
+    get :edit, :id => contact_events(:complete_contact_event).contact_event_id
+    assert_response :success
+    assert_select "[class=errorExplanation]", false
+  end
+  
   def test_should_restrict_access_to_edit_to_logged_in_users
     get :edit, :id => contact_events(:complete_contact_event).contact_event_id
     assert_redirected_to :controller => 'session', :action => 'new'
@@ -165,37 +172,16 @@ class EventControllerTest < ActionController::TestCase
     assert_equal phone_numbers(:complete_contact_event).number, new_event.phone_number.number
   end
 
-  def test_should_edit_contact_event_application
+  def test_should_let_owner_user_edit_contact_event_application
     login_as :quentin
-    put :edit, :id => contact_events(:complete_contact_event).contact_event_id,
-      :contact_event => {
-        :title            => 'newtitle',
-        :description      => 'newdescription',
-        :fee_description  => 'newfeedescription',
-        :start_date       => '2006-06-06',
-        :end_date         => '2006-06-06'
-      },
-      :event => {
-        :email => { :address => 'newaddress@contactimprov.org' },
-        :location => @@default_location_fields,
-        :phone_number => { :number => '666-666-6666' },
-        :ci_url => { :address => 'http://contactimprov.org/newurl/' }
-      }
-    assert_redirected_to :controller => 'user', :action => 'index'
-    
-    #  Verify that field values have been updated
-    updated_event = ContactEvent.find(contact_events(:complete_contact_event).contact_event_id)
-    assert_equal users(:quentin),                    updated_event.owner_user
-    assert_equal 'newtitle',                         updated_event.title
-    assert_equal 'newdescription',                   updated_event.description
-    assert_equal 'newfeedescription',                updated_event.fee_description
-    assert_equal '2006-06-06',                       updated_event.start_date.strftime('%Y-%m-%d')
-    assert_equal '2006-06-06',                       updated_event.end_date.strftime('%Y-%m-%d')
-    assert_equal 'newaddress@contactimprov.org',     updated_event.email.address
-    verify_default_location_fields(updated_event.location)
-    assert_equal '666-666-6666',                     updated_event.phone_number.number
-    assert_equal 'http://contactimprov.org/newurl/', updated_event.url.address
+    post_data_to_edit_and_test_response
   end
+
+  def test_should_let_admin_edit_contact_event_application
+   login_as :admin
+   post_data_to_edit_and_test_response
+  end
+
 
   #  TODO: If we edit an event and delete the contents of the email/phone_number/url fields,
   #         verify that the models were deleted from the database  (OR NOT?)
@@ -226,6 +212,38 @@ class EventControllerTest < ActionController::TestCase
   
 
 protected
+
+  def post_data_to_edit_and_test_response
+    put :edit, :id => contact_events(:complete_contact_event).contact_event_id,
+      :contact_event => {
+        :title            => 'newtitle',
+        :description      => 'newdescription',
+        :fee_description  => 'newfeedescription',
+        :start_date       => '2006-06-06',
+        :end_date         => '2006-06-06'
+      },
+      :event => {
+        :email => { :address => 'newaddress@contactimprov.org' },
+        :location => @@default_location_fields,
+        :phone_number => { :number => '666-666-6666' },
+        :ci_url => { :address => 'http://contactimprov.org/newurl/' }
+      }
+    assert_redirected_to :controller => 'user', :action => 'index'
+    
+    #  Verify that field values have been updated
+    updated_event = ContactEvent.find(contact_events(:complete_contact_event).contact_event_id)
+    #  owner_user should not be updated when Contact Event is edited by an admin
+    assert_equal users(:quentin),                    updated_event.owner_user
+    assert_equal 'newtitle',                         updated_event.title
+    assert_equal 'newdescription',                   updated_event.description
+    assert_equal 'newfeedescription',                updated_event.fee_description
+    assert_equal '2006-06-06',                       updated_event.start_date.strftime('%Y-%m-%d')
+    assert_equal '2006-06-06',                       updated_event.end_date.strftime('%Y-%m-%d')
+    assert_equal 'newaddress@contactimprov.org',     updated_event.email.address
+    verify_default_location_fields(updated_event.location)
+    assert_equal '666-666-6666',                     updated_event.phone_number.number
+    assert_equal 'http://contactimprov.org/newurl/', updated_event.url.address
+  end
 
   def verify_error_messages_for_missing_fields
     assert_response :success

@@ -16,7 +16,7 @@ Recreate log directory.
 
 THIS COMMIT:
 
-Created admin/events/list page.
+admins can now edit all events.
 
 
 ======================================================================
@@ -24,7 +24,6 @@ Created admin/events/list page.
 TODO:
 
 @ Events
-  - allow admins to edit all events
   - update 'list' page
     - allow event to be displayed if missing some fields
   ...

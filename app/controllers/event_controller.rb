@@ -39,7 +39,8 @@ class EventController < ApplicationController
       return
     end
 
-    if @contact_event.owner_user != current_user
+    #  Restrict access to admins or the user who owns the current contact event entry
+    if !@current_user.admin? && (@current_user != @contact_event.owner_user || @contact_event.owner_user == nil)
       flash[:notice] = "<h2>Access Denied</h2><p>You do not have permission to edit this Event.</p>"
       return
     end
@@ -54,7 +55,6 @@ class EventController < ApplicationController
 
       if event_and_linked_models_valid?
         delete_completely_blank_models
-        @contact_event.owner_user = current_user
         @models_that_can_be_completely_blank.each { |m| m.save! if not m.completely_blank? }
         @models_that_must_be_valid.each { |m| m.save! }
         # lemma: @contact_event is the last event to be saved
