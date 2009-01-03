@@ -16,8 +16,8 @@ Recreate log directory.
 
 THIS COMMIT:
 
-Updated /home/index page (aka /) to not fail if a ContactEvent is
-missing some of the optional fields.
+Modified CSS file to use gray background color from CI.net instead of
+yellow from CQ.com.  Amazingly, not an improvement.
 
 
 ======================================================================
