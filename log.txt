@@ -16,12 +16,8 @@ Recreate log directory.
 
 THIS COMMIT:
 
-The admin/users/show page now lists a user's Contact Events.
-
-Refactored the table that lists an array of events into a partial
-template.
-
-Added instructions to home page explaining how to submit an event.
+Added all pages (except index.html, which has already been customized)
+from ContactImprov.net to the repository.
 
 
 ======================================================================
@@ -29,15 +25,29 @@ Added instructions to home page explaining how to submit an event.
 TODO:
 
 @ Add 'prove your humanity' question to the Account Request page
+  - 'Please tell us something you like about Contact Improv' 
+    (so we know you're not a spammer)
 
-@ Prune UserMailer model
+@ Allow events to be deleted
 
-@ Events
-  ...
+@ UserMailer model
+  - prune unused mail messages
+  - remove references to CQ from some of the messages
+  - (?) email new events when submitted
 
 @ Create
   - ContactJam model
   - ContactPerson model
+
+-- 
+
+@ Find library to strip HTML code from fields
+  - read article bookmarked in NNW
+
+@ Investigate ways to convert line breaks to <br />'s in form fields
+  - look at Markdown
+
+--
 
 @ Use Kuler to pick a new color scheme
 
@@ -46,24 +56,19 @@ TODO:
     - Entry
     - Entity
 
----
-
-@ Find library to strip HTML code from fields
-  - read article bookmarked in NNW
-
-@ Investigate ways to convert line breaks to <br />'s in form fields
-  - look at Markdown
-
-@ ack for instances of 'uarterly' or 'CQ'
-
---
-
 @ Add FourOhFour model/controller
 
 
 ==[ LOG ]=============================================================
 
-----[ day, December , 2008 ]--------------------------------------
+----[ day, January , 2009 ]--------------------------------------
+
+
+----[ Saturday, January 3, 2009 ]-------------------------------------
+
+@ Downloaded ContactImprov.net website using SiteSucker:
+
+  http://www.sitesucker.us/home.html
 
 
 ----[ Tuesday, December 16, 2008 ]------------------------------------

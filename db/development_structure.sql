@@ -36,7 +36,7 @@ CREATE TABLE `ci_contact_event_versions` (
   `ci_notes` text,
   `updated_at` datetime default NULL,
   PRIMARY KEY  (`contact_event_version_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=15001 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=15002 DEFAULT CHARSET=utf8;
 
 CREATE TABLE `ci_contact_events` (
   `contact_event_id` int(11) NOT NULL auto_increment,
@@ -58,7 +58,7 @@ CREATE TABLE `ci_contact_events` (
   `created_at` datetime default NULL,
   `updated_at` datetime default NULL,
   PRIMARY KEY  (`contact_event_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=15001 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=15002 DEFAULT CHARSET=utf8;
 
 CREATE TABLE `ci_country_names` (
   `country_name_id` int(11) NOT NULL auto_increment,
@@ -116,7 +116,7 @@ CREATE TABLE `ci_location_versions` (
   KEY `index_ci_location_versions_on_location_id` (`location_id`),
   KEY `index_ci_location_versions_on_us_state_id` (`us_state_id`),
   KEY `index_ci_location_versions_on_country_name_id` (`country_name_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=15001 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=15002 DEFAULT CHARSET=utf8;
 
 CREATE TABLE `ci_locations` (
   `location_id` int(11) NOT NULL auto_increment,
@@ -136,7 +136,7 @@ CREATE TABLE `ci_locations` (
   PRIMARY KEY  (`location_id`),
   KEY `index_ci_locations_on_us_state_id` (`us_state_id`),
   KEY `index_ci_locations_on_country_name_id` (`country_name_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=15001 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=15002 DEFAULT CHARSET=utf8;
 
 CREATE TABLE `ci_people` (
   `person_id` int(11) NOT NULL auto_increment,
