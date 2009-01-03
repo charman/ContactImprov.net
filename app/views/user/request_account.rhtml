@@ -12,13 +12,37 @@
 	:header_message => 'Incomplete Account Request Form'
 %>
 
-<% form_tag(:action => 'request_account') do %>
+<% form_for @user_account_request, :url => { :action => 'request_account' } do |request| %>
 	<p><%= render :partial => "shared/person",   :object => @uar_person, 
 		:locals => { :prefix => 'uar_person', :legend => 'Your Name' } 
 	%></p>
 	<p><%= render :partial => "shared/email",    :object => @uar_email,    
 		:locals => { :prefix => 'uar_email',  :legend => 'Your email address' } 
 	%></p>
+
+	<fieldset>
+		<legend>Additional Information</legend>
+		<table style="margin-top: 1em;">
+			<tr style="vertical-align: top; ">
+				<td style="width: 10em; text-align: right;"></td>
+				<td style="padding: 0em 1em 1em 1em;">
+					Please tell us something you like about Contact Improv:
+					<br />
+					<span style="font-size: 0.8em;">(so we know you're not a spammer)</span>
+					<br />
+					<%= request.text_area :something_about_contact_improv, :rows => 4, :cols => 60 %>
+				</td>
+			</tr>
+			<tr style="vertical-align: top;">
+				<td style="width: 10em; text-align: right;"></td>
+				<td style="padding: 0em 1em 1em 1em;">
+					Are you responsible for any existing Contact Person or Contact Jam
+					listings on the website? If so, please list them here:
+					<%= request.text_area :existing_entries, :rows => 4, :cols => 60 %>
+				</td>
+			</tr>
+		</table>
+	</fieldset>
 
 	<p>
 		<%= submit_tag 'Request Account' %>

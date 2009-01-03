@@ -363,29 +363,59 @@ class UserControllerTest < ActionController::TestCase
 
   #  Test 'request_account' action
 
+  def test_should_not_allow_request_account_with_empty_something_about_contact_improv
+    post :request_account, 
+         :user_account_request => { 
+           :something_about_contact_improv => '', 
+           :existing_entries => 'notapplicable' 
+          },
+         :uar_person => { :first_name => 'first_name', :last_name => 'last_name' },
+         :uar_email => { :address => 'new_email@foo.com' }
+    assert_response :success
+    assert_select "[class=errorExplanation]"
+    assert_match /Something about contact improv can.t be blank/, @response.body
+  end
+  
   def test_should_not_allow_request_account_with_empty_last_name
-    post :request_account, :uar_person => { :first_name => 'first_name', :last_name => '' },
-                           :uar_email => { :address => 'new_email@foo.com' }
+    post :request_account, 
+         :user_account_request => { 
+           :something_about_contact_improv => 'something', 
+           :existing_entries => 'notapplicable' 
+          },
+         :uar_person => { :first_name => 'first_name', :last_name => '' },
+         :uar_email => { :address => 'new_email@foo.com' }
     assert_response :success
     assert_select "[class=errorExplanation]"
     assert_match /Last name can.t be blank/, @response.body
   end
   
   def test_should_not_allow_request_account_with_empty_email
-    post :request_account, :uar_person => { :first_name => 'first_name', :last_name => 'last_name' },
-                           :uar_email => { :address => '' }
+    post :request_account,
+         :user_account_request => { 
+           :something_about_contact_improv => 'something', 
+           :existing_entries => 'notapplicable' 
+          },
+         :uar_person => { :first_name => 'first_name', :last_name => 'last_name' },
+         :uar_email => { :address => '' }
     assert_response :success
     assert_select "[class=errorExplanation]"
     assert_match /Address can.t be blank/, @response.body
   end
 
   def test_should_allow_request_account
-    post :request_account, :uar_person => { :first_name => 'first_name', :last_name => 'last_name' },
-                           :uar_email => { :address => 'new_email@foo.com' }
+    post :request_account, 
+          :user_account_request => { 
+            :something_about_contact_improv => 'something', 
+            :existing_entries => 'notapplicable' 
+           },
+         :uar_person => { :first_name => 'first_name', :last_name => 'last_name' },
+         :uar_email => { :address => 'new_email@foo.com' }
     assert_redirected_to :action => 'account_requested'
   
     uar = UserAccountRequest.find(:last)
     assert_not_nil uar
+    assert_equal 'something', uar.something_about_contact_improv
+    assert_equal 'notapplicable', uar.existing_entries
     assert_equal 'first_name', uar.person.first_name
     assert_equal 'last_name',  uar.person.last_name
     assert_equal 'new_email@foo.com', uar.email.address
@@ -395,8 +425,13 @@ class UserControllerTest < ActionController::TestCase
   end
 
   def test_should_send_pending_users_activation_email_when_they_request_account
-   post :request_account, :uar_person => { :first_name => 'first_name', :last_name => 'last_name' },
-                          :uar_email => { :address => users(:pending_user).email }
+   post :request_account, 
+        :user_account_request => { 
+          :something_about_contact_improv => 'something', 
+          :existing_entries => 'notapplicable' 
+         },
+        :uar_person => { :first_name => 'first_name', :last_name => 'last_name' },
+        :uar_email => { :address => users(:pending_user).email }
    assert_response :success
    assert_select "[class=errorExplanation]"
    assert_match /You need to activate your account/, @response.body
@@ -406,8 +441,13 @@ class UserControllerTest < ActionController::TestCase
   end
 
   def test_should_send_active_users_password_reset_email_when_they_request_account
-    post :request_account, :uar_person => { :first_name => 'first_name', :last_name => 'last_name' },
-                           :uar_email => { :address => users(:quentin).email }
+    post :request_account, 
+         :user_account_request => { 
+           :something_about_contact_improv => 'something', 
+           :existing_entries => 'notapplicable' 
+          },
+         :uar_person => { :first_name => 'first_name', :last_name => 'last_name' },
+         :uar_email => { :address => users(:quentin).email }
     assert_redirected_to :action => 'password_reset_requested'
     assert_select "[class=errorExplanation]", false
     assert_equal(1, @emails.size)

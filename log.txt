@@ -16,17 +16,14 @@ Recreate log directory.
 
 THIS COMMIT:
 
-Added all pages (except index.html, which has already been customized)
-from ContactImprov.net to the repository.
+Added two fields to the account request form - one asking applicants
+to describe something they like about CI, the other asking them to
+list any existing entries they're responsible for on the site.
 
 
 ======================================================================
 
 TODO:
-
-@ Add 'prove your humanity' question to the Account Request page
-  - 'Please tell us something you like about Contact Improv' 
-    (so we know you're not a spammer)
 
 @ Allow events to be deleted
 

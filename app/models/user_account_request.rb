@@ -3,6 +3,10 @@ class UserAccountRequest < ActiveRecord::Base
   belongs_to :email
   belongs_to :location
 
+  attr_accessible :something_about_contact_improv, :existing_entries
+
+  validates_presence_of :something_about_contact_improv 
+
   acts_as_state_machine :initial => :new
   state :new
   state :accepted
