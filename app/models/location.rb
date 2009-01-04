@@ -1,8 +1,6 @@
 class Location < ActiveRecord::Base
-#  has_one :contacts_application
-#  has_one :entity, :as => :resource
-#  has_one :user, :foreign_key => 'subscriber_address_id'
-#  has_one :user_account_request
+  include SanitizeAccessibleAttributes
+
   has_one :contact_event
   belongs_to :country_name
   belongs_to :us_state
@@ -53,15 +51,6 @@ class Location < ActiveRecord::Base
       lat_changed? || lng_changed? || geocode_precision_changed?
   end
 
-  def after_save
-    #  Create an entity object for the current object, if it does not already exist
-#    if !self.entity
-#      e = Entity.new
-#      e.resource = self
-#      e.save!
-#    end  
-  end
-
   #  TODO: This method introduces some coupling between the model and the view.
   #        This function cannot be moved to a helper file because the @param_initialization_errors 
   #         member variable is used by validate_country_name_and_us_state.
@@ -110,6 +99,7 @@ class Location < ActiveRecord::Base
   end
 
   def before_save
+    sanitize_attributes
     self.geocode
     true  #  We always return true, so that the object is saved regardless of whether or not geocoding succeeded
   end

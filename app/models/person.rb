@@ -1,7 +1,6 @@
 class Person < ActiveRecord::Base
-#  has_one :contacts_application
-#  has_one :entity, :as => :resource
-#  has_one :user_account_request
+  include SanitizeAccessibleAttributes
+
   has_one :contact_event
   has_one :user
   
@@ -12,14 +11,8 @@ class Person < ActiveRecord::Base
 
   validates_presence_of :last_name
 
-  def after_save
-    #  Create an entity object for the current object, if it does not already exist
-    #  TODO: Refactor the entity creation code into a helper file shared across ActiveRecord classes
-#    if !self.entity
-#      e = Entity.new
-#      e.resource = self
-#      e.save!
-#    end  
+  def before_save
+    sanitize_attributes
   end
 
   def completely_blank?

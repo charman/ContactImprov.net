@@ -7,26 +7,33 @@ WAITING FOR:
 
 WHEN UPDATING PRODUCTION SERVER:
 
-gem install calendar_date_select
+  gem install calendar_date_select
+  gem install 
 
-Recreate log directory.
+  Recreate log directory.
 
-Create config/deliver_email file.
+  chown charman config/environment.rb
+
+  Create config/deliver_email file.
 
 
 ======================================================================
 
 THIS COMMIT:
 
-If user is an admin, link to the admin page from /user
+Created the lib/sanitize_accessible_attributes.rb file, which uses the
+'sanitize' gem to strip HTML from all attributes that have been marked
+by a model as accessible.  Called the sanitize_attributes function in
+the library from the before_save function of all models that can be
+manipulated by users.
+
+Also stripped some dead code (copied over from cq_rails and then
+commented out) from the models and unit tests.
 
 
 ======================================================================
 
 TODO:
-
-@ Sanitize HTML and CSS for all form fields
-  - http://www.rubyinside.com/how-to-sanitize-html-and-css-in-ruby-1429.html
 
 @ Cache events page
 
@@ -62,6 +69,11 @@ TODO:
 ==[ LOG ]=============================================================
 
 ----[ day, January , 2009 ]--------------------------------------
+
+
+----[ Sunday, January 4, 2009 ]---------------------------------------
+
+@ Installed the sanitize gem on my laptop.
 
 
 ----[ Saturday, January 3, 2009 ]-------------------------------------

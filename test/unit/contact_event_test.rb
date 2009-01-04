@@ -77,13 +77,18 @@ class ContactEventTest < ActiveSupport::TestCase
     assert_equal newer_date, c.end_date
   end
 
-  # def test_should_create_entity
-  #   c = Company.new
-  #   c.name = 'Foo'
-  #   assert_nil c.entity
-  #   assert_not_nil c.save!
-  #   c.reload
-  #   assert_not_nil c.entity
-  #   assert_equal c, c.entity.resource
-  # end
+  def test_should_sanitize_title_description_and_fee_description
+    c = ContactEvent.new
+    c.title = '<b>sanitized</b>'
+    c.description = '<b>sanitized</b>'
+    c.fee_description = '<b>sanitized</b>'
+    c.start_date = DateTime.now
+    c.end_date   = DateTime.now
+    c.save!
+    c.reload
+    assert_equal 'sanitized', c.title
+    assert_equal 'sanitized', c.description
+    assert_equal 'sanitized', c.fee_description
+  end
+ 
 end

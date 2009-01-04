@@ -1,13 +1,11 @@
 require 'test_helper'
 
 class EmailTest < ActiveSupport::TestCase
-#  fixtures :emails, :entities
   fixtures :emails
 
   def test_acts_as_versioned
     e = Email.new
     e.address = 'charman@acm.org'
-#    e.for_entity = entities(:quentin)
     assert_nil e.version
     assert e.save!
     assert e.version == 1
@@ -26,15 +24,12 @@ class EmailTest < ActiveSupport::TestCase
     assert_equal e.valid?, false
   end
 
-  # def test_should_create_entity
-  #   e = Email.new
-  #   e.address = 'charman@acm.org'
-  #   e.for_entity = entities(:quentin)
-  #   assert_nil e.entity
-  #   assert_not_nil e.save!
-  #   e.reload
-  #   assert_not_nil e.entity
-  #   assert_equal e, e.entity.resource
-  # end
+  def test_should_sanitize_address
+    e = Email.new
+    e.address = '<b>sanitized</b>'
+    e.save!
+    e.reload
+    assert_equal 'sanitized', e.address
+  end
   
 end

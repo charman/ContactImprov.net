@@ -1,13 +1,11 @@
 require 'test_helper'
 
 class PhoneNumberTest < ActiveSupport::TestCase
-#  fixtures :entities, :phone_numbers
   fixtures :phone_numbers
 
   def test_acts_as_versioned
     p = PhoneNumber.new
     p.number = '585-275-4822'
-#    p.for_entity = entities(:quentin)
     assert_nil p.version
     assert p.save!
     assert p.version == 1
@@ -26,15 +24,12 @@ class PhoneNumberTest < ActiveSupport::TestCase
     assert_equal p.valid?, false
   end
 
-  # def test_should_create_entity
-  #   p = PhoneNumber.new
-  #   p.number = '585-275-4822'
-  #   p.for_entity = entities(:quentin)
-  #   assert_nil p.entity
-  #   assert_not_nil p.save!
-  #   p.reload
-  #   assert_not_nil p.entity
-  #   assert_equal p, p.entity.resource
-  # end
+  def test_should_sanitize_number
+    p = PhoneNumber.new
+    p.number = '<b>sanitized</b>'
+    p.save!
+    p.reload
+    assert_equal 'sanitized', p.number
+  end
   
 end

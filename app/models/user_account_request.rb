@@ -1,4 +1,6 @@
 class UserAccountRequest < ActiveRecord::Base
+  include SanitizeAccessibleAttributes
+
   belongs_to :person
   belongs_to :email
   belongs_to :location
@@ -25,6 +27,10 @@ class UserAccountRequest < ActiveRecord::Base
     transitions :from => :new, :to => :contacted
   end
 
+
+  def before_save
+    sanitize_attributes
+  end
 
   def create_user_account_and_deliver_signup_email
     user = User.new

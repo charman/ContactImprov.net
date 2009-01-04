@@ -1,5 +1,6 @@
 class ContactEvent < ActiveRecord::Base
-  #  has_one :entity, :as => :resource
+  include SanitizeAccessibleAttributes
+
   belongs_to :email
   belongs_to :location
   belongs_to :owner_user, :class_name => 'User', :foreign_key => 'owner_user_id'
@@ -14,19 +15,11 @@ class ContactEvent < ActiveRecord::Base
 
   validates_presence_of :title, :description, :start_date, :end_date
 
-  def after_save
-    # #  Create an entity object for the current object, if it does not already exist
-    # if !self.entity
-    #   e = Entity.new
-    #   e.resource = self
-    #   e.save!
-    # end  
-  end
-
   def before_save
     if self.start_date > self.end_date
       self.start_date, self.end_date = self.end_date, self.start_date
     end
+    sanitize_attributes
   end
 
   def version_condition_met?

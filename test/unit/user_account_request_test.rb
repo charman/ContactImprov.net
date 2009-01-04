@@ -20,4 +20,14 @@ class UserAccountRequestTest < ActiveSupport::TestCase
     assert_match /A ContactImprov.net account has been created for you/, @emails.first.body
   end
 
+  def test_should_sanitize_something_and_existing
+    r = UserAccountRequest.new
+    r.something_about_contact_improv = '<b>sanitized</b>'
+    r.existing_entries = '<b>sanitized</b>'
+    r.save!
+    r.reload
+    assert_equal 'sanitized', r.something_about_contact_improv
+    assert_equal 'sanitized', r.existing_entries
+  end
+
 end

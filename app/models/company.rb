@@ -1,5 +1,5 @@
 class Company < ActiveRecord::Base
-#  has_one :entity, :as => :resource
+  include SanitizeAccessibleAttributes
 
   acts_as_versioned
   self.non_versioned_columns << 'created_at'
@@ -15,6 +15,10 @@ class Company < ActiveRecord::Base
     #   e.resource = self
     #   e.save!
     # end  
+  end
+
+  def before_save
+    sanitize_attributes
   end
 
   def version_condition_met?

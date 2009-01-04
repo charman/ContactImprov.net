@@ -24,14 +24,12 @@ class StudioTest < ActiveSupport::TestCase
     assert_equal s.valid?, false
   end
 
-  # def test_should_create_entity
-  #   s = Studio.new
-  #   s.name = 'Foo'
-  #   assert_nil s.entity
-  #   assert_not_nil s.save!
-  #   s.reload
-  #   assert_not_nil s.entity
-  #   assert_equal s, s.entity.resource
-  # end
+  def test_should_sanitize_name
+    s = Studio.new
+    s.name = '<b>sanitized</b>'
+    s.save!
+    s.reload
+    assert_equal 'sanitized', s.name
+  end
   
 end

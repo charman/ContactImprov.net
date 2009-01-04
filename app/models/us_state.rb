@@ -1,5 +1,4 @@
 class UsState < ActiveRecord::Base
-#  has_many :locations
 
   #  The validity of a UsState object should be checked by calling valid?, and not by
   #   attempting to save the object.

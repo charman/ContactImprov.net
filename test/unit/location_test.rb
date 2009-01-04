@@ -24,15 +24,22 @@ class LocationTest < ActiveSupport::TestCase
     assert l.success
     assert_equal l.precision, 'address'
   end
-
-#  def test_should_create_entity
-#    l = Location.new
-#    l.city_name = 'Toronto'
-#    l.country_name = CountryName.find_by_english_name('Canada')
-#    assert_nil l.entity
-#    assert_not_nil l.save!
-#    l.reload
-#    assert_not_nil l.entity
-#    assert_equal l, l.entity.resource
-#  end
+  
+  def test_should_sanitize_location_fields
+    l = Location.new
+    l.street_address_line_1 = '<b>sanitized</b>'
+    l.street_address_line_2 = '<b>sanitized</b>'
+    l.city_name = '<b>sanitized</b>'
+    l.region_name = '<b>sanitized</b>'
+    l.postal_code = '<b>sanitized</b>'
+    l.country_name = CountryName.find_by_english_name('Canada')
+    l.save!
+    l.reload
+    assert_equal 'sanitized', l.street_address_line_1
+    assert_equal 'sanitized', l.street_address_line_2
+    assert_equal 'sanitized', l.city_name
+    assert_equal 'sanitized', l.region_name
+    assert_equal 'sanitized', l.postal_code
+  end
+  
 end

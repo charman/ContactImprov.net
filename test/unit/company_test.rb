@@ -24,14 +24,12 @@ class CompanyTest < ActiveSupport::TestCase
     assert_equal c.valid?, false
   end
 
-  # def test_should_create_entity
-  #   c = Company.new
-  #   c.name = 'Foo'
-  #   assert_nil c.entity
-  #   assert_not_nil c.save!
-  #   c.reload
-  #   assert_not_nil c.entity
-  #   assert_equal c, c.entity.resource
-  # end
-  
+  def test_should_sanitize_name
+    c = Company.new
+    c.name = '<b>sanitized</b>'
+    c.save!
+    c.reload
+    assert_equal 'sanitized', c.name
+  end
+ 
 end
