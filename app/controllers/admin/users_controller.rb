@@ -167,7 +167,7 @@ class Admin::UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
-    @events = ContactEvent.find(:all, :conditions => ["owner_user_id = ?", params[:id]])
+    @events = EventEntry.find(:all, :conditions => ["owner_user_id = ?", params[:id]])
   end
 
   def show_account_request

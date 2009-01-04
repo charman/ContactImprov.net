@@ -1,7 +1,7 @@
 class Location < ActiveRecord::Base
   include SanitizeAccessibleAttributes
 
-  has_one :contact_event
+  has_one :event_entry
   belongs_to :country_name
   belongs_to :us_state
   

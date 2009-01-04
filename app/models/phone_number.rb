@@ -1,7 +1,7 @@
 class PhoneNumber < ActiveRecord::Base
   include SanitizeAccessibleAttributes
 
-  has_one :contact_event
+  has_one :event_entry
 
   acts_as_versioned
   self.non_versioned_columns << 'created_at'

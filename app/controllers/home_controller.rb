@@ -1,7 +1,7 @@
 class HomeController < ApplicationController
 
   def index
-    @events = ContactEvent.find(:all)
+    @events = EventEntry.find(:all)
   end
 
 end

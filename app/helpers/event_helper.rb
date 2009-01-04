@@ -1,7 +1,7 @@
 module EventHelper
 
   def format_event_date_range(e)
-    #  lemma: e.start_date <= e.end_date because of ContactEvent.before_save
+    #  lemma: e.start_date <= e.end_date because of EventEntry.before_save
     if e.start_date.year != e.end_date.year
       "#{e.start_date.strftime('%b %e, %Y')} - #{e.end_date.strftime('%b %e, %Y')}"
     elsif e.start_date.month != e.end_date.month

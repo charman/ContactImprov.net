@@ -1,4 +1,4 @@
-class ContactEvent < ActiveRecord::Base
+class EventEntry < ActiveRecord::Base
   include SanitizeAccessibleAttributes
 
   belongs_to :email

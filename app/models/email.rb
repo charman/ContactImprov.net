@@ -1,7 +1,7 @@
 class Email < ActiveRecord::Base
   include SanitizeAccessibleAttributes
 
-  has_one :contact_event
+  has_one :event_entry
 
   acts_as_list
   acts_as_versioned

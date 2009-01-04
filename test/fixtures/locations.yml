@@ -28,7 +28,7 @@ only_used_once_address:
     postal_code: '12345'
     country_name_id: 2
 
-complete_contact_event:
+complete_event_entry:
     location_id: 100
     street_address_line_1: 'street_address_line_1'
     street_address_line_2: 'street_address_line_2'

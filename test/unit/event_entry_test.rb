@@ -1,10 +1,10 @@
 require 'test_helper'
 
-class ContactEventTest < ActiveSupport::TestCase
-  fixtures :contact_events
+class EventEntryTest < ActiveSupport::TestCase
+  fixtures :event_entries
 
   def test_acts_as_versioned
-    c = ContactEvent.new
+    c = EventEntry.new
     c.title = 'New Event'
     c.description = 'Fantastic new event'
     c.start_date = DateTime.now
@@ -16,7 +16,7 @@ class ContactEventTest < ActiveSupport::TestCase
   end
 
   def test_should_validate_with_title_description_and_dates
-    c = ContactEvent.new
+    c = EventEntry.new
     c.title = 'New Event'
     c.description = 'Fantastic new event'
     c.start_date = DateTime.now
@@ -25,7 +25,7 @@ class ContactEventTest < ActiveSupport::TestCase
   end
 
   def test_should_not_validate_without_title
-    c = ContactEvent.new
+    c = EventEntry.new
     c.title = ''
     c.description = 'Fantastic new event'
     c.start_date = DateTime.now
@@ -34,7 +34,7 @@ class ContactEventTest < ActiveSupport::TestCase
   end
 
   def test_should_not_validate_without_description
-    c = ContactEvent.new
+    c = EventEntry.new
     c.title = 'New Event'
     c.description = ''
     c.start_date = DateTime.now
@@ -43,7 +43,7 @@ class ContactEventTest < ActiveSupport::TestCase
   end
 
   def test_should_not_validate_without_start_date
-    c = ContactEvent.new
+    c = EventEntry.new
     c.title = 'New Event'
     c.description = 'Fantastic new event'
     c.end_date   = DateTime.now
@@ -51,7 +51,7 @@ class ContactEventTest < ActiveSupport::TestCase
   end
 
   def test_should_not_validate_without_end_date
-    c = ContactEvent.new
+    c = EventEntry.new
     c.title = 'New Event'
     c.description = 'Fantastic new event'
     c.start_date = DateTime.now
@@ -61,7 +61,7 @@ class ContactEventTest < ActiveSupport::TestCase
   def test_should_reorder_start_and_end_dates
     older_date = '1-1-2009'.to_date
     newer_date = '1-2-2009'.to_date
-    c = ContactEvent.new
+    c = EventEntry.new
     c.title = 'TimeTest Event'
     c.description = 'Verify that times are ordered correctly upon save'
     c.start_date = newer_date
@@ -78,7 +78,7 @@ class ContactEventTest < ActiveSupport::TestCase
   end
 
   def test_should_sanitize_title_description_and_fee_description
-    c = ContactEvent.new
+    c = EventEntry.new
     c.title = '<b>sanitized</b>'
     c.description = '<b>sanitized</b>'
     c.fee_description = '<b>sanitized</b>'

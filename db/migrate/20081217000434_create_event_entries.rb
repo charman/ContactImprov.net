@@ -1,7 +1,7 @@
-class CreateContactEvents < ActiveRecord::Migration
+class CreateEventEntries < ActiveRecord::Migration
   def self.up
-    create_table :contact_events, :id => false, :options => "auto_increment = 15000" do |t|
-      t.column   :contact_event_id, :primary_key, :null => false
+    create_table :event_entries, :id => false, :options => "auto_increment = 15000" do |t|
+      t.column   :event_entry_id, :primary_key, :null => false
       t.integer  :version
       t.string   :title
       t.text     :description
@@ -20,9 +20,9 @@ class CreateContactEvents < ActiveRecord::Migration
       t.timestamps
     end
 
-    create_table :contact_event_versions, :id => false, :options => "auto_increment = 15000" do |t|
-      t.column   :contact_event_version_id, :primary_key, :null => false
-      t.integer  :contact_event_id
+    create_table :event_entry_versions, :id => false, :options => "auto_increment = 15000" do |t|
+      t.column   :event_entry_version_id, :primary_key, :null => false
+      t.integer  :event_entry_id
       t.integer  :version
       t.string   :title
       t.text     :description
@@ -43,7 +43,7 @@ class CreateContactEvents < ActiveRecord::Migration
   end
 
   def self.down
-    drop_table :contact_events
-    drop_table :contact_event_versions
+    drop_table :event_entries
+    drop_table :event_entry_versions
   end
 end

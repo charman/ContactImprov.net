@@ -1,4 +1,4 @@
-complete_contact_event:
+complete_event_entry:
     url_id: 100
     for_entity_id: 100
     address: 'www.contactimprov.net'

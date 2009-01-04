@@ -14,7 +14,7 @@
 <% end %>
 
 <% if not flash[:notice] %>	
-	<% form_for @contact_event, :url => { :action => 'edit' } do |event| %>
+	<% form_for @event_entry, :url => { :action => 'edit' } do |event| %>
 		<%= render(:partial => "form_fields", :locals => { :event => event } ) %>
 		<fieldset class="cq_form_submit">
 			<p>
@@ -28,7 +28,7 @@
 				&nbsp;
 				or
 				&nbsp;
-				<a href="/event/edit/<%= @contact_event.id %>">Reload Form</a>
+				<a href="/event/edit/<%= @event_entry.id %>">Reload Form</a>
 			</p>
 		</fieldset>
 	<% end -%>

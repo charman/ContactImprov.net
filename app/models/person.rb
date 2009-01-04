@@ -1,7 +1,7 @@
 class Person < ActiveRecord::Base
   include SanitizeAccessibleAttributes
 
-  has_one :contact_event
+  has_one :event_entry
   has_one :user
   
   acts_as_versioned

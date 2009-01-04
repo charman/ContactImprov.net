@@ -13,7 +13,7 @@
 	</div>
 <% end %>
 
-<% form_for @contact_event, :url => { :action => 'create' } do |event| %>
+<% form_for @event_entry, :url => { :action => 'create' } do |event| %>
 	<%= render(:partial => "form_fields", :locals => { :event => event } ) %>
 	<fieldset class="cq_form_submit">
 		<p>

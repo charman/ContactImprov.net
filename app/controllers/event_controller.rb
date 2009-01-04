@@ -16,8 +16,8 @@ class EventController < ApplicationController
     
     if event_and_linked_models_valid?
       delete_completely_blank_models
-      @contact_event.owner_user = current_user
-      @contact_event.save!
+      @event_entry.owner_user = current_user
+      @event_entry.save!
       redirect_to :controller => 'user', :action => 'index'
     else
       render :action => 'new'
@@ -27,9 +27,8 @@ class EventController < ApplicationController
   def delete
     return if !valid_id_and_permissions?
 
-    @contact_event.destroy
+    @event_entry.destroy
   end
-
 
   def edit
     if params[:commit] == 'Delete'
@@ -39,10 +38,10 @@ class EventController < ApplicationController
     
     return if !valid_id_and_permissions?
 
-    @contact_event.person       ||= Person.new
-    @contact_event.email        ||= Email.new
-    @contact_event.phone_number ||= PhoneNumber.new
-    @contact_event.url          ||= Url.new
+    @event_entry.person       ||= Person.new
+    @event_entry.email        ||= Email.new
+    @event_entry.phone_number ||= PhoneNumber.new
+    @event_entry.url          ||= Url.new
 
     if request.put?
       initialize_event_and_linked_models_from_params(params)
@@ -51,14 +50,14 @@ class EventController < ApplicationController
         delete_completely_blank_models
         @models_that_can_be_completely_blank.each { |m| m.save! if not m.completely_blank? }
         @models_that_must_be_valid.each { |m| m.save! }
-        # lemma: @contact_event is the last event to be saved
+        # lemma: @event_entry is the last event to be saved
         redirect_to :controller => 'user', :action => 'index'
       end
     end
   end
 
   def list
-    @events = ContactEvent.find(:all)
+    @events = EventEntry.find(:all)
   end
 
   def new
@@ -69,12 +68,12 @@ class EventController < ApplicationController
 protected
 
   def create_event_and_linked_models
-    @contact_event = ContactEvent.new
-    @contact_event.person       = Person.new
-    @contact_event.email        = Email.new
-    @contact_event.location     = Location.new
-    @contact_event.phone_number = PhoneNumber.new
-    @contact_event.url          = Url.new
+    @event_entry = EventEntry.new
+    @event_entry.person       = Person.new
+    @event_entry.email        = Email.new
+    @event_entry.location     = Location.new
+    @event_entry.phone_number = PhoneNumber.new
+    @event_entry.url          = Url.new
   end
 
   #  TODO: Do we *really* want to delete the linked models?  Would we ever link to
@@ -102,16 +101,16 @@ protected
   end
   
   def initialize_event_and_linked_models_from_params(p)
-    @contact_event.attributes = p[:contact_event]
-    @contact_event.person.attributes       = p[:event][:person]
-    @contact_event.email.attributes        = p[:event][:email]
-    @contact_event.location.attributes     = p[:event][:location]
-    @contact_event.phone_number.attributes = p[:event][:phone_number]
-    @contact_event.url.attributes          = p[:event][:ci_url]
+    @event_entry.attributes = p[:event_entry]
+    @event_entry.person.attributes       = p[:event][:person]
+    @event_entry.email.attributes        = p[:event][:email]
+    @event_entry.location.attributes     = p[:event][:location]
+    @event_entry.phone_number.attributes = p[:event][:phone_number]
+    @event_entry.url.attributes          = p[:event][:ci_url]
 
-    @models_that_can_be_completely_blank = [@contact_event.email, @contact_event.person, @contact_event.phone_number, @contact_event.url]
-    #  @contact_event must be listed last in this array because it is the last model that should be saved
-    @models_that_must_be_valid = [@contact_event.location, @contact_event]  
+    @models_that_can_be_completely_blank = [@event_entry.email, @event_entry.person, @event_entry.phone_number, @event_entry.url]
+    #  @event_entry must be listed last in this array because it is the last model that should be saved
+    @models_that_must_be_valid = [@event_entry.location, @event_entry]  
 
     @all_linked_models = @models_that_must_be_valid + @models_that_can_be_completely_blank
   end
@@ -124,7 +123,7 @@ protected
     end
 
     begin
-      @contact_event = ContactEvent.find(params[:id])
+      @event_entry = EventEntry.find(params[:id])
     rescue ActiveRecord::RecordNotFound
       # TODO: Rewrite error message to tell user to contact webmaster
       flash[:notice] = "<h2>Event not Found</h2><p>Unable to find the Event you are searching for.</p>"
@@ -132,7 +131,7 @@ protected
     end
 
     #  Restrict access to admins or the user who owns the current contact event entry
-    if !@current_user.admin? && (@current_user != @contact_event.owner_user || @contact_event.owner_user == nil)
+    if !@current_user.admin? && (@current_user != @event_entry.owner_user || @event_entry.owner_user == nil)
       flash[:notice] = "<h2>Access Denied</h2><p>You do not have permission to edit this Event.</p>"
       return false
     end

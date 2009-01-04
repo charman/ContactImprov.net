@@ -16,50 +16,6 @@ CREATE TABLE `ci_company_versions` (
   PRIMARY KEY  (`company_version_id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=15000 DEFAULT CHARSET=utf8;
 
-CREATE TABLE `ci_contact_event_versions` (
-  `contact_event_version_id` int(11) NOT NULL auto_increment,
-  `contact_event_id` int(11) default NULL,
-  `version` int(11) default NULL,
-  `title` varchar(255) default NULL,
-  `description` text,
-  `fee_description` text,
-  `start_date` date default NULL,
-  `end_date` date default NULL,
-  `owner_user_id` int(11) default NULL,
-  `person_id` int(11) default NULL,
-  `location_id` int(11) default NULL,
-  `email_id` int(11) default NULL,
-  `phone_number_id` int(11) default NULL,
-  `url_id` int(11) default NULL,
-  `company_id` int(11) default NULL,
-  `studio_id` int(11) default NULL,
-  `ci_notes` text,
-  `updated_at` datetime default NULL,
-  PRIMARY KEY  (`contact_event_version_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=15001 DEFAULT CHARSET=utf8;
-
-CREATE TABLE `ci_contact_events` (
-  `contact_event_id` int(11) NOT NULL auto_increment,
-  `version` int(11) default NULL,
-  `title` varchar(255) default NULL,
-  `description` text,
-  `fee_description` text,
-  `start_date` date default NULL,
-  `end_date` date default NULL,
-  `owner_user_id` int(11) default NULL,
-  `person_id` int(11) default NULL,
-  `location_id` int(11) default NULL,
-  `email_id` int(11) default NULL,
-  `phone_number_id` int(11) default NULL,
-  `url_id` int(11) default NULL,
-  `company_id` int(11) default NULL,
-  `studio_id` int(11) default NULL,
-  `ci_notes` text,
-  `created_at` datetime default NULL,
-  `updated_at` datetime default NULL,
-  PRIMARY KEY  (`contact_event_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=15001 DEFAULT CHARSET=utf8;
-
 CREATE TABLE `ci_country_names` (
   `country_name_id` int(11) NOT NULL auto_increment,
   `iso_3166_1_a2_code` char(2) default NULL,
@@ -95,6 +51,50 @@ CREATE TABLE `ci_emails` (
   PRIMARY KEY  (`email_id`),
   KEY `index_ci_emails_on_for_entity_id` (`for_entity_id`),
   KEY `index_ci_emails_on_address` (`address`)
+) ENGINE=MyISAM AUTO_INCREMENT=15001 DEFAULT CHARSET=utf8;
+
+CREATE TABLE `ci_event_entries` (
+  `event_entry_id` int(11) NOT NULL auto_increment,
+  `version` int(11) default NULL,
+  `title` varchar(255) default NULL,
+  `description` text,
+  `fee_description` text,
+  `start_date` date default NULL,
+  `end_date` date default NULL,
+  `owner_user_id` int(11) default NULL,
+  `person_id` int(11) default NULL,
+  `location_id` int(11) default NULL,
+  `email_id` int(11) default NULL,
+  `phone_number_id` int(11) default NULL,
+  `url_id` int(11) default NULL,
+  `company_id` int(11) default NULL,
+  `studio_id` int(11) default NULL,
+  `ci_notes` text,
+  `created_at` datetime default NULL,
+  `updated_at` datetime default NULL,
+  PRIMARY KEY  (`event_entry_id`)
+) ENGINE=MyISAM AUTO_INCREMENT=15001 DEFAULT CHARSET=utf8;
+
+CREATE TABLE `ci_event_entry_versions` (
+  `event_entry_version_id` int(11) NOT NULL auto_increment,
+  `event_entry_id` int(11) default NULL,
+  `version` int(11) default NULL,
+  `title` varchar(255) default NULL,
+  `description` text,
+  `fee_description` text,
+  `start_date` date default NULL,
+  `end_date` date default NULL,
+  `owner_user_id` int(11) default NULL,
+  `person_id` int(11) default NULL,
+  `location_id` int(11) default NULL,
+  `email_id` int(11) default NULL,
+  `phone_number_id` int(11) default NULL,
+  `url_id` int(11) default NULL,
+  `company_id` int(11) default NULL,
+  `studio_id` int(11) default NULL,
+  `ci_notes` text,
+  `updated_at` datetime default NULL,
+  PRIMARY KEY  (`event_entry_version_id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=15001 DEFAULT CHARSET=utf8;
 
 CREATE TABLE `ci_location_versions` (

@@ -5,11 +5,11 @@ class Admin::EventsController < ApplicationController
 
   
   def index
-    @total_events = ContactEvent.count
+    @total_events = EventEntry.count
   end
 
   def list
-    @events = ContactEvent.find(:all)
+    @events = EventEntry.find(:all)
   end
 
 end

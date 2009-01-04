@@ -2,7 +2,7 @@ require 'test_helper'
 
 class Admin::EventsControllerTest < ActionController::TestCase
 
-  fixtures :contact_events
+  fixtures :event_entries
   
 
   #  Test 'index' action

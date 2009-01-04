@@ -6,55 +6,55 @@ class EventControllerTest < ActionController::TestCase
   Debugger.start
 
 
-  fixtures :contact_events, :country_names, :emails, :locations, :people, :phone_numbers, :urls, :us_states, :users
+  fixtures :event_entries, :country_names, :emails, :locations, :people, :phone_numbers, :urls, :us_states, :users
 
 
   #  Test 'create' action
 
-  def test_should_accept_contact_event_application
+  def test_should_accept_event_entry_application
     login_as :quentin
     post :create, 
-      :contact_event => {
-        :title            => contact_events(:complete_contact_event).title,
-        :description      => contact_events(:complete_contact_event).description,
-        :fee_description  => contact_events(:complete_contact_event).fee_description,
-        :start_date       => contact_events(:complete_contact_event).start_date,
-        :end_date         => contact_events(:complete_contact_event).end_date
+      :event_entry => {
+        :title            => event_entries(:complete_event_entry).title,
+        :description      => event_entries(:complete_event_entry).description,
+        :fee_description  => event_entries(:complete_event_entry).fee_description,
+        :start_date       => event_entries(:complete_event_entry).start_date,
+        :end_date         => event_entries(:complete_event_entry).end_date
       },
       :event => {
         :person => { 
-          :first_name => people(:complete_contact_event).first_name, 
-          :last_name  => people(:complete_contact_event).last_name
+          :first_name => people(:complete_event_entry).first_name, 
+          :last_name  => people(:complete_event_entry).last_name
         },
-        :email => { :address => emails(:complete_contact_event).address },
+        :email => { :address => emails(:complete_event_entry).address },
         :location => @@default_location_fields,
-        :phone_number => { :number => phone_numbers(:complete_contact_event).number },
-        :ci_url => { :address => urls(:complete_contact_event).address }
+        :phone_number => { :number => phone_numbers(:complete_event_entry).number },
+        :ci_url => { :address => urls(:complete_event_entry).address }
       }
     assert_redirected_to :controller => 'user', :action => 'index'
-    new_event = ContactEvent.find(:last)    
+    new_event = EventEntry.find(:last)    
     assert_equal users(:quentin), new_event.owner_user
-    assert_equal contact_events(:complete_contact_event).title,           new_event.title
-    assert_equal contact_events(:complete_contact_event).description,     new_event.description
-    assert_equal contact_events(:complete_contact_event).fee_description, new_event.fee_description
-    assert_equal contact_events(:complete_contact_event).start_date,      new_event.start_date
-    assert_equal contact_events(:complete_contact_event).end_date,        new_event.end_date
-    assert_equal people(:complete_contact_event).first_name,              new_event.person.first_name
-    assert_equal people(:complete_contact_event).last_name,               new_event.person.last_name
-    assert_equal emails(:complete_contact_event).address, new_event.email.address
+    assert_equal event_entries(:complete_event_entry).title,           new_event.title
+    assert_equal event_entries(:complete_event_entry).description,     new_event.description
+    assert_equal event_entries(:complete_event_entry).fee_description, new_event.fee_description
+    assert_equal event_entries(:complete_event_entry).start_date,      new_event.start_date
+    assert_equal event_entries(:complete_event_entry).end_date,        new_event.end_date
+    assert_equal people(:complete_event_entry).first_name,              new_event.person.first_name
+    assert_equal people(:complete_event_entry).last_name,               new_event.person.last_name
+    assert_equal emails(:complete_event_entry).address, new_event.email.address
     verify_default_location_fields(new_event.location)
-    assert_equal phone_numbers(:complete_contact_event).number, new_event.phone_number.number
-    assert_match /#{urls(:complete_contact_event).address}/, new_event.url.address
+    assert_equal phone_numbers(:complete_event_entry).number, new_event.phone_number.number
+    assert_match /#{urls(:complete_event_entry).address}/, new_event.url.address
   end
 
-  def test_should_accept_contact_event_application_with_empty_email_and_phone_number_and_url
+  def test_should_accept_event_entry_application_with_empty_email_and_phone_number_and_url
     login_as :quentin
     post :create, 
-      :contact_event => {
-        :title            => contact_events(:complete_contact_event).title,
-        :description      => contact_events(:complete_contact_event).description,
-        :start_date       => contact_events(:complete_contact_event).start_date,
-        :end_date         => contact_events(:complete_contact_event).end_date
+      :event_entry => {
+        :title            => event_entries(:complete_event_entry).title,
+        :description      => event_entries(:complete_event_entry).description,
+        :start_date       => event_entries(:complete_event_entry).start_date,
+        :end_date         => event_entries(:complete_event_entry).end_date
       },
       :event => {
         :email => { :address => '' },
@@ -63,21 +63,21 @@ class EventControllerTest < ActionController::TestCase
         :ci_url => { :address => '' }
       }
     assert_redirected_to :controller => 'user', :action => 'index'
-    new_event = ContactEvent.find(:last)
-    assert_equal contact_events(:complete_contact_event).title,       new_event.title
-    assert_equal contact_events(:complete_contact_event).description, new_event.description
-    assert_equal contact_events(:complete_contact_event).start_date,  new_event.start_date
-    assert_equal contact_events(:complete_contact_event).end_date,    new_event.end_date
+    new_event = EventEntry.find(:last)
+    assert_equal event_entries(:complete_event_entry).title,       new_event.title
+    assert_equal event_entries(:complete_event_entry).description, new_event.description
+    assert_equal event_entries(:complete_event_entry).start_date,  new_event.start_date
+    assert_equal event_entries(:complete_event_entry).end_date,    new_event.end_date
     assert_nil new_event.email
     verify_default_location_fields(new_event.location)
     assert_nil new_event.phone_number
     assert_nil new_event.url
   end
 
-  def test_should_not_create_contact_event_application_with_missing_mandatory_fields
+  def test_should_not_create_event_entry_application_with_missing_mandatory_fields
     login_as :quentin
     post :create, 
-      :contact_event => {
+      :event_entry => {
         :title            => nil,
         :description      => nil,
         :start_date       => nil,
@@ -105,7 +105,7 @@ class EventControllerTest < ActionController::TestCase
     get :delete, :id => 100
     assert_response :success
     assert_select "[class=errorExplanation]", false
-    assert_equal false, ContactEvent.exists?(100)
+    assert_equal false, EventEntry.exists?(100)
   end
 
   def test_should_allow_user_to_delete_event
@@ -113,7 +113,7 @@ class EventControllerTest < ActionController::TestCase
     get :delete, :id => 100
     assert_response :success
     assert_select "[class=errorExplanation]", false
-    assert_equal false, ContactEvent.exists?(100)
+    assert_equal false, EventEntry.exists?(100)
   end
 
   def test_should_not_delete_unknown_event
@@ -153,35 +153,35 @@ class EventControllerTest < ActionController::TestCase
 
   def test_should_allow_access_to_edit_to_owner_user
     login_as :quentin
-    get :edit, :id => contact_events(:complete_contact_event).contact_event_id
+    get :edit, :id => event_entries(:complete_event_entry).event_entry_id
     assert_response :success
     assert_select "[class=errorExplanation]", false
   end
   
   def test_should_allow_access_to_edit_to_admin
     login_as :admin
-    get :edit, :id => contact_events(:complete_contact_event).contact_event_id
+    get :edit, :id => event_entries(:complete_event_entry).event_entry_id
     assert_response :success
     assert_select "[class=errorExplanation]", false
   end
   
   def test_should_restrict_access_to_edit_to_logged_in_users
-    get :edit, :id => contact_events(:complete_contact_event).contact_event_id
+    get :edit, :id => event_entries(:complete_event_entry).event_entry_id
     assert_redirected_to :controller => 'session', :action => 'new'
   end
   
   def test_should_deny_access_to_edit_to_non_owner_user
     login_as :aaron
-    get :edit, :id => contact_events(:complete_contact_event).contact_event_id
+    get :edit, :id => event_entries(:complete_event_entry).event_entry_id
     assert_response :success
     assert_select "[class=errorExplanation]"
     assert_match /You do not have permission to edit this Event/, @response.body
   end
 
-  def test_should_not_edit_contact_event_application_with_missing_mandatory_fields
+  def test_should_not_edit_event_entry_application_with_missing_mandatory_fields
     login_as :quentin
-    put :edit, :id => contact_events(:complete_contact_event).contact_event_id,
-      :contact_event => {
+    put :edit, :id => event_entries(:complete_event_entry).event_entry_id,
+      :event_entry => {
         :title            => nil,
         :description      => nil,
         :start_date       => nil,
@@ -196,23 +196,23 @@ class EventControllerTest < ActionController::TestCase
     verify_error_messages_for_missing_fields
 
     #  Verify that field values have not changed
-    new_event = ContactEvent.find(contact_events(:complete_contact_event).contact_event_id)
+    new_event = EventEntry.find(event_entries(:complete_event_entry).event_entry_id)
     assert_equal users(:quentin), new_event.owner_user
-    assert_equal contact_events(:complete_contact_event).title,       new_event.title
-    assert_equal contact_events(:complete_contact_event).description, new_event.description
-    assert_equal contact_events(:complete_contact_event).start_date,  new_event.start_date
-    assert_equal contact_events(:complete_contact_event).end_date,    new_event.end_date
-    assert_equal emails(:complete_contact_event).address, new_event.email.address
+    assert_equal event_entries(:complete_event_entry).title,       new_event.title
+    assert_equal event_entries(:complete_event_entry).description, new_event.description
+    assert_equal event_entries(:complete_event_entry).start_date,  new_event.start_date
+    assert_equal event_entries(:complete_event_entry).end_date,    new_event.end_date
+    assert_equal emails(:complete_event_entry).address, new_event.email.address
 #    verify_default_location_fields(new_event.location)
-    assert_equal phone_numbers(:complete_contact_event).number, new_event.phone_number.number
+    assert_equal phone_numbers(:complete_event_entry).number, new_event.phone_number.number
   end
 
-  def test_should_let_owner_user_edit_contact_event_application
+  def test_should_let_owner_user_edit_event_entry_application
     login_as :quentin
     post_data_to_edit_and_test_response
   end
 
-  def test_should_let_admin_edit_contact_event_application
+  def test_should_let_admin_edit_event_entry_application
    login_as :admin
    post_data_to_edit_and_test_response
   end
@@ -249,8 +249,8 @@ class EventControllerTest < ActionController::TestCase
 protected
 
   def post_data_to_edit_and_test_response
-    put :edit, :id => contact_events(:complete_contact_event).contact_event_id,
-      :contact_event => {
+    put :edit, :id => event_entries(:complete_event_entry).event_entry_id,
+      :event_entry => {
         :title            => 'newtitle',
         :description      => 'newdescription',
         :fee_description  => 'newfeedescription',
@@ -266,7 +266,7 @@ protected
     assert_redirected_to :controller => 'user', :action => 'index'
     
     #  Verify that field values have been updated
-    updated_event = ContactEvent.find(contact_events(:complete_contact_event).contact_event_id)
+    updated_event = EventEntry.find(event_entries(:complete_event_entry).event_entry_id)
     #  owner_user should not be updated when Contact Event is edited by an admin
     assert_equal users(:quentin),                    updated_event.owner_user
     assert_equal 'newtitle',                         updated_event.title

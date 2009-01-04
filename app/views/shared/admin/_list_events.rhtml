@@ -15,7 +15,7 @@
 		<tbody>
 		<% for event in @events %>
 			<tr>
-				<td><a href="/event/edit/<%= event.contact_event_id %>"><%= event.contact_event_id %></a></td>
+				<td><a href="/event/edit/<%= event.event_entry_id %>"><%= event.event_entry_id %></a></td>
 				<td><%= event.title %></td>
 				<td><%= event.person ? "#{event.person.last_name}, #{event.person.first_name}" : '' %></td>
 				<td><%= format_event_location(event) %></td>

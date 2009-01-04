@@ -1,4 +1,4 @@
-complete_contact_event:
+complete_event_entry:
     phone_number_id: 100
     for_entity_id: 100
     number: '666-666-6666'
