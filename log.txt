@@ -16,16 +16,12 @@ Recreate log directory.
 
 THIS COMMIT:
 
-Added two fields to the account request form - one asking applicants
-to describe something they like about CI, the other asking them to
-list any existing entries they're responsible for on the site.
+Events can now be deleted.
 
 
 ======================================================================
 
 TODO:
-
-@ Allow events to be deleted
 
 @ UserMailer model
   - prune unused mail messages

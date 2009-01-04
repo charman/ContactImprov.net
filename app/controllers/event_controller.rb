@@ -24,26 +24,20 @@ class EventController < ApplicationController
     end
   end
 
+  def delete
+    return if !valid_id_and_permissions?
+
+    @contact_event.destroy
+  end
+
+
   def edit
-    if not params.has_key?(:id)
-      # TODO: Rewrite error message to tell user to contact webmaster
-      flash[:notice] = "<h2>Event not Found</h2><p>No Event ID was provided</p>"
+    if params[:commit] == 'Delete'
+      redirect_to :action => 'delete', :id => params[:id] 
       return
     end
-
-    begin
-      @contact_event = ContactEvent.find(params[:id])
-    rescue ActiveRecord::RecordNotFound
-      # TODO: Rewrite error message to tell user to contact webmaster
-      flash[:notice] = "<h2>Event not Found</h2><p>Unable to find the Event you are searching for.</p>"
-      return
-    end
-
-    #  Restrict access to admins or the user who owns the current contact event entry
-    if !@current_user.admin? && (@current_user != @contact_event.owner_user || @contact_event.owner_user == nil)
-      flash[:notice] = "<h2>Access Denied</h2><p>You do not have permission to edit this Event.</p>"
-      return
-    end
+    
+    return if !valid_id_and_permissions?
 
     @contact_event.person       ||= Person.new
     @contact_event.email        ||= Email.new
@@ -120,6 +114,30 @@ protected
     @models_that_must_be_valid = [@contact_event.location, @contact_event]  
 
     @all_linked_models = @models_that_must_be_valid + @models_that_can_be_completely_blank
+  end
+
+  def valid_id_and_permissions?
+    if not params.has_key?(:id)
+      # TODO: Rewrite error message to tell user to contact webmaster
+      flash[:notice] = "<h2>Event not Found</h2><p>No Event ID was provided</p>"
+      return false
+    end
+
+    begin
+      @contact_event = ContactEvent.find(params[:id])
+    rescue ActiveRecord::RecordNotFound
+      # TODO: Rewrite error message to tell user to contact webmaster
+      flash[:notice] = "<h2>Event not Found</h2><p>Unable to find the Event you are searching for.</p>"
+      return false
+    end
+
+    #  Restrict access to admins or the user who owns the current contact event entry
+    if !@current_user.admin? && (@current_user != @contact_event.owner_user || @contact_event.owner_user == nil)
+      flash[:notice] = "<h2>Access Denied</h2><p>You do not have permission to edit this Event.</p>"
+      return false
+    end
+    
+    true
   end
 
 end

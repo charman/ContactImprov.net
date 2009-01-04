@@ -15,6 +15,13 @@
 
 <% form_for @contact_event, :url => { :action => 'create' } do |event| %>
 	<%= render(:partial => "form_fields", :locals => { :event => event } ) %>
+	<fieldset class="cq_form_submit">
+		<p>
+			<%= submit_tag 'Update' %>
+			&nbsp;&nbsp;&nbsp;&nbsp;
+			<a href="/">Cancel</a>
+		</p>
+	</fieldset>
 <% end -%>
 
 <%= render(:partial => "shared/footer" )%>

@@ -98,6 +98,41 @@ class EventControllerTest < ActionController::TestCase
   end
 
 
+  #  Test 'delete' action
+
+  def test_should_allow_admin_to_delete_event
+    login_as :admin
+    get :delete, :id => 100
+    assert_response :success
+    assert_select "[class=errorExplanation]", false
+    assert_equal false, ContactEvent.exists?(100)
+  end
+
+  def test_should_allow_user_to_delete_event
+    login_as :quentin
+    get :delete, :id => 100
+    assert_response :success
+    assert_select "[class=errorExplanation]", false
+    assert_equal false, ContactEvent.exists?(100)
+  end
+
+  def test_should_not_delete_unknown_event
+    login_as :admin
+    get :delete, :id => 6969
+    assert_response :success
+    assert_select "[class=errorExplanation]"
+    assert_match /Unable to find the Event/, @response.body
+  end
+
+  def test_should_not_let_user_delete_someone_elses_event
+    login_as :aaron
+    get :delete, :id => 100
+    assert_response :success
+    assert_select "[class=errorExplanation]"
+    assert_match /Access Denied/, @response.body
+  end
+  
+
   #  Test 'edit' action
 
   def test_should_fail_if_no_event_id_provided
