@@ -196,30 +196,31 @@ class User < ActiveRecord::Base
     end
 
       
-  protected
-    def do_delete
-      self.deleted_at = Time.now.utc
-    end
+protected
 
-    def do_activate
-      self.activated_at = Time.now.utc
-      self.deleted_at = nil
-      # [CTH]  Version 3119 of restful_authentication uses an observer to detect a state
-      #        transition, and sends the email from the observer function.  We send the
-      #        email directly from a state transition callback function.
-      # 
-      #        This approach is described in comments on this page:
-      #          http://harrylove.org/2007/12/17/activation-emails-with-restful-authentication-and-acts_as_state_machine
-      #  TODO: Send user email notifying them their account has been activated
-      ## UserMailer.deliver_activation(self) #this email could be left out
-    end
+  def do_delete
+    self.deleted_at = Time.now.utc
+  end
 
-    def do_pending
-      make_activation_code
-    end
+  def do_activate
+    self.activated_at = Time.now.utc
+    self.deleted_at = nil
+    # [CTH]  Version 3119 of restful_authentication uses an observer to detect a state
+    #        transition, and sends the email from the observer function.  We send the
+    #        email directly from a state transition callback function.
+    # 
+    #        This approach is described in comments on this page:
+    #          http://harrylove.org/2007/12/17/activation-emails-with-restful-authentication-and-acts_as_state_machine
+    #  TODO: Send user email notifying them their account has been activated
+    ## UserMailer.deliver_activation(self) #this email could be left out
+  end
 
-    def password_required?
-      crypted_password.blank? || !password.blank?
-    end
+  def do_pending
+    make_activation_code
+  end
+
+  def password_required?
+    crypted_password.blank? || !password.blank?
+  end
     
 end

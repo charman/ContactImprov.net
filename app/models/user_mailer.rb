@@ -57,31 +57,33 @@ class UserMailer < ActionMailer::Base
   end
 
 
-  protected
-    def filter_recipients(emails)
-      #  Only deliver email on the production server
-      if File.file? "config/deliver_email"
-        @recipients = emails
-        @bcc        = "cq@craigharman.net"
-      else
-        @recipients = "charman"
-      end
-    end
-  
-    def setup_admin_email()
-      setup_email("cq@craigharman.net")
-      @subject     = "[CQadmin]  "
-    end
+protected
 
-    def setup_email(email_addresses)
-      filter_recipients(email_addresses)
-      @from        = "ContactImprov.net <listings@contactimprov.net>"
-      @sent_on     = Time.now
+  def filter_recipients(emails)
+    #  Only deliver email on the production server
+    if File.file? "config/deliver_email"
+      @recipients = emails
+      @bcc        = "cq@craigharman.net"
+    else
+      @recipients = "charman"
     end
-  
-    def setup_user_email(user)
-      setup_email("#{user.email}")
-      @base_url    = "http://www.contactimprov.net/"
-      @body[:user] = user
-    end
+  end
+
+  def setup_admin_email()
+    setup_email("cq@craigharman.net")
+    @subject     = "[CQadmin]  "
+  end
+
+  def setup_email(email_addresses)
+    filter_recipients(email_addresses)
+    @from        = "ContactImprov.net <listings@contactimprov.net>"
+    @sent_on     = Time.now
+  end
+
+  def setup_user_email(user)
+    setup_email("#{user.email}")
+    @base_url    = "http://www.contactimprov.net/"
+    @body[:user] = user
+  end
+
 end

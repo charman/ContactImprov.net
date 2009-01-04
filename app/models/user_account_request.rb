@@ -24,4 +24,17 @@ class UserAccountRequest < ActiveRecord::Base
   event :contact do
     transitions :from => :new, :to => :contacted
   end
+
+
+  def create_user_account_and_deliver_signup_email
+    user = User.new
+    user.email = self.email.address
+    user.person = self.person
+    user.set_temporary_password
+    user.save!
+    user.register!
+    UserMailer.deliver_signup_notification(user)
+    user
+  end
+  
 end

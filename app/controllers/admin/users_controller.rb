@@ -135,6 +135,7 @@ class Admin::UsersController < ApplicationController
 
       if params[:commit] == 'Accept'
         account_request.accept!
+        account_request.create_user_account_and_deliver_signup_email
       elsif params[:commit] == 'Reject'
         account_request.reject!
       # else just save the CQ comments without updating the state
@@ -184,9 +185,10 @@ class Admin::UsersController < ApplicationController
   end
 
 
-  protected
-    def find_user
-      @user = User.find(params[:id])
-    end
+protected
+
+  def find_user
+    @user = User.find(params[:id])
+  end
 
 end

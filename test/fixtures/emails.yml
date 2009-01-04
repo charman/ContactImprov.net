@@ -47,3 +47,9 @@ duplicate2_contacts_applicant_email:
     email_id: 403
     for_entity_id: 403
     address: 'duplicate@contactimprov.org'
+
+
+account_request1:
+    email_id: 500
+    for_entity_id: 500
+    address: 'applicant@craigharman.net'

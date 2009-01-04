@@ -24,6 +24,18 @@
 						<%= @account_request.email.address %>
 					</td>
 				</tr>
+				<tr>
+					<th>Something about CI:</th>
+					<td>
+						<%= @account_request.something_about_contact_improv %>
+					</td>
+				</tr>
+				<tr>
+					<th>Existing Entries:</th>
+					<td>
+						<%= @account_request.existing_entries %>
+					</td>
+				</tr>
 			</table>
 
 			<p>
@@ -44,7 +56,7 @@
 				<tr>
 					<th><%= submit_tag 'Accept' %></th>
 					<td>
-						No email is sent to applicant.
+						User account is created; Activation email sent to User.
 					</td>
 				</tr>
 				<tr>

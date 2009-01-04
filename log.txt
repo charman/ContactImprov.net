@@ -16,14 +16,16 @@ Recreate log directory.
 
 THIS COMMIT:
 
-Pruned unused functions from UserMailer model.
-
-Removed all references to CQ from UserMailer views.
+Using the admin interface to accept a user account request now creates
+an account for that user and sends them an activation email.
 
 
 ======================================================================
 
 TODO:
+
+@ Find library to strip HTML code from fields
+  - read article bookmarked in NNW
 
 @ Make ci@craigharman.net account
 
@@ -33,13 +35,12 @@ TODO:
 
 -- 
 
-@ Find library to strip HTML code from fields
-  - read article bookmarked in NNW
-
 @ Investigate ways to convert line breaks to <br />'s in form fields
   - look at Markdown
 
 --
+
+@ Send email when rejecting a user account request
 
 @ UserMailer model
   - (?) email new events when submitted

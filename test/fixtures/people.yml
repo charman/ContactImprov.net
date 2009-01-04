@@ -52,3 +52,9 @@ duplicate2_contacts_applicant:
     person_id: 403
     first_name: 'Duplicate2'
     last_name:  'Applicant'
+
+account_request1:
+    person_id: 500
+    first_name: 'Account'
+    last_name: 'Applicant'
+
