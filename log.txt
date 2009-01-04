@@ -16,17 +16,16 @@ Recreate log directory.
 
 THIS COMMIT:
 
-Events can now be deleted.
+Pruned unused functions from UserMailer model.
+
+Removed all references to CQ from UserMailer views.
 
 
 ======================================================================
 
 TODO:
 
-@ UserMailer model
-  - prune unused mail messages
-  - remove references to CQ from some of the messages
-  - (?) email new events when submitted
+@ Make ci@craigharman.net account
 
 @ Create
   - ContactJam model
@@ -41,6 +40,9 @@ TODO:
   - look at Markdown
 
 --
+
+@ UserMailer model
+  - (?) email new events when submitted
 
 @ Use Kuler to pick a new color scheme
 
