@@ -18,14 +18,12 @@ Create config/deliver_email file.
 
 THIS COMMIT:
 
-Fixed HTML on /user/activate page so it is slightly less fugly.
+If user is an admin, link to the admin page from /user
 
 
 ======================================================================
 
 TODO:
-
-@ If user is an admin, link to the admin page from /user
 
 @ Sanitize HTML and CSS for all form fields
   - http://www.rubyinside.com/how-to-sanitize-html-and-css-in-ruby-1429.html

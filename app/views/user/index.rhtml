@@ -1,6 +1,10 @@
 <%= render(:partial => "shared/header", :locals => { :title => 'Manage your ContactImprov.net account' } )%>
 
 <% if @user %> 
+	<% if @user.admin? %>
+		<h2><a href="<%= url_for :action => 'index', :controller => 'admin' %>">Admin Interface</h2>
+	<% end %>
+
 	<h2>Online Account Information</h2>
 	<div style="margin-left: 2em; margin-bottom: 2em;">
 		<p>
