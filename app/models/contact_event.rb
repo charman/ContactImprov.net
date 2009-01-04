@@ -15,6 +15,7 @@ class ContactEvent < ActiveRecord::Base
 
   validates_presence_of :title, :description, :start_date, :end_date
 
+
   def before_save
     if self.start_date > self.end_date
       self.start_date, self.end_date = self.end_date, self.start_date

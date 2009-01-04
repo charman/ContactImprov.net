@@ -11,17 +11,17 @@ class Email < ActiveRecord::Base
 
   validates_presence_of :address
 
+
   def before_save
     sanitize_attributes
   end
 
-  def version_condition_met?
-    for_entity_id_changed? || position_changed? || address_changed?
-  end
-
-
   def completely_blank?
     self.address.blank?
+  end
+
+  def version_condition_met?
+    for_entity_id_changed? || position_changed? || address_changed?
   end
 
 end

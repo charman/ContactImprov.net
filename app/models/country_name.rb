@@ -1,6 +1,4 @@
 class CountryName < ActiveRecord::Base
-#  has_many :locations
-  
   attr_accessible   # No attributes are accessible
 
   #  The validity of a CountryName object should be checked by calling valid?, and not by
@@ -49,6 +47,7 @@ class CountryName < ActiveRecord::Base
       return false
     end
   end
+
 
   def english_name_with_underscores
     self.english_name.gsub(' ', '_').gsub(',', '')

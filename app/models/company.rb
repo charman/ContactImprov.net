@@ -8,14 +8,6 @@ class Company < ActiveRecord::Base
   
   validates_presence_of :name, :message => "for Company can't be blank"
 
-  def after_save
-    # #  Create an entity object for the current object, if it does not already exist
-    # if !self.entity
-    #   e = Entity.new
-    #   e.resource = self
-    #   e.save!
-    # end  
-  end
 
   def before_save
     sanitize_attributes

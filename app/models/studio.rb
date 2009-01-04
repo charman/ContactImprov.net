@@ -8,6 +8,7 @@ class Studio < ActiveRecord::Base
 
   validates_presence_of :name, :message => "for Studio can't be blank"
 
+
   def before_save
     sanitize_attributes
   end

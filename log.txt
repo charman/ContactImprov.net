@@ -21,14 +21,7 @@ WHEN UPDATING PRODUCTION SERVER:
 
 THIS COMMIT:
 
-Created the lib/sanitize_accessible_attributes.rb file, which uses the
-'sanitize' gem to strip HTML from all attributes that have been marked
-by a model as accessible.  Called the sanitize_attributes function in
-the library from the before_save function of all models that can be
-manipulated by users.
-
-Also stripped some dead code (copied over from cq_rails and then
-commented out) from the models and unit tests.
+Reformatted the code in the models for consistency.
 
 
 ======================================================================
@@ -44,6 +37,10 @@ TODO:
   - ContactJam model
   - ContactPerson model
 
+@ UserMailer model
+  - email new events when submitted
+  - email events when they are edited
+
 -- 
 
 @ Investigate ways to convert line breaks to <br />'s in form fields
@@ -52,9 +49,6 @@ TODO:
 --
 
 @ Send email when rejecting a user account request
-
-@ UserMailer model
-  - (?) email new events when submitted
 
 @ Use Kuler to pick a new color scheme
 

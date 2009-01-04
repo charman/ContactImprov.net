@@ -17,40 +17,6 @@ class Location < ActiveRecord::Base
   validates_presence_of :city_name
   validate :validate_country_name_and_us_state
 
-  #  Verify that this Location object is linked to a valid CountryName and (if in US) UsState objects.
-  #
-  #  TODO: Potential bug - if attributes= is called, and then Location is later linked to
-  #         valid CountryName and UsState objects, validation will still fail.
-  def validate_country_name_and_us_state
-    #  If attributes= was called, then it already checked that Location.country_name and (if in
-    #   US) Location.us_state were non-nil.  attributes= also saved error messages *with the
-    #   user-provided invalid form values* to the @param_initialization_errors array.  We want the validation
-    #   error messages to tell the user what invalid value they entered, not just that they entered some 
-    #   unknown invalid value.  The user may have fat-fingered the country name (an error on their end), or 
-    #   they may have entered an alternate spelling for the country name that is not in our database (an error
-    #   on our end).
-    if @param_initialization_errors  && !@param_initialization_errors.empty?
-      @param_initialization_errors.each { |param, error_message| errors.add(param, error_message) }
-    else
-      #  If attributes= was *not* called, then we still validate the country_name and us_state links.
-      #   This is equivalent to validating these fields using:
-      #     validates_presence_of :country_name
-      #     validates_presence_of :us_state_name, :if => :is_in_usa?
-      if !self.country_name
-        errors.add(:country_name, "Unknown country name")
-      end
-      if self.is_in_usa? && !self.us_state
-        errors.add(:us_state, "Unknown US State name")
-      end
-    end
-  end
-
-  def version_condition_met?
-    street_address_line_1_changed? || street_address_line_2_changed? || city_name_changed? || region_name_changed? || 
-      us_state_id_changed? || postal_code_changed? || country_name_id_changed? || 
-      lat_changed? || lng_changed? || geocode_precision_changed?
-  end
-
   #  TODO: This method introduces some coupling between the model and the view.
   #        This function cannot be moved to a helper file because the @param_initialization_errors 
   #         member variable is used by validate_country_name_and_us_state.
@@ -188,6 +154,40 @@ class Location < ActiveRecord::Base
     else
       self.region_name
     end
+  end
+
+  #  Verify that this Location object is linked to a valid CountryName and (if in US) UsState objects.
+  #
+  #  TODO: Potential bug - if attributes= is called, and then Location is later linked to
+  #         valid CountryName and UsState objects, validation will still fail.
+  def validate_country_name_and_us_state
+    #  If attributes= was called, then it already checked that Location.country_name and (if in
+    #   US) Location.us_state were non-nil.  attributes= also saved error messages *with the
+    #   user-provided invalid form values* to the @param_initialization_errors array.  We want the validation
+    #   error messages to tell the user what invalid value they entered, not just that they entered some 
+    #   unknown invalid value.  The user may have fat-fingered the country name (an error on their end), or 
+    #   they may have entered an alternate spelling for the country name that is not in our database (an error
+    #   on our end).
+    if @param_initialization_errors  && !@param_initialization_errors.empty?
+      @param_initialization_errors.each { |param, error_message| errors.add(param, error_message) }
+    else
+      #  If attributes= was *not* called, then we still validate the country_name and us_state links.
+      #   This is equivalent to validating these fields using:
+      #     validates_presence_of :country_name
+      #     validates_presence_of :us_state_name, :if => :is_in_usa?
+      if !self.country_name
+        errors.add(:country_name, "Unknown country name")
+      end
+      if self.is_in_usa? && !self.us_state
+        errors.add(:us_state, "Unknown US State name")
+      end
+    end
+  end
+
+  def version_condition_met?
+    street_address_line_1_changed? || street_address_line_2_changed? || city_name_changed? || region_name_changed? || 
+      us_state_id_changed? || postal_code_changed? || country_name_id_changed? || 
+      lat_changed? || lng_changed? || geocode_precision_changed?
   end
 
 end

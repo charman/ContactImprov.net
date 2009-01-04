@@ -10,17 +10,17 @@ class PhoneNumber < ActiveRecord::Base
 
   validates_presence_of :number
 
+
   def before_save
     sanitize_attributes
   end
 
-  def version_condition_met?
-    for_entity_id_changed? || number_changed?
-  end
-
-
   def completely_blank?
     self.number.blank?
+  end
+
+  def version_condition_met?
+    for_entity_id_changed? || number_changed?
   end
 
 end

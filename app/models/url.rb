@@ -8,15 +8,6 @@ class Url < ActiveRecord::Base
 
   validates_presence_of :address
 
-  def before_save
-    self.address = self.address_with_protocol
-    sanitize_attributes
-  end
-
-  def version_condition_met?
-    for_entity_id_changed? || address_changed?
-  end
-
 
   def address_with_protocol
     if self.address =~ /:\/\// 
@@ -34,8 +25,17 @@ class Url < ActiveRecord::Base
     end
   end
 
+  def before_save
+    self.address = self.address_with_protocol
+    sanitize_attributes
+  end
+
   def completely_blank?
     self.address.blank?
+  end
+
+  def version_condition_met?
+    for_entity_id_changed? || address_changed?
   end
 
 end

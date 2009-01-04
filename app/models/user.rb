@@ -124,6 +124,12 @@ class User < ActiveRecord::Base
     self.class.encrypt(password, salt)
   end
 
+  def encrypt_password
+    return if password.blank?
+    self.salt = Digest::SHA1.hexdigest("--#{Time.now.to_s}--#{email}--") if new_record?
+    self.crypted_password = encrypt(password)
+  end
+
   def first_name
     if person.nil?
       ''
@@ -153,6 +159,13 @@ class User < ActiveRecord::Base
     self.password_reset_code
   end
 
+  def make_activation_code
+    self.deleted_at = nil
+    #  TODO: Using the current time is not a good source of randomness...
+    self.activation_code = Digest::SHA1.hexdigest( Time.now.to_s.split(//).sort_by {rand}.join )
+    save
+  end
+
   # These create and unset the fields required for remembering users between browser closes
   def remember_me
     remember_me_for 2.weeks
@@ -177,21 +190,6 @@ class User < ActiveRecord::Base
     self.password_confirmation = 'completelykimpossiblyunguessable'
     self.encrypt_password
   end
-
-    # [CTH]  TODO: (?) Re-protect this method?  It was unprotected for account creation
-    #        using script/runner
-    def encrypt_password
-      return if password.blank?
-      self.salt = Digest::SHA1.hexdigest("--#{Time.now.to_s}--#{email}--") if new_record?
-      self.crypted_password = encrypt(password)
-    end
-
-    def make_activation_code
-      self.deleted_at = nil
-      #  TODO: Using the current time is not a good source of randomness...
-      self.activation_code = Digest::SHA1.hexdigest( Time.now.to_s.split(//).sort_by {rand}.join )
-      save
-    end
 
       
 protected

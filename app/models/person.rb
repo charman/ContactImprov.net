@@ -11,6 +11,7 @@ class Person < ActiveRecord::Base
 
   validates_presence_of :last_name
 
+
   def before_save
     sanitize_attributes
   end
