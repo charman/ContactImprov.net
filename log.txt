@@ -16,8 +16,12 @@ Recreate log directory.
 
 THIS COMMIT:
 
-Using the admin interface to accept a user account request now creates
-an account for that user and sends them an activation email.
+Configured local mail delivery for the development environment.
+
+Configured rotating logfiles for the production environment.
+
+Changed the protocol for the URL in the account request email from
+'http' to 'https'.
 
 
 ======================================================================
@@ -28,6 +32,8 @@ TODO:
   - read article bookmarked in NNW
 
 @ Make ci@craigharman.net account
+
+@ Verify that I get an email when an exception occurs on production server
 
 @ Create
   - ContactJam model
