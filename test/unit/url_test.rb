@@ -39,7 +39,7 @@ class UrlTest < ActiveSupport::TestCase
     u.address = '<b>sanitized</b>'
     u.save!
     u.reload
-    assert_equal 'sanitized', u.address
+    assert_equal 'http://sanitized', u.address
   end
 
 end

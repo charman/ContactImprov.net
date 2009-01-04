@@ -17,9 +17,7 @@ class Location < ActiveRecord::Base
   validates_presence_of :city_name
   validate :validate_country_name_and_us_state
 
-  #  TODO: This method introduces some coupling between the model and the view.
-  #        This function cannot be moved to a helper file because the @param_initialization_errors 
-  #         member variable is used by validate_country_name_and_us_state.
+
   def attributes=(params)
     #  This method verifies that the user has provided us with a valid country name and, if in the US, a
     #   valid US state name.  If either value is invalid, we save an error message *with the user's invalid
@@ -41,13 +39,21 @@ class Location < ActiveRecord::Base
 
     self.country_name = CountryName.find_by_english_name_or_altname(params[:country_name][:english_name])
     if !self.country_name
-      @param_initialization_errors[:country_name] = "'#{params[:country_name][:english_name]}' is not the name of a country in our database"
+      if params[:country_name][:english_name].blank?
+        @param_initialization_errors[:country_name] = "can't be blank"
+      else
+        @param_initialization_errors[:country_name] = "'#{params[:country_name][:english_name]}' is not the name of a country in our database"
+      end
     end
  
     if self.is_in_usa?
       self.us_state = UsState.find_by_name_or_abbreviation(params[:us_state][:name])
       if !self.us_state
-        @param_initialization_errors[:us_state] = "'#{params[:us_state][:name]}' is not the name of a US state"
+        if params[:us_state][:name].blank?
+          @param_initialization_errors[:us_state] = "can't be blank for locations within the US"
+        else
+          @param_initialization_errors[:us_state] = "'#{params[:us_state][:name]}' is not the name of a US state"
+        end
       end
     else 
       self.region_name = params[:us_state][:name]

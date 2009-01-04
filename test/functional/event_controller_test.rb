@@ -287,7 +287,7 @@ protected
     assert_match /Start date can.t be blank/, @response.body
     assert_match /Title can.t be blank/, @response.body
     assert_match /Description can.t be blank/, @response.body
-    assert_match /Country name .. is not the name of a country in our database/, @response.body
+    assert_match /Country name can.t be blank/, @response.body
     assert_match /City name can.t be blank/, @response.body
   end
 

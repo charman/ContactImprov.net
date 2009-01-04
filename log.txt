@@ -21,7 +21,11 @@ WHEN UPDATING PRODUCTION SERVER:
 
 THIS COMMIT:
 
-Reformatted the code in the models for consistency.
+Improved the error messages for when someone submits a blank country
+name or (for the US) a blank US state.
+
+Fixed a poorly written unit test for testing HTML sanitization for the
+URL class.
 
 
 ======================================================================
