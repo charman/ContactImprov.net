@@ -16,36 +16,41 @@
 
 <% if @user %>
 
-  <%= error_messages_for :user, :header => 'Unable to activate your account' %>
+	<%= error_messages_for :user, :header => 'Unable to activate your account' %>
 
-  <% form_for :user, :url => { :action => "activate" } do |f| -%>
+	<% form_for :user, :url => { :action => "activate" } do |f| -%>
+		<% 
+			#  If the activation_code parameter exists, then this page was reached
+		#  	by clicking on a link in an activation email.  In this case, we 
+		# 	don't want the user to provide another email address (we're trying
+		# 	to confirm the one they already provided), so we hide the email field.
+		if !params.has_key?('activation_code') %>
+		  <p><label for="email">email address</label><br/>
+		  <%= f.text_field :email %>
+		</p>
+		<% end %>
+	
+		<p>
+			We need you to select a password for your account.
+			You will be able to log on using your email address and the
+			password you provide below.
+		</p>
 
-  <% 
-  	#  If the activation_code parameter exists, then this page was reached
-	#  	by clicking on a link in an activation email.  In this case, we 
-	# 	don't want the user to provide another email address (we're trying
-	# 	to confirm the one they already provided), so we hide the email field.
-	if !params.has_key?('activation_code') %>
-    <p><label for="email">email address</label><br/>
-    <%= f.text_field :email %>
-	</p>
-  <% end %>
+		<fieldset>
+			<ol>
+				<li>
+					<label for="password">New Password:</label>
+					<%= f.password_field :password %>
+				</li>
+				<li>
+					<label for="password_confirmation">Confirm Password:</label>
+					<%= f.password_field :password_confirmation %>
+				</li>
+			</ol>
+		</fieldset>
 
-
-  <p>
-	We need you to select a password for your account.
-	You will be able to log on using your email address and the
-	password you provide below.
-  </p>
-
-  <p style="font-weight: bold;"><label for="password">New Password:</label><br/>
-  <%= f.password_field :password %></p>
-
-  <p style="font-weight: bold;"><label for="password_confirmation">Confirm New Password:</label><br/>
-  <%= f.password_field :password_confirmation %></p>
-
-  <p><%= submit_tag 'Activate my Account' %></p>
-  <% end -%>
+		<p><%= submit_tag 'Activate my Account' %></p>
+	<% end -%>
 
 <% else %>
   <% 

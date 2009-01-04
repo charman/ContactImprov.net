@@ -82,7 +82,7 @@ CREATE TABLE `ci_email_versions` (
   KEY `index_ci_email_versions_on_email_id` (`email_id`),
   KEY `index_ci_email_versions_on_for_entity_id` (`for_entity_id`),
   KEY `index_ci_email_versions_on_address` (`address`)
-) ENGINE=MyISAM AUTO_INCREMENT=15002 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=15005 DEFAULT CHARSET=utf8;
 
 CREATE TABLE `ci_emails` (
   `email_id` int(11) NOT NULL auto_increment,
@@ -95,7 +95,7 @@ CREATE TABLE `ci_emails` (
   PRIMARY KEY  (`email_id`),
   KEY `index_ci_emails_on_for_entity_id` (`for_entity_id`),
   KEY `index_ci_emails_on_address` (`address`)
-) ENGINE=MyISAM AUTO_INCREMENT=15002 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=15005 DEFAULT CHARSET=utf8;
 
 CREATE TABLE `ci_location_versions` (
   `location_version_id` int(11) NOT NULL auto_increment,
@@ -146,7 +146,7 @@ CREATE TABLE `ci_people` (
   `created_at` datetime default NULL,
   `updated_at` datetime default NULL,
   PRIMARY KEY  (`person_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=15004 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=15007 DEFAULT CHARSET=utf8;
 
 CREATE TABLE `ci_person_versions` (
   `person_version_id` int(11) NOT NULL auto_increment,
@@ -156,7 +156,7 @@ CREATE TABLE `ci_person_versions` (
   `last_name` varchar(255) default NULL,
   `updated_at` datetime default NULL,
   PRIMARY KEY  (`person_version_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=15004 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=15007 DEFAULT CHARSET=utf8;
 
 CREATE TABLE `ci_phone_number_versions` (
   `phone_number_version_id` int(11) NOT NULL auto_increment,
@@ -249,7 +249,7 @@ CREATE TABLE `ci_user_account_requests` (
   `created_at` datetime default NULL,
   `updated_at` datetime default NULL,
   PRIMARY KEY  (`user_account_request_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=15001 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=15004 DEFAULT CHARSET=utf8;
 
 CREATE TABLE `ci_users` (
   `user_id` int(11) NOT NULL auto_increment,
