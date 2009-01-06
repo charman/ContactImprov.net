@@ -1,27 +1,27 @@
 <%= render(:partial => "shared/header", :locals => { :title => 'List Events' } )%>
 
-<% @events.each do |event| %>
+<% @entries.each do |entry| %>
 	<dt>
-		<span class='date'><%= format_event_date_range(event) %></span>
-		<span class='event'><%= event.title %></span>
-		<span class='location'><%= format_event_location(event) %></span>
+		<span class='date'><%= format_event_date_range(entry) %></span>
+		<span class='event'><%= entry.title %></span>
+		<span class='location'><%= format_event_location(entry) %></span>
 	</dt>
 	<dd>
-		<span class='description'><%= event.description %></span>
+		<span class='description'><%= entry.description %></span>
 		<br>
-		<span class='fee'><%= event.fee_description %></span>
+		<span class='fee'><%= entry.fee_description %></span>
 		<br>
 		<span class='contact'>
-			CONTACT: <%= event.person ? "#{event.person.first_name} #{event.person.last_name}" : '' %>
+			CONTACT: <%= entry.person ? "#{entry.person.first_name} #{entry.person.last_name}" : '' %>
 			&nbsp;&nbsp;&nbsp;&nbsp;
-			PHONE: <%= event.phone_number ? event.phone_number.number : '' %>
+			PHONE: <%= entry.phone_number ? entry.phone_number.number : '' %>
 			&nbsp;&nbsp;&nbsp;&nbsp;
-			EMAIL: <%= event.email ? obfuscate_email_with_javascript(event.email.address) : '' %>
+			EMAIL: <%= entry.email ? obfuscate_email_with_javascript(entry.email.address) : '' %>
 			&nbsp;&nbsp;&nbsp;&nbsp; 
-			WEBSITE: <%= event.url ? "<a href=\"#{event.url.address}\">#{event.url.address}</a>" : '' %>
+			WEBSITE: <%= entry.url ? "<a href=\"#{entry.url.address}\">#{entry.url.address}</a>" : '' %>
 		</span>
 		<br>
-		<span class='updated'>[<%= event.updated_at.strftime('%b %d %Y') %>]</span>
+		<span class='updated'>[<%= entry.updated_at.strftime('%b %d %Y') %>]</span>
 	</dd>
 <% end %>
 

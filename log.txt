@@ -21,7 +21,11 @@ WHEN UPDATING PRODUCTION SERVER:
 
 THIS COMMIT:
 
-Renamed the ContactEvent model to EventEntry.
+Did some very extensive refactoring of the Event controller.  Most of
+the functionality for the controller has been moved into
+lib/entry_form_with_optional_models.rb.  This should minimize code
+replication when I create models and controllers for JamEntry and
+PersonEntry.
 
 
 ======================================================================
@@ -34,8 +38,8 @@ TODO:
   - does this get rid of 'CQadmin' subject lines?
 
 @ Create
-  - ContactJam model
-  - ContactPerson model
+  - JamEntry model
+  - PersonEntry model
 
 @ UserMailer model
   - email new events when submitted
