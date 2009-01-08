@@ -17,6 +17,10 @@ protected
     EventEntry
   end
   
+  def entry_display_name
+    'Event'
+  end
+
   def mandatory_models
     ['location']
   end

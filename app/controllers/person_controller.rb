@@ -17,6 +17,10 @@ protected
     PersonEntry
   end
 
+  def entry_display_name
+    'Person'
+  end
+
   def mandatory_models
     ['person', 'location']
   end

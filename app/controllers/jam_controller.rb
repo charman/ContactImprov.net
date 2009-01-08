@@ -17,6 +17,10 @@ protected
     JamEntry
   end
 
+  def entry_display_name
+    'Jam'
+  end
+
   def mandatory_models
     ['location']
   end
