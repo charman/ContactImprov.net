@@ -188,6 +188,38 @@ CREATE TABLE `ci_people` (
   PRIMARY KEY  (`person_id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=15003 DEFAULT CHARSET=utf8;
 
+CREATE TABLE `ci_person_entries` (
+  `person_entry_id` int(11) NOT NULL auto_increment,
+  `version` int(11) default NULL,
+  `owner_user_id` int(11) default NULL,
+  `person_id` int(11) default NULL,
+  `location_id` int(11) default NULL,
+  `email_id` int(11) default NULL,
+  `phone_number_id` int(11) default NULL,
+  `url_id` int(11) default NULL,
+  `studio_id` int(11) default NULL,
+  `ci_notes` text,
+  `created_at` datetime default NULL,
+  `updated_at` datetime default NULL,
+  PRIMARY KEY  (`person_entry_id`)
+) ENGINE=MyISAM AUTO_INCREMENT=15000 DEFAULT CHARSET=utf8;
+
+CREATE TABLE `ci_person_entry_versions` (
+  `person_entry_version_id` int(11) NOT NULL auto_increment,
+  `person_entry_id` int(11) default NULL,
+  `version` int(11) default NULL,
+  `owner_user_id` int(11) default NULL,
+  `person_id` int(11) default NULL,
+  `location_id` int(11) default NULL,
+  `email_id` int(11) default NULL,
+  `phone_number_id` int(11) default NULL,
+  `url_id` int(11) default NULL,
+  `studio_id` int(11) default NULL,
+  `ci_notes` text,
+  `updated_at` datetime default NULL,
+  PRIMARY KEY  (`person_entry_version_id`)
+) ENGINE=MyISAM AUTO_INCREMENT=15000 DEFAULT CHARSET=utf8;
+
 CREATE TABLE `ci_person_versions` (
   `person_version_id` int(11) NOT NULL auto_increment,
   `person_id` int(11) default NULL,
@@ -341,3 +373,5 @@ INSERT INTO ci_schema_migrations (version) VALUES ('20081216222634');
 INSERT INTO ci_schema_migrations (version) VALUES ('20081217000434');
 
 INSERT INTO ci_schema_migrations (version) VALUES ('20090108001853');
+
+INSERT INTO ci_schema_migrations (version) VALUES ('20090108205118');

@@ -1,0 +1,8 @@
+complete_person_entry:
+    person_entry_id: 100
+    owner_user_id: 1
+    person_id: 100
+    location_id: 100
+    email_id: 100
+    phone_number_id: 100
+    url_id: 100
