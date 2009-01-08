@@ -1,17 +1,17 @@
-<%= render(:partial => "shared/header", :locals => { :title => "Delete #{model_name} entry" } )%>
+<%= render(:partial => "shared/header", :locals => { :title => "Delete #{entry_display_name} entry" } )%>
 
 <% if flash[:notice] %>
 	<div class="errorExplanation" id="errorExplanation">
 		<%= flash[:notice] %>
 	</div>
 <% else %>
-	<h2>We have deleted your <%= model_name %> entry</h2>
+	<h2>We have deleted your <%= entry_display_name %> entry</h2>
 	<p style="font-size: large;">
 		<a href="/user">Return to <b>Online Account Home</b></a>
 	</p>
 	<% if @current_user.admin? %>
 		<p style="font-size: large;">
-			<a href="/admin/<%= model_name.downcase.pluralize %>/list">Return to <b>Admin-Contacts: List <%= model_name %> Entries</b></a>
+			<a href="/admin/<%= entry_display_name.downcase.pluralize %>/list">Return to <b>Admin-Contacts: List <%= entry_display_name %> Entries</b></a>
 		</p>
 	<% end %>
 <% end %>

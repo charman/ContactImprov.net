@@ -1,4 +1,4 @@
-<%= render(:partial => "shared/header", :locals => { :title => 'Edit an Event' } )%>
+<%= render(:partial => "shared/header", :locals => { :title => 'Edit a #{ entry_display_name }' } )%>
 
 <% if flash[:notice] %>
 	<div class="errorExplanation" id="errorExplanation">
@@ -8,19 +8,19 @@
 
 <% if defined?(@error_messages) && !@error_messages.empty? %>
 	<div class="errorExplanation" id="errorExplanation">
-		<h2>Unable to update your event info</h2>
+		<h2>Unable to update your <%= entry_display_name %> info</h2>
 		<p><%= content_tag(:ul, @error_messages.map {|m| content_tag(:li, m)}) %></p>
 	</div>
 <% end %>
 
-<% if not flash[:notice] %>	
-	<% form_for @entry, :url => { :action => 'edit' } do |event| %>
-		<%= render(:partial => "form_fields", :locals => { :event => event } ) %>
+<% if not flash[:notice]  %>	
+	<% form_for @entry, :url => { :action => 'edit' } do |the_entry| %>
+		<%= render(:partial => "form_fields", :locals => { :the_entry => the_entry } ) %>
 		<fieldset class="cq_form_submit">
 			<p>
 				<%= submit_tag 'Update' %>
 				&nbsp;&nbsp;&nbsp;&nbsp;
-				<%= submit_tag 'Delete', :confirm => "Are you certain you want to delete this Event? " +
+				<%= submit_tag 'Delete', :confirm => "Are you certain you want to delete this #{entry_display_name}? " +
 					"This action CANNOT BE UNDONE."
 				%>
 				&nbsp;&nbsp;&nbsp;&nbsp;
@@ -28,7 +28,7 @@
 				&nbsp;
 				or
 				&nbsp;
-				<a href="/event/edit/<%= @entry.id %>">Reload Form</a>
+				<a href="/<%= entry_display_name.downcase %>/edit/<%= @entry.id %>">Reload Form</a>
 			</p>
 		</fieldset>
 	<% end -%>

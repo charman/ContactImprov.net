@@ -21,7 +21,7 @@ class EventControllerTest < ActionController::TestCase
         :start_date       => event_entries(:complete_event_entry).start_date,
         :end_date         => event_entries(:complete_event_entry).end_date
       },
-      :event => {
+      :entry => {
         :person => { 
           :first_name => people(:complete_event_entry).first_name, 
           :last_name  => people(:complete_event_entry).last_name
@@ -56,7 +56,7 @@ class EventControllerTest < ActionController::TestCase
         :start_date       => event_entries(:complete_event_entry).start_date,
         :end_date         => event_entries(:complete_event_entry).end_date
       },
-      :event => {
+      :entry => {
         :email => { :address => '' },
         :location => @@default_location_fields,
         :phone_number => { :number => '' },
@@ -83,7 +83,7 @@ class EventControllerTest < ActionController::TestCase
         :start_date       => nil,
         :end_date         => nil
       },
-      :event => {
+      :entry => {
         :email => nil,
         :location => @@empty_location_fields,
         :phone_number => nil,
@@ -187,7 +187,7 @@ class EventControllerTest < ActionController::TestCase
         :start_date       => nil,
         :end_date         => nil
       },
-      :event => {
+      :entry => {
         :email => nil,
         :location => @@empty_location_fields,
         :phone_number => nil,
@@ -257,7 +257,7 @@ protected
         :start_date       => '2006-06-06',
         :end_date         => '2006-06-06'
       },
-      :event => {
+      :entry => {
         :email => { :address => 'newaddress@contactimprov.org' },
         :location => @@default_location_fields,
         :phone_number => { :number => '666-666-6666' },

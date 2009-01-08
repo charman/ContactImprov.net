@@ -11,16 +11,14 @@ module EntryFormWithOptionalModels
       @entry.save!
       redirect_to :controller => 'user', :action => 'index'
     else
-      render :action => 'new'
+      render :partial => "shared/entries/new", :locals => { :entry_display_name => entry_display_name }
     end
   end
 
   def delete
-    render :partial => "shared/entries/delete", :locals => { :model_name => entry_display_name }
-    
-    return if !valid_id_and_permissions?(params[:id])
+    @entry.destroy if valid_id_and_permissions?(params[:id])
 
-    @entry.destroy
+    render :partial => "shared/entries/delete", :locals => { :entry_display_name => entry_display_name }
   end
 
   def edit
@@ -28,25 +26,29 @@ module EntryFormWithOptionalModels
       redirect_to :action => 'delete', :id => params[:id] 
       return
     end
-    
-    return if !valid_id_and_permissions?(params[:id])
 
-    optional_models.each { |model_name| eval("@entry.#{model_name} ||= #{model_name.camelize}.new") }
+    if valid_id_and_permissions?(params[:id])
+      optional_models.each { |model_name| eval("@entry.#{model_name} ||= #{model_name.camelize}.new") }
 
-    if request.put?
-      initialize_entry_and_linked_models_from_params(params)
+      if request.put?
+        initialize_entry_and_linked_models_from_params(params)
 
-      if entry_and_linked_models_valid?
-        delete_completely_blank_models
-        mandatory_models.each { |model_name| @entry.send(model_name).save! }
-        optional_models.each do |model_name| 
-          model = @entry.send(model_name)
-          model.save! if not model.completely_blank?
+        if entry_and_linked_models_valid?
+          delete_completely_blank_models
+          mandatory_models.each { |model_name| @entry.send(model_name).save! }
+          optional_models.each do |model_name| 
+            model = @entry.send(model_name)
+            model.save! if not model.completely_blank?
+          end
+          @entry.save!
+          redirect_to :controller => 'user', :action => 'index'
+          return  #  We need to return here so that redirect_to and render aren't both called
         end
-        @entry.save!
-        redirect_to :controller => 'user', :action => 'index'
       end
     end
+
+    #  render needs to be called *after* @entry is initialized (or not) in valid_id_and_permissions?
+    render :partial => "shared/entries/edit", :locals => { :entry_display_name => entry_display_name }
   end
 
   def list
@@ -55,6 +57,8 @@ module EntryFormWithOptionalModels
 
   def new
     create_entry_and_linked_models
+
+    render :partial => "shared/entries/new", :locals => { :entry_display_name => entry_display_name }
   end
 
 
@@ -93,6 +97,19 @@ protected
     @error_messages += @entry.errors.full_messages
     
     entry_valid && mandatory_models_valid && optional_models_valid
+  end
+
+  def initialize_entry_and_linked_models_from_params(p)
+    @entry.attributes = p[entry_class.to_s.tableize.singularize]
+    all_models.each do |model_name| 
+      if model_name == 'url'
+        #  We can't use 'url' as a parameter name because of a namespace conflict with a Rails variable
+        #  TODO: Check if this has really been fixed in Rails 2.3/3.0, per deprecation warning.
+        @entry.send(model_name).attributes = p[:entry][:ci_url]
+      else
+        @entry.send(model_name).attributes = p[:entry][model_name]
+      end
+    end
   end
 
   #  This function assumes that the @current_user variable points to a valid instance 

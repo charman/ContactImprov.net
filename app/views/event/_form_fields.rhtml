@@ -4,28 +4,28 @@
 		<ol>
 			<li style="clear: both; padding-bottom: 0.4em;">
 				<label>Title:</label>
-				<%= event.text_field :title, :size => 60 %>
+				<%= the_entry.text_field :title, :size => 60 %>
 			</li>
 			<li style="clear: both; padding-bottom: 0.4em;">
 				<label>Description:</label>
-				<%= event.text_area :description, :rows => 12, :cols => 60 %>
+				<%= the_entry.text_area :description, :rows => 12, :cols => 60 %>
 			</li>
 			<li style="clear: both; padding-bottom: 0.4em;">
 				<label>Cost:</label>
-				<%= event.text_area :cost, :rows => 12, :cols => 60 %>
+				<%= the_entry.text_area :cost, :rows => 12, :cols => 60 %>
 			</li>
 		</ol>
 		<table>
 			<tr style="vertical-align: top;">
 				<td style="width: 10em; text-align: right;">Start Date:</td>
 				<td style="padding: 0em 1em 1em 1em;">
-					<%= event.calendar_date_select :start_date, :embedded => true, :year_range => 0.years.ago..2.years.from_now %>
+					<%= the_entry.calendar_date_select :start_date, :embedded => true, :year_range => 0.years.ago..2.years.from_now %>
 				</td>
 			</tr>
 			<tr style="vertical-align: top;">
 				<td style="width: 10em; text-align: right;">End Date:</td>
 				<td style="padding: 0em 1em 1em 1em;">
-					<%= event.calendar_date_select :end_date, :embedded => true, :year_range => 0.years.ago..2.years.from_now %>
+					<%= the_entry.calendar_date_select :end_date, :embedded => true, :year_range => 0.years.ago..2.years.from_now %>
 				</td>
 			</tr>
 		</table>
@@ -35,21 +35,21 @@
 
 <p>
 	<%= render :partial => 'shared/person', :object => @entry.person,
-		:locals => { :prefix => 'event[person]', :legend => 'Contact Person' } %>
+		:locals => { :prefix => 'entry[person]', :legend => 'Contact Person' } %>
 </p>
 <p>
 	<%= render :partial => 'shared/url', :object => @entry.url,
-		:locals => { :prefix => 'event[ci_url]', :legend => 'Website' } %>
+		:locals => { :prefix => 'entry[ci_url]', :legend => 'Website' } %>
 </p>
 <p>
 	<%= render :partial => 'shared/email', :object => @entry.email,
-		:locals => { :prefix => 'event[email]', :legend => 'Email Address' } %>
+		:locals => { :prefix => 'entry[email]', :legend => 'Email Address' } %>
 </p>
 <p>
 	<%= render :partial => 'shared/phone_number', :object => @entry.phone_number,
-		:locals => { :prefix => 'event[phone_number]', :legend => 'Phone Number' } %>
+		:locals => { :prefix => 'entry[phone_number]', :legend => 'Phone Number' } %>
 </p>
 <p>
 	<%= render :partial => 'shared/location', :object => @entry.location,
-		:locals => { :prefix => 'event[location]', :legend => 'Location' } %>
+		:locals => { :prefix => 'entry[location]', :legend => 'Location' } %>
 </p>

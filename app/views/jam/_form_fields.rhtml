@@ -4,19 +4,19 @@
 		<ol>
 			<li style="clear: both; padding-bottom: 0.4em;">
 				<label>Title:</label>
-				<%= jam.text_field :title, :size => 60 %>
+				<%= the_entry.text_field :title, :size => 60 %>
 			</li>
 			<li style="clear: both; padding-bottom: 0.4em;">
 				<label>Description:</label>
-				<%= jam.text_area :description, :rows => 12, :cols => 60 %>
+				<%= the_entry.text_area :description, :rows => 12, :cols => 60 %>
 			</li>
 			<li style="clear: both; padding-bottom: 0.4em;">
 				<label>Cost:</label>
-				<%= jam.text_area :cost, :rows => 12, :cols => 60 %>
+				<%= the_entry.text_area :cost, :rows => 12, :cols => 60 %>
 			</li>
 			<li style="clear: both; padding-bottom: 0.4em;">
 				<label>Times:</label>
-				<%= jam.text_area :cost, :rows => 12, :cols => 60 %>
+				<%= the_entry.text_area :when, :rows => 12, :cols => 60 %>
 			</li>
 		</ol>
 	</fieldset>
@@ -25,21 +25,21 @@
 
 <p>
 	<%= render :partial => 'shared/person', :object => @entry.person,
-		:locals => { :prefix => 'jam[person]', :legend => 'Contact Person' } %>
+		:locals => { :prefix => 'entry[person]', :legend => 'Contact Person' } %>
 </p>
 <p>
 	<%= render :partial => 'shared/url', :object => @entry.url,
-		:locals => { :prefix => 'jam[ci_url]', :legend => 'Website' } %>
+		:locals => { :prefix => 'entry[ci_url]', :legend => 'Website' } %>
 </p>
 <p>
 	<%= render :partial => 'shared/email', :object => @entry.email,
-		:locals => { :prefix => 'jam[email]', :legend => 'Email Address' } %>
+		:locals => { :prefix => 'entry[email]', :legend => 'Email Address' } %>
 </p>
 <p>
 	<%= render :partial => 'shared/phone_number', :object => @entry.phone_number,
-		:locals => { :prefix => 'jam[phone_number]', :legend => 'Phone Number' } %>
+		:locals => { :prefix => 'entry[phone_number]', :legend => 'Phone Number' } %>
 </p>
 <p>
 	<%= render :partial => 'shared/location', :object => @entry.location,
-		:locals => { :prefix => 'jam[location]', :legend => 'Location' } %>
+		:locals => { :prefix => 'entry[location]', :legend => 'Location' } %>
 </p>

@@ -25,10 +25,15 @@ WHEN UPDATING PRODUCTION SERVER:
 
 THIS COMMIT:
 
-Further refactored controllers by removing the delete view from each
-controller.  Rendering is now taken care of from the delete action in
-lib/entry_form_with_optional_models.rb, which is shared by all of the
-Entry models.
+Added the before_filter 'login_required' to the delete action for all
+of the Entry controllers.
+
+initialize_entry_and_linked_models_from_params was refactored from
+multiple appearances in the Entry controllers to a single appearance
+in lib/entry_form_with_optional_models.rb.
+
+The individual 'new' and 'edit' actions for the Entry controllers have
+been refactored into shared partial templates in shared/entries.
 
 
 ======================================================================
@@ -37,14 +42,11 @@ TODO:
 
 @ Cache events page
 
-@ Refactor the initialize_entry_and_linked_models_from_params function
-  - move from multiple controllers into lib/entry_form_with_optional_models.rb
-
 @ Create
   - PersonEntry model
-    - views
-    - person controller
+    - _form_fields.rhtml
     - admin/people controller
+    - update user page
     - functional testing
   - JamEntry model
     - admin/jams controller
@@ -52,6 +54,8 @@ TODO:
     - functional testing
   - StudioEntry model
   - CompanyEntry model
+
+@ Entry templates - handle 'An Event' vs. 'A Jam'
 
 @ Make ci@craigharman.net account
   - does this get rid of 'CQadmin' subject lines?
