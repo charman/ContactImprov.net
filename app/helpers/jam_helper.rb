@@ -1,0 +1,2 @@
+module JamHelper
+end

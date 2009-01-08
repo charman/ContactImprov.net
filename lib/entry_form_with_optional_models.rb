@@ -3,7 +3,7 @@ module EntryFormWithOptionalModels
   def create
     create_event_and_linked_models
     
-    initialize_event_and_linked_models_from_params(params)
+    initialize_entry_and_linked_models_from_params(params)
     
     if event_and_linked_models_valid?
       delete_completely_blank_models
@@ -32,7 +32,7 @@ module EntryFormWithOptionalModels
     optional_models.each { |model_name| eval("@entry.#{model_name} ||= #{model_name.camelize}.new") }
 
     if request.put?
-      initialize_event_and_linked_models_from_params(params)
+      initialize_entry_and_linked_models_from_params(params)
 
       if event_and_linked_models_valid?
         delete_completely_blank_models

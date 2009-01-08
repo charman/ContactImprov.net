@@ -25,7 +25,7 @@ protected
     ['email', 'person', 'phone_number', 'url']
   end
 
-  def initialize_event_and_linked_models_from_params(p)
+  def initialize_entry_and_linked_models_from_params(p)
     @entry.attributes = p[:event_entry]
     @entry.person.attributes       = p[:event][:person]
     @entry.email.attributes        = p[:event][:email]

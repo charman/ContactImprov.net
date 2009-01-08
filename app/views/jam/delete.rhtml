@@ -1,17 +1,17 @@
-<%= render(:partial => "shared/header", :locals => { :title => 'Delete Contact Event entry' } )%>
+<%= render(:partial => "shared/header", :locals => { :title => 'Delete Jam entry' } )%>
 
 <% if flash[:notice] %>
 	<div class="errorExplanation" id="errorExplanation">
 		<%= flash[:notice] %>
 	</div>
 <% else %>
-	<h2>We have deleted your Contact Event entry</h2>
+	<h2>We have deleted your Jam entry</h2>
 	<p style="font-size: large;">
 		<a href="/user">Return to <b>Online Account Home</b></a>
 	</p>
 	<% if @current_user.admin? %>
 		<p style="font-size: large;">
-			<a href="/admin/events/list">Return to <b>Admin-Contacts: List Event Entries</b></a>
+			<a href="/admin/jams/list">Return to <b>Admin-Contacts: List Jam Entries</b></a>
 		</p>
 	<% end %>
 <% end %>

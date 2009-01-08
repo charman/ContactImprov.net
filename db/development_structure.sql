@@ -97,6 +97,46 @@ CREATE TABLE `ci_event_entry_versions` (
   PRIMARY KEY  (`event_entry_version_id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=15001 DEFAULT CHARSET=utf8;
 
+CREATE TABLE `ci_jam_entries` (
+  `jam_entry_id` int(11) NOT NULL auto_increment,
+  `version` int(11) default NULL,
+  `title` varchar(255) default NULL,
+  `description` text,
+  `when` text,
+  `cost` text,
+  `owner_user_id` int(11) default NULL,
+  `person_id` int(11) default NULL,
+  `location_id` int(11) default NULL,
+  `email_id` int(11) default NULL,
+  `phone_number_id` int(11) default NULL,
+  `url_id` int(11) default NULL,
+  `studio_id` int(11) default NULL,
+  `ci_notes` text,
+  `created_at` datetime default NULL,
+  `updated_at` datetime default NULL,
+  PRIMARY KEY  (`jam_entry_id`)
+) ENGINE=MyISAM AUTO_INCREMENT=15000 DEFAULT CHARSET=utf8;
+
+CREATE TABLE `ci_jam_entry_versions` (
+  `jam_entry_version_id` int(11) NOT NULL auto_increment,
+  `jam_entry_id` int(11) default NULL,
+  `version` int(11) default NULL,
+  `title` varchar(255) default NULL,
+  `description` text,
+  `when` text,
+  `cost` text,
+  `owner_user_id` int(11) default NULL,
+  `person_id` int(11) default NULL,
+  `location_id` int(11) default NULL,
+  `email_id` int(11) default NULL,
+  `phone_number_id` int(11) default NULL,
+  `url_id` int(11) default NULL,
+  `studio_id` int(11) default NULL,
+  `ci_notes` text,
+  `updated_at` datetime default NULL,
+  PRIMARY KEY  (`jam_entry_version_id`)
+) ENGINE=MyISAM AUTO_INCREMENT=15000 DEFAULT CHARSET=utf8;
+
 CREATE TABLE `ci_location_versions` (
   `location_version_id` int(11) NOT NULL auto_increment,
   `location_id` int(11) default NULL,
@@ -299,3 +339,5 @@ INSERT INTO ci_schema_migrations (version) VALUES ('20081216222210');
 INSERT INTO ci_schema_migrations (version) VALUES ('20081216222634');
 
 INSERT INTO ci_schema_migrations (version) VALUES ('20081217000434');
+
+INSERT INTO ci_schema_migrations (version) VALUES ('20090108001853');

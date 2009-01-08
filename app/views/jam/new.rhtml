@@ -1,0 +1,27 @@
+<%= render(:partial => "shared/header", :locals => { :title => 'Create a Jam' } )%>
+
+<% if flash[:notice] %>
+	<div class="errorExplanation" id="errorExplanation">
+		<%= flash[:notice] %>
+	</div>
+<% end %>
+
+<% if defined?(@error_messages) && !@error_messages.empty? %>
+	<div class="errorExplanation" id="errorExplanation">
+		<h2>Unable to update your jam info</h2>
+		<p><%= content_tag(:ul, @error_messages.map {|m| content_tag(:li, m)}) %></p>
+	</div>
+<% end %>
+
+<% form_for @entry, :url => { :action => 'create' } do |jam| %>
+	<%= render(:partial => "form_fields", :locals => { :jam => jam } ) %>
+	<fieldset class="cq_form_submit">
+		<p>
+			<%= submit_tag 'Update' %>
+			&nbsp;&nbsp;&nbsp;&nbsp;
+			<a href="/">Cancel</a>
+		</p>
+	</fieldset>
+<% end -%>
+
+<%= render(:partial => "shared/footer" )%>
