@@ -25,11 +25,7 @@ WHEN UPDATING PRODUCTION SERVER:
 
 THIS COMMIT:
 
-Created the PersonEntry model.
-
-Modified the sanitize_attributes function in
-lib/sanitize_accessible_attributes.rb to fail gracefully even if a
-model doesn't have any accessible attributes.
+Created the person controller.
 
 
 ======================================================================
@@ -42,13 +38,14 @@ TODO:
   - does this get rid of 'CQadmin' subject lines?
 
 @ Create
+  - PersonEntry model
+    - views
+    - person controller
+    - admin/people controller
+    - functional testing
   - JamEntry model
     - admin/jams controller
     - update user page
-    - functional testing
-  - PersonEntry model
-    - person controller
-    - admin/people controller
     - functional testing
   - StudioEntry model
   - CompanyEntry model

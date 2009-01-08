@@ -1,4 +1,4 @@
-class JamController < ApplicationController
+class PersonController < ApplicationController
 
   include EntryFormWithOptionalModels
 
@@ -14,24 +14,24 @@ class JamController < ApplicationController
 protected
 
   def entry_class
-    JamEntry
+    PersonEntry
   end
 
   def mandatory_models
-    ['location']
+    ['person', 'location']
   end
 
   def optional_models
-    ['email', 'person', 'phone_number', 'url']
+    ['email', 'phone_number', 'url']
   end
 
   def initialize_entry_and_linked_models_from_params(p)
-    @entry.attributes = p[:jam_entry]
-    @entry.person.attributes       = p[:jam][:person]
-    @entry.email.attributes        = p[:jam][:email]
-    @entry.location.attributes     = p[:jam][:location]
-    @entry.phone_number.attributes = p[:jam][:phone_number]
-    @entry.url.attributes          = p[:jam][:ci_url]
+    @entry.attributes = p[:person_entry]
+    @entry.person.attributes       = p[:person][:person]
+    @entry.email.attributes        = p[:person][:email]
+    @entry.location.attributes     = p[:person][:location]
+    @entry.phone_number.attributes = p[:person][:phone_number]
+    @entry.url.attributes          = p[:person][:ci_url]
   end
 
 end
