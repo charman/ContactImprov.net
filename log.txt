@@ -25,9 +25,10 @@ WHEN UPDATING PRODUCTION SERVER:
 
 THIS COMMIT:
 
-Refactored shared RHTML from the delete actions for the entry
-controllers (event, jam, person) into the shared/entries/_delete.rhtml
-partial template.
+Further refactored controllers by removing the delete view from each
+controller.  Rendering is now taken care of from the delete action in
+lib/entry_form_with_optional_models.rb, which is shared by all of the
+Entry models.
 
 
 ======================================================================

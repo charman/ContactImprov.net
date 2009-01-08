@@ -16,6 +16,8 @@ module EntryFormWithOptionalModels
   end
 
   def delete
+    render :partial => "shared/entries/delete", :locals => { :model_name => entry_display_name }
+    
     return if !valid_id_and_permissions?(params[:id])
 
     @entry.destroy
