@@ -5,7 +5,7 @@ class CreateEventEntries < ActiveRecord::Migration
       t.integer  :version
       t.string   :title
       t.text     :description
-      t.text     :fee_description
+      t.text     :cost
       t.date     :start_date
       t.date     :end_date
       t.integer  :owner_user_id
@@ -26,7 +26,7 @@ class CreateEventEntries < ActiveRecord::Migration
       t.integer  :version
       t.string   :title
       t.text     :description
-      t.text     :fee_description
+      t.text     :cost
       t.date     :start_date
       t.date     :end_date
       t.integer  :owner_user_id

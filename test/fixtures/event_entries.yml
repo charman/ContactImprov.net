@@ -2,7 +2,7 @@ complete_event_entry:
     event_entry_id: 100
     title: 'Complete Contact Event'
     description: 'A completely complete Contact Event application'
-    fee_description: "If you have to ask, you can't afford it."
+    cost: "If you have to ask, you can't afford it."
     start_date: 2008-12-26
     end_date: 2008-12-28
     owner_user_id: 1

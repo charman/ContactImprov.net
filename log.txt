@@ -17,15 +17,15 @@ WHEN UPDATING PRODUCTION SERVER:
   Create config/deliver_email file.
 
 
+  In httpd.conf:
+    redirect index.html to /
+
+
 ======================================================================
 
 THIS COMMIT:
 
-Did some very extensive refactoring of the Event controller.  Most of
-the functionality for the controller has been moved into
-lib/entry_form_with_optional_models.rb.  This should minimize code
-replication when I create models and controllers for JamEntry and
-PersonEntry.
+Renamed EventEntry.fee_description to EventEntry.cost.
 
 
 ======================================================================
@@ -40,6 +40,8 @@ TODO:
 @ Create
   - JamEntry model
   - PersonEntry model
+  - StudioEntry model
+  - CompanyEntry model
 
 @ UserMailer model
   - email new events when submitted
@@ -55,6 +57,7 @@ TODO:
 @ Send email when rejecting a user account request
 
 @ Use Kuler to pick a new color scheme
+  - upload a picture
 
 @ Copy/adapt:
   - models

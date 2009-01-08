@@ -77,18 +77,18 @@ class EventEntryTest < ActiveSupport::TestCase
     assert_equal newer_date, c.end_date
   end
 
-  def test_should_sanitize_title_description_and_fee_description
+  def test_should_sanitize_title_description_and_cost
     c = EventEntry.new
     c.title = '<b>sanitized</b>'
     c.description = '<b>sanitized</b>'
-    c.fee_description = '<b>sanitized</b>'
+    c.cost = '<b>sanitized</b>'
     c.start_date = DateTime.now
     c.end_date   = DateTime.now
     c.save!
     c.reload
     assert_equal 'sanitized', c.title
     assert_equal 'sanitized', c.description
-    assert_equal 'sanitized', c.fee_description
+    assert_equal 'sanitized', c.cost
   end
  
 end

@@ -11,7 +11,7 @@ class EventEntry < ActiveRecord::Base
   acts_as_versioned
   self.non_versioned_columns << 'created_at'
 
-  attr_accessible :title, :description, :fee_description, :start_date, :end_date
+  attr_accessible :title, :description, :cost, :start_date, :end_date
 
   validates_presence_of :title, :description, :start_date, :end_date
 
@@ -24,7 +24,7 @@ class EventEntry < ActiveRecord::Base
   end
 
   def version_condition_met?
-    title_changed? || description_changed? || fee_description_changed? || start_date_changed? || end_date_changed? || ci_notes_changed?
+    title_changed? || description_changed? || cost_changed? || start_date_changed? || end_date_changed? || ci_notes_changed?
   end
 
 end

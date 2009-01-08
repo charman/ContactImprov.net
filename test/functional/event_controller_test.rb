@@ -17,7 +17,7 @@ class EventControllerTest < ActionController::TestCase
       :event_entry => {
         :title            => event_entries(:complete_event_entry).title,
         :description      => event_entries(:complete_event_entry).description,
-        :fee_description  => event_entries(:complete_event_entry).fee_description,
+        :cost             => event_entries(:complete_event_entry).cost,
         :start_date       => event_entries(:complete_event_entry).start_date,
         :end_date         => event_entries(:complete_event_entry).end_date
       },
@@ -36,11 +36,11 @@ class EventControllerTest < ActionController::TestCase
     assert_equal users(:quentin), new_event.owner_user
     assert_equal event_entries(:complete_event_entry).title,           new_event.title
     assert_equal event_entries(:complete_event_entry).description,     new_event.description
-    assert_equal event_entries(:complete_event_entry).fee_description, new_event.fee_description
+    assert_equal event_entries(:complete_event_entry).cost,            new_event.cost
     assert_equal event_entries(:complete_event_entry).start_date,      new_event.start_date
     assert_equal event_entries(:complete_event_entry).end_date,        new_event.end_date
-    assert_equal people(:complete_event_entry).first_name,              new_event.person.first_name
-    assert_equal people(:complete_event_entry).last_name,               new_event.person.last_name
+    assert_equal people(:complete_event_entry).first_name,             new_event.person.first_name
+    assert_equal people(:complete_event_entry).last_name,              new_event.person.last_name
     assert_equal emails(:complete_event_entry).address, new_event.email.address
     verify_default_location_fields(new_event.location)
     assert_equal phone_numbers(:complete_event_entry).number, new_event.phone_number.number
@@ -253,7 +253,7 @@ protected
       :event_entry => {
         :title            => 'newtitle',
         :description      => 'newdescription',
-        :fee_description  => 'newfeedescription',
+        :cost             => 'newcost',
         :start_date       => '2006-06-06',
         :end_date         => '2006-06-06'
       },
@@ -271,7 +271,7 @@ protected
     assert_equal users(:quentin),                    updated_event.owner_user
     assert_equal 'newtitle',                         updated_event.title
     assert_equal 'newdescription',                   updated_event.description
-    assert_equal 'newfeedescription',                updated_event.fee_description
+    assert_equal 'newcost',                          updated_event.cost
     assert_equal '2006-06-06',                       updated_event.start_date.strftime('%Y-%m-%d')
     assert_equal '2006-06-06',                       updated_event.end_date.strftime('%Y-%m-%d')
     assert_equal 'newaddress@contactimprov.org',     updated_event.email.address
