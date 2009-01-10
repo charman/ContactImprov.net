@@ -20,34 +20,11 @@
 				Change your password</a>
 		</p>
 	</div>
+	
+	<%= render(:partial => "list_entries_for_user", :locals => { :entry_type => 'event' } )%>
+	<%= render(:partial => "list_entries_for_user", :locals => { :entry_type => 'jam' } )%>
+	<%= render(:partial => "list_entries_for_user", :locals => { :entry_type => 'person' } )%>
 
-	<h2>Jams</h2>
-	<div style="margin-left: 2em; margin-bottom: 2em;">
-		<p>
-			<a href="<%= url_for :controller => 'jam', :action => 'new' %>">Create a new Jam</a>
-		</p>
-		<% @user.jam_entries.each do |jam| %>
-			<p>
-				<a href="<%= url_for :controller => 'jam', :action => 'edit', :id => jam.id %>">
-					Edit jam '<%= jam.title %>'
-				</a>
-			</p>
-		<% end %>
-	</div>
-
-	<h2>Events</h2>
-	<div style="margin-left: 2em; margin-bottom: 2em;">
-		<p>
-			<a href="<%= url_for :controller => 'event', :action => 'new' %>">Create a new Event</a>
-		</p>
-		<% @user.event_entries.each do |event| %>
-			<p>
-				<a href="<%= url_for :controller => 'event', :action => 'edit', :id => event.id %>">
-					Edit event '<%= event.title %>'
-				</a>
-			</p>
-		<% end %>
-	</div>
 <% end %>
 
 <%= render(:partial => "shared/footer" )%>
