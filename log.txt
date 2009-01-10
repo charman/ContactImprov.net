@@ -25,7 +25,7 @@ WHEN UPDATING PRODUCTION SERVER:
 
 THIS COMMIT:
 
-Created the CompanyEntry and StudioEntry models.
+Created the Company and Studio controllers.
 
 
 ======================================================================
@@ -33,8 +33,12 @@ Created the CompanyEntry and StudioEntry models.
 TODO:
 
 @ Create
-  - StudioEntry model
   - CompanyEntry model
+    - admin/company controller
+    - functional testing
+  - StudioEntry model
+    - admin/studio controller
+    - functional testing
   - WebsiteEntry model
     - how to handle websites for an entire country? (e.g. no city name)
   - PersonEntry model
@@ -50,6 +54,7 @@ TODO:
 @ Cache Entry list pages
 
 @ Entry listings
+  - indicate which fields are mandatory
   - navigation back to /index/user, ...
   - modify templates to handle 'An Event' vs. 'A Jam'
   - validation function for "has at least one of these models"

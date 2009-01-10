@@ -1,0 +1,11 @@
+<% fields_for prefix, company do |c| %>
+<fieldset>
+	<legend><%= defined?(legend) && !legend.nil? ? legend : 'Company' %></legend>
+	<ol>
+		<li>
+			<label>Name:</label>
+			<%= c.text_field :name %>
+		</li>
+	</ol>
+</fieldset>
+<% end %>
