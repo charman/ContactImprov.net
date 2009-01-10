@@ -25,7 +25,8 @@ WHEN UPDATING PRODUCTION SERVER:
 
 THIS COMMIT:
 
-Created the Company and Studio controllers.
+Adjusted size of text fields for the Jam _form_fields partial
+template.
 
 
 ======================================================================
@@ -34,9 +35,11 @@ TODO:
 
 @ Create
   - CompanyEntry model
+    - add description field
     - admin/company controller
     - functional testing
   - StudioEntry model
+    - add description field
     - admin/studio controller
     - functional testing
   - WebsiteEntry model
@@ -47,7 +50,6 @@ TODO:
     - admin/people controller
     - functional testing
   - JamEntry model
-    - adjust size of text boxes
     - admin/jams controller
     - functional testing
 
