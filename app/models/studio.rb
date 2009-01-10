@@ -1,6 +1,8 @@
 class Studio < ActiveRecord::Base
   include SanitizeAccessibleAttributes
 
+  has_one :studio_entry
+
   acts_as_versioned
   self.non_versioned_columns << 'created_at'
 

@@ -1,6 +1,8 @@
 class Company < ActiveRecord::Base
   include SanitizeAccessibleAttributes
 
+  has_one :company_entry
+
   acts_as_versioned
   self.non_versioned_columns << 'created_at'
 

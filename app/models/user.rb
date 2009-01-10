@@ -1,9 +1,11 @@
 require 'digest/sha1'
 class User < ActiveRecord::Base
   belongs_to :person
-  has_many :jam_entries,    :foreign_key => 'owner_user_id'
-  has_many :event_entries,  :foreign_key => 'owner_user_id'
-  has_many :person_entries, :foreign_key => 'owner_user_id'
+  has_many :company_entries, :foreign_key => 'owner_user_id'
+  has_many :jam_entries,     :foreign_key => 'owner_user_id'
+  has_many :event_entries,   :foreign_key => 'owner_user_id'
+  has_many :person_entries,  :foreign_key => 'owner_user_id'
+  has_many :studio_entries,  :foreign_key => 'owner_user_id'
   
   # Virtual attribute for the unencrypted password
   attr_accessor :password

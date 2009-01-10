@@ -25,19 +25,18 @@ WHEN UPDATING PRODUCTION SERVER:
 
 THIS COMMIT:
 
-Added title function to PersonEntry so that it would be compatible
-with the user/_list_entries_for_user partial.
-
-Created person/_form_fields.rhtml partial.
+Created the CompanyEntry and StudioEntry models.
 
 
 ======================================================================
 
 TODO:
 
-@ Cache events page
-
 @ Create
+  - StudioEntry model
+  - CompanyEntry model
+  - WebsiteEntry model
+    - how to handle websites for an entire country? (e.g. no city name)
   - PersonEntry model
     - additional fields?
       - do you teach Contact Improv?
@@ -47,13 +46,13 @@ TODO:
     - adjust size of text boxes
     - admin/jams controller
     - functional testing
-  - StudioEntry model
-  - CompanyEntry model
+
+@ Cache Entry list pages
 
 @ Entry listings
   - navigation back to /index/user, ...
-
-@ Entry templates - handle 'An Event' vs. 'A Jam'
+  - modify templates to handle 'An Event' vs. 'A Jam'
+  - validation function for "has at least one of these models"
 
 @ Make ci@craigharman.net account
   - does this get rid of 'CQadmin' subject lines?
@@ -78,9 +77,6 @@ TODO:
   - models
     - Entry
     - Entity
-
-@ Refactor
-  - duplicate views for different types of entries
 
 @ Add FourOhFour model/controller
 
