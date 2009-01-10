@@ -21,6 +21,20 @@
 		</p>
 	</div>
 
+	<h2>Jams</h2>
+	<div style="margin-left: 2em; margin-bottom: 2em;">
+		<p>
+			<a href="<%= url_for :controller => 'jam', :action => 'new' %>">Create a new Jam</a>
+		</p>
+		<% @user.jam_entries.each do |jam| %>
+			<p>
+				<a href="<%= url_for :controller => 'jam', :action => 'edit', :id => jam.id %>">
+					Edit jam '<%= jam.title %>'
+				</a>
+			</p>
+		<% end %>
+	</div>
+
 	<h2>Events</h2>
 	<div style="margin-left: 2em; margin-bottom: 2em;">
 		<p>

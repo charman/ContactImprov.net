@@ -1,7 +1,9 @@
 class Person < ActiveRecord::Base
   include SanitizeAccessibleAttributes
 
+  has_one :jam_entry
   has_one :event_entry
+  has_one :person_entry
   has_one :user
   
   acts_as_versioned

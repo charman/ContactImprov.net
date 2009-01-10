@@ -1,9 +1,11 @@
 class Location < ActiveRecord::Base
   include SanitizeAccessibleAttributes
 
-  has_one :event_entry
   belongs_to :country_name
   belongs_to :us_state
+  has_one :jam_entry
+  has_one :event_entry
+  has_one :person_entry
   
   acts_as_mappable
   acts_as_versioned

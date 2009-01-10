@@ -95,7 +95,7 @@ CREATE TABLE `ci_event_entry_versions` (
   `ci_notes` text,
   `updated_at` datetime default NULL,
   PRIMARY KEY  (`event_entry_version_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=15002 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=15001 DEFAULT CHARSET=utf8;
 
 CREATE TABLE `ci_jam_entries` (
   `jam_entry_id` int(11) NOT NULL auto_increment,
@@ -115,7 +115,7 @@ CREATE TABLE `ci_jam_entries` (
   `created_at` datetime default NULL,
   `updated_at` datetime default NULL,
   PRIMARY KEY  (`jam_entry_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=15001 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=15000 DEFAULT CHARSET=utf8;
 
 CREATE TABLE `ci_jam_entry_versions` (
   `jam_entry_version_id` int(11) NOT NULL auto_increment,
@@ -135,7 +135,7 @@ CREATE TABLE `ci_jam_entry_versions` (
   `ci_notes` text,
   `updated_at` datetime default NULL,
   PRIMARY KEY  (`jam_entry_version_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=15002 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=15000 DEFAULT CHARSET=utf8;
 
 CREATE TABLE `ci_location_versions` (
   `location_version_id` int(11) NOT NULL auto_increment,
@@ -156,7 +156,7 @@ CREATE TABLE `ci_location_versions` (
   KEY `index_ci_location_versions_on_location_id` (`location_id`),
   KEY `index_ci_location_versions_on_us_state_id` (`us_state_id`),
   KEY `index_ci_location_versions_on_country_name_id` (`country_name_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=15009 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=15001 DEFAULT CHARSET=utf8;
 
 CREATE TABLE `ci_locations` (
   `location_id` int(11) NOT NULL auto_increment,
@@ -176,7 +176,7 @@ CREATE TABLE `ci_locations` (
   PRIMARY KEY  (`location_id`),
   KEY `index_ci_locations_on_us_state_id` (`us_state_id`),
   KEY `index_ci_locations_on_country_name_id` (`country_name_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=15002 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=15001 DEFAULT CHARSET=utf8;
 
 CREATE TABLE `ci_people` (
   `person_id` int(11) NOT NULL auto_increment,
@@ -228,7 +228,7 @@ CREATE TABLE `ci_person_versions` (
   `last_name` varchar(255) default NULL,
   `updated_at` datetime default NULL,
   PRIMARY KEY  (`person_version_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=15004 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=15003 DEFAULT CHARSET=utf8;
 
 CREATE TABLE `ci_phone_number_versions` (
   `phone_number_version_id` int(11) NOT NULL auto_increment,

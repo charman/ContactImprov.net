@@ -25,15 +25,11 @@ WHEN UPDATING PRODUCTION SERVER:
 
 THIS COMMIT:
 
-Added the before_filter 'login_required' to the delete action for all
-of the Entry controllers.
+Modified /user/index to show not only a User's event entries but also
+their jam entries.
 
-initialize_entry_and_linked_models_from_params was refactored from
-multiple appearances in the Entry controllers to a single appearance
-in lib/entry_form_with_optional_models.rb.
-
-The individual 'new' and 'edit' actions for the Entry controllers have
-been refactored into shared partial templates in shared/entries.
+Added model links from the JamEntry class to the linked model classes
+(email, phone_number, location, etc).
 
 
 ======================================================================

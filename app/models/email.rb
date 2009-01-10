@@ -1,7 +1,9 @@
 class Email < ActiveRecord::Base
   include SanitizeAccessibleAttributes
 
+  has_one :jam_entry
   has_one :event_entry
+  has_one :person_entry
 
   acts_as_list
   acts_as_versioned
