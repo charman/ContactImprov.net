@@ -25,8 +25,10 @@ WHEN UPDATING PRODUCTION SERVER:
 
 THIS COMMIT:
 
-Refactored repeating RHTML from /user/index into the partial
-/user/_list_entries_for_user.rhtml.
+Added title function to PersonEntry so that it would be compatible
+with the user/_list_entries_for_user partial.
+
+Created person/_form_fields.rhtml partial.
 
 
 ======================================================================
@@ -37,14 +39,19 @@ TODO:
 
 @ Create
   - PersonEntry model
-    - _form_fields.rhtml
+    - additional fields?
+      - do you teach Contact Improv?
     - admin/people controller
     - functional testing
   - JamEntry model
+    - adjust size of text boxes
     - admin/jams controller
     - functional testing
   - StudioEntry model
   - CompanyEntry model
+
+@ Entry listings
+  - navigation back to /index/user, ...
 
 @ Entry templates - handle 'An Event' vs. 'A Jam'
 

@@ -11,13 +11,13 @@ class PersonEntry < ActiveRecord::Base
   acts_as_versioned
   self.non_versioned_columns << 'created_at'
 
-#  attr_accessible :title, :description, :when, :cost
-
-#  validates_presence_of :title, :description, :when, :cost
-
 
   def before_save
     sanitize_attributes
+  end
+
+  def title
+    "#{person.first_name} #{person.last_name}"
   end
 
   def version_condition_met?
