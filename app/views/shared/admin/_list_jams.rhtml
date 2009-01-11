@@ -1,0 +1,45 @@
+<div id="jamTableContainer" class="yui-skin-sam">
+	<table id="jamTable">
+		<thead>
+			<tr>
+				<th>ID</th>
+				<th>Title</th>
+				<th>Contact Person</th>
+				<th>Location</th>
+			</tr>
+		</thead>
+		<tbody>
+		<% for jam in @entries %>
+			<tr>
+				<td><a href="/jam/edit/<%= jam.jam_entry_id %>"><%= jam.jam_entry_id %></a></td>
+				<td><%= jam.title %></td>
+				<td><%= jam.person ? "#{jam.person.last_name}, #{jam.person.first_name}" : '' %></td>
+				<td><%= format_entry_location(jam) %></td>
+			</tr>
+		<% end %>
+		</tbody>
+	</table>
+</div>
+
+
+<script type="text/javascript">
+var myDataSource = new YAHOO.util.DataSource(YAHOO.util.Dom.get("jamTable"));
+myDataSource.responseType = YAHOO.util.DataSource.TYPE_HTMLTABLE;
+myDataSource.responseSchema = {
+    fields: [
+	    {key:"id"},
+		{key:"title"},
+		{key:"contact_person"},
+	    {key:"location"}
+    ]
+};
+
+var myColumnDefs = [ 
+	{key:"id", label:"ID", sortable:true},
+	{key:"title", label:"Title", sortable:true},
+	{key:"contact_person", label:"Contact Person", sortable:true},
+	{key:"location", label:"Location", sortable:true}
+];
+
+var myDataTable = new YAHOO.widget.DataTable("jamTableContainer", myColumnDefs, myDataSource);
+</script>

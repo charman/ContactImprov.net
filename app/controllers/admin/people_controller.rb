@@ -1,4 +1,4 @@
-class Admin::EventsController < ApplicationController
+class Admin::PeopleController < ApplicationController
 
   include EntryAdminActions
 
@@ -6,11 +6,11 @@ class Admin::EventsController < ApplicationController
   before_filter :admin_required
 
   def entry_class
-    EventEntry
+    PersonEntry
   end
 
   def entry_display_name
-    'events'
+    'people'
   end
 
 end

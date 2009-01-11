@@ -25,40 +25,34 @@ WHEN UPDATING PRODUCTION SERVER:
 
 THIS COMMIT:
 
-When the location form is submitted with an unknown country name, when
-the form is redisplayed with the error messages, the Country Name
-field should switch from an auto-complete text field to a select box.
-Fixed a regression so that the form behaves correctly.  Moved the flag
-that detects the bad country name from the controller to Location
-model.
+Added basic admin interface for Company, Jam, Person and Studio
+entries.
 
 
 ======================================================================
 
 TODO:
 
-@ Create
+@ Entry listings
+  - navigation back to /index/user, ...
+  - modify templates to handle 'An Event' vs. 'A Jam'
+  - modify /user/show to list all types of Entries for a user
   - CompanyEntry model
-    - admin/company controller
+    - list view
     - functional testing
   - StudioEntry model
-    - admin/studio controller
+    - list view
     - functional testing
   - WebsiteEntry model
     - how to handle websites for an entire country? (e.g. no city name)
   - PersonEntry model
+    - list view
     - additional fields?
       - do you teach Contact Improv?
-    - admin/people controller
     - functional testing
   - JamEntry model
-    - admin/jams controller
+    - list view
     - functional testing
-
-@ Entry listings
-  - navigation back to /index/user, ...
-  - modify templates to handle 'An Event' vs. 'A Jam'
-  - validation function for "has at least one of these models"
 
 @ UserMailer model
   - email new events when submitted
@@ -75,6 +69,9 @@ TODO:
   - look at Markdown
 
 --
+
+@ Entry listings
+  - validation function for "has at least one of these models"
 
 @ The plugin 'expection_notification' should be 'exception_notification'
 

@@ -1,5 +1,3 @@
-
-
 <div id="eventTableContainer" class="yui-skin-sam">
 	<table id="eventTable">
 		<thead>
@@ -13,12 +11,12 @@
 			</tr>
 		</thead>
 		<tbody>
-		<% for event in @events %>
+		<% for event in @entries %>
 			<tr>
 				<td><a href="/event/edit/<%= event.event_entry_id %>"><%= event.event_entry_id %></a></td>
 				<td><%= event.title %></td>
 				<td><%= event.person ? "#{event.person.last_name}, #{event.person.first_name}" : '' %></td>
-				<td><%= format_event_location(event) %></td>
+				<td><%= format_entry_location(event) %></td>
 				<td><%= event.start_date.strftime('%F') %></td>
 				<td><%= event.end_date.strftime('%F') %></td>
 			</tr>

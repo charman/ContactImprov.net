@@ -1,0 +1,10 @@
+<%= render(:partial => "shared/admin/header",
+           :locals => { :subsection => entry_display_name, :title => 'Index' } )%>
+
+<p style="font-size: x-large;">
+	<%= link_to "List #{entry_display_name.titlecase}", :action => 'list' %> 
+	(<%= @total_entries %> total)
+</p>
+
+
+<%= render(:partial => "shared/admin/footer" )%>

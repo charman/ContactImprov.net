@@ -13,7 +13,7 @@ module EventHelper
     end
   end
 
-  def format_event_location(e)
+  def format_entry_location(e)
     if e.location.is_in_usa?
       "#{e.location.city_name}, #{e.location.us_state.abbreviation}, USA"
     else

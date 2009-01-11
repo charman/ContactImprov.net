@@ -1,0 +1,41 @@
+<div id="personTableContainer" class="yui-skin-sam">
+	<table id="personTable">
+		<thead>
+			<tr>
+				<th>ID</th>
+				<th>Person</th>
+				<th>Location</th>
+			</tr>
+		</thead>
+		<tbody>
+		<% for person in @entries %>
+			<tr>
+				<td><a href="/person/edit/<%= person.person_entry_id %>"><%= person.person_entry_id %></a></td>
+				<td><%= person.person ? "#{person.person.last_name}, #{person.person.first_name}" : '' %></td>
+				<td><%= format_entry_location(person) %></td>
+			</tr>
+		<% end %>
+		</tbody>
+	</table>
+</div>
+
+
+<script type="text/javascript">
+var myDataSource = new YAHOO.util.DataSource(YAHOO.util.Dom.get("personTable"));
+myDataSource.responseType = YAHOO.util.DataSource.TYPE_HTMLTABLE;
+myDataSource.responseSchema = {
+    fields: [
+	    {key:"id"},
+		{key:"person"},
+	    {key:"location"}
+    ]
+};
+
+var myColumnDefs = [ 
+	{key:"id", label:"ID", sortable:true},
+	{key:"person", label:"Person", sortable:true},
+	{key:"location", label:"Location", sortable:true}
+];
+
+var myDataTable = new YAHOO.widget.DataTable("personTableContainer", myColumnDefs, myDataSource);
+</script>

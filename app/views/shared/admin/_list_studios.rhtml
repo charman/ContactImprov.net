@@ -1,0 +1,41 @@
+<div id="studioTableContainer" class="yui-skin-sam">
+	<table id="studioTable">
+		<thead>
+			<tr>
+				<th>ID</th>
+				<th>Title</th>
+				<th>Location</th>
+			</tr>
+		</thead>
+		<tbody>
+		<% for studio in @entries %>
+			<tr>
+				<td><a href="/studio/edit/<%= studio.studio_entry_id %>"><%= studio.studio_entry_id %></a></td>
+				<td><%= studio.title %></td>
+				<td><%= format_entry_location(studio) %></td>
+			</tr>
+		<% end %>
+		</tbody>
+	</table>
+</div>
+
+
+<script type="text/javascript">
+var myDataSource = new YAHOO.util.DataSource(YAHOO.util.Dom.get("studioTable"));
+myDataSource.responseType = YAHOO.util.DataSource.TYPE_HTMLTABLE;
+myDataSource.responseSchema = {
+    fields: [
+	    {key:"id"},
+		{key:"title"},
+	    {key:"location"}
+    ]
+};
+
+var myColumnDefs = [ 
+	{key:"id", label:"ID", sortable:true},
+	{key:"title", label:"Title", sortable:true},
+	{key:"location", label:"Location", sortable:true}
+];
+
+var myDataTable = new YAHOO.widget.DataTable("studioTableContainer", myColumnDefs, myDataSource);
+</script>
