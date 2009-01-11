@@ -7,7 +7,7 @@ class JamEntryTest < ActiveSupport::TestCase
     c = JamEntry.new
     c.title = 'New Jam'
     c.description = 'Fantastic new jam'
-    c.when = 'Whenever'
+    c.times = 'Whenever'
     c.cost = 'Billions'
     assert_nil c.version
     assert c.save!
@@ -19,7 +19,7 @@ class JamEntryTest < ActiveSupport::TestCase
     c = JamEntry.new
     c.title = 'New Jam'
     c.description = 'Fantastic new jam'
-    c.when = 'Whenever'
+    c.times = 'Whenever'
     c.cost = 'Billions'
     assert_equal c.valid?, true
   end
@@ -28,7 +28,7 @@ class JamEntryTest < ActiveSupport::TestCase
     c = JamEntry.new
     c.title = ''
     c.description = 'Fantastic new jam'
-    c.when = 'Whenever'
+    c.times = 'Whenever'
     c.cost = 'Billions'
     assert_equal c.valid?, false
   end
@@ -37,16 +37,16 @@ class JamEntryTest < ActiveSupport::TestCase
     c = JamEntry.new
     c.title = 'New Jam'
     c.description = ''
-    c.when = 'Whenever'
+    c.times = 'Whenever'
     c.cost = 'Billions'
     assert_equal c.valid?, false
   end
 
-  def test_should_not_validate_without_when
+  def test_should_not_validate_without_times
     c = JamEntry.new
     c.title = 'New Jam'
     c.description = 'Fantastic new jam'
-    c.when = ''
+    c.times = ''
     c.cost = 'Billions'
     assert_equal c.valid?, false
   end
@@ -55,7 +55,7 @@ class JamEntryTest < ActiveSupport::TestCase
     c = JamEntry.new
     c.title = 'New Jam'
     c.description = 'Fantastic new jam'
-    c.when = 'Whenever'
+    c.times = 'Whenever'
     c.cost = ''
     assert_equal c.valid?, false
   end
@@ -64,13 +64,13 @@ class JamEntryTest < ActiveSupport::TestCase
     c = JamEntry.new
     c.title = '<b>sanitized</b>'
     c.description = '<b>sanitized</b>'
-    c.when = '<b>sanitized</b>'
+    c.times = '<b>sanitized</b>'
     c.cost = '<b>sanitized</b>'
     c.save!
     c.reload
     assert_equal 'sanitized', c.title
     assert_equal 'sanitized', c.description
-    assert_equal 'sanitized', c.when
+    assert_equal 'sanitized', c.times
     assert_equal 'sanitized', c.cost
   end
  

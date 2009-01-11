@@ -5,7 +5,7 @@ class CreateJamEntries < ActiveRecord::Migration
       t.integer  :version
       t.string   :title
       t.text     :description
-      t.text     :when
+      t.text     :times
       t.text     :cost
       t.integer  :owner_user_id
       t.integer  :person_id
@@ -24,7 +24,7 @@ class CreateJamEntries < ActiveRecord::Migration
       t.integer  :version
       t.string   :title
       t.text     :description
-      t.text     :when
+      t.text     :times
       t.text     :cost
       t.integer  :owner_user_id
       t.integer  :person_id
