@@ -63,7 +63,7 @@
 				end
 			%>
 			<% if location.errors.on(:country_name) %><div class="fieldWithErrors"><% end %>
-			<% if @user_submitted_unknown_country_name %>
+			<% if location.user_submitted_unknown_country_name %>
 				<%= country_select("country_name", "english_name", @priority_countries, {}, {:name => "#{prefix}[country_name][english_name]"}) %>
 			<% else %>
 				<%= text_field_with_prefix_and_auto_complete prefix, :country_name, :english_name, {:name => "#{prefix}[country_name][english_name]"} %>

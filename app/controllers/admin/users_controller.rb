@@ -65,21 +65,12 @@ class Admin::UsersController < ApplicationController
 
     if request.put?
       @user.person.attributes = params[:user][:person]
-      # if @user.subscriber_address
-      #   @user.subscriber_address.initialize_from_params(params[:user][:subscriber_address])
-      #   @user_submitted_unknown_country_name = !@user.subscriber_address.country_name ? true : false
-      # end
 
       if @user.valid?
         @user.person.save!
-        # if @user.subscriber_address
-        #   @user.subscriber_address.save!
-        #   UserMailer.deliver_user_changed_contact_info(@user)
-        # end
         @user.save!
         redirect_to :action => 'index'
       end
-#      @error_messages = @user.person.errors.full_messages + @user.subscriber_address.errors.full_messages
       @error_messages = @user.person.errors.full_messages
     end
   end

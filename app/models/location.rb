@@ -22,6 +22,9 @@ class Location < ActiveRecord::Base
   validate :validate_country_name_and_us_state
 
 
+  @user_submitted_unknown_country_name = false
+
+
   def attributes=(params)
     #  This method verifies that the user has provided us with a valid country name and, if in the US, a
     #   valid US state name.  If either value is invalid, we save an error message *with the user's invalid
@@ -48,6 +51,7 @@ class Location < ActiveRecord::Base
       else
         @param_initialization_errors[:country_name] = "'#{params[:country_name][:english_name]}' is not the name of a country in our database"
       end
+      @user_submitted_unknown_country_name = true
     end
  
     if self.is_in_usa?
@@ -166,6 +170,10 @@ class Location < ActiveRecord::Base
     end
   end
 
+  def user_submitted_unknown_country_name
+    @user_submitted_unknown_country_name
+  end
+
   #  Verify that this Location object is linked to a valid CountryName and (if in US) UsState objects.
   #
   #  TODO: Potential bug - if attributes= is called, and then Location is later linked to
@@ -186,6 +194,7 @@ class Location < ActiveRecord::Base
       #     validates_presence_of :country_name
       #     validates_presence_of :us_state_name, :if => :is_in_usa?
       if !self.country_name
+        @user_submitted_unknown_country_name = true
         errors.add(:country_name, "Unknown country name")
       end
       if self.is_in_usa? && !self.us_state

@@ -25,8 +25,12 @@ WHEN UPDATING PRODUCTION SERVER:
 
 THIS COMMIT:
 
-Modified Entry forms so that mandatory fields/sub-forms are now
-italicized.
+When the location form is submitted with an unknown country name, when
+the form is redisplayed with the error messages, the Country Name
+field should switch from an auto-complete text field to a select box.
+Fixed a regression so that the form behaves correctly.  Moved the flag
+that detects the bad country name from the controller to Location
+model.
 
 
 ======================================================================
