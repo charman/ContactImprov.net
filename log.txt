@@ -25,7 +25,8 @@ WHEN UPDATING PRODUCTION SERVER:
 
 THIS COMMIT:
 
-Changed name of JamEntry field from 'when' to 'times'.
+Modified Entry forms so that mandatory fields/sub-forms are now
+italicized.
 
 
 ======================================================================
@@ -51,7 +52,6 @@ TODO:
     - functional testing
 
 @ Entry listings
-  - indicate which fields are mandatory
   - navigation back to /index/user, ...
   - modify templates to handle 'An Event' vs. 'A Jam'
   - validation function for "has at least one of these models"

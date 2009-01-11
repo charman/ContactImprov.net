@@ -1,13 +1,13 @@
 <p>
 	<fieldset>
-		<legend>Event Information</legend>
+		<legend><i>Event Information</i></legend>
 		<ol>
 			<li style="clear: both; padding-bottom: 0.4em;">
-				<label>Title:</label>
+				<label><i>Title:</i></label>
 				<%= the_entry.text_field :title, :size => 60 %>
 			</li>
 			<li style="clear: both; padding-bottom: 0.4em;">
-				<label>Description:</label>
+				<label><i>Description:</i></label>
 				<%= the_entry.text_area :description, :rows => 12, :cols => 60 %>
 			</li>
 			<li style="clear: both; padding-bottom: 0.4em;">
@@ -17,13 +17,13 @@
 		</ol>
 		<table>
 			<tr style="vertical-align: top;">
-				<td style="width: 10em; text-align: right;">Start Date:</td>
+				<td style="width: 10em; text-align: right;"><i>Start Date:</i></td>
 				<td style="padding: 0em 1em 1em 1em;">
 					<%= the_entry.calendar_date_select :start_date, :embedded => true, :year_range => 0.years.ago..2.years.from_now %>
 				</td>
 			</tr>
 			<tr style="vertical-align: top;">
-				<td style="width: 10em; text-align: right;">End Date:</td>
+				<td style="width: 10em; text-align: right;"><i>End Date:</i></td>
 				<td style="padding: 0em 1em 1em 1em;">
 					<%= the_entry.calendar_date_select :end_date, :embedded => true, :year_range => 0.years.ago..2.years.from_now %>
 				</td>
@@ -51,5 +51,5 @@
 </p>
 <p>
 	<%= render :partial => 'shared/location', :object => @entry.location,
-		:locals => { :prefix => 'entry[location]', :legend => 'Location' } %>
+		:locals => { :prefix => 'entry[location]', :legend => '<i>Location</i>' } %>
 </p>

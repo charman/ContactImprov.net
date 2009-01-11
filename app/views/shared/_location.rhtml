@@ -23,7 +23,7 @@
 			<%= location_form.text_field :street_address_line_2, :size => 40  %>
 		</li>
 		<li>
-			<label>City:</label>
+			<label><i>City:</i></label>
 			<%= location_form.text_field :city_name %>
 		</li>
 		<li>
@@ -57,7 +57,7 @@
 			<%= location_form.text_field :postal_code, :size => 10 %>
 		</li>
 		<li>
-			<label>Country:</label>
+			<label><i>Country:</i></label>
 			<%  if location
 					@country_name = location.country_name 
 				end

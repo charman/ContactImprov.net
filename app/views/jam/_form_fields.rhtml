@@ -3,19 +3,19 @@
 		<legend>Jam Information</legend>
 		<ol>
 			<li style="clear: both; padding-bottom: 0.4em;">
-				<label>Title:</label>
+				<label><i>Title:</i></label>
 				<%= the_entry.text_field :title, :size => 60 %>
 			</li>
 			<li style="clear: both; padding-bottom: 0.4em;">
-				<label>Description:</label>
+				<label><i>Description:</i></label>
 				<%= the_entry.text_area :description, :rows => 6, :cols => 60 %>
 			</li>
 			<li style="clear: both; padding-bottom: 0.4em;">
-				<label>Cost:</label>
+				<label><i>Cost:</i></label>
 				<%= the_entry.text_area :cost, :rows => 3, :cols => 60 %>
 			</li>
 			<li style="clear: both; padding-bottom: 0.4em;">
-				<label>Times:</label>
+				<label><i>Times:</i></label>
 				<%= the_entry.text_area :times, :rows => 3, :cols => 60 %>
 			</li>
 		</ol>
@@ -41,5 +41,5 @@
 </p>
 <p>
 	<%= render :partial => 'shared/location', :object => @entry.location,
-		:locals => { :prefix => 'entry[location]', :legend => 'Location' } %>
+		:locals => { :prefix => 'entry[location]', :legend => '<i>Location</i>' } %>
 </p>
