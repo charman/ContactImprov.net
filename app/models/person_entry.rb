@@ -11,6 +11,8 @@ class PersonEntry < ActiveRecord::Base
   acts_as_versioned
   self.non_versioned_columns << 'created_at'
 
+  attr_accessible :description
+
 
   def before_save
     sanitize_attributes

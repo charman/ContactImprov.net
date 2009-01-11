@@ -25,8 +25,9 @@ WHEN UPDATING PRODUCTION SERVER:
 
 THIS COMMIT:
 
-Added a 'description' field to the CompanyEntry, PersonEntry and
-StudioEntry models.  Updated the Entry forms for the models.
+Added 
+  attr_accessible :description
+to the CompanyEntry, PersonEntry and StudioEntry models.
 
 
 ======================================================================
@@ -50,6 +51,7 @@ TODO:
     - admin/people controller
     - functional testing
   - JamEntry model
+    - change 'when' to 'times' in model
     - admin/jams controller
     - functional testing
 
