@@ -3,6 +3,7 @@ class CreateCompanyEntries < ActiveRecord::Migration
     create_table :company_entries, :id => false, :options => "auto_increment = 15000" do |t|
       t.column   :company_entry_id, :primary_key, :null => false
       t.integer  :version
+      t.text     :description
       t.integer  :owner_user_id
       t.integer  :company_id
       t.integer  :location_id
@@ -18,6 +19,7 @@ class CreateCompanyEntries < ActiveRecord::Migration
       t.column   :company_entry_version_id, :primary_key, :null => false
       t.integer  :company_entry_id
       t.integer  :version
+      t.text     :description
       t.integer  :owner_user_id
       t.integer  :company_id
       t.integer  :location_id

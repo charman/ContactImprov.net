@@ -1,10 +1,6 @@
 require 'test_helper'
 
 class EventControllerTest < ActionController::TestCase
-  require "rubygems"
-  require "ruby-debug"
-  Debugger.start
-
 
   fixtures :event_entries, :country_names, :emails, :locations, :people, :phone_numbers, :urls, :us_states, :users
 
@@ -32,19 +28,19 @@ class EventControllerTest < ActionController::TestCase
         :ci_url => { :address => urls(:complete_event_entry).address }
       }
     assert_redirected_to :controller => 'user', :action => 'index'
-    new_event = EventEntry.find(:last)    
-    assert_equal users(:quentin), new_event.owner_user
-    assert_equal event_entries(:complete_event_entry).title,           new_event.title
-    assert_equal event_entries(:complete_event_entry).description,     new_event.description
-    assert_equal event_entries(:complete_event_entry).cost,            new_event.cost
-    assert_equal event_entries(:complete_event_entry).start_date,      new_event.start_date
-    assert_equal event_entries(:complete_event_entry).end_date,        new_event.end_date
-    assert_equal people(:complete_event_entry).first_name,             new_event.person.first_name
-    assert_equal people(:complete_event_entry).last_name,              new_event.person.last_name
-    assert_equal emails(:complete_event_entry).address, new_event.email.address
-    verify_default_location_fields(new_event.location)
-    assert_equal phone_numbers(:complete_event_entry).number, new_event.phone_number.number
-    assert_match /#{urls(:complete_event_entry).address}/, new_event.url.address
+    new_entry = EventEntry.find(:last)    
+    assert_equal users(:quentin), new_entry.owner_user
+    assert_equal event_entries(:complete_event_entry).title,           new_entry.title
+    assert_equal event_entries(:complete_event_entry).description,     new_entry.description
+    assert_equal event_entries(:complete_event_entry).cost,            new_entry.cost
+    assert_equal event_entries(:complete_event_entry).start_date,      new_entry.start_date
+    assert_equal event_entries(:complete_event_entry).end_date,        new_entry.end_date
+    assert_equal people(:complete_event_entry).first_name,             new_entry.person.first_name
+    assert_equal people(:complete_event_entry).last_name,              new_entry.person.last_name
+    assert_equal emails(:complete_event_entry).address, new_entry.email.address
+    verify_default_location_fields(new_entry.location)
+    assert_equal phone_numbers(:complete_event_entry).number, new_entry.phone_number.number
+    assert_match /#{urls(:complete_event_entry).address}/, new_entry.url.address
   end
 
   def test_should_accept_event_entry_application_with_empty_email_and_phone_number_and_url
@@ -63,15 +59,15 @@ class EventControllerTest < ActionController::TestCase
         :ci_url => { :address => '' }
       }
     assert_redirected_to :controller => 'user', :action => 'index'
-    new_event = EventEntry.find(:last)
-    assert_equal event_entries(:complete_event_entry).title,       new_event.title
-    assert_equal event_entries(:complete_event_entry).description, new_event.description
-    assert_equal event_entries(:complete_event_entry).start_date,  new_event.start_date
-    assert_equal event_entries(:complete_event_entry).end_date,    new_event.end_date
-    assert_nil new_event.email
-    verify_default_location_fields(new_event.location)
-    assert_nil new_event.phone_number
-    assert_nil new_event.url
+    new_entry = EventEntry.find(:last)
+    assert_equal event_entries(:complete_event_entry).title,       new_entry.title
+    assert_equal event_entries(:complete_event_entry).description, new_entry.description
+    assert_equal event_entries(:complete_event_entry).start_date,  new_entry.start_date
+    assert_equal event_entries(:complete_event_entry).end_date,    new_entry.end_date
+    assert_nil new_entry.email
+    verify_default_location_fields(new_entry.location)
+    assert_nil new_entry.phone_number
+    assert_nil new_entry.url
   end
 
   def test_should_not_create_event_entry_application_with_missing_mandatory_fields
@@ -196,15 +192,15 @@ class EventControllerTest < ActionController::TestCase
     verify_error_messages_for_missing_fields
 
     #  Verify that field values have not changed
-    new_event = EventEntry.find(event_entries(:complete_event_entry).event_entry_id)
-    assert_equal users(:quentin), new_event.owner_user
-    assert_equal event_entries(:complete_event_entry).title,       new_event.title
-    assert_equal event_entries(:complete_event_entry).description, new_event.description
-    assert_equal event_entries(:complete_event_entry).start_date,  new_event.start_date
-    assert_equal event_entries(:complete_event_entry).end_date,    new_event.end_date
-    assert_equal emails(:complete_event_entry).address, new_event.email.address
-#    verify_default_location_fields(new_event.location)
-    assert_equal phone_numbers(:complete_event_entry).number, new_event.phone_number.number
+    new_entry = EventEntry.find(event_entries(:complete_event_entry).event_entry_id)
+    assert_equal users(:quentin), new_entry.owner_user
+    assert_equal event_entries(:complete_event_entry).title,       new_entry.title
+    assert_equal event_entries(:complete_event_entry).description, new_entry.description
+    assert_equal event_entries(:complete_event_entry).start_date,  new_entry.start_date
+    assert_equal event_entries(:complete_event_entry).end_date,    new_entry.end_date
+    assert_equal emails(:complete_event_entry).address, new_entry.email.address
+#    verify_default_location_fields(new_entry.location)
+    assert_equal phone_numbers(:complete_event_entry).number, new_entry.phone_number.number
   end
 
   def test_should_let_owner_user_edit_event_entry_application

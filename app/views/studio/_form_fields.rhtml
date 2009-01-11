@@ -1,7 +1,21 @@
 <p>
-	<%= render :partial => 'shared/studio', :object => @entry.studio,
-		:locals => { :prefix => 'entry[studio]', :legend => 'Studio' } %>
+	<fieldset>
+		<legend>Studio</legend>
+		<ol>
+			<% fields_for 'entry[studio]', @entry.studio do |s| %>
+				<li>
+					<label>Name:</label>
+					<%= s.text_field :name %>
+				</li>
+			<% end %>
+			<li style="clear: both; padding-bottom: 0.4em;">
+				<label>Description:</label>
+				<%= the_entry.text_area :description, :rows => 8, :cols => 60 %>
+			</li>
+		</ol>
+	</fieldset>
 </p>
+
 <p>
 	<%= render :partial => 'shared/url', :object => @entry.url,
 		:locals => { :prefix => 'entry[ci_url]', :legend => 'Website' } %>

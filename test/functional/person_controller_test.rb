@@ -1,8 +1,36 @@
 require 'test_helper'
 
 class PersonControllerTest < ActionController::TestCase
-  # Replace this with your real tests.
-  test "the truth" do
-    assert true
+
+  fixtures :users
+
+
+  def test_should_accept_studio_entry_application
+    login_as :quentin
+    post :create, 
+      :person_entry => {
+        :description      => 'newdescription',
+      },
+      :entry => {
+        :person => { 
+          :first_name => 'newfirstname', 
+          :last_name  => 'newlastname'
+        },
+        :email => { :address => 'newmail@contactimprov.org' },
+        :location => @@default_location_fields,
+        :phone_number => { :number => '666-333-9999' },
+        :ci_url => { :address => 'http://craigharman.net/newurl' }
+      }
+    assert_redirected_to :controller => 'user', :action => 'index'
+    new_entry = PersonEntry.find(:last)    
+    assert_equal users(:quentin),              new_entry.owner_user
+    assert_equal 'newdescription',             new_entry.description
+    assert_equal 'newfirstname',               new_entry.person.first_name
+    assert_equal 'newlastname',                new_entry.person.last_name
+    assert_equal 'newmail@contactimprov.org',  new_entry.email.address
+    verify_default_location_fields(new_entry.location)
+    assert_equal '666-333-9999',               new_entry.phone_number.number
+    assert_match /craigharman\.net\/newurl/,   new_entry.url.address
   end
+
 end

@@ -25,21 +25,21 @@ WHEN UPDATING PRODUCTION SERVER:
 
 THIS COMMIT:
 
-Adjusted size of text fields for the Jam _form_fields partial
-template.
+Added a 'description' field to the CompanyEntry, PersonEntry and
+StudioEntry models.  Updated the Entry forms for the models.
 
 
 ======================================================================
 
 TODO:
 
+@ For /company/new, accepted an invalid country name
+
 @ Create
   - CompanyEntry model
-    - add description field
     - admin/company controller
     - functional testing
   - StudioEntry model
-    - add description field
     - admin/studio controller
     - functional testing
   - WebsiteEntry model
@@ -53,16 +53,11 @@ TODO:
     - admin/jams controller
     - functional testing
 
-@ Cache Entry list pages
-
 @ Entry listings
   - indicate which fields are mandatory
   - navigation back to /index/user, ...
   - modify templates to handle 'An Event' vs. 'A Jam'
   - validation function for "has at least one of these models"
-
-@ Make ci@craigharman.net account
-  - does this get rid of 'CQadmin' subject lines?
 
 @ UserMailer model
   - email new events when submitted
@@ -70,10 +65,17 @@ TODO:
 
 -- 
 
+@ Cache Entry list pages
+
+@ Make ci@craigharman.net account
+  - does this get rid of 'CQadmin' subject lines?
+
 @ Investigate ways to convert line breaks to <br />'s in form fields
   - look at Markdown
 
 --
+
+@ The plugin 'expection_notification' should be 'exception_notification'
 
 @ Send email when rejecting a user account request
 

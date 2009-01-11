@@ -3,6 +3,7 @@ class CreateStudioEntries < ActiveRecord::Migration
     create_table :studio_entries, :id => false, :options => "auto_increment = 15000" do |t|
       t.column   :studio_entry_id, :primary_key, :null => false
       t.integer  :version
+      t.text     :description
       t.integer  :owner_user_id
       t.integer  :studio_id
       t.integer  :location_id
@@ -18,6 +19,7 @@ class CreateStudioEntries < ActiveRecord::Migration
       t.column   :studio_entry_version_id, :primary_key, :null => false
       t.integer  :studio_entry_id
       t.integer  :version
+      t.text     :description
       t.integer  :owner_user_id
       t.integer  :studio_id
       t.integer  :location_id
