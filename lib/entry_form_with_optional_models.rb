@@ -87,11 +87,11 @@ protected
 
   def entry_and_linked_models_valid?
     entry_valid = @entry.valid?
-    mandatory_models_valid = mandatory_models.reject { |model_name| @entry.send(model_name).valid? }
+    mandatory_models_valid = mandatory_models.reject { |model_name| @entry.send(model_name).valid? }.empty?
     optional_models_valid = optional_models.reject { |model_name|
       model = @entry.send(model_name)
       model.completely_blank? or model.valid?
-    }
+    }.empty?
  
     @error_messages = all_models.collect { |model_name| @entry.send(model_name).errors.full_messages }.flatten
     @error_messages += @entry.errors.full_messages

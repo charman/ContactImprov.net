@@ -5,7 +5,7 @@ CREATE TABLE `ci_companies` (
   `created_at` datetime default NULL,
   `updated_at` datetime default NULL,
   PRIMARY KEY  (`company_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=15002 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=15000 DEFAULT CHARSET=utf8;
 
 CREATE TABLE `ci_company_entries` (
   `company_entry_id` int(11) NOT NULL auto_increment,
@@ -22,7 +22,7 @@ CREATE TABLE `ci_company_entries` (
   `created_at` datetime default NULL,
   `updated_at` datetime default NULL,
   PRIMARY KEY  (`company_entry_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=15002 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=15000 DEFAULT CHARSET=utf8;
 
 CREATE TABLE `ci_company_entry_versions` (
   `company_entry_version_id` int(11) NOT NULL auto_increment,
@@ -39,7 +39,7 @@ CREATE TABLE `ci_company_entry_versions` (
   `ci_notes` text,
   `updated_at` datetime default NULL,
   PRIMARY KEY  (`company_entry_version_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=15002 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=15000 DEFAULT CHARSET=utf8;
 
 CREATE TABLE `ci_company_versions` (
   `company_version_id` int(11) NOT NULL auto_increment,
@@ -48,7 +48,7 @@ CREATE TABLE `ci_company_versions` (
   `name` varchar(255) default NULL,
   `updated_at` datetime default NULL,
   PRIMARY KEY  (`company_version_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=15003 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=15000 DEFAULT CHARSET=utf8;
 
 CREATE TABLE `ci_country_names` (
   `country_name_id` int(11) NOT NULL auto_increment,
@@ -190,7 +190,7 @@ CREATE TABLE `ci_location_versions` (
   KEY `index_ci_location_versions_on_location_id` (`location_id`),
   KEY `index_ci_location_versions_on_us_state_id` (`us_state_id`),
   KEY `index_ci_location_versions_on_country_name_id` (`country_name_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=15008 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=15001 DEFAULT CHARSET=utf8;
 
 CREATE TABLE `ci_locations` (
   `location_id` int(11) NOT NULL auto_increment,
@@ -210,7 +210,7 @@ CREATE TABLE `ci_locations` (
   PRIMARY KEY  (`location_id`),
   KEY `index_ci_locations_on_us_state_id` (`us_state_id`),
   KEY `index_ci_locations_on_country_name_id` (`country_name_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=15004 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=15001 DEFAULT CHARSET=utf8;
 
 CREATE TABLE `ci_people` (
   `person_id` int(11) NOT NULL auto_increment,
@@ -220,7 +220,7 @@ CREATE TABLE `ci_people` (
   `created_at` datetime default NULL,
   `updated_at` datetime default NULL,
   PRIMARY KEY  (`person_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=15004 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=15003 DEFAULT CHARSET=utf8;
 
 CREATE TABLE `ci_person_entries` (
   `person_entry_id` int(11) NOT NULL auto_increment,
@@ -237,7 +237,7 @@ CREATE TABLE `ci_person_entries` (
   `created_at` datetime default NULL,
   `updated_at` datetime default NULL,
   PRIMARY KEY  (`person_entry_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=15001 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=15000 DEFAULT CHARSET=utf8;
 
 CREATE TABLE `ci_person_entry_versions` (
   `person_entry_version_id` int(11) NOT NULL auto_increment,
@@ -254,7 +254,7 @@ CREATE TABLE `ci_person_entry_versions` (
   `ci_notes` text,
   `updated_at` datetime default NULL,
   PRIMARY KEY  (`person_entry_version_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=15001 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=15000 DEFAULT CHARSET=utf8;
 
 CREATE TABLE `ci_person_versions` (
   `person_version_id` int(11) NOT NULL auto_increment,
@@ -264,7 +264,7 @@ CREATE TABLE `ci_person_versions` (
   `last_name` varchar(255) default NULL,
   `updated_at` datetime default NULL,
   PRIMARY KEY  (`person_version_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=15005 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=15003 DEFAULT CHARSET=utf8;
 
 CREATE TABLE `ci_phone_number_versions` (
   `phone_number_version_id` int(11) NOT NULL auto_increment,
@@ -308,7 +308,7 @@ CREATE TABLE `ci_studio_entries` (
   `created_at` datetime default NULL,
   `updated_at` datetime default NULL,
   PRIMARY KEY  (`studio_entry_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=15001 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=15000 DEFAULT CHARSET=utf8;
 
 CREATE TABLE `ci_studio_entry_versions` (
   `studio_entry_version_id` int(11) NOT NULL auto_increment,
@@ -324,7 +324,7 @@ CREATE TABLE `ci_studio_entry_versions` (
   `ci_notes` text,
   `updated_at` datetime default NULL,
   PRIMARY KEY  (`studio_entry_version_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=15001 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=15000 DEFAULT CHARSET=utf8;
 
 CREATE TABLE `ci_studio_versions` (
   `studio_version_id` int(11) NOT NULL auto_increment,
@@ -333,7 +333,7 @@ CREATE TABLE `ci_studio_versions` (
   `name` varchar(255) default NULL,
   `updated_at` datetime default NULL,
   PRIMARY KEY  (`studio_version_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=15002 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=15000 DEFAULT CHARSET=utf8;
 
 CREATE TABLE `ci_studios` (
   `studio_id` int(11) NOT NULL auto_increment,
@@ -342,7 +342,7 @@ CREATE TABLE `ci_studios` (
   `created_at` datetime default NULL,
   `updated_at` datetime default NULL,
   PRIMARY KEY  (`studio_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=15001 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=15000 DEFAULT CHARSET=utf8;
 
 CREATE TABLE `ci_url_versions` (
   `url_version_id` int(11) NOT NULL auto_increment,

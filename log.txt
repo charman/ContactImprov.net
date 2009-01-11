@@ -25,16 +25,13 @@ WHEN UPDATING PRODUCTION SERVER:
 
 THIS COMMIT:
 
-Added 
-  attr_accessible :description
-to the CompanyEntry, PersonEntry and StudioEntry models.
+Fixed a regression in lib/entry_form_with_optional_models.rb that
+would allow an Entry to be accepted with invalid fields.
 
 
 ======================================================================
 
 TODO:
-
-@ For /company/new, accepted an invalid country name
 
 @ Create
   - CompanyEntry model
@@ -78,6 +75,8 @@ TODO:
 --
 
 @ The plugin 'expection_notification' should be 'exception_notification'
+
+@ Refactor 'auto_complete_with_params_prefix' into a plugin
 
 @ Send email when rejecting a user account request
 

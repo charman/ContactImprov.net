@@ -203,6 +203,28 @@ class EventControllerTest < ActionController::TestCase
     assert_equal phone_numbers(:complete_event_entry).number, new_entry.phone_number.number
   end
 
+  def test_should_not_edit_with_missing_location_fields
+    login_as :quentin
+    put :edit, :id => event_entries(:complete_event_entry).event_entry_id,
+      :event_entry => {
+        :title            => 'newtitle',
+        :description      => 'newdescription',
+        :cost             => 'newcost',
+        :start_date       => '2006-06-06',
+        :end_date         => '2006-06-06'
+      },
+      :entry => {
+        :email => { :address => 'newaddress@contactimprov.org' },
+        :location => @@empty_location_fields,
+        :phone_number => { :number => '666-666-6666' },
+        :ci_url => { :address => 'http://contactimprov.org/newurl/' }
+      }
+    assert_response :success
+    assert_select "[class=errorExplanation]"
+    assert_match /Country name can.t be blank/, @response.body
+    assert_match /City name can.t be blank/, @response.body
+  end
+
   def test_should_let_owner_user_edit_event_entry_application
     login_as :quentin
     post_data_to_edit_and_test_response
