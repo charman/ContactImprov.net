@@ -25,8 +25,7 @@ WHEN UPDATING PRODUCTION SERVER:
 
 THIS COMMIT:
 
-Changed "Create a new [EntryType]" and "Create an [EntryType]" to "Add
-a new [EntryType]", per Ken's suggestion.
+Created the Organization model.
 
 
 ======================================================================
@@ -40,7 +39,6 @@ TODO:
 
 @ Entry listings
   - navigation back to /index/user, ...
-  - modify templates to handle 'An Event' vs. 'A Jam'
   - modify /user/show to list all types of Entries for a user
   - CompanyEntry model
     - list view

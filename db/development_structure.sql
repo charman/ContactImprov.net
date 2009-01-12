@@ -212,6 +212,26 @@ CREATE TABLE `ci_locations` (
   KEY `index_ci_locations_on_country_name_id` (`country_name_id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=15002 DEFAULT CHARSET=utf8;
 
+CREATE TABLE `ci_organization_versions` (
+  `organization_version_id` int(11) NOT NULL auto_increment,
+  `organization_id` int(11) default NULL,
+  `version` int(11) default NULL,
+  `name` varchar(255) default NULL,
+  `description` text,
+  `updated_at` datetime default NULL,
+  PRIMARY KEY  (`organization_version_id`)
+) ENGINE=MyISAM AUTO_INCREMENT=15000 DEFAULT CHARSET=utf8;
+
+CREATE TABLE `ci_organizations` (
+  `organization_id` int(11) NOT NULL auto_increment,
+  `version` int(11) default NULL,
+  `name` varchar(255) default NULL,
+  `description` text,
+  `created_at` datetime default NULL,
+  `updated_at` datetime default NULL,
+  PRIMARY KEY  (`organization_id`)
+) ENGINE=MyISAM AUTO_INCREMENT=15000 DEFAULT CHARSET=utf8;
+
 CREATE TABLE `ci_people` (
   `person_id` int(11) NOT NULL auto_increment,
   `version` int(11) default NULL,
@@ -447,3 +467,5 @@ INSERT INTO ci_schema_migrations (version) VALUES ('20090108205118');
 INSERT INTO ci_schema_migrations (version) VALUES ('20090110165932');
 
 INSERT INTO ci_schema_migrations (version) VALUES ('20090110170052');
+
+INSERT INTO ci_schema_migrations (version) VALUES ('20090112234209');
