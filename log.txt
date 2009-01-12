@@ -25,12 +25,18 @@ WHEN UPDATING PRODUCTION SERVER:
 
 THIS COMMIT:
 
-Changed JamEntry.times to JamEntry.schedule, per Ken's suggestion.
+Changed "Create a new [EntryType]" and "Create an [EntryType]" to "Add
+a new [EntryType]", per Ken's suggestion.
 
 
 ======================================================================
 
 TODO:
+
+@ Ken's suggestions
+  - allow people to list themselves as the contact person for an Entry
+    - concept of "themselves" for Person entries
+    - AJAX to add non-editable text indicating attached Person info
 
 @ Entry listings
   - navigation back to /index/user, ...
