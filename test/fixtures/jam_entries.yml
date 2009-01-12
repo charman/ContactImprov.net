@@ -2,7 +2,7 @@ complete_jam_entry:
     jam_entry_id: 100
     title: 'Complete Contact Event'
     description: 'A completely complete Contact Event application'
-    times: "Once upon a time"
+    schedule: "Once upon a time"
     cost: "If you have to ask, you can't afford it."
     owner_user_id: 1
     person_id: 100

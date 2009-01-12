@@ -11,9 +11,9 @@ class JamEntry < ActiveRecord::Base
   acts_as_versioned
   self.non_versioned_columns << 'created_at'
 
-  attr_accessible :title, :description, :times, :cost
+  attr_accessible :title, :description, :schedule, :cost
 
-  validates_presence_of :title, :description, :times, :cost
+  validates_presence_of :title, :description, :schedule, :cost
 
 
   def before_save
@@ -21,7 +21,7 @@ class JamEntry < ActiveRecord::Base
   end
 
   def version_condition_met?
-    title_changed? || description_changed? || times_changed? || cost_changed? || ci_notes_changed?
+    title_changed? || description_changed? || schedule_changed? || cost_changed? || ci_notes_changed?
   end
 
 end
