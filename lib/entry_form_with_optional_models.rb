@@ -110,6 +110,17 @@ protected
         @entry.send(model_name).attributes = p[:entry][model_name]
       end
     end
+    if defined?(@entry.boolean_flag_names) && !@entry.boolean_flag_names.empty?
+      @entry.boolean_flag_names.each { |flag_name| set_boolean_flag(flag_name, p[flag_name]) }
+    end
+  end
+
+  def set_boolean_flag(flag_name, flag)
+    if flag == false || flag == :false || flag == 'false' || flag.blank?
+      eval("@entry.#{flag_name} = false")
+    else  #  status is true
+      eval("@entry.#{flag_name} = true")
+    end
   end
 
   #  This function assumes that the @current_user variable points to a valid instance 

@@ -18,6 +18,10 @@ class PersonEntry < ActiveRecord::Base
     sanitize_attributes
   end
 
+  def boolean_flag_names
+    ['is_owner_user']
+  end
+
   def title
     "#{person.first_name} #{person.last_name}"
   end

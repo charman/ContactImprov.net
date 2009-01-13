@@ -5,6 +5,7 @@ class CreatePersonEntries < ActiveRecord::Migration
       t.integer  :version
       t.text     :description
       t.integer  :owner_user_id
+      t.boolean  :is_owner_user
       t.integer  :person_id
       t.integer  :location_id
       t.integer  :email_id
@@ -21,6 +22,7 @@ class CreatePersonEntries < ActiveRecord::Migration
       t.integer  :version
       t.text     :description
       t.integer  :owner_user_id
+      t.boolean  :is_owner_user
       t.integer  :person_id
       t.integer  :location_id
       t.integer  :email_id

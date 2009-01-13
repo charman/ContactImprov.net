@@ -72,7 +72,7 @@ CREATE TABLE `ci_email_versions` (
   KEY `index_ci_email_versions_on_email_id` (`email_id`),
   KEY `index_ci_email_versions_on_for_entity_id` (`for_entity_id`),
   KEY `index_ci_email_versions_on_address` (`address`)
-) ENGINE=MyISAM AUTO_INCREMENT=15002 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=15001 DEFAULT CHARSET=utf8;
 
 CREATE TABLE `ci_emails` (
   `email_id` int(11) NOT NULL auto_increment,
@@ -85,7 +85,7 @@ CREATE TABLE `ci_emails` (
   PRIMARY KEY  (`email_id`),
   KEY `index_ci_emails_on_for_entity_id` (`for_entity_id`),
   KEY `index_ci_emails_on_address` (`address`)
-) ENGINE=MyISAM AUTO_INCREMENT=15002 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=15001 DEFAULT CHARSET=utf8;
 
 CREATE TABLE `ci_event_entries` (
   `event_entry_id` int(11) NOT NULL auto_increment,
@@ -225,7 +225,7 @@ CREATE TABLE `ci_organization_entries` (
   `created_at` datetime default NULL,
   `updated_at` datetime default NULL,
   PRIMARY KEY  (`organization_entry_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=15001 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=15000 DEFAULT CHARSET=utf8;
 
 CREATE TABLE `ci_organization_entry_versions` (
   `organization_entry_version_id` int(11) NOT NULL auto_increment,
@@ -240,7 +240,7 @@ CREATE TABLE `ci_organization_entry_versions` (
   `ci_notes` text,
   `updated_at` datetime default NULL,
   PRIMARY KEY  (`organization_entry_version_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=15001 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=15000 DEFAULT CHARSET=utf8;
 
 CREATE TABLE `ci_organization_versions` (
   `organization_version_id` int(11) NOT NULL auto_increment,
@@ -250,7 +250,7 @@ CREATE TABLE `ci_organization_versions` (
   `description` text,
   `updated_at` datetime default NULL,
   PRIMARY KEY  (`organization_version_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=15001 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=15000 DEFAULT CHARSET=utf8;
 
 CREATE TABLE `ci_organizations` (
   `organization_id` int(11) NOT NULL auto_increment,
@@ -260,7 +260,7 @@ CREATE TABLE `ci_organizations` (
   `created_at` datetime default NULL,
   `updated_at` datetime default NULL,
   PRIMARY KEY  (`organization_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=15001 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=15000 DEFAULT CHARSET=utf8;
 
 CREATE TABLE `ci_people` (
   `person_id` int(11) NOT NULL auto_increment,
@@ -270,13 +270,14 @@ CREATE TABLE `ci_people` (
   `created_at` datetime default NULL,
   `updated_at` datetime default NULL,
   PRIMARY KEY  (`person_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=15003 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=15004 DEFAULT CHARSET=utf8;
 
 CREATE TABLE `ci_person_entries` (
   `person_entry_id` int(11) NOT NULL auto_increment,
   `version` int(11) default NULL,
   `description` text,
   `owner_user_id` int(11) default NULL,
+  `is_owner_user` tinyint(1) default NULL,
   `person_id` int(11) default NULL,
   `location_id` int(11) default NULL,
   `email_id` int(11) default NULL,
@@ -287,7 +288,7 @@ CREATE TABLE `ci_person_entries` (
   `created_at` datetime default NULL,
   `updated_at` datetime default NULL,
   PRIMARY KEY  (`person_entry_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=15000 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=15001 DEFAULT CHARSET=utf8;
 
 CREATE TABLE `ci_person_entry_versions` (
   `person_entry_version_id` int(11) NOT NULL auto_increment,
@@ -295,6 +296,7 @@ CREATE TABLE `ci_person_entry_versions` (
   `version` int(11) default NULL,
   `description` text,
   `owner_user_id` int(11) default NULL,
+  `is_owner_user` tinyint(1) default NULL,
   `person_id` int(11) default NULL,
   `location_id` int(11) default NULL,
   `email_id` int(11) default NULL,
@@ -304,7 +306,7 @@ CREATE TABLE `ci_person_entry_versions` (
   `ci_notes` text,
   `updated_at` datetime default NULL,
   PRIMARY KEY  (`person_entry_version_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=15000 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=15001 DEFAULT CHARSET=utf8;
 
 CREATE TABLE `ci_person_versions` (
   `person_version_id` int(11) NOT NULL auto_increment,
@@ -314,7 +316,7 @@ CREATE TABLE `ci_person_versions` (
   `last_name` varchar(255) default NULL,
   `updated_at` datetime default NULL,
   PRIMARY KEY  (`person_version_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=15003 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=15004 DEFAULT CHARSET=utf8;
 
 CREATE TABLE `ci_phone_number_versions` (
   `phone_number_version_id` int(11) NOT NULL auto_increment,
@@ -326,7 +328,7 @@ CREATE TABLE `ci_phone_number_versions` (
   PRIMARY KEY  (`phone_number_version_id`),
   KEY `index_ci_phone_number_versions_on_phone_number_id` (`phone_number_id`),
   KEY `index_ci_phone_number_versions_on_for_entity_id` (`for_entity_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=15002 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=15001 DEFAULT CHARSET=utf8;
 
 CREATE TABLE `ci_phone_numbers` (
   `phone_number_id` int(11) NOT NULL auto_increment,
@@ -337,7 +339,7 @@ CREATE TABLE `ci_phone_numbers` (
   `updated_at` datetime default NULL,
   PRIMARY KEY  (`phone_number_id`),
   KEY `index_ci_phone_numbers_on_for_entity_id` (`for_entity_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=15002 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=15001 DEFAULT CHARSET=utf8;
 
 CREATE TABLE `ci_schema_migrations` (
   `version` varchar(255) NOT NULL,
@@ -404,7 +406,7 @@ CREATE TABLE `ci_url_versions` (
   PRIMARY KEY  (`url_version_id`),
   KEY `index_ci_url_versions_on_url_id` (`url_id`),
   KEY `index_ci_url_versions_on_for_entity_id` (`for_entity_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=15002 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=15001 DEFAULT CHARSET=utf8;
 
 CREATE TABLE `ci_urls` (
   `url_id` int(11) NOT NULL auto_increment,
@@ -415,7 +417,7 @@ CREATE TABLE `ci_urls` (
   `updated_at` datetime default NULL,
   PRIMARY KEY  (`url_id`),
   KEY `index_ci_urls_on_for_entity_id` (`for_entity_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=15002 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=15001 DEFAULT CHARSET=utf8;
 
 CREATE TABLE `ci_us_states` (
   `us_state_id` int(11) NOT NULL auto_increment,

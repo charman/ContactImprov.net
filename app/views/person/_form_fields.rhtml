@@ -12,9 +12,14 @@
 					<%= p.text_field :last_name %>
 				</li>
 			<% end %>
-			<li style="clear: both; padding-bottom: 0.4em;">
+			<li>
 				<label>Description:</label>
 				<%= the_entry.text_area :description, :rows => 8, :cols => 60 %>
+			</li>
+			<li style="clear: both; padding-bottom: 1em;">
+				<label>Are you this person?</label>
+				<%= radio_button_tag :is_owner_user, true,  @entry.is_owner_user  %> Yes / 
+				<%= radio_button_tag :is_owner_user, false, !@entry.is_owner_user %> No
 			</li>
 		</ol>
 	</fieldset>
