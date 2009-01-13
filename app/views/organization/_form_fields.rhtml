@@ -1,0 +1,34 @@
+<p>
+	<fieldset>
+		<legend><i>Organization</i></legend>
+		<ol>
+			<% fields_for 'entry[organization]', @entry.organization do |o| %>
+				<li>
+					<label><i>Name:</i></label>
+					<%= o.text_field :name %>
+				</li>
+				<li>
+					<label>Description:</label>
+					<%= o.text_area :description, :rows => 8, :cols => 60 %>
+				</li>
+			<% end %>
+		</ol>
+	</fieldset>
+</p>
+
+<p>
+	<%= render :partial => 'shared/url', :object => @entry.url,
+		:locals => { :prefix => 'entry[ci_url]', :legend => 'Website' } %>
+</p>
+<p>
+	<%= render :partial => 'shared/email', :object => @entry.email,
+		:locals => { :prefix => 'entry[email]', :legend => 'Email Address' } %>
+</p>
+<p>
+	<%= render :partial => 'shared/phone_number', :object => @entry.phone_number,
+		:locals => { :prefix => 'entry[phone_number]', :legend => 'Phone Number' } %>
+</p>
+<p>
+	<%= render :partial => 'shared/location', :object => @entry.location,
+		:locals => { :prefix => 'entry[location]', :legend => '<i>Location</i>' } %>
+</p>

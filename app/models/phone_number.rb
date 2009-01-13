@@ -3,6 +3,7 @@ class PhoneNumber < ActiveRecord::Base
 
   has_one :jam_entry
   has_one :event_entry
+  has_one :organization_entry
   has_one :person_entry
 
   acts_as_versioned
