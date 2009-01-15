@@ -25,7 +25,9 @@ WHEN UPDATING PRODUCTION SERVER:
 
 THIS COMMIT:
 
-Added boolean "is this you" radio button to the PersonEntry form.
+WE GO LIVE!
+
+Updated /user/index and /home/index.
 
 
 ======================================================================
