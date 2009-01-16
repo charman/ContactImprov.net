@@ -25,24 +25,29 @@ WHEN UPDATING PRODUCTION SERVER:
 
 THIS COMMIT:
 
-Ran all of the HTML files in public/ through Tidy, and added these two
-DIV's:
+Ran all the CI25 pages through tidy.
 
-	<div class="main">
-	     <div class="content">
+Created a color scheme using Kuler, and updated the stylesheet for the
+site.
 
-to each page in anticipation of a CSS makeover.
+Created an art_assets directory.
+
+Created a banner image for the site.
 
 
 ======================================================================
 
 TODO:
 
+@ Header/footer files
+  - create h/f for static HTML files
+  - update Rails and static headers to use banner image
+
 @ Update HTML
   - run W3C link checker on the site
   - standardize DOCTYPE and encoding
 
-@ Signup for Google website stats
+@ Create Google sitemap
 
 @ Google search box for site
 
@@ -91,13 +96,12 @@ TODO:
 
 @ Cache Entry list pages
 
-@ Make ci@craigharman.net account
-  - does this get rid of 'CQadmin' subject lines?
-
 @ Investigate ways to convert line breaks to <br />'s in form fields
   - look at Markdown
 
 --
+
+@ RSS feeds
 
 @ Entry listings
   - validation function for "has at least one of these models"
