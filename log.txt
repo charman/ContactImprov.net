@@ -25,16 +25,28 @@ WHEN UPDATING PRODUCTION SERVER:
 
 THIS COMMIT:
 
-WE GO LIVE!
+Ran all of the HTML files in public/ through Tidy, and added these two
+DIV's:
 
-Updated /user/index and /home/index.
+	<div class="main">
+	     <div class="content">
+
+to each page in anticipation of a CSS makeover.
 
 
 ======================================================================
 
 TODO:
 
-@ Functional tets for boolean variable on PersonEntry form
+@ Update HTML
+  - run W3C link checker on the site
+  - standardize DOCTYPE and encoding
+
+@ Signup for Google website stats
+
+@ Google search box for site
+
+@ Functional tests for boolean variable on PersonEntry form
 
 @ Ken's suggestions
   - for account request, force people to enter email twice
