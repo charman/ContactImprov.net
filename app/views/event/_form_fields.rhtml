@@ -1,13 +1,32 @@
+<h1>Event Listings</h1>
+
+<div style="margin-left: 1em; margin-bottom: 2.5em;">
+	<p>
+		You must enter information in all form fields that are marked with a *.
+	</p>
+	<p style="padding-top: 1em;">
+		<b>Q. What is the difference between a Workshop/Event and a Jam/Class?</b>
+	</p>
+	<p>
+		<b>A.</b>
+		Workshops and Events are large gatherings that only occur once or twice
+		a year and usually last all day or multiple days.  Jams and Classes
+		are smaller gatherings that take place more frequently (e.g. every week 
+		or month) and usually last just a few hours.
+	</p>
+
+</div>
+
 <p>
 	<fieldset>
-		<legend><i>Event Information</i></legend>
+		<legend>Event Information*</legend>
 		<ol>
 			<li style="clear: both; padding-bottom: 0.4em;">
-				<label><i>Title:</i></label>
+				<label>Title:*</label>
 				<%= the_entry.text_field :title, :size => 60 %>
 			</li>
 			<li style="clear: both; padding-bottom: 0.4em;">
-				<label><i>Description:</i></label>
+				<label>Description:*</label>
 				<%= the_entry.text_area :description, :rows => 12, :cols => 60 %>
 			</li>
 			<li style="clear: both; padding-bottom: 0.4em;">
@@ -17,13 +36,13 @@
 		</ol>
 		<table>
 			<tr style="vertical-align: top;">
-				<td style="width: 10em; text-align: right;"><i>Start Date:</i></td>
+				<td style="width: 10em; text-align: right;">Start Date:*</td>
 				<td style="padding: 0em 1em 1em 1em;">
 					<%= the_entry.calendar_date_select :start_date, :embedded => true, :year_range => 0.years.ago..2.years.from_now %>
 				</td>
 			</tr>
 			<tr style="vertical-align: top;">
-				<td style="width: 10em; text-align: right;"><i>End Date:</i></td>
+				<td style="width: 10em; text-align: right;">End Date:*</td>
 				<td style="padding: 0em 1em 1em 1em;">
 					<%= the_entry.calendar_date_select :end_date, :embedded => true, :year_range => 0.years.ago..2.years.from_now %>
 				</td>
@@ -51,5 +70,5 @@
 </p>
 <p>
 	<%= render :partial => 'shared/location', :object => @entry.location,
-		:locals => { :prefix => 'entry[location]', :legend => '<i>Location</i>' } %>
+		:locals => { :prefix => 'entry[location]', :legend => 'Location*' } %>
 </p>

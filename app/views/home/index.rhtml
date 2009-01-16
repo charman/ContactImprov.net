@@ -8,6 +8,7 @@
     <title>Contact Improvisation</title>
     <link href="contact.css" type="text/css" rel="stylesheet">
 </head>
+
 <body>
     <table width="80%" border="1" cellpadding="4" align="center" bgcolor="#FFFFFF">
         <tr>
@@ -19,23 +20,65 @@
             <th class="subtitle" width="33%"><a href="people.html">People and Places</a></th>
         </tr>
     </table>
-    <p>These web pages list jams, workshops, classes, and teachers of <strong>Contact Improvisation</strong> around the world.<br>
-    Please update your bookmark to <strong>www.contactimprov.net</strong>.</p>
+
+	<p>
+		<fieldset>
+			<legend style="font-size: 1.2em; font-weight: bold; padding-left: 0.5em; padding-right: 0.5em;">
+				January 15, 2009 &mdash; Upgrading ContactImprov.net
+			</legend>
+			<p>
+				We are working on making it easier for the Contact Improv community to 
+				add information about <b>jams, workshops, classes and teachers</b> to this site
+				and to keep that information up to date.
+
+				We will be making a number of improvements to the site between now and mid-February -
+				but we will never charge for any of our services.
+				
+				The site is intended as a service to the community.  It is not a business.
+			</p>
+			<p>
+				If you previously submitted an Event listing, we ask that you please <b>resubmit</b>
+				the Event information by following these steps:
+				<ol>
+					<li>
+						Fill out the 
+						<a href="/user/request_account">Account Request form</a>
+					</li>
+					<li>
+						Wait 0-48 hours for your request to be approved
+					</li>
+					<li>
+						Once your account has been created, 
+						<a href="/user">log in to your account</a>
+					</li>
+					<li>
+						You will now be able to 
+						<a href="/event/new">create Event listings</a> 
+						or update your existing Event listings
+					</li>
+				</ol>
+				
+			</p>
+		</fieldset>
+	</p>
+
     <p>If you are wondering what is Contact Improv, <a href="about.html">please click here.</a></p>
+
     <p>For information about adding a listing to this site, <a href="#email">please click here</a>.</p>
-    <p>For everyone else, these pages are divided as follows:</p>
+
+    <p>The site is organized into the following sections:</p>
     <ul>
-        <li><a href="#events">Events and workshops</a>, listed chronologically. These are events that take place just once.
-        <li><a href="jams.html">Ongoing jams and classes</a>
+        <li><a href="#events">Events and Workshops</a>, listed chronologically. These are events that take place just once.
+        <li><a href="jams.html">Ongoing Jams and Classes</a>
         <li><a href="people.html">People</a> and <a href="people.html#places">Places</a> teaching, performing, or otherwise involved in contact.
-        <li><a href="announce.html">Announcements and links</a> (notices, advertisements, etc.)
-        <li><a href="photos/index.html">Photographs</a> of contact.
+        <li><a href="announce.html">Announcements and Links</a> (notices, advertisements, etc.)
+        <li><a href="photos/">Photographs</a> of Contact.
         <li><a href="ci25/ci25.html">CI25</a> was the celebration of the 25th Anniversary of Contact Improvisation, held at Oberlin College, June 1997. This section includes historical information about contact including a bibliography and list of videos), so it might be useful to students of contact. It also includes pointers to other celebrations of contact held worldwide.
-        <li><a href="writings.html">Essays, articles, and theses about contact improv.</a> <span style="color: Red; font-weight: bolder;">New:</span> <a href="Portland-ME-Phoenix-Article.html">Article from the Portland (Maine) Phoenix</a>.
-        <li><span style="color: Red; font-weight: bolder;">New listing:</span> Four weekly jams in <a href="jams.html#S">Stockholm, Sweden</a>.
+        <li><a href="writings.html">Essays, Articles, and Theses about contact improv.</a> 
     </ul>
+
     <h2><a name="events" id="events">Workshops, Festivals, and Other Events</a></h2>
-    <p>In chronological order. For historical interest, see also the <a href="past-events.html">list of past events</a>. <span class="updated">Last update Jan 2008.</span></p>
+    <p>Events are listed in chronological order. For historical interest, see also the <a href="past-events.html">list of past events</a>.</p>
 
 	<% @events.each do |event| %>
 		<dt>
@@ -65,33 +108,28 @@
 	<dt>
 		<hr>
 
-		<p>See also</p>
-        <p><a href="jams.html">Contact jams and classes</a></p>
-        <p><a href="announce.html">Announcements and links</a></p>
-        <p><a href="people.html">People and places</a></p>
+		<p>See also:</p>
+        <p><a href="jams.html">Contact Jams and Classes</a></p>
+        <p><a href="announce.html">Announcements and Links</a></p>
+        <p><a href="people.html">People and Places</a></p>
+
         <hr>
-        <h3><a name="email" id="email">Listing Information</a></h3>
 
-		<span>
-			To create or update information for an Event, a Contact Jam, or a Person:
-			<ol>
-				<li><a href="/user/request_account">Request an account</a> on ContactImprov.net</li>
-				<li>Wait for your account request to be approved</li>
-				<li><a href="/user">Log in to your account</a></li>
-				<li>
-					Create a new entry for an 
-					<a href="/event/new">Event</a>/Contact Jam/Person 
-					or edit an existing entry
-				</li>
-			</ol>
-		</span>
+		<div style="font-size: small; text-align: right;">
+			<p>
+				As of January 15, 2009, this site is maintained by 
+				<a href="http://craigharman.net">Craig Harman</a>,
+				<br />
+				with assistance from
+				<a href="http://myriadicity.com/Sundry/FrontPage">Ken Manheimer</a>.
+			</p>
+			<p>
+		        Many thanks to Jim Davis, Chris Deephouse and Mugsy Lunsford  
+				<br />
+				for maintaining and hosting this site for our benefit for many years.
+			</p>
+		</div>
 
-        <p>Please don't send email asking me to locate a teacher or jam in your area. All the information that I have is listed in the pages here. If it isn't here already, then I don't know about it.</p>
-		<p><font size="small">As of January 15, 2009, this site is maintained by 
-			<a href="http://craigharman.net">Craig Harman</a>.
-		<br />
-        Many thanks to Jim Davis, Chris Deephouse and Mugsy Lunsford for maintaining and hosting this site for our benefit for many years.</font>
-		</p>
 	</dt>
 </body>
 </html>

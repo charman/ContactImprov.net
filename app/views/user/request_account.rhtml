@@ -1,6 +1,19 @@
 <%= render(:partial => "shared/header", :locals => { :title => 'Request a ContactImprov.net account' } )%>
 
-<h1>Request your ContactImprov.net account</h1>
+<h1>Request an account</h1>
+
+<div style="margin-left: 1em; margin-bottom: 2.5em;">
+	<p>
+		As of mid-January 2009, an account on ContactImprov.net will allow you to
+		add Event/Workshop listings to the site and edit/update those listings.
+	</p>
+	<p>
+		In the next few weeks you will be able to add and edit listings for Jams and People.
+		We suspect that many of these current listings are out of date.
+	</p>
+</div>
+
+
 
 <% if flash[:notice] %>
 	<div class="errorExplanation" id="errorExplanation">
@@ -26,9 +39,9 @@
 			<tr style="vertical-align: top; ">
 				<td style="width: 10em; text-align: right;"></td>
 				<td style="padding: 0em 1em 1em 1em;">
-					Please tell us something you like about Contact Improv:
-					<br />
-					<span style="font-size: 0.8em;">(so we know you're not a spammer)</span>
+					Please tell us something you like about Contact Improv
+					in two or three sentences
+					<span style="font-size: 0.8em; font-style: italic;">(so we know you're not a spammer)</span>:
 					<br />
 					<%= request.text_area :something_about_contact_improv, :rows => 4, :cols => 60 %>
 				</td>
