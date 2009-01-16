@@ -1,68 +1,75 @@
 <%= render(:partial => "shared/header", :locals => { :title => 'Request a ContactImprov.net account' } )%>
 
-<h1>Request an account</h1>
 
-<div style="margin-left: 1em; margin-bottom: 2.5em;">
-	<p>
-		As of mid-January 2009, an account on ContactImprov.net will allow you to
-		add Event/Workshop listings to the site and edit/update those listings.
-	</p>
-	<p>
-		In the next few weeks you will be able to add and edit listings for Jams and People.
-		We suspect that many of these current listings are out of date.
-	</p>
-</div>
+<div style="margin-left: 8em;">
 
+	<h1>Request an account</h1>
 
-
-<% if flash[:notice] %>
-	<div class="errorExplanation" id="errorExplanation">
-		<%= flash[:notice] %>
+	<div style="margin-left: 1em; margin-bottom: 2.5em;">
+		<p>
+			As of mid-January 2009, an account on ContactImprov.net will allow you to
+			add Event/Workshop listings to the site and edit/update those listings.
+		</p>
+		<p>
+			In the next few weeks you will be able to add and edit listings for Jams and People.
+			We suspect that many of these current listings are out of date.
+		</p>
 	</div>
-<% end %>
 
-<%= error_messages_for :uar_person, :uar_email, :uar_location, :user_account_request,  
-	:header_message => 'Incomplete Account Request Form'
-%>
 
-<% form_for @user_account_request, :url => { :action => 'request_account' } do |request| %>
-	<p><%= render :partial => "shared/person",   :object => @uar_person, 
-		:locals => { :prefix => 'uar_person', :legend => 'Your Name' } 
-	%></p>
-	<p><%= render :partial => "shared/email",    :object => @uar_email,    
-		:locals => { :prefix => 'uar_email',  :legend => 'Your email address' } 
-	%></p>
 
-	<fieldset>
-		<legend>Additional Information</legend>
-		<table style="margin-top: 1em;">
-			<tr style="vertical-align: top; ">
-				<td style="width: 10em; text-align: right;"></td>
-				<td style="padding: 0em 1em 1em 1em;">
-					Please tell us something you like about Contact Improv
-					in two or three sentences
-					<span style="font-size: 0.8em; font-style: italic;">(so we know you're not a spammer)</span>:
-					<br />
-					<%= request.text_area :something_about_contact_improv, :rows => 4, :cols => 60 %>
-				</td>
-			</tr>
-			<tr style="vertical-align: top;">
-				<td style="width: 10em; text-align: right;"></td>
-				<td style="padding: 0em 1em 1em 1em;">
-					Are you responsible for any existing Contact Person or Contact Jam
-					listings on the website? If so, please list them here:
-					<%= request.text_area :existing_entries, :rows => 4, :cols => 60 %>
-				</td>
-			</tr>
-		</table>
-	</fieldset>
+	<% if flash[:notice] %>
+		<div class="errorExplanation" id="errorExplanation">
+			<%= flash[:notice] %>
+		</div>
+	<% end %>
 
-	<p>
-		<%= submit_tag 'Request Account' %>
-		&nbsp;&nbsp;&nbsp;&nbsp;
-		<a href="/">Cancel</a>
-	</p>
-<% end %>
+	<%= error_messages_for :uar_person, :uar_email, :uar_location, :user_account_request,  
+		:header_message => 'Incomplete Account Request Form'
+	%>
 
+
+	<div class="ci_form">
+		<% form_for @user_account_request, :url => { :action => 'request_account' } do |request| %>
+			<p><%= render :partial => "shared/person",   :object => @uar_person, 
+				:locals => { :prefix => 'uar_person', :legend => 'Your Name' } 
+			%></p>
+			<p><%= render :partial => "shared/email",    :object => @uar_email,    
+				:locals => { :prefix => 'uar_email',  :legend => 'Your email address' } 
+			%></p>
+
+			<fieldset>
+				<legend>Additional Information</legend>
+				<table style="margin-top: 1em;">
+					<tr style="vertical-align: top; ">
+						<td style="width: 10em; text-align: right;"></td>
+						<td style="padding: 0em 1em 1em 1em;">
+							Please tell us something you like about Contact Improv
+							in two or three sentences
+							<span style="font-size: 0.8em; font-style: italic;">(so we know you're not a spammer)</span>:
+							<br />
+							<%= request.text_area :something_about_contact_improv, :rows => 4, :cols => 60 %>
+						</td>
+					</tr>
+					<tr style="vertical-align: top;">
+						<td style="width: 10em; text-align: right;"></td>
+						<td style="padding: 0em 1em 1em 1em;">
+							Are you responsible for any existing Contact Person or Contact Jam
+							listings on the website? If so, please list them here:
+							<%= request.text_area :existing_entries, :rows => 4, :cols => 60 %>
+						</td>
+					</tr>
+				</table>
+			</fieldset>
+
+			<p>
+				<%= submit_tag 'Request Account' %>
+				&nbsp;&nbsp;&nbsp;&nbsp;
+				<a href="/">Cancel</a>
+			</p>
+		<% end %>
+	</div>
+
+</div>
 
 <%= render(:partial => "shared/footer" )%>

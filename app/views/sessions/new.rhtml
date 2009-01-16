@@ -1,20 +1,5 @@
 <%= render(:partial => "shared/header", :locals => { :title => 'Log in to your Account' } )%>
 
-<style type="text/css">
-	td.login_step_number {
-		vertical-align:	top;
-		width:			5%;
-		font-size:		x-large;
-		font-weight:	bolder;
-	}
-	td.login_method {
-		text-align: 	right;
-		vertical-align:	top;
-		padding-bottom: 1em;
-	}
-</style>
-
-
 <% if flash[:notice] %>
 	<div class="errorExplanation" id="errorExplanation">
 		<%= flash[:notice] %>
@@ -22,71 +7,71 @@
 <% end %>
 
 
-<h2>Login to your ContactImprov.net account:</h2>
+<div style="margin-left: 8em;">
+	<h2>Login to your account:</h2>
 
+	<% form_tag session_path do %>
 
-<% form_tag session_path do %>
+	<table>
+		<tr>
+			<td class="login_step_number"></td>
+			<td class="login_method"></td>
+			<td></td>
+		</tr>
+		<tr>
+			<td class="login_step_number">1.</td>
+			<td colspan="2">
+				<b>Enter your email address:</b> <%= text_field_tag 'email', flash[:email], :size => 25 %>
+				<br />
+				<br />
+			</td>
+		</tr>
+		<tr>
+			<td class="login_step_number">2.</td>
+			<td colspan="2">
+				<b>Enter your password:</b> 
+				<%= password_field_tag 'password', '', :size => 20, 
+					:onchange => "$(login_method_email_password_method).checked=true;",
+					:onkeyup  => "if ($(password).value) { $(login_method_email_password_method).checked=true; }" %>
+				<br />
+				<br />
+			</td>
+		</tr>
+		<tr class="login_step">
+			<td class="login_step_number">3.</td>
+			<td colspan="2">
+				<%= submit_tag "Sign in", :style => 'font-size: x-large;' %>
+			</td>
+		</tr>
+		<tr>
+			<td />
+			<td class="login_method">
+				<%= check_box_tag 'remember_me' %>
+			</td>
+			<td>
+				Keep me signed in
+				<br />
+				<span style="font-size: small;">[Uncheck if on a shared computer]</span>
+				<br />
+				<br />
+			</td>
+		</tr>
+		<tr>
+			<td colspan="3" style="font-weight: bold;">
+				<%= link_to "Request an account", { :action => 'request_account', :controller => 'user'}  %>
+				<br />
+				<br />
+			</td>
+		</tr>
+		<tr>
+			<td colspan="3" style="font-weight: bold;">
+				Forgot your password?&nbsp;&nbsp;
+				<%= link_to "Reset your password", { :action => 'request_password_reset', :controller => 'user'}  %>
+			</td>
+		</tr>
+	</table>
 
-<table>
-	<tr>
-		<td class="login_step_number"></td>
-		<td style="width: 10%;"></td>
-		<td style="width: 85%;"></td>
-	</tr>
-	<tr>
-		<td class="login_step_number">1.</td>
-		<td colspan="2">
-			<b>Enter your email address:</b> <%= text_field_tag 'email', flash[:email], :size => 25 %>
-			<br />
-			<br />
-		</td>
-	</tr>
-	<tr>
-		<td class="login_step_number">2.</td>
-		<td colspan="2">
-			<b>Enter your password:</b> 
-			<%= password_field_tag 'password', '', :size => 20, 
-				:onchange => "$(login_method_email_password_method).checked=true;",
-				:onkeyup  => "if ($(password).value) { $(login_method_email_password_method).checked=true; }" %>
-			<br />
-			<br />
-		</td>
-	</tr>
-	<tr class="login_step">
-		<td class="login_step_number">3.</td>
-		<td colspan="2">
-			<%= submit_tag "Sign in", :style => 'font-size: x-large;' %>
-		</td>
-	</tr>
-	<tr>
-		<td />
-		<td class="login_method">
-			<%= check_box_tag 'remember_me' %>
-		</td>
-		<td>
-			Keep me signed in
-			<br />
-			<span style="font-size: small;">[Uncheck if on a shared computer]</span>
-			<br />
-			<br />
-		</td>
-	</tr>
-	<tr>
-		<td colspan="3" style="font-weight: bold;">
-			<%= link_to "Request an account", { :action => 'request_account', :controller => 'user'}  %>
-			<br />
-			<br />
-		</td>
-	</tr>
-	<tr>
-		<td colspan="3" style="font-weight: bold;">
-			Forgot your password?&nbsp;&nbsp;
-			<%= link_to "Reset your password", { :action => 'request_password_reset', :controller => 'user'}  %>
-		</td>
-	</tr>
-</table>
-
-<% end %>
-
+	<% end %>
+</div>
 
 <%= render(:partial => "shared/footer" )%>

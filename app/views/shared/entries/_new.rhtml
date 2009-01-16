@@ -13,15 +13,17 @@
 	</div>
 <% end %>
 
-<% form_for @entry, :url => { :action => 'create' } do |the_entry| %>
-	<%= render(:partial => "form_fields", :locals => { :the_entry => the_entry } ) %>
-	<fieldset class="cq_form_submit">
-		<p>
-			<%= submit_tag 'Update' %>
-			&nbsp;&nbsp;&nbsp;&nbsp;
-			<a href="/">Cancel</a>
-		</p>
-	</fieldset>
-<% end -%>
+<div class="ci_form">
+	<% form_for @entry, :url => { :action => 'create' } do |the_entry| %>
+		<%= render(:partial => "form_fields", :locals => { :the_entry => the_entry } ) %>
+		<fieldset class="ci_form_submit">
+			<p>
+				<%= submit_tag 'Update' %>
+				&nbsp;&nbsp;&nbsp;&nbsp;
+				<a href="/">Cancel</a>
+			</p>
+		</fieldset>
+	<% end -%>
+</div>
 
 <%= render(:partial => "shared/footer" )%>

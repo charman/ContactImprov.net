@@ -20,31 +20,31 @@
 		</p>
 	</div>
 
-	
-
-	<% form_tag(:action => 'change_email') do %>
-		<fieldset style="width: 70%;">
-			<ol>
-				<li>
-					<label>Password:</label>
-					<%= password_field_tag 'password', '', :size => 30 %>
-				</li>
-				<li>
-					<label>New email:</label>
-					<%= text_field_tag 'email', '', :size => 30 %>
-				</li>
-				<li>
-					<label>Confirm email:</label>
-					<%= text_field_tag 'email_confirmation', '', :size => 30 %>
-				</li>
-			</ol>
-		</fieldset>
-        <fieldset class="cq_form_submit">
-                <p>
-                        <%= submit_tag 'Change my email address' %>
-                </p>
-        </fieldset>
-	<% end %>
+	<div class="ci_form">
+		<% form_tag(:action => 'change_email') do %>
+			<fieldset style="width: 70%;">
+				<ol>
+					<li>
+						<label>Password:</label>
+						<%= password_field_tag 'password', '', :size => 30 %>
+					</li>
+					<li>
+						<label>New email:</label>
+						<%= text_field_tag 'email', '', :size => 30 %>
+					</li>
+					<li>
+						<label>Confirm email:</label>
+						<%= text_field_tag 'email_confirmation', '', :size => 30 %>
+					</li>
+				</ol>
+			</fieldset>
+	        <fieldset class="ci_form_submit">
+	                <p>
+	                        <%= submit_tag 'Change my email address' %>
+	                </p>
+	        </fieldset>
+		<% end %>
+	</div>
 
 
 	<% if flash[:change_successful] %>

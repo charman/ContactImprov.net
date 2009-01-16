@@ -19,15 +19,17 @@
 		</div>
 	<% end %>
 
-	<% form_for @user, :url => { :action => 'edit' } do |f| -%>
-		<%= render :partial => 'shared/person', :object => @user.person, 
-				:locals => { :prefix => 'user[person]', :legend => 'Your Name' } %>
-		<fieldset class="cq_form_submit">
-			<p>
-				<%= submit_tag 'Update' %>
-			</p>
-		</fieldset>
-	<% end -%>
+	<div class="ci_form">
+		<% form_for @user, :url => { :action => 'edit' } do |f| -%>
+			<%= render :partial => 'shared/person', :object => @user.person, 
+					:locals => { :prefix => 'user[person]', :legend => 'Your Name' } %>
+			<fieldset class="ci_form_submit">
+				<p>
+					<%= submit_tag 'Update' %>
+				</p>
+			</fieldset>
+		<% end -%>
+	</div>
 
 <% end %>
 
