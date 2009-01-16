@@ -25,12 +25,9 @@ WHEN UPDATING PRODUCTION SERVER:
 
 THIS COMMIT:
 
-Created /public/includes for header and footer files for static
-images.
+Modified navigation bar for the different sections of the website.
 
-Added header and footer include files to all RHTML and HTML files.
-
-Further tweaked the CSS file for the site.
+Converted some of the HTML files from using CR's to LF's for newlines.
 
 
 ======================================================================
@@ -43,6 +40,7 @@ TODO:
 @ Update HTML
   - run W3C link checker on the site
   - standardize DOCTYPE and encoding
+  - convert newlines from CR to LF
 
 @ Create Google sitemap
 
@@ -97,6 +95,8 @@ TODO:
   - look at Markdown
 
 --
+
+@ Update 404/500 error pages
 
 @ RSS feeds
 
