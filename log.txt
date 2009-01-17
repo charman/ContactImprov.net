@@ -25,9 +25,13 @@ WHEN UPDATING PRODUCTION SERVER:
 
 THIS COMMIT:
 
-Modified navigation bar for the different sections of the website.
+Changed relative path stylesheet links:
 
-Converted some of the HTML files from using CR's to LF's for newlines.
+  <link href="contact.css" type="text/css" rel="stylesheet" />
+
+to absolute path links:
+
+  <link href="/contact.css" type="text/css" rel="stylesheet" />
 
 
 ======================================================================
@@ -39,7 +43,7 @@ TODO:
 
 @ Update HTML
   - run W3C link checker on the site
-  - standardize DOCTYPE and encoding
+  - standardize DOCTYPE (to what?)
   - convert newlines from CR to LF
 
 @ Create Google sitemap
@@ -123,6 +127,13 @@ TODO:
 ==[ LOG ]=============================================================
 
 ----[ day, January , 2009 ]--------------------------------------
+
+
+----[ Thursday, January 15, 2009 ]------------------------------------
+
+@ THE BIG SERVER SWITCH!
+
+ContactImprov.net goes live on my server.
 
 
 ----[ Sunday, January 4, 2009 ]---------------------------------------
