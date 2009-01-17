@@ -63,14 +63,14 @@ protected
     #  Only deliver email on the production server
     if File.file? "config/deliver_email"
       @recipients = emails
-      @bcc        = "cq@craigharman.net"
+      @bcc        = "ci@craigharman.net"
     else
       @recipients = "charman"
     end
   end
 
   def setup_admin_email()
-    setup_email("cq@craigharman.net")
+    setup_email("ci@craigharman.net")
     @subject     = "[CQadmin]  "
   end
 
