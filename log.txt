@@ -25,13 +25,8 @@ WHEN UPDATING PRODUCTION SERVER:
 
 THIS COMMIT:
 
-Changed relative path stylesheet links:
-
-  <link href="contact.css" type="text/css" rel="stylesheet" />
-
-to absolute path links:
-
-  <link href="/contact.css" type="text/css" rel="stylesheet" />
+Converted newline terminations from CR's to LF's for the remaining
+HTML files in the public driectory.
 
 
 ======================================================================
@@ -44,11 +39,6 @@ TODO:
 @ Update HTML
   - run W3C link checker on the site
   - standardize DOCTYPE (to what?)
-  - convert newlines from CR to LF
-
-@ Create Google sitemap
-
-@ Google search box for site
 
 @ Functional tests for boolean variable on PersonEntry form
 
@@ -89,6 +79,10 @@ TODO:
   - email events when they are edited
 
 -- 
+
+@ Create Google sitemap
+
+@ Google search box for site
 
 @ email obfuscation script:
     http://www.projecthoneypot.org/how_to_avoid_spambots_3.php
