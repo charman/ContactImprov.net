@@ -25,20 +25,12 @@ WHEN UPDATING PRODUCTION SERVER:
 
 THIS COMMIT:
 
-Converted newline terminations from CR's to LF's for the remaining
-HTML files in the public driectory.
+Created a link from the banner image back to the homepage.
 
 
 ======================================================================
 
 TODO:
-
-@ Header/footer files
-  - link from banner image to homepage
-
-@ Update HTML
-  - run W3C link checker on the site
-  - standardize DOCTYPE (to what?)
 
 @ Functional tests for boolean variable on PersonEntry form
 
@@ -79,6 +71,10 @@ TODO:
   - email events when they are edited
 
 -- 
+
+@ Update HTML
+  - run W3C link checker on the site
+  - standardize DOCTYPE (to what?)
 
 @ Create Google sitemap
 
