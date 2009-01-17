@@ -127,9 +127,6 @@ div#ci_form_page {
     padding: 0em;
 
     border: 1px solid #BFBAB0;
-    /* background-color: #E7E7E7; */
-    /* background-color: #D6FFFF; */
-	/* background-color: #D6FFFF; */
 	background-color: #FFF8F8;
 }
 .ci_form legend {
@@ -214,7 +211,6 @@ td.login_method {
   text-align: left;
   font-weight: bold;
   padding: 5px 5px 5px 15px;
-  /* font-size: 12px; */
   font-size: big;
   margin: -7px;
   background-color: #c00;

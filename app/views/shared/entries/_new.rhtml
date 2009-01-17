@@ -17,9 +17,13 @@
 	<div class="ci_form">
 		<% form_for @entry, :url => { :action => 'create' } do |the_entry| %>
 			<%= render(:partial => "form_fields", :locals => { :the_entry => the_entry } ) %>
+			<div style="padding: 0em; margin: 0em; border: 0em; text-align: right;"></div>
 			<fieldset class="ci_form_submit">
+				<p style="text-align: right; font-size: 0.9em;">
+					Required form fields are marked with an *
+				</p>
 				<p>
-					<%= submit_tag 'Update' %>
+					<%= submit_tag "Add #{entry_display_name}" %>
 					&nbsp;&nbsp;&nbsp;&nbsp;
 					<a href="/">Cancel</a>
 				</p>

@@ -25,12 +25,8 @@ WHEN UPDATING PRODUCTION SERVER:
 
 THIS COMMIT:
 
-Modified all of the form pages to use:
-
-  <div id="ci_form_page">
-
-Mandatory form fields are now marked with an asterisk instead of in
-italics.
+Added the sentence "Required form fields are marked with an *" to the
+bottom of the Add and Edit actions for the different types of Entries.
 
 
 ======================================================================
@@ -39,18 +35,18 @@ TODO:
 
 @ Functional tests for boolean variable on PersonEntry form
 
+@ Render textarea form fields using RedCloth
+
 @ Ken's suggestions
-  - for account request, force people to enter email twice
   - allow people to list themselves as the contact person for an Entry
     - concept of "themselves" for Person entries
     - AJAX to add non-editable text indicating attached Person info
 
 @ UI/text tweaks
   - change color of error messages
-  - message explaining asterisks are used for required fields
 
 @ Entry listings
-  - navigation back to /index/user, ...
+  - navigation back to /user/index, ...
   - modify /user/show to list all types of Entries for a user
   - OrganizationEntry model
     - list view
@@ -96,9 +92,6 @@ TODO:
 
 @ Cache Entry list pages
 
-@ Investigate ways to convert line breaks to <br />'s in form fields
-  - look at Markdown
-
 --
 
 @ Update 404/500 error pages
@@ -128,6 +121,13 @@ TODO:
 ==[ LOG ]=============================================================
 
 ----[ day, January , 2009 ]--------------------------------------
+
+
+----[ Saturday, January 17, 2009 ]------------------------------------
+
+@ Checked the contactimprov.net SPF record using:
+
+  http://www.kitterman.com/spf/validate.html
 
 
 ----[ Thursday, January 15, 2009 ]------------------------------------
