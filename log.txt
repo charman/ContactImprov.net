@@ -9,6 +9,7 @@ WHEN UPDATING PRODUCTION SERVER:
 
   gem install calendar_date_select
   gem install sanitize
+  gem install RedCloth
 
   Recreate log directory.
 
@@ -25,8 +26,10 @@ WHEN UPDATING PRODUCTION SERVER:
 
 THIS COMMIT:
 
-Added the sentence "Required form fields are marked with an *" to the
-bottom of the Add and Edit actions for the different types of Entries.
+Modified /home/index to use RedCloth to format the 'description' and
+'cost' fields for event entries.
+
+Removed a lone " from the CSS file, which was causing parsing trouble.
 
 
 ======================================================================
@@ -34,8 +37,6 @@ bottom of the Add and Edit actions for the different types of Entries.
 TODO:
 
 @ Functional tests for boolean variable on PersonEntry form
-
-@ Render textarea form fields using RedCloth
 
 @ Ken's suggestions
   - allow people to list themselves as the contact person for an Entry

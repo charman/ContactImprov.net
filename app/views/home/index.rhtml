@@ -91,10 +91,14 @@
 					<span class='location'><%= format_entry_location(event) %></span>
 				</dt>
 				<dd>
-					<span class='description'><%= event.description %></span>
-					<br>
-					<span class='fee'><%= event.cost %></span>
-					<br>
+					<div class='entry_description'>
+						<%= RedCloth.new(event.description.strip, [:filter_html]).to_html %>
+					</div>
+					<% if !event.cost.blank? %>
+						<div class='fee'>
+							<%= RedCloth.new(event.cost.strip, [:filter_html]).to_html %>
+						</div>
+					<% end %>
 					<span class='contact'>
 						CONTACT: <%= event.person ? "#{event.person.first_name} #{event.person.last_name}" : '' %>
 						&nbsp;&nbsp;&nbsp;&nbsp;

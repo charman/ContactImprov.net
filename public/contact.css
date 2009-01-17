@@ -100,7 +100,7 @@ th.navigation_bar_entry {
 	font-size: 1.2em; 
 	font-weight: bold; 
 	padding-left: 0.5em; 
-	padding-right: 0.5em;"
+	padding-right: 0.5em;
 }
 
 
@@ -188,6 +188,19 @@ td.login_method {
 	vertical-align:	top;
 	padding-bottom: 1em;
 }
+
+
+/* === ENTRIES === */
+
+.entry_description p {
+	margin-top: 0em;
+	margin-bottom: 0em;
+}
+
+.entry_description p + p {
+	margin-top: 0.7em;
+}
+
 
 
 /* === ERROR MESSAGES === */
