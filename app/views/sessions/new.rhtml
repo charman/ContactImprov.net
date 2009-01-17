@@ -1,13 +1,13 @@
 <%= render(:partial => "shared/header", :locals => { :title => 'Log in to your Account' } )%>
 
-<% if flash[:notice] %>
-	<div class="errorExplanation" id="errorExplanation">
-		<%= flash[:notice] %>
-	</div>
-<% end %>
-
-
 <div style="margin-left: 8em;">
+
+	<% if flash[:notice] %>
+		<div class="errorExplanation" id="errorExplanation">
+			<%= flash[:notice] %>
+		</div>
+	<% end %>
+
 	<h2>Login to your account:</h2>
 
 	<% form_tag session_path do %>

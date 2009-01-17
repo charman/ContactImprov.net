@@ -25,7 +25,7 @@ WHEN UPDATING PRODUCTION SERVER:
 
 THIS COMMIT:
 
-Created a link from the banner image back to the homepage.
+Fixed a CSS problem with the calendar_date_select plugin widget.
 
 
 ======================================================================
@@ -41,6 +41,10 @@ TODO:
     - AJAX to add non-editable text indicating attached Person info
 
 @ Entry listings
+  - add text indentation to forms
+    - add 8em left-margin to stylesheet
+  - for non-event forms, change required field indicator from italics
+     to asterisk
   - navigation back to /index/user, ...
   - modify /user/show to list all types of Entries for a user
   - OrganizationEntry model
@@ -74,7 +78,9 @@ TODO:
 
 @ Update HTML
   - run W3C link checker on the site
-  - standardize DOCTYPE (to what?)
+  - standardize DOCTYPE (to what? HTML/XHMTL/transitional/strict?)
+
+@ Fix the way pages look in IE7 (and IE6?) 
 
 @ Create Google sitemap
 

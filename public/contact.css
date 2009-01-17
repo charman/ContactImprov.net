@@ -3,6 +3,7 @@ PAGE TEMPLATE:
 
 	div class="main"
 		div class="content"
+			div class="banner_image"
 			table class="navigation_bar"
 				td
 					th class="navigation_bar_entry"
@@ -77,6 +78,7 @@ th.navigation_bar_entry {
 	text-align: center;
 	width: 33%;
 }
+
 
 /* === ANNOUNCEMENTS === */
 
@@ -181,7 +183,6 @@ td.login_method {
 }
 
 
-
 /* === ERROR MESSAGES === */
 
 .fieldWithErrors {
@@ -222,6 +223,21 @@ td.login_method {
 }
 
 
+/* === RESET CALENDAR_DATE_SELECT TO DEFAULTS === */
+/* The .ci_form CSS fields change settings that the calendar_date_select should override (but doesn't) */
+
+.calendar_date_select thead th {
+	font-size: 1em;
+	padding-right: 0em;
+	vertical-align: center;
+	text-align: center;
+	width: 1em;
+}
+
+.calendar_date_select td {
+	padding-bottom: 0em;
+}
+
 
 
 /* -------------------------------------------------------- */
@@ -247,13 +263,28 @@ dt {margin-top:10pt}
 .indent {
 	margin-left : 12pt;
 }
-.updated  { color: #666666; font-size: xx-small; font-family: sans-serif, Arial, Helvetica, Verdana; font-style: normal; font-variant: normal; line-height: normal; text-decoration: none }
-.redbold {  font-style: italic; font-weight: bold; color: #FF0000}
-.date { font-variant: small-caps }
-.event { font-family: value, Georgia, "Times New Roman", Times, serif; font-weight: bold }
+.updated  { 
+	color: #666666; 
+	font-size: xx-small; 
+	font-family: sans-serif, Arial, Helvetica, Verdana; 
+	font-style: normal; 
+	font-variant: normal; 
+	line-height: normal; 
+	text-decoration: none;
+}
+.redbold {  
+	font-style: italic; 
+	font-weight: bold; 
+	color: #FF0000;
+}
+.date { 
+	font-variant: small-caps;
+}
+.event { 
+	font-family: value, Georgia, "Times New Roman", Times, serif; 
+	font-weight: bold;
+}
 .location  /* where is the event? */  { }
 .description { }
 .fee { }
 .contact { }
-
-
