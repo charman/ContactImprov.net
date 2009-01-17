@@ -22,7 +22,7 @@ module EntryFormWithOptionalModels
   end
 
   def edit
-    if params[:commit] == 'Delete'
+    if params[:commit] =~ /Delete/
       redirect_to :action => 'delete', :id => params[:id] 
       return
     end

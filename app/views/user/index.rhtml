@@ -3,7 +3,7 @@
 <div id="ci_form_page">
 	<% if @user %> 
 		<% if @user.admin? %>
-			<h2><a href="<%= url_for :action => 'index', :controller => 'admin' %>">Admin Interface</h2>
+			<h2><a href="<%= url_for :action => 'index', :controller => 'admin' %>">Admin Interface</a></h2>
 		<% end %>
 
 		<h2>Online Account Information</h2>
@@ -29,7 +29,41 @@
 		<!--
 		<%= render(:partial => "list_entries_for_user", :locals => { :entry_type => 'jam' } )%>
 		<%= render(:partial => "list_entries_for_user", :locals => { :entry_type => 'organization' } )%>
-		<%= render(:partial => "list_entries_for_user", :locals => { :entry_type => 'person' } )%>
+		-->
+<!--
+		<h2>People</h2>
+		<div class="entry_list_for_user">
+			<% if @user.admin? %>
+				<p>
+					<a href="<%= url_for :controller => 'person', :action => 'new' %>">Add a new Person</a>
+				</p>
+				<% @user.person_entries.each do |entry| %>
+					<p>
+						<a href="<%= url_for :controller => 'person', :action => 'edit', :id => entry.id %>">
+							Edit Person <%= "'#{entry.title}'" %>
+						</a>
+					</p>
+				<% end %>
+				
+			<% else %>
+				<% if PersonEntry.total_entries_for_user(@user) < 1 %>
+					<p>
+						<a href="<%= url_for :controller => 'person', :action => 'new' %>">
+							Add yourself to the public directory of People
+						</a>
+					</p>
+				<% else %>
+					<p>
+						<% entry = @user.person_entries.first %>
+						<a href="<%= url_for :controller => 'person', :action => 'edit', :id => entry.id %>">
+							Edit your listing in the directory of People
+						</a>
+					</p>
+				<% end %>
+			<% end %>
+		</div>
+-->
+		<!-- 
 		<%= render(:partial => "list_entries_for_user", :locals => { :entry_type => 'studio' } )%>
 		-->
 

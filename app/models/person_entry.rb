@@ -13,6 +13,9 @@ class PersonEntry < ActiveRecord::Base
 
   attr_accessible :description
 
+  def self.total_entries_for_user(user)
+    PersonEntry.count :conditions => ["owner_user_id = ?", user.id]
+  end
 
   def before_save
     sanitize_attributes
@@ -23,7 +26,11 @@ class PersonEntry < ActiveRecord::Base
   end
 
   def title
-    "#{person.first_name} #{person.last_name}"
+    if person.first_name.blank?
+      person.last_name
+    else
+      "#{person.first_name} #{person.last_name}"
+    end
   end
 
   def version_condition_met?
