@@ -1,39 +1,41 @@
 <%= render(:partial => "shared/header", :locals => { :title => 'Edit a #{ entry_display_name }' } )%>
 
-<% if flash[:notice] %>
-	<div class="errorExplanation" id="errorExplanation">
-		<%= flash[:notice] %>
-	</div>
-<% end %>
+<div id="ci_form_page">
+	<% if flash[:notice] %>
+		<div class="errorExplanation" id="errorExplanation">
+			<%= flash[:notice] %>
+		</div>
+	<% end %>
 
-<% if defined?(@error_messages) && !@error_messages.empty? %>
-	<div class="errorExplanation" id="errorExplanation">
-		<h2>Unable to update your <%= entry_display_name %> info</h2>
-		<p><%= content_tag(:ul, @error_messages.map {|m| content_tag(:li, m)}) %></p>
-	</div>
-<% end %>
+	<% if defined?(@error_messages) && !@error_messages.empty? %>
+		<div class="errorExplanation" id="errorExplanation">
+			<h2>Unable to update your <%= entry_display_name %> info</h2>
+			<p><%= content_tag(:ul, @error_messages.map {|m| content_tag(:li, m)}) %></p>
+		</div>
+	<% end %>
 
-<% if not flash[:notice]  %>	
-	<div class="ci_form">
-		<% form_for @entry, :url => { :action => 'edit' } do |the_entry| %>
-			<%= render(:partial => "form_fields", :locals => { :the_entry => the_entry } ) %>
-			<fieldset class="ci_form_submit">
-				<p>
-					<%= submit_tag 'Update' %>
-					&nbsp;&nbsp;&nbsp;&nbsp;
-					<%= submit_tag 'Delete', :confirm => "Are you certain you want to delete this #{entry_display_name}? " +
-						"This action CANNOT BE UNDONE."
-					%>
-					&nbsp;&nbsp;&nbsp;&nbsp;
-					<a href="/">Cancel</a>
-					&nbsp;
-					or
-					&nbsp;
-					<a href="/<%= entry_display_name.downcase %>/edit/<%= @entry.id %>">Reload Form</a>
-				</p>
-			</fieldset>
-		<% end -%>
-	</end>
-<% end %>
+	<% if not flash[:notice]  %>	
+		<div class="ci_form">
+			<% form_for @entry, :url => { :action => 'edit' } do |the_entry| %>
+				<%= render(:partial => "form_fields", :locals => { :the_entry => the_entry } ) %>
+				<fieldset class="ci_form_submit">
+					<p>
+						<%= submit_tag 'Update' %>
+						&nbsp;&nbsp;&nbsp;&nbsp;
+						<%= submit_tag 'Delete', :confirm => "Are you certain you want to delete this #{entry_display_name}? " +
+							"This action CANNOT BE UNDONE."
+						%>
+						&nbsp;&nbsp;&nbsp;&nbsp;
+						<a href="/">Cancel</a>
+						&nbsp;
+						or
+						&nbsp;
+						<a href="/<%= entry_display_name.downcase %>/edit/<%= @entry.id %>">Reload Form</a>
+					</p>
+				</fieldset>
+			<% end -%>
+		</div>
+	<% end %>
+</div>
 
 <%= render(:partial => "shared/footer" )%>

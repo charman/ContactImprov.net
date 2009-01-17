@@ -1,32 +1,36 @@
 <%= render(:partial => "shared/header", :locals => { :title => 'Change your account info' } )%>
 
-<% if flash[:notice] %>
-	<div class="errorExplanation" id="errorExplanation">
-		<%= flash[:notice] %>
-	</div>
-<% end %>
+<div id="ci_form_page">
 
-<% if @user && @user.person %>
-
-	<% if defined?(@error_messages) && !@error_messages.empty? %>
+	<% if flash[:notice] %>
 		<div class="errorExplanation" id="errorExplanation">
-			<h2>Unable to update your account info</h2>
-			<p><%= content_tag(:ul, @error_messages.map {|m| content_tag(:li, m)}) %></p>
+			<%= flash[:notice] %>
 		</div>
 	<% end %>
-		
-	<div class="ci_form">
-		<% form_for @user, :url => { :action => 'edit' } do |f| -%>
-			<%= render :partial => 'shared/person', :object => @user.person, 
-					:locals => { :prefix => 'user[person]', :legend => 'Your Name' } %>
-			<fieldset class="ci_form_submit">
-				<p>
-					<%= submit_tag 'Update' %>
-				</p>
-			</fieldset>
-		<% end -%>
-	</div>
 
-<% end %>
+	<% if @user && @user.person %>
+
+		<% if defined?(@error_messages) && !@error_messages.empty? %>
+			<div class="errorExplanation" id="errorExplanation">
+				<h2>Unable to update your account info</h2>
+				<p><%= content_tag(:ul, @error_messages.map {|m| content_tag(:li, m)}) %></p>
+			</div>
+		<% end %>
+		
+		<div class="ci_form">
+			<% form_for @user, :url => { :action => 'edit' } do |f| -%>
+				<%= render :partial => 'shared/person', :object => @user.person, 
+						:locals => { :prefix => 'user[person]', :legend => 'Your Name' } %>
+				<fieldset class="ci_form_submit">
+					<p>
+						<%= submit_tag 'Update' %>
+					</p>
+				</fieldset>
+			<% end -%>
+		</div>
+
+	<% end %>
+
+</div>
 
 <%= render(:partial => "shared/footer" )%>

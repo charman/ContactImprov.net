@@ -25,8 +25,12 @@ WHEN UPDATING PRODUCTION SERVER:
 
 THIS COMMIT:
 
-Changed the address that admin emails are sent to from
-cq@contactimprov.net to ci@contactimprov.net.
+Modified all of the form pages to use:
+
+  <div id="ci_form_page">
+
+Mandatory form fields are now marked with an asterisk instead of in
+italics.
 
 
 ======================================================================
@@ -41,11 +45,11 @@ TODO:
     - concept of "themselves" for Person entries
     - AJAX to add non-editable text indicating attached Person info
 
+@ UI/text tweaks
+  - change color of error messages
+  - message explaining asterisks are used for required fields
+
 @ Entry listings
-  - add text indentation to forms
-    - add 8em left-margin to stylesheet
-  - for non-event forms, change required field indicator from italics
-     to asterisk
   - navigation back to /index/user, ...
   - modify /user/show to list all types of Entries for a user
   - OrganizationEntry model

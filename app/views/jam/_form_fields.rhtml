@@ -1,21 +1,21 @@
 <p>
 	<fieldset>
-		<legend>Jam Information</legend>
+		<legend>Jam Information*</legend>
 		<ol>
 			<li style="clear: both; padding-bottom: 0.4em;">
-				<label><i>Title:</i></label>
+				<label>Title:*</label>
 				<%= the_entry.text_field :title, :size => 60 %>
 			</li>
 			<li style="clear: both; padding-bottom: 0.4em;">
-				<label><i>Description:</i></label>
+				<label>Description:*</label>
 				<%= the_entry.text_area :description, :rows => 6, :cols => 60 %>
 			</li>
 			<li style="clear: both; padding-bottom: 0.4em;">
-				<label><i>Cost:</i></label>
+				<label>Cost:*</label>
 				<%= the_entry.text_area :cost, :rows => 3, :cols => 60 %>
 			</li>
 			<li style="clear: both; padding-bottom: 0.4em;">
-				<label><i>Schedule:</i></label>
+				<label>Schedule:*</label>
 				<%= the_entry.text_area :schedule, :rows => 3, :cols => 60 %>
 			</li>
 		</ol>
@@ -41,5 +41,5 @@
 </p>
 <p>
 	<%= render :partial => 'shared/location', :object => @entry.location,
-		:locals => { :prefix => 'entry[location]', :legend => '<i>Location</i>' } %>
+		:locals => { :prefix => 'entry[location]', :legend => 'Location*' } %>
 </p>

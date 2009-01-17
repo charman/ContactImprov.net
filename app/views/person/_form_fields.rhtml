@@ -1,6 +1,6 @@
 <p>
 	<fieldset>
-		<legend><i>Person</i></legend>
+		<legend>Person*</legend>
 		<ol>
 			<% fields_for 'entry[person]', @entry.person do |p| %>
 				<li>
@@ -8,7 +8,7 @@
 					<%= p.text_field :first_name %>
 				</li>
 				<li>
-					<label><i>Last Name:</i></label>
+					<label>Last Name:*</label>
 					<%= p.text_field :last_name %>
 				</li>
 			<% end %>
@@ -39,5 +39,5 @@
 </p>
 <p>
 	<%= render :partial => 'shared/location', :object => @entry.location,
-		:locals => { :prefix => 'entry[location]', :legend => '<i>Location</i>' } %>
+		:locals => { :prefix => 'entry[location]', :legend => 'Location*' } %>
 </p>
