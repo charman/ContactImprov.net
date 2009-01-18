@@ -20,8 +20,7 @@ WHEN MOVING SITE TO NEW SERVER:
 
 THIS COMMIT:
 
-Events listed on the home page are now sorted by start date, as
-opposed to the order they were entered into the database.
+An email is now sent to admins when an EventEntry is created.
 
 
 ======================================================================
@@ -65,7 +64,11 @@ TODO:
     - functional testing
 
 @ UserMailer model
-  - email new events when submitted
+  - email when submitted new
+    - people
+    - jams
+    - organizations
+    - ...
   - email events when they are edited
 
 @ UI/text tweaks

@@ -4,6 +4,11 @@ class EventControllerTest < ActionController::TestCase
 
   fixtures :event_entries, :country_names, :emails, :locations, :people, :phone_numbers, :urls, :us_states, :users
 
+  def setup
+    @emails     = ActionMailer::Base.deliveries
+    @emails.clear
+  end
+
 
   #  Test 'create' action
 
@@ -41,6 +46,8 @@ class EventControllerTest < ActionController::TestCase
     verify_default_location_fields(new_entry.location)
     assert_equal phone_numbers(:complete_event_entry).number, new_entry.phone_number.number
     assert_match /#{urls(:complete_event_entry).address}/, new_entry.url.address
+    assert_equal(1, @emails.size)
+    assert_match /New event/, @emails.first.subject
   end
 
   def test_should_accept_event_entry_application_with_empty_email_and_phone_number_and_url
@@ -68,6 +75,8 @@ class EventControllerTest < ActionController::TestCase
     verify_default_location_fields(new_entry.location)
     assert_nil new_entry.phone_number
     assert_nil new_entry.url
+    assert_equal(1, @emails.size)
+    assert_match /New event/, @emails.first.subject
   end
 
   def test_should_not_create_event_entry_application_with_missing_mandatory_fields

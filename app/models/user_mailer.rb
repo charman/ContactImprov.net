@@ -19,6 +19,12 @@ class UserMailer < ActionMailer::Base
     @body[:url] = "#{@base_url}"
   end
 
+  def new_event_entry_created(event_entry)
+    setup_admin_email()
+    @subject += "New event: #{event_entry.title}"
+    @event    = event_entry
+  end
+
   def passive_user_login_attempt(email)
     setup_admin_email()
     @subject += "Login attempt from #{email} whose account needs to be configured"

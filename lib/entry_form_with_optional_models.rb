@@ -10,6 +10,12 @@ module EntryFormWithOptionalModels
     if entry_and_linked_models_valid?
       delete_completely_blank_models
       @entry.save!
+
+      #  TODO: Eventually we want to send emails whenever an Entry of any type is created
+      if entry_display_name == 'Event'
+        UserMailer.deliver_new_event_entry_created(@entry)
+      end
+      
       redirect_to :controller => 'user', :action => 'index'
     else
       render :partial => "shared/entries/new", :locals => { :entry_display_name => entry_display_name }
