@@ -16,6 +16,11 @@
 				<label>Description:</label>
 				<%= the_entry.text_area :description, :rows => 8, :cols => 60 %>
 			</li>
+			<li style="clear: both; padding-bottom: 1em;">
+				<label>Teaches Contact?</label>
+				<%= radio_button_tag :teaches_contact, true,  @entry.teaches_contact  %> Yes / 
+				<%= radio_button_tag :teaches_contact, false, !@entry.teaches_contact %> No
+			</li>
 		</ol>
 	</fieldset>
 </p>

@@ -20,21 +20,15 @@ WHEN MOVING SITE TO NEW SERVER:
 
 THIS COMMIT:
 
-Modified the method used to indicate that a PersonEntry is for a User
-(e.g. the User account and PersonEntry are for the same human being).
-I was previously using the PersonEntry.is_owner_user boolean variable,
-but now I am using the User.own_person_entry_id variable.
+Added boolean field 'teaches_contact' to PersonEntry and
+OrganizationEntry.
 
-Modified the PersonEntry model to restrict non-admin Users to creating
-a single PersonEntry, which is always linked to their User account
-through User.own_person_entry_id.
+Modified the person controller and views to handle the flag.
 
 
 ======================================================================
 
 TODO:
-
-@ Functional tests for boolean variable on PersonEntry form
 
 @ Ken's suggestions
   - allow people to list themselves as the contact person for an Entry
@@ -54,6 +48,8 @@ TODO:
   - OrganizationEntry model
     - list view
     - additional fields
+      - teaches contact
+      - has studio space
       ...
     - functional testing
   - WebsiteEntry model
@@ -61,7 +57,7 @@ TODO:
   - PersonEntry model
     - list view
     - additional fields
-      - do you teach Contact Improv?
+      ...
     - functional testing
   - JamEntry model
     - list view

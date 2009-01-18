@@ -36,9 +36,9 @@ class PersonEntry < ActiveRecord::Base
     sanitize_attributes
   end
 
-#  def boolean_flag_names
-#    ['is_owner_user']
-#  end
+  def boolean_flag_names
+    ['teaches_contact']
+  end
 
   #  TODO: We may eventually want to relax/eliminate this constraint
   def limit_non_admins_to_one_person_entry
