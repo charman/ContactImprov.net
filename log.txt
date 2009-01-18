@@ -20,11 +20,8 @@ WHEN MOVING SITE TO NEW SERVER:
 
 THIS COMMIT:
 
-Modified the shared/_header.rhtml partial to display a link back to
-/user/index.
-
-Made a bunch of cosmetic HTML/CSS changes.  Reformatted the way that
-Event entries are displayed on the home page.
+Events listed on the home page are now sorted by start date, as
+opposed to the order they were entered into the database.
 
 
 ======================================================================
@@ -35,16 +32,12 @@ TODO:
   - allow people to list themselves as the contact person for an Entry
     - AJAX to add non-editable text indicating attached Person info
 
-@ UI/text tweaks
-  - change color of error messages
-  - change formatting of events
-    ...
-
-@ Rails routes
-  - handle singular and plural routes for Entry classes
-
 @ Entry listings
-  - modify /user/show to list all types of Entries for a user
+  - JamEntry model
+    - location caching
+      - 
+    - list view
+    - functional testing
   - OrganizationEntry model
     - list view
     - additional fields
@@ -55,17 +48,15 @@ TODO:
       - web group/presence
       ...
     - functional testing
-  - WebsiteEntry model
-    - how to handle websites for an entire country? (e.g. no city name)
   - PersonEntry model
     - list view
     - additional fields
       ...
     - functional testing
-  - JamEntry model
-    - list view
-    - functional testing
+  - modify /user/show to list all types of Entries for a user
   ~~~
+  - WebsiteEntry model
+    - how to handle websites for an entire country? (e.g. no city name)
   - CompanyEntry model
     - list view
     - functional testing
@@ -77,6 +68,13 @@ TODO:
   - email new events when submitted
   - email events when they are edited
 
+@ UI/text tweaks
+  - change color of error messages
+    ...
+
+@ Rails routes
+  - handle singular and plural routes for Entry classes
+
 -- 
 
 @ Update HTML
@@ -84,6 +82,8 @@ TODO:
   - standardize DOCTYPE (to what? HTML/XHMTL/transitional/strict?)
 
 @ Fix the way pages look in IE7 (and IE6?) 
+  - should be space between text in 'announcements' boxes and left
+     margin
 
 @ Create Google sitemap
 
