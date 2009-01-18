@@ -17,13 +17,15 @@
 				<a href="/"><img src="/images/ContactImprovNet-Banner.png" height="130" width="840" alt="" /></a>
 			</div>
 
-			<table class="navigation_bar">
-		    <tr>
-					<th class="navigation_bar_entry"><a href="/#Events">Workshops and Events</a></th>
-					<th class="navigation_bar_entry"><a href="/jams.html">Jams and Classes</a></th>
-					<th class="navigation_bar_entry"><a href="/people.html">People and Places</a></th>
-		    </tr>
-		  </table>
+			<div class="navigation_bar">
+				<table>
+		    		<tr>
+						<th class="navigation_bar_entry"><a href="/#Events">Workshops and Events</a></th>
+						<th class="navigation_bar_entry"><a href="/jams.html">Jams and Classes</a></th>
+						<th class="navigation_bar_entry"><a href="/people.html">People and Places</a></th>
+			    	</tr>
+		  		</table>
+			</div>
 
 			<div class="announcement">
 				<fieldset>
@@ -85,35 +87,49 @@
 			<p>Events are listed in chronological order. For historical interest, see also the <a href="past-events.html">list of past events</a>.</p>
 
 			<% @events.each do |event| %>
-				<dt>
-					<span class='date'><%= format_event_date_range(event) %></span>
-					<span class='event'><%= event.title %></span>
-					<span class='location'><%= format_entry_location(event) %></span>
-				</dt>
-				<dd>
-					<div class='entry_description'>
-						<%= RedCloth.new(event.description.strip, [:filter_html]).to_html %>
-					</div>
-					<% if !event.cost.blank? %>
-						<div class='fee'>
-							<%= RedCloth.new(event.cost.strip, [:filter_html]).to_html %>
+				<div style="clear: both; margin-bottom: 1.5em;">
+					<div style="float: left; width: 12%;">
+						<div class="date_box"> 
+							<span class="day"><%= event.start_date.strftime('%e') %></span> 
+							<span class="month"><%= event.start_date.strftime('%b').upcase %></span> 
+						    <span class="year"><%= event.start_date.strftime('%Y') %></span> 
 						</div>
-					<% end %>
-					<span class='contact'>
-						CONTACT: <%= event.person ? "#{event.person.first_name} #{event.person.last_name}" : '' %>
-						&nbsp;&nbsp;&nbsp;&nbsp;
-						PHONE: <%= event.phone_number ? event.phone_number.number : '' %>
-						&nbsp;&nbsp;&nbsp;&nbsp;
-						EMAIL: <%= event.email ? obfuscate_email_with_javascript(event.email.address) : '' %>
-						&nbsp;&nbsp;&nbsp;&nbsp; 
-						WEBSITE: <%= event.url ? "<a href=\"#{event.url.address}\">#{event.url.address}</a>" : '' %>
-					</span>
-					<br>
-					<span class='updated'>[<%= event.updated_at.strftime('%b %d %Y') %>]</span>
-				</dd>
+						<% if event.start_date != event.end_date %>
+							<div style="padding-left: 28px; padding-bottom: 4px;">
+								to
+							</div>
+							<div class="date_box"> 
+								<span class="day"><%= event.end_date.strftime('%e') %></span> 
+								<span class="month"><%= event.end_date.strftime('%b') %></span> 
+							    <span class="year"><%= event.end_date.strftime('%Y') %></span> 
+							</div>
+						<% end %>
+					</div>
+					<div style="float: right; width: 88%;">
+						<div class='event'>
+							<% if event.url %>
+								<%= "<a href=\"#{event.url.address}\">#{event.title}</a>" %>
+							<% else %>
+								<%= event.title %>
+							<% end %>
+						</div>
+						<div class='location'><%= format_entry_location(event) %></div>
+						<div style="margin-left: 1em;">
+							<div class='entry_description'>
+								<%= RedCloth.new(event.description.strip, [:filter_html]).to_html %>
+							</div>
+							<% if !event.cost.blank? %>
+								<div class='fee'>
+									<%= RedCloth.new(event.cost.strip, [:filter_html]).to_html %>
+								</div>
+							<% end %>
+							<div class='contact'><span style="color: #555;">CONTACT:</span> <%= format_contact_info(event) %></div>
+							<div class='updated'>[<%= event.updated_at.strftime('%b %d %Y') %>]</div>
+						</div>
+					</div>
+				</div>
+				<div style="clear: both; padding-top: 1.8em;"></div>
 			<% end %>
-			
-			<p />
 			
 			<p style="border-bottom: solid 1px black;" />
 

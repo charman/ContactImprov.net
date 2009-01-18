@@ -23,6 +23,9 @@ THIS COMMIT:
 Modified the shared/_header.rhtml partial to display a link back to
 /user/index.
 
+Made a bunch of cosmetic HTML/CSS changes.  Reformatted the way that
+Event entries are displayed on the home page.
+
 
 ======================================================================
 

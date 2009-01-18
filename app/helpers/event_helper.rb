@@ -1,5 +1,13 @@
 module EventHelper
 
+  def format_contact_info(e)
+    a = Array.new
+    a << "#{e.person.first_name} #{e.person.last_name}" if e.person
+    a << e.phone_number.number if e.phone_number
+    a << obfuscate_email_with_javascript(e.email.address) if e.email
+    a.join(", ")
+  end
+
   def format_event_date_range(e)
     #  lemma: e.start_date <= e.end_date because of EventEntry.before_save
     if e.start_date.year != e.end_date.year

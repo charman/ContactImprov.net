@@ -69,10 +69,14 @@ div.banner_image {
 
 /* === NAVIGATION BAR === */
 
-table.navigation_bar {
+div.navigation_bar {
+	margin-bottom: 2.5em;
+}
+
+.navigation_bar table {
 	background-color: #FFF8F8;
 	border: 1px solid black;
-	margin-bottom: 1.5em;
+	margin-bottom: 0.4em;
 	padding-bottom: 0.4em;
 	padding-top: 0.4em;
 	width: 100%;
@@ -102,6 +106,58 @@ th.navigation_bar_entry {
 	padding-left: 0.5em; 
 	padding-right: 0.5em;
 }
+
+
+/* === DATES === */
+/* Adapted from: http://www.avenuegc.co.uk/css/main.css */
+
+div.date_box {
+	display: block;
+	/* float: left; */
+	width: 68px;
+	height: 77px;
+	background:  url(/images/drop_shadow_date_box.jpg) no-repeat top left;
+	margin-left:0px; 
+	margin-right:5px; 
+	margin-top:0; 
+	margin-bottom:0px;
+	padding-top: 1px;
+}
+
+div.date_box span {
+	display: block;
+	text-align: center;
+}
+
+div.date_box span.day {
+	font-size: 35px;
+	line-height: 30px;
+	/* color: #FCB131; */
+	color: #A886AF;
+	margin-top:5px;
+	font-weight: bold;
+	font-family: Georgia, "Times New Roman", Times, serif;
+}
+
+div.date_box span.month {
+	margin-top: 2px;
+	font-weight: bold;
+	font-size: 12px;
+	text-transform: uppercase;
+	margin-bottom:0px;
+	line-height: 16px;
+	color: #505050;
+}
+
+div.date_box span.year {   
+	font-size: 12px;
+	text-transform: uppercase;
+	line-height: 10px;
+	font-weight: bold;
+	padding-top:3px;
+	color: #505050;
+}
+
 
 
 /* === FORMS === */
@@ -289,13 +345,18 @@ dt {margin-top:10pt}
 	margin-left : 12pt;
 }
 .updated  { 
+	border-top: 1px solid #666;
 	color: #666666; 
 	font-size: xx-small; 
 	font-family: sans-serif, Arial, Helvetica, Verdana; 
 	font-style: normal; 
 	font-variant: normal; 
-	line-height: normal; 
+	line-height: normal;
+	margin-top: 0.8em;
+	padding-top: 0.2em;
+	text-align: right;
 	text-decoration: none;
+	width: 100%;
 }
 .redbold {  
 	font-style: italic; 
@@ -306,10 +367,15 @@ dt {margin-top:10pt}
 	font-variant: small-caps;
 }
 .event { 
+	color: #514154;
 	font-family: value, Georgia, "Times New Roman", Times, serif; 
+	font-size: 1.1em;
 	font-weight: bold;
 }
-.location  /* where is the event? */  { }
+.location { 
+	color: #505050;
+	margin-bottom: 0.5em;
+}
 .description { }
 .fee { }
 .contact { }
