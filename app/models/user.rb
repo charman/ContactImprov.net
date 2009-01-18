@@ -1,6 +1,7 @@
 require 'digest/sha1'
 class User < ActiveRecord::Base
   belongs_to :person
+  belongs_to :own_person_entry, :class_name => 'PersonEntry', :foreign_key => 'own_person_entry_id'
   has_many :company_entries,      :foreign_key => 'owner_user_id'
   has_many :jam_entries,          :foreign_key => 'owner_user_id'
   has_many :event_entries,        :foreign_key => 'owner_user_id'

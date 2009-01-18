@@ -13,16 +13,43 @@ class PersonEntry < ActiveRecord::Base
 
   attr_accessible :description
 
+  validate :limit_non_admins_to_one_person_entry
+
+
   def self.total_entries_for_user(user)
     PersonEntry.count :conditions => ["owner_user_id = ?", user.id]
+  end
+
+
+  def after_save
+    #  When a non-admin User saves a PersonEntry, their User account is updated
+    #   to treat this PersonEntry as an entry for that User account.
+    #  With the limit_non_admins_to_one_person_entry functions, this restricts
+    #   non-admin Users to one PersonEntry, which is an entry for that User.
+    if !self.owner_user.admin?
+      self.owner_user.own_person_entry = self
+      self.owner_user.save!
+    end
   end
 
   def before_save
     sanitize_attributes
   end
 
-  def boolean_flag_names
-    ['is_owner_user']
+#  def boolean_flag_names
+#    ['is_owner_user']
+#  end
+
+  #  TODO: We may eventually want to relax/eliminate this constraint
+  def limit_non_admins_to_one_person_entry
+    return true if self.owner_user.admin?
+    
+    if !self.owner_user.own_person_entry.blank? && self != self.owner_user.own_person_entry
+      errors.add_to_base("You are already listed in the directory of People")
+      return false
+    else
+      return true
+    end
   end
 
   def title

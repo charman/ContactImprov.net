@@ -5,11 +5,7 @@ WAITING FOR:
 
 ======================================================================
 
-WHEN UPDATING PRODUCTION SERVER:
-
-  gem install calendar_date_select
-  gem install sanitize
-  gem install RedCloth
+WHEN MOVING SITE TO NEW SERVER:
 
   Recreate log directory.
 
@@ -17,23 +13,21 @@ WHEN UPDATING PRODUCTION SERVER:
 
   Create config/deliver_email file.
 
-
-  In httpd.conf:
-    redirect index.html to /
+  Copy httpd.conf redirects  
 
 
 ======================================================================
 
 THIS COMMIT:
 
-Updated the /user/index action to only allow users to create a single
-PersonEntry for themselves.
+Modified the method used to indicate that a PersonEntry is for a User
+(e.g. the User account and PersonEntry are for the same human being).
+I was previously using the PersonEntry.is_owner_user boolean variable,
+but now I am using the User.own_person_entry_id variable.
 
-Modified the PersonEntry.title function to properly handle people
-without a given first name.
-
-Fixed a regression where users were unable to delete entries because
-the title of the delete button had been changed.
+Modified the PersonEntry model to restrict non-admin Users to creating
+a single PersonEntry, which is always linked to their User account
+through User.own_person_entry_id.
 
 
 ======================================================================
@@ -42,18 +36,17 @@ TODO:
 
 @ Functional tests for boolean variable on PersonEntry form
 
-@ Update is_owner_user when a non-admin user saves a PersonEntry
-  - update find in /user/index
-
 @ Ken's suggestions
   - allow people to list themselves as the contact person for an Entry
-    - concept of "themselves" for Person entries
     - AJAX to add non-editable text indicating attached Person info
 
 @ UI/text tweaks
   - change color of error messages
   - change formatting of events
     ...
+
+@ Rails routes
+  - handle singular and plural routes for Entry classes
 
 @ Entry listings
   - navigation back to /user/index, ...
@@ -112,8 +105,6 @@ TODO:
 
 @ Entry listings
   - validation function for "has at least one of these models"
-
-@ The plugin 'expection_notification' should be 'exception_notification'
 
 @ Refactor 'auto_complete_with_params_prefix' into a plugin
 

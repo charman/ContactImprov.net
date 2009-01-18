@@ -5,9 +5,10 @@ module EntryFormWithOptionalModels
     
     initialize_entry_and_linked_models_from_params(params)
     
+    @entry.owner_user = current_user
+
     if entry_and_linked_models_valid?
       delete_completely_blank_models
-      @entry.owner_user = current_user
       @entry.save!
       redirect_to :controller => 'user', :action => 'index'
     else

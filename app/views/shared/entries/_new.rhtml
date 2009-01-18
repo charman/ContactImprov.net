@@ -9,7 +9,7 @@
 
 	<% if defined?(@error_messages) && !@error_messages.empty? %>
 		<div class="errorExplanation" id="errorExplanation">
-			<h2>Unable to update your <%= entry_display_name %> info</h2>
+			<h2>Unable to update your <%= entry_display_name %> listing</h2>
 			<p><%= content_tag(:ul, @error_messages.map {|m| content_tag(:li, m)}) %></p>
 		</div>
 	<% end %>
