@@ -1,11 +1,15 @@
 class UserMailer < ActionMailer::Base
   
-  def account_request(first_name, last_name, email)
+  def account_request(user_account_request)
     setup_admin_email()
+    first_name = user_account_request.person.first_name
+    last_name  = user_account_request.person.last_name
+    email      = user_account_request.email.address
     @subject          += "Account request for #{first_name} #{last_name} (#{email})"
-    @body[:first_name] = first_name
+    @body[:first_name] = 
     @body[:last_name]  = last_name
     @body[:email]      = email
+    @body[:something_about_contact_improv] = user_account_request.something_about_contact_improv
   end
 
   def activation(user)

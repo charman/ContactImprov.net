@@ -214,10 +214,7 @@ class UserController < ApplicationController
           @user_account_request.email    = @uar_email
           @user_account_request.save!
 
-          UserMailer.deliver_account_request(
-            params[:uar_person][:first_name], 
-            params[:uar_person][:last_name], 
-            params[:uar_email][:address])
+          UserMailer.deliver_account_request(@user_account_request)
 
           redirect_to :action => "account_requested"
         end
