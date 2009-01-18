@@ -12,6 +12,16 @@
 					<%= o.text_area :description, :rows => 8, :cols => 60 %>
 				</li>
 			<% end %>
+			<li style="clear: both; padding-bottom: 1em;">
+				<label>Teaches Contact?</label>
+				<%= radio_button_tag :teaches_contact, true,  @entry.teaches_contact  %> Yes / 
+				<%= radio_button_tag :teaches_contact, false, !@entry.teaches_contact %> No
+			</li>
+			<li style="clear: both; padding-bottom: 1em;">
+				<label>Has Studio Space where Events or Jams are held?</label>
+				<%= radio_button_tag :studio_space, true,  @entry.studio_space  %> Yes / 
+				<%= radio_button_tag :studio_space, false, !@entry.studio_space %> No
+			</li>
 		</ol>
 	</fieldset>
 </p>

@@ -11,9 +11,15 @@ class OrganizationEntry < ActiveRecord::Base
   acts_as_versioned
   self.non_versioned_columns << 'created_at'
 
+  attr_accessible :description
+
 
   def before_save
     sanitize_attributes
+  end
+
+  def boolean_flag_names
+    ['studio_space', 'teaches_contact']
   end
 
   def title

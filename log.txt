@@ -20,10 +20,9 @@ WHEN MOVING SITE TO NEW SERVER:
 
 THIS COMMIT:
 
-Added boolean field 'teaches_contact' to PersonEntry and
-OrganizationEntry.
-
-Modified the person controller and views to handle the flag.
+Added boolean fields for 'studio_space' to OrganizationEntry, and
+added form fields for 'studio_space' and 'teaches_contact' to the
+organization controller and organization entry forms.
 
 
 ======================================================================
@@ -48,8 +47,6 @@ TODO:
   - OrganizationEntry model
     - list view
     - additional fields
-      - teaches contact
-      - has studio space
       ...
     - functional testing
   - WebsiteEntry model
