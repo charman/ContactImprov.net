@@ -20,9 +20,8 @@ WHEN MOVING SITE TO NEW SERVER:
 
 THIS COMMIT:
 
-Added boolean fields for 'studio_space' to OrganizationEntry, and
-added form fields for 'studio_space' and 'teaches_contact' to the
-organization controller and organization entry forms.
+Modified the shared/_header.rhtml partial to display a link back to
+/user/index.
 
 
 ======================================================================
@@ -42,11 +41,15 @@ TODO:
   - handle singular and plural routes for Entry classes
 
 @ Entry listings
-  - navigation back to /user/index, ...
   - modify /user/show to list all types of Entries for a user
   - OrganizationEntry model
     - list view
     - additional fields
+      - dance repertory company
+      - commercial business
+      - not-for-profit business
+      - regional group
+      - web group/presence
       ...
     - functional testing
   - WebsiteEntry model
