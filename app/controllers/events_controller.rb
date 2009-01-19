@@ -1,4 +1,4 @@
-class PersonController < ApplicationController
+class EventsController < ApplicationController
 
   include EntryFormWithOptionalModels
 
@@ -14,19 +14,19 @@ class PersonController < ApplicationController
 protected
 
   def entry_class
-    PersonEntry
+    EventEntry
   end
-
+  
   def entry_display_name
-    'Person'
+    'Event'
   end
 
   def mandatory_models
-    ['person', 'location']
+    ['location']
   end
-
+  
   def optional_models
-    ['email', 'phone_number', 'url']
+    ['email', 'person', 'phone_number', 'url']
   end
 
 end

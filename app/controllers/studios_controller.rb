@@ -1,4 +1,4 @@
-class StudioController < ApplicationController
+class StudiosController < ApplicationController
 
   include EntryFormWithOptionalModels
 

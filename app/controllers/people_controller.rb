@@ -1,4 +1,4 @@
-class OrganizationController < ApplicationController
+class PeopleController < ApplicationController
 
   include EntryFormWithOptionalModels
 
@@ -14,15 +14,15 @@ class OrganizationController < ApplicationController
 protected
 
   def entry_class
-    OrganizationEntry
+    PersonEntry
   end
 
   def entry_display_name
-    'Organization'
+    'Person'
   end
 
   def mandatory_models
-    ['organization', 'location']
+    ['person', 'location']
   end
 
   def optional_models

@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class StudioControllerTest < ActionController::TestCase
+class StudiosControllerTest < ActionController::TestCase
 
   fixtures :users
 

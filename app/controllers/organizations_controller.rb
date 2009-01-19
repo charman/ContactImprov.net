@@ -1,4 +1,4 @@
-class JamController < ApplicationController
+class OrganizationsController < ApplicationController
 
   include EntryFormWithOptionalModels
 
@@ -14,19 +14,19 @@ class JamController < ApplicationController
 protected
 
   def entry_class
-    JamEntry
+    OrganizationEntry
   end
 
   def entry_display_name
-    'Jam'
+    'Organization'
   end
 
   def mandatory_models
-    ['location']
+    ['organization', 'location']
   end
 
   def optional_models
-    ['email', 'person', 'phone_number', 'url']
+    ['email', 'phone_number', 'url']
   end
 
 end

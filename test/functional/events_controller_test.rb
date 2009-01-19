@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class EventControllerTest < ActionController::TestCase
+class EventsControllerTest < ActionController::TestCase
 
   fixtures :event_entries, :country_names, :emails, :locations, :people, :phone_numbers, :urls, :us_states, :users
 

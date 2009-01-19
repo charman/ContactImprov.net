@@ -1,4 +1,4 @@
-class EventController < ApplicationController
+class CompaniesController < ApplicationController
 
   include EntryFormWithOptionalModels
 
@@ -14,19 +14,19 @@ class EventController < ApplicationController
 protected
 
   def entry_class
-    EventEntry
+    CompanyEntry
   end
-  
+
   def entry_display_name
-    'Event'
+    'Company'
   end
 
   def mandatory_models
-    ['location']
+    ['company', 'location']
   end
-  
+
   def optional_models
-    ['email', 'person', 'phone_number', 'url']
+    ['email', 'phone_number', 'url']
   end
 
 end

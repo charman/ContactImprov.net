@@ -20,9 +20,9 @@ WHEN MOVING SITE TO NEW SERVER:
 
 THIS COMMIT:
 
-The Email model now validates the format of email addresses.
-
-Removed references to 'CQ' and 'CQadmin' from admin emails.
+Renamed all of the Entry controllers from singular to plural nouns
+(e.g. event -> events, person -> people), along with the corresponding
+views and functional tests for the controllers.
 
 
 ======================================================================
