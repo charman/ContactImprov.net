@@ -108,8 +108,8 @@ ActionController::Base.cache_store = :mem_cache_store
 
 #  List of people who should receive email when an unhandled exception occurs
 ExceptionNotifier.exception_recipients = %w(charman@acm.org)
-ExceptionNotifier.sender_address = %("CQadmin" <app.error@contactimprov.net>)
-ExceptionNotifier.email_prefix = "[RailsError] "
+ExceptionNotifier.sender_address = %("CI.net" <app.error@contactimprov.net>)
+ExceptionNotifier.email_prefix = "[CI.net - RailsError] "
 
 
 # These defaults are used in GeoKit::Mappable.distance_to and in acts_as_mappable

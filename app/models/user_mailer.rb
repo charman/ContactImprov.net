@@ -6,7 +6,7 @@ class UserMailer < ActionMailer::Base
     last_name  = user_account_request.person.last_name
     email      = user_account_request.email.address
     @subject          += "Account request for #{first_name} #{last_name} (#{email})"
-    @body[:first_name] = 
+    @body[:first_name] = first_name
     @body[:last_name]  = last_name
     @body[:email]      = email
     @body[:something_about_contact_improv] = user_account_request.something_about_contact_improv
@@ -81,7 +81,7 @@ protected
 
   def setup_admin_email()
     setup_email("ci@craigharman.net")
-    @subject     = "[CQadmin]  "
+    @subject     = "[CI.net]  "
   end
 
   def setup_email(email_addresses)

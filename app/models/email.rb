@@ -15,6 +15,7 @@ class Email < ActiveRecord::Base
   attr_accessible :address
 
   validates_presence_of :address
+  validates_email_format_of :address, :domain_lookup => false
 
 
   def before_save

@@ -402,6 +402,19 @@ class UserControllerTest < ActionController::TestCase
     assert_match /Address can.t be blank/, @response.body
   end
 
+  def test_should_not_allow_request_account_with_invalid_email
+    post :request_account,
+         :user_account_request => { 
+           :something_about_contact_improv => 'something', 
+           :existing_entries => 'notapplicable' 
+          },
+         :uar_person => { :first_name => 'first_name', :last_name => 'last_name' },
+         :uar_email => { :address => 'invalid' }
+    assert_response :success
+    assert_select "[class=errorExplanation]"
+    assert_match /does not appear to be a valid e-mail address/, @response.body
+  end
+
   def test_should_allow_request_account
     post :request_account, 
           :user_account_request => { 

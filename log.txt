@@ -20,7 +20,9 @@ WHEN MOVING SITE TO NEW SERVER:
 
 THIS COMMIT:
 
-An email is now sent to admins when an EventEntry is created.
+The Email model now validates the format of email addresses.
+
+Removed references to 'CQ' and 'CQadmin' from admin emails.
 
 
 ======================================================================
@@ -69,7 +71,12 @@ TODO:
     - jams
     - organizations
     - ...
+    - refactor
+      - use accessible_attributes for fields in email
+      - conditional code for email/person/etc fields
   - email events when they are edited
+
+@ Create list of past events for 2008 (with file from Mugsy)
 
 @ UI/text tweaks
   - change color of error messages
