@@ -5,7 +5,7 @@
 	</p>
 	<% @user.send("#{entry_type}_entries").each do |entry| %>
 		<p>
-			<a href="<%= url_for :controller => entry_type, :action => 'edit', :id => entry.id %>">
+			<a href="<%= url_for :controller => entry_type.pluralize, :action => 'edit', :id => entry.id %>">
 				Edit <%= "#{entry_type} '#{entry.title}'" %>
 			</a>
 		</p>

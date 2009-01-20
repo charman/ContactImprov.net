@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class CompanyControllerTest < ActionController::TestCase
+class CompaniesControllerTest < ActionController::TestCase
 
   fixtures :users
 

@@ -20,9 +20,13 @@ WHEN MOVING SITE TO NEW SERVER:
 
 THIS COMMIT:
 
-Renamed all of the Entry controllers from singular to plural nouns
-(e.g. event -> events, person -> people), along with the corresponding
-views and functional tests for the controllers.
+Removed the list action from lib/entry_form_with_optional_models.rb, 
+
+Refactored RHTML for formatting an event entry into a partial
+template.
+
+Fixed some broken links caused by changing Entry controller names from
+singular to plural form.
 
 
 ======================================================================

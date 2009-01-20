@@ -1,0 +1,42 @@
+<div style="clear: both; margin-bottom: 1.5em;">
+	<div style="float: left; width: 12%;">
+		<div class="date_box"> 
+			<span class="day"><%= entry.start_date.strftime('%e') %></span> 
+			<span class="month"><%= entry.start_date.strftime('%b').upcase %></span> 
+		    <span class="year"><%= entry.start_date.strftime('%Y') %></span> 
+		</div>
+		<% if entry.start_date != entry.end_date %>
+			<div style="padding-left: 28px; padding-bottom: 4px;">
+				to
+			</div>
+			<div class="date_box"> 
+				<span class="day"><%= entry.end_date.strftime('%e') %></span> 
+				<span class="month"><%= entry.end_date.strftime('%b') %></span> 
+			    <span class="year"><%= entry.end_date.strftime('%Y') %></span> 
+			</div>
+		<% end %>
+	</div>
+	<div style="float: right; width: 88%;">
+		<div class='event'>
+			<% if entry.url %>
+				<%= "<a href=\"#{entry.url.address}\">#{entry.title}</a>" %>
+			<% else %>
+				<%= entry.title %>
+			<% end %>
+		</div>
+		<div class='location'><%= format_entry_location(entry) %></div>
+		<div style="margin-left: 1em;">
+			<div class='entry_description'>
+				<%= RedCloth.new(entry.description.strip, [:filter_html]).to_html %>
+			</div>
+			<% if !entry.cost.blank? %>
+				<div class='fee'>
+					<%= RedCloth.new(entry.cost.strip, [:filter_html]).to_html %>
+				</div>
+			<% end %>
+			<div class='contact'><span style="color: #555;">CONTACT:</span> <%= format_contact_info(entry) %></div>
+			<div class='updated'>[<%= entry.updated_at.strftime('%b %d %Y') %>]</div>
+		</div>
+	</div>
+</div>
+<div style="clear: both; padding-top: 1.8em;"></div>

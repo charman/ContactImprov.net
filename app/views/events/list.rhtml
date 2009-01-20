@@ -1,28 +1,11 @@
 <%= render(:partial => "shared/header", :locals => { :title => 'List Events' } )%>
 
+<h2><a name="events" id="events">Workshops, Festivals, and Other Events</a></h2>
+
+<p>Events are listed in chronological order. For historical interest, see also the <a href="/past-events.html">list of past events</a>.</p>
+
 <% @entries.each do |entry| %>
-	<dt>
-		<span class='date'><%= format_event_date_range(entry) %></span>
-		<span class='event'><%= entry.title %></span>
-		<span class='location'><%= format_entry_location(entry) %></span>
-	</dt>
-	<dd>
-		<span class='description'><%= entry.description %></span>
-		<br>
-		<span class='fee'><%= entry.cost %></span>
-		<br>
-		<span class='contact'>
-			CONTACT: <%= entry.person ? "#{entry.person.first_name} #{entry.person.last_name}" : '' %>
-			&nbsp;&nbsp;&nbsp;&nbsp;
-			PHONE: <%= entry.phone_number ? entry.phone_number.number : '' %>
-			&nbsp;&nbsp;&nbsp;&nbsp;
-			EMAIL: <%= entry.email ? obfuscate_email_with_javascript(entry.email.address) : '' %>
-			&nbsp;&nbsp;&nbsp;&nbsp; 
-			WEBSITE: <%= entry.url ? "<a href=\"#{entry.url.address}\">#{entry.url.address}</a>" : '' %>
-		</span>
-		<br>
-		<span class='updated'>[<%= entry.updated_at.strftime('%b %d %Y') %>]</span>
-	</dd>
+	<%= render(:partial => "shared/entries/event", :locals => { :entry => entry } )%>
 <% end %>
 
 <%= render(:partial => "shared/footer" )%>

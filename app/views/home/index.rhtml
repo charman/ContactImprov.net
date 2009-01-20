@@ -59,7 +59,7 @@
 							</li>
 							<li>
 								You will now be able to 
-								<a href="/event/new">create Event listings</a> 
+								<a href="/events/new">create Event listings</a> 
 								or update your existing Event listings
 							</li>
 						</ol>
@@ -84,51 +84,10 @@
 
 			<h2><a name="events" id="events">Workshops, Festivals, and Other Events</a></h2>
 
-			<p>Events are listed in chronological order. For historical interest, see also the <a href="past-events.html">list of past events</a>.</p>
+			<p>Events are listed in chronological order. For historical interest, see also the <a href="/past-events.html">list of past events</a>.</p>
 
-			<% @events.each do |event| %>
-				<div style="clear: both; margin-bottom: 1.5em;">
-					<div style="float: left; width: 12%;">
-						<div class="date_box"> 
-							<span class="day"><%= event.start_date.strftime('%e') %></span> 
-							<span class="month"><%= event.start_date.strftime('%b').upcase %></span> 
-						    <span class="year"><%= event.start_date.strftime('%Y') %></span> 
-						</div>
-						<% if event.start_date != event.end_date %>
-							<div style="padding-left: 28px; padding-bottom: 4px;">
-								to
-							</div>
-							<div class="date_box"> 
-								<span class="day"><%= event.end_date.strftime('%e') %></span> 
-								<span class="month"><%= event.end_date.strftime('%b') %></span> 
-							    <span class="year"><%= event.end_date.strftime('%Y') %></span> 
-							</div>
-						<% end %>
-					</div>
-					<div style="float: right; width: 88%;">
-						<div class='event'>
-							<% if event.url %>
-								<%= "<a href=\"#{event.url.address}\">#{event.title}</a>" %>
-							<% else %>
-								<%= event.title %>
-							<% end %>
-						</div>
-						<div class='location'><%= format_entry_location(event) %></div>
-						<div style="margin-left: 1em;">
-							<div class='entry_description'>
-								<%= RedCloth.new(event.description.strip, [:filter_html]).to_html %>
-							</div>
-							<% if !event.cost.blank? %>
-								<div class='fee'>
-									<%= RedCloth.new(event.cost.strip, [:filter_html]).to_html %>
-								</div>
-							<% end %>
-							<div class='contact'><span style="color: #555;">CONTACT:</span> <%= format_contact_info(event) %></div>
-							<div class='updated'>[<%= event.updated_at.strftime('%b %d %Y') %>]</div>
-						</div>
-					</div>
-				</div>
-				<div style="clear: both; padding-top: 1.8em;"></div>
+			<% @entries.each do |entry| %>
+				<%= render(:partial => "shared/entries/event", :locals => { :entry => entry } )%>
 			<% end %>
 			
 			<p style="border-bottom: solid 1px black;" />

@@ -58,10 +58,6 @@ module EntryFormWithOptionalModels
     render :partial => "shared/entries/edit", :locals => { :entry_display_name => entry_display_name }
   end
 
-  def list
-    @entries = entry_class.find(:all)
-  end
-
   def new
     create_entry_and_linked_models
 
