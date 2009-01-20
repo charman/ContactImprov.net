@@ -20,11 +20,7 @@ WHEN MOVING SITE TO NEW SERVER:
 
 THIS COMMIT:
 
-First pass at adapting CQ code for location caching for this project.
-
-The /jams/list view now displays jams sorted by country and US state.
-
-Caching code not yet tested.
+Enabled caching for the development environment.
 
 
 ======================================================================
@@ -38,7 +34,6 @@ TODO:
 @ Entry listings
   - JamEntry model
     - location caching
-      - configure caching
       - test caching
       - invalidate cache when updating an entry
     - refactor code to display entries by location into a partial template
@@ -136,6 +131,40 @@ TODO:
 ==[ LOG ]=============================================================
 
 ----[ day, January , 2009 ]--------------------------------------
+
+
+----[ Tuesday, January 20, 2009 ]-------------------------------------
+
+@ Installed memcached on my MacBook Pro using:
+
+  # port install memcached
+
+which installed the program and gave the following error message:
+
+  ###########################################################
+  # A startup item has been generated that will aid in
+  # starting memcached with launchd. It is disabled
+  # by default. Execute the following command to start it,
+  # and to cause it to launch at startup:
+  #
+  # sudo launchctl load -w
+  # /Library/LaunchDaemons/org.macports.memcached.plist
+  ###########################################################
+
+Ran the command to have memcached start with launchd.
+
+Installed the memcache-client gem:
+
+  # gem install memcache-client
+
+Changed the cache_store line in config/environment.rb to:
+
+  ActionController::Base.cache_store = :mem_cache_store
+
+Then modified config/environments/development.rb to enable caching for
+the development environment:
+
+  config.action_controller.perform_caching             = true
 
 
 ----[ Saturday, January 17, 2009 ]------------------------------------
