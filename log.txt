@@ -20,13 +20,11 @@ WHEN MOVING SITE TO NEW SERVER:
 
 THIS COMMIT:
 
-Removed the list action from lib/entry_form_with_optional_models.rb, 
+Created action and view for /jams/list.
 
-Refactored RHTML for formatting an event entry into a partial
-template.
+Created a route to map /jams to /jams/list.
 
-Fixed some broken links caused by changing Entry controller names from
-singular to plural form.
+Jams are not yet sorted by country.
 
 
 ======================================================================
@@ -41,7 +39,6 @@ TODO:
   - JamEntry model
     - location caching
       - 
-    - list view
     - functional testing
   - OrganizationEntry model
     - list view
@@ -58,7 +55,7 @@ TODO:
     - additional fields
       ...
     - functional testing
-  - modify /user/show to list all types of Entries for a user
+  - modify /admin/user/show to list all types of Entries for a user
   ~~~
   - WebsiteEntry model
     - how to handle websites for an entire country? (e.g. no city name)

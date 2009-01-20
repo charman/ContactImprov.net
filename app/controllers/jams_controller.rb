@@ -11,6 +11,11 @@ class JamsController < ApplicationController
     :only => ['auto_complete_for_country_name_english_name', 'auto_complete_for_us_state_name']
 
 
+  def list
+    require 'RedCloth'
+    @entries = JamEntry.find(:all)
+  end
+
 protected
 
   def entry_class

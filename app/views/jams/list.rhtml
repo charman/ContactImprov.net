@@ -1,23 +1,9 @@
 <%= render(:partial => "shared/header", :locals => { :title => 'List Jams' } )%>
 
+<h2>Ongoing Jams and Classes</h2>
+
 <% @entries.each do |entry| %>
-	<dd>
-		<span class='description'><%= entry.description %></span>
-		<br>
-		<span class='fee'><%= entry.cost %></span>
-		<br>
-		<span class='contact'>
-			CONTACT: <%= entry.person ? "#{entry.person.first_name} #{entry.person.last_name}" : '' %>
-			&nbsp;&nbsp;&nbsp;&nbsp;
-			PHONE: <%= entry.phone_number ? entry.phone_number.number : '' %>
-			&nbsp;&nbsp;&nbsp;&nbsp;
-			EMAIL: <%= entry.email ? obfuscate_email_with_javascript(entry.email.address) : '' %>
-			&nbsp;&nbsp;&nbsp;&nbsp; 
-			WEBSITE: <%= entry.url ? "<a href=\"#{entry.url.address}\">#{entry.url.address}</a>" : '' %>
-		</span>
-		<br>
-		<span class='updated'>[<%= entry.updated_at.strftime('%b %d %Y') %>]</span>
-	</dd>
+	<%= render(:partial => "shared/entries/jam", :locals => { :entry => entry } )%>
 <% end %>
 
 <%= render(:partial => "shared/footer" )%>
