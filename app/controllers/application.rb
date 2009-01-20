@@ -38,4 +38,83 @@ class ApplicationController < ActionController::Base
   # Uncomment this to filter the contents of submitted sensitive data parameters
   # from your application log (in this case, all fields with names like "password"). 
   # filter_parameter_logging :password
+  
+  
+  def cache_entries_for_countries(entry_class)
+    entry_type = entry_class.to_s.gsub(/(.*)Entry/, '\1').downcase
+
+    @country_names_with_entries ||= Hash.new
+    @us_state_names_with_entries ||= Hash.new
+    @entry_ids_for_country ||= Hash.new
+    @entry_ids_for_us_state ||= Hash.new
+    @entry_ids_for_country[entry_type] ||= Hash.new
+    @entry_ids_for_us_state[entry_type] ||= Hash.new
+    
+    @country_names_with_entries[entry_type] = cache("all_countries_with_#{entry_type}_entries") do 
+      find_all_countries_with_entries(entry_type).collect { |c| c.english_name } 
+    end
+    @country_names_with_entries[entry_type].each do |country_name|
+      @entry_ids_for_country[entry_type][country_name] = cache(cache_safe_name("all_#{entry_type}_entries_for_countries", country_name)) do
+        find_all_entries_for_country_by_name(entry_class, entry_type, country_name).sort { |a,b| a.title <=> b.title }.collect { |e| e.id }
+      end
+    end
+
+    @us_state_names_with_entries[entry_type] = cache("all_us_states_with_#{entry_type}_entries") do 
+      find_all_us_states_with_entries(entry_type).collect { |s| s.name } 
+    end
+    @us_state_names_with_entries[entry_type].each do |us_state_name|
+      @entry_ids_for_us_state[entry_type][us_state_name] = cache(cache_safe_name("all_#{entry_type}_entries_for_us_state", us_state_name)) do
+        find_all_entries_for_us_state_by_name(entry_class, entry_type, us_state_name).sort { |a,b| a.title <=> b.title }.collect { |e| e.id }
+      end
+    end
+  end
+
+  def cache_safe_name(prefix, suffix)
+    "#{prefix}_#{suffix}".gsub(' ', '_').gsub(/[\(\)\.',]/, "")
+  end
+
+  def find_all_countries_with_entries(entry_type)
+    CountryName.find_by_sql("SELECT DISTINCT ci_country_names.english_name " + 
+      "FROM ci_#{entry_type}_entries, ci_locations, ci_country_names " + 
+      "WHERE ci_country_names.country_name_id = ci_locations.country_name_id " + 
+      "AND ci_#{entry_type}_entries.location_id = ci_locations.location_id " + 
+      "ORDER BY ci_country_names.english_name;")
+  end
+
+  def find_all_entries_for_country_by_name(entry_class, entry_type, country_name)
+    entry_class.find_by_sql("SELECT ci_#{entry_type}_entries.* " + 
+      "FROM ci_#{entry_type}_entries, ci_locations, ci_country_names " + 
+      "WHERE ci_#{entry_type}_entries.location_id = ci_locations.location_id " + 
+      "AND ci_locations.country_name_id = ci_country_names.country_name_id " + 
+      "AND ci_country_names.english_name = '#{country_name}';")
+  end
+
+  def find_all_entries_for_us_state_by_name(entry_class, entry_type, us_state_name)
+    entry_class.find_by_sql("SELECT ci_#{entry_type}_entries.* " + 
+      "FROM ci_#{entry_type}_entries, ci_locations, ci_us_states " + 
+      "WHERE ci_#{entry_type}_entries.location_id = ci_locations.location_id " + 
+      "AND ci_locations.us_state_id = ci_us_states.us_state_id " + 
+      "AND ci_us_states.name = '#{us_state_name}';")
+  end
+
+  def find_all_us_states_with_entries(entry_type)
+    UsState.find_by_sql("SELECT DISTINCT ci_us_states.name " + 
+      "FROM ci_#{entry_type}_entries, ci_locations, ci_us_states " + 
+      "WHERE ci_us_states.us_state_id = ci_locations.us_state_id " + 
+      "AND ci_#{entry_type}_entries.location_id = ci_locations.location_id " + 
+      "ORDER BY ci_us_states.name;")
+  end
+
+  def flush_location_cache(entry_type, location)
+    if location.country_name.is_usa?
+      cache_store.delete("controller/all_us_states_with_#{entry_type}_entries")
+      cache_store.delete(cache_safe_name("controller/all_#{entry_type}_entries_for_us_state", location.us_state.name))
+      expire_fragment(:controller => entry_type.pluralize, :action => entry_type, :action_suffix => location.us_state.name)
+    else
+      cache_store.delete("controller/all_countries_with_#{entry_type}_entries")
+      cache_store.delete(cache_safe_name("controller/all_entries_for_#{entry_type}_countries", location.country_name.english_name))
+      expire_fragment(:controller => entry_type.pluralize, :action => entry_type, :action_suffix => location.country_name.english_name)
+    end
+  end
+
 end

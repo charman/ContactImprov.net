@@ -13,7 +13,9 @@ class JamsController < ApplicationController
 
   def list
     require 'RedCloth'
-    @entries = JamEntry.find(:all)
+    cache_entries_for_countries(entry_class)
+    @entry_class = entry_class
+    @entry_type = entry_display_name.downcase
   end
 
 protected

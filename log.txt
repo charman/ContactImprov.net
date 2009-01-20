@@ -20,11 +20,11 @@ WHEN MOVING SITE TO NEW SERVER:
 
 THIS COMMIT:
 
-Created action and view for /jams/list.
+First pass at adapting CQ code for location caching for this project.
 
-Created a route to map /jams to /jams/list.
+The /jams/list view now displays jams sorted by country and US state.
 
-Jams are not yet sorted by country.
+Caching code not yet tested.
 
 
 ======================================================================
@@ -38,7 +38,10 @@ TODO:
 @ Entry listings
   - JamEntry model
     - location caching
-      - 
+      - configure caching
+      - test caching
+      - invalidate cache when updating an entry
+    - refactor code to display entries by location into a partial template
     - functional testing
   - OrganizationEntry model
     - list view
@@ -66,6 +69,8 @@ TODO:
     - list view
     - functional testing
 
+@ Request Google Maps API key for contactimprov.net
+
 @ UserMailer model
   - email when submitted new
     - people
@@ -82,9 +87,6 @@ TODO:
 @ UI/text tweaks
   - change color of error messages
     ...
-
-@ Rails routes
-  - handle singular and plural routes for Entry classes
 
 -- 
 
