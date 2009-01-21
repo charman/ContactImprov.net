@@ -7,14 +7,17 @@
 
 <p style="font-size: x-large;">
 	<%= link_to 'Administer Events', :action => 'index', :controller => 'admin/events' %> 
+	(<%= @total_events %> total)
 </p>
 
 <p style="font-size: x-large;">
 	<%= link_to 'Administer Jams', :action => 'index', :controller => 'admin/jams' %> 
+	(<%= @total_jams %> total)
 </p>
 
 <p style="font-size: x-large;">
 	<%= link_to 'Administer People', :action => 'index', :controller => 'admin/people' %> 
+	(<%= @total_people %> total)
 </p>
 
 <p style="font-size: x-large;">
@@ -23,6 +26,7 @@
 
 <p style="font-size: x-large;">
 	<%= link_to 'Administer Users', :action => 'index', :controller => 'admin/users' %> 
+	(<%= @total_users %> total)
 </p>
 
 <%= render(:partial => "shared/admin/footer" )%>

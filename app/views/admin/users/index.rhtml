@@ -45,8 +45,11 @@
 
 
 <p style="font-size: x-large;">
-	<%= link_to 'Map of Users', :action => 'map', :controller => 'admin/users' %> 
-	<span style="font-size: medium;">(whose locations could be geocoded)</span>
+	<%= link_to 'Map of Locations', :action => 'map', :controller => 'admin/users' %> 
+	<span style="font-size: medium;">
+		(whose locations could be geocoded)
+		[<%= @total_geocodable_locations %>/<%= @total_locations %>]
+	</span>
 </p>
 
 

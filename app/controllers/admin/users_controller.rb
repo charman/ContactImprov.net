@@ -81,6 +81,9 @@ class Admin::UsersController < ApplicationController
     @total_pending_users    = User.count :conditions => "state = 'pending'"
     @total_new_account_requests = UserAccountRequest.count :conditions => "state ='new'"
 
+    @total_geocodable_locations = Location.count :conditions => "geocode_precision IS NOT NULL"
+    @total_locations = Location.count
+
     if request.post? && params[:user] && params[:user][:id]
       redirect_to "/admin/users/show/#{params[:user][:id]}"
     end

@@ -20,10 +20,9 @@ WHEN MOVING SITE TO NEW SERVER:
 
 THIS COMMIT:
 
-Created the map controller.
-
-Created /map/index, which currently just shows a map with markers for
-every location that could be Geocoded.
+Added some additonal summary statistics to the /admin(/home/index) and
+/admin/users(/index) views, to provide a high-level glance of how much
+information has been entered into the database.
 
 
 ======================================================================
@@ -84,9 +83,7 @@ TODO:
 
 -- 
 
-@ If someone goes to /#{entry_type}/edit instead of
-/#{entry_type}/edit/ID, display a page listing all of the events that
-they can edit for that type of entry
+@ Create new /admin/account_request section
 
 @ Update HTML
   - run W3C link checker on the site
@@ -107,6 +104,10 @@ they can edit for that type of entry
 @ Cache Entry list pages (/entries/list and /home/index)
 
 --
+
+@ If someone goes to /#{entry_type}/edit instead of
+/#{entry_type}/edit/ID, display a page listing all of the events that
+they can edit for that type of entry
 
 @ How to write automated tests that check if caching is working?
 
