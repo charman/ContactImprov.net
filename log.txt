@@ -20,8 +20,9 @@ WHEN MOVING SITE TO NEW SERVER:
 
 THIS COMMIT:
 
-Modified /user/index to (temporarily) hide the links for creating and
-editing jams.
+Removed config/google_maps_api_key.txt from source code control
+
+Added Google Maps API key for contactimprov.net.
 
 
 ======================================================================
@@ -63,8 +64,6 @@ TODO:
     - list view
     - functional testing
 
-@ Request Google Maps API key for contactimprov.net
-
 @ UserMailer model
   - email when submitted new
     - people
@@ -76,11 +75,17 @@ TODO:
       - conditional code for email/person/etc fields
   - email events when they are edited
 
+@ Privacy policy explaining what we will do with your email
+
 @ UI/text tweaks
   - change color of error messages
     ...
 
 -- 
+
+@ If someone goes to /#{entry_type}/edit instead of
+/#{entry_type}/edit/ID, display a page listing all of the events that
+they can edit for that type of entry
 
 @ Update HTML
   - run W3C link checker on the site
@@ -98,7 +103,7 @@ TODO:
 @ email obfuscation script:
     http://www.projecthoneypot.org/how_to_avoid_spambots_3.php
 
-@ Cache Entry list pages
+@ Cache Entry list pages (/entries/list and /home/index)
 
 --
 
@@ -116,9 +121,6 @@ TODO:
 @ Refactor 'auto_complete_with_params_prefix' into a plugin
 
 @ Send email when rejecting a user account request
-
-@ Use Kuler to pick a new color scheme
-  - upload a picture
 
 @ Copy/adapt:
   - models
