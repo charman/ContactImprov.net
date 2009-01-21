@@ -20,9 +20,10 @@ WHEN MOVING SITE TO NEW SERVER:
 
 THIS COMMIT:
 
-Removed config/google_maps_api_key.txt from source code control
+Created the map controller.
 
-Added Google Maps API key for contactimprov.net.
+Created /map/index, which currently just shows a map with markers for
+every location that could be Geocoded.
 
 
 ======================================================================

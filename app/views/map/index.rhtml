@@ -1,0 +1,25 @@
+<%= render(:partial => "shared/header", :locals => { :title => 'Map' } )%>
+
+<div id="map"  style="width: 100%; height: 500px; border: 1px solid #666;">
+</div>
+
+<script type="text/javascript" src="http://www.google.com/jsapi?key=<%= GeoKit::Geocoders::google %>"></script>
+<script type="text/javascript">
+	google.load("maps", "2");
+
+	// Call this function when the page has been loaded
+	function initialize() {
+		var map = new google.maps.Map2(document.getElementById("map"));
+		map.setCenter(new google.maps.LatLng(37.4419, 0), 2);
+	    map.addControl(new google.maps.LargeMapControl());
+	    map.addControl(new google.maps.MapTypeControl());		
+
+		<% for location in @locations %>
+		    map.addOverlay(new google.maps.Marker(new google.maps.LatLng(<%= location.lat %>, <%= location.lng %>)));
+		<% end %>
+	}
+	google.setOnLoadCallback(initialize);
+
+</script>
+
+<%= render(:partial => "shared/footer" )%>
