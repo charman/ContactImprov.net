@@ -20,7 +20,10 @@ WHEN MOVING SITE TO NEW SERVER:
 
 THIS COMMIT:
 
-Enabled caching for the development environment.
+The create/edit/delete actions inlib/entry_form_with_optional_models.rb 
+now call the flash_location_cache function.  Empirically verified that
+caching was working.  (Still need to figure out how to write tests to
+verify that caching works...)
 
 
 ======================================================================
@@ -103,6 +106,8 @@ TODO:
 @ Cache Entry list pages
 
 --
+
+@ How to write automated tests that check if caching is working?
 
 @ Refactor auto-complete location actions to separate controllers
 

@@ -105,7 +105,8 @@ class ApplicationController < ActionController::Base
       "ORDER BY ci_us_states.name;")
   end
 
-  def flush_location_cache(entry_type, location)
+  def flush_location_cache(entry_display_name, location)
+    entry_type = entry_display_name.downcase
     if location.country_name.is_usa?
       cache_store.delete("controller/all_us_states_with_#{entry_type}_entries")
       cache_store.delete(cache_safe_name("controller/all_#{entry_type}_entries_for_us_state", location.us_state.name))

@@ -10,6 +10,7 @@ module EntryFormWithOptionalModels
     if entry_and_linked_models_valid?
       delete_completely_blank_models
       @entry.save!
+      flush_location_cache(entry_display_name, @entry.location)
 
       #  TODO: Eventually we want to send emails whenever an Entry of any type is created
       if entry_display_name == 'Event'
@@ -23,7 +24,10 @@ module EntryFormWithOptionalModels
   end
 
   def delete
-    @entry.destroy if valid_id_and_permissions?(params[:id])
+    if valid_id_and_permissions?(params[:id])
+      flush_location_cache(entry_display_name, @entry.location)
+      @entry.destroy 
+    end
 
     render :partial => "shared/entries/delete", :locals => { :entry_display_name => entry_display_name }
   end
@@ -48,6 +52,7 @@ module EntryFormWithOptionalModels
             model.save! if not model.completely_blank?
           end
           @entry.save!
+          flush_location_cache(entry_display_name, @entry.location)
           redirect_to :controller => 'user', :action => 'index'
           return  #  We need to return here so that redirect_to and render aren't both called
         end
