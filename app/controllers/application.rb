@@ -42,7 +42,6 @@ class ApplicationController < ActionController::Base
   
   def cache_entries_for_countries(entry_class)
     entry_type = entry_class.to_s.gsub(/(.*)Entry/, '\1').downcase
-
     @country_names_with_entries ||= Hash.new
     @us_state_names_with_entries ||= Hash.new
     @entry_ids_for_country ||= Hash.new
@@ -105,8 +104,8 @@ class ApplicationController < ActionController::Base
       "ORDER BY ci_us_states.name;")
   end
 
-  def flush_location_cache(entry_display_name, location)
-    entry_type = entry_display_name.downcase
+  def flush_location_cache(display_name, location)
+    entry_type = display_name.singularize.downcase
     if location.country_name.is_usa?
       cache_store.delete("controller/all_us_states_with_#{entry_type}_entries")
       cache_store.delete(cache_safe_name("controller/all_#{entry_type}_entries_for_us_state", location.us_state.name))

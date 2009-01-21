@@ -2,7 +2,7 @@ require 'test_helper'
 
 class PeopleControllerTest < ActionController::TestCase
 
-  fixtures :users
+  fixtures :person_entries, :country_names, :emails, :locations, :people, :phone_numbers, :urls, :us_states, :users
 
 
   #  Test 'create' action
@@ -57,6 +57,15 @@ class PeopleControllerTest < ActionController::TestCase
     assert_redirected_to :controller => 'user', :action => 'index'
     new_entry = PersonEntry.find(:last)    
     assert_equal false,                        new_entry.teaches_contact
+  end
+
+
+  #  Test 'list' action
+
+  def test_should_allow_access_to_list
+    get :list
+    assert_response :success
+    assert_select "[class=errorExplanation]", false
   end
 
 end

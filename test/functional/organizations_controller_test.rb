@@ -2,6 +2,10 @@ require 'test_helper'
 
 class OrganizationsControllerTest < ActionController::TestCase
 
+  fixtures :organization_entries, :country_names, :emails, :locations, :people, :phone_numbers, :urls, :us_states, :users
+
+
+  #  Test 'create' action
 
   def test_should_create_organization_entry_with_true_flags
     login_as :quentin
@@ -57,6 +61,15 @@ class OrganizationsControllerTest < ActionController::TestCase
     assert_match /craigharman\.net\/newurl/,   new_entry.url.address
     assert_equal false,                        new_entry.teaches_contact
     assert_equal false,                        new_entry.studio_space
+  end
+
+
+  #  Test 'list' action
+
+  def test_should_allow_access_to_list
+    get :list
+    assert_response :success
+    assert_select "[class=errorExplanation]", false
   end
 
 end

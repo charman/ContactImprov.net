@@ -1,0 +1,23 @@
+<% @country_names_with_entries[@entry_type].each do |country_name| %>
+	<h2><%= country_name.upcase %></h2>
+
+	<% #  We can't use country.is_usa? here because when country (as part of @countries_with_entries)
+	   #   is cached, we can only access the member variables of the cached objects, and not the
+	   #   methods of the cached objects.
+	   if country_name == 'United States' %>
+		<% @us_state_names_with_entries[@entry_type].each do |us_state_name| %>
+			<% cache(:action => @entry_type, :action_suffix => us_state_name) do %>
+				<h3><i><%= us_state_name.upcase %></i></h3>
+				<% @entry_ids_for_us_state[@entry_type][us_state_name].each do |entry_id| %>
+					<%= render(:partial => "shared/entries/#{@entry_type}", :locals => { :entry => @entry_class.find(entry_id) } )%>
+				<% end %>
+			<% end %>
+		<% end %>
+	<% else %>
+		<% cache(:action => @entry_type, :action_suffix => country_name) do %>
+			<% @entry_ids_for_country[@entry_type][country_name].each do |entry_id| %>
+				<%= render(:partial => "shared/entries/#{@entry_type}", :locals => { :entry => @entry_class.find(entry_id) } )%>
+			<% end %>
+		<% end %>
+	<% end %>
+<% end %>

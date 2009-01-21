@@ -20,29 +20,24 @@ WHEN MOVING SITE TO NEW SERVER:
 
 THIS COMMIT:
 
-The create/edit/delete actions inlib/entry_form_with_optional_models.rb 
-now call the flash_location_cache function.  Empirically verified that
-caching was working.  (Still need to figure out how to write tests to
-verify that caching works...)
+Refactored code to display entries sorted by location into a partial
+template.
+
+Created list views for People and Organizations, sorted by location.
 
 
 ======================================================================
 
 TODO:
 
+@ Create list of past events for 2008 (with file from Mugsy)
+
 @ Ken's suggestions
   - allow people to list themselves as the contact person for an Entry
     - AJAX to add non-editable text indicating attached Person info
 
 @ Entry listings
-  - JamEntry model
-    - location caching
-      - test caching
-      - invalidate cache when updating an entry
-    - refactor code to display entries by location into a partial template
-    - functional testing
   - OrganizationEntry model
-    - list view
     - additional fields
       - dance repertory company
       - commercial business
@@ -51,8 +46,11 @@ TODO:
       - web group/presence
       ...
     - functional testing
+  - JamEntry model
+    - functional testing
   - PersonEntry model
     - list view
+      - sort people by last name, not first name
     - additional fields
       ...
     - functional testing
@@ -80,8 +78,6 @@ TODO:
       - conditional code for email/person/etc fields
   - email events when they are edited
 
-@ Create list of past events for 2008 (with file from Mugsy)
-
 @ UI/text tweaks
   - change color of error messages
     ...
@@ -91,6 +87,7 @@ TODO:
 @ Update HTML
   - run W3C link checker on the site
   - standardize DOCTYPE (to what? HTML/XHMTL/transitional/strict?)
+  - fix titles
 
 @ Fix the way pages look in IE7 (and IE6?) 
   - should be space between text in 'announcements' boxes and left

@@ -11,6 +11,13 @@ class PeopleController < ApplicationController
     :only => ['auto_complete_for_country_name_english_name', 'auto_complete_for_us_state_name']
 
 
+  def list
+    require 'RedCloth'
+    cache_entries_for_countries(entry_class)
+    @entry_class = entry_class
+    @entry_type = entry_display_name.downcase
+  end
+
 protected
 
   def entry_class

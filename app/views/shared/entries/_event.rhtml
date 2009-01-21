@@ -26,9 +26,11 @@
 		</div>
 		<div class='location'><%= format_entry_location(entry) %></div>
 		<div style="margin-left: 1em;">
-			<div class='entry_description'>
-				<%= RedCloth.new(entry.description.strip, [:filter_html]).to_html %>
-			</div>
+			<% if !entry.description.blank? %>
+				<div class='entry_description'>
+					<%= RedCloth.new(entry.description.strip, [:filter_html]).to_html %>
+				</div>
+			<% end %>
 			<% if !entry.cost.blank? %>
 				<div class='fee'>
 					<%= RedCloth.new(entry.cost.strip, [:filter_html]).to_html %>

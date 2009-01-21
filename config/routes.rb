@@ -48,8 +48,10 @@ ActionController::Routing::Routes.draw do |map|
 
   map.admin_index '/admin', :controller => 'admin/home', :action => 'index'
   
-  map.events_index '/events', :controller => 'events', :action => 'list'
-  map.jams_index   '/jams',   :controller => 'jams',   :action => 'list'
+  map.events_index        '/events',        :controller => 'events',        :action => 'list'
+  map.jams_index          '/jams',          :controller => 'jams',          :action => 'list'
+  map.people_index        '/people',        :controller => 'people',        :action => 'list'
+  map.organizations_index '/organizations', :controller => 'organizations', :action => 'list'
   # [/CTH]
 
   # Install the default routes as the lowest priority.
