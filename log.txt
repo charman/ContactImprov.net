@@ -20,7 +20,8 @@ WHEN MOVING SITE TO NEW SERVER:
 
 THIS COMMIT:
 
-Renamed app/views/organization to app/views/organizations.
+Modified /user/index to (temporarily) hide the links for creating and
+editing jams.
 
 
 ======================================================================
