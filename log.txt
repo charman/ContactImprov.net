@@ -20,10 +20,7 @@ WHEN MOVING SITE TO NEW SERVER:
 
 THIS COMMIT:
 
-Refactored code to display entries sorted by location into a partial
-template.
-
-Created list views for People and Organizations, sorted by location.
+Renamed app/views/organization to app/views/organizations.
 
 
 ======================================================================
@@ -54,10 +51,10 @@ TODO:
     - additional fields
       ...
     - functional testing
-  - modify /admin/user/show to list all types of Entries for a user
-  ~~~
   - WebsiteEntry model
     - how to handle websites for an entire country? (e.g. no city name)
+  - modify /admin/user/show to list all types of Entries for a user
+  ~~~
   - CompanyEntry model
     - list view
     - functional testing
