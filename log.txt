@@ -20,9 +20,9 @@ WHEN MOVING SITE TO NEW SERVER:
 
 THIS COMMIT:
 
-Added some additonal summary statistics to the /admin(/home/index) and
-/admin/users(/index) views, to provide a high-level glance of how much
-information has been entered into the database.
+Created /admin/motivation view/controller that lists users answer to
+the question "Please tell us something you like about Contact Improv
+in two or three sentences:".
 
 
 ======================================================================
@@ -30,6 +30,7 @@ information has been entered into the database.
 TODO:
 
 @ Create list of past events for 2008 (with file from Mugsy)
+  - manually clean up the HTML
 
 @ Ken's suggestions
   - allow people to list themselves as the contact person for an Entry
@@ -76,6 +77,11 @@ TODO:
   - email events when they are edited
 
 @ Privacy policy explaining what we will do with your email
+  - no commercial emails
+  - will email you about major changes to the site
+  - will email you to confirm that your listing is up to date
+    - if you're the contact person and we can't reach you, we may
+       expire your listing
 
 @ UI/text tweaks
   - change color of error messages

@@ -1,0 +1,14 @@
+<%= render(:partial => "shared/admin/header",
+           :locals => { :subsection => 'motivation', :title => '(hopefully)' } )%>
+
+<h2>Please tell us something you like about Contact Improv in two or three sentences:</h2>
+
+<div style="margin-left: 2em;">
+
+	<% @reasons.each do |reason| %>
+		<p style="border-bottom: 1px solid #DDD; padding-bottom: 1em;"><%= reason %></p>
+	<% end %>
+
+</div>
+
+<%= render(:partial => "shared/admin/footer" )%>

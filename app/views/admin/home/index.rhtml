@@ -29,4 +29,10 @@
 	(<%= @total_users %> total)
 </p>
 
+<p style="font-size: x-large;">
+	<%= link_to 'Motivation', :action => 'index', :controller => 'admin/motivation' %> 
+	- <span style="font-size: medium;">reasons that Users like Contact Improv</span>
+</p>
+
+
 <%= render(:partial => "shared/admin/footer" )%>
