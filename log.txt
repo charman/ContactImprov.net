@@ -20,8 +20,7 @@ WHEN MOVING SITE TO NEW SERVER:
 
 THIS COMMIT:
 
-Fixed the account request counts listed on the
-/admin/account_requests/index page.
+Changed URL for Ken's homepage.
 
 
 ======================================================================
