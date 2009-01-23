@@ -20,14 +20,14 @@ WHEN MOVING SITE TO NEW SERVER:
 
 THIS COMMIT:
 
-Created /admin/motivation view/controller that lists users answer to
-the question "Please tell us something you like about Contact Improv
-in two or three sentences:".
+Created /admin/account_requests controller.
 
 
 ======================================================================
 
 TODO:
+
+@ cron job to dump database tables
 
 @ Create list of past events for 2008 (with file from Mugsy)
   - manually clean up the HTML
@@ -88,8 +88,6 @@ TODO:
     ...
 
 -- 
-
-@ Create new /admin/account_request section
 
 @ Update HTML
   - run W3C link checker on the site
