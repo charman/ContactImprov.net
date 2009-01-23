@@ -8,17 +8,33 @@ class Admin::AccountRequestsController < ApplicationController
     @total_accepted_account_requests = UserAccountRequest.count :conditions => "state ='accepted'"
     @total_new_account_requests      = UserAccountRequest.count :conditions => "state ='new'"
     @total_rejected_account_requests = UserAccountRequest.count :conditions => "state ='rejected'"
-
   end
 
-  def list_account_requests
+  def list
     @account_requests          = UserAccountRequest.find(:all)
-    @accepted_account_requests = UserAccountRequest.find(:all, :conditions => 'state = "accepted"')
-    @new_account_requests      = UserAccountRequest.find(:all, :conditions => 'state = "new"')
-    @rejected_account_requests = UserAccountRequest.find(:all, :conditions => 'state = "rejected"')
+    @list_scope = 'All'
   end
 
-  def process_account_request
+  def list_accepted
+    @account_requests = UserAccountRequest.find(:all, :conditions => 'state = "accepted"')
+    @list_scope = 'Accepted'
+    render :action => 'list'
+  end
+
+  def list_new
+    @account_requests      = UserAccountRequest.find(:all, :conditions => 'state = "new"')
+    @list_scope = 'New'
+    render :action => 'list'
+  end
+  
+  def list_rejected
+    @account_requests = UserAccountRequest.find(:all, :conditions => 'state = "rejected"')
+    @list_scope = 'Rejected'
+    render :action => 'list'
+  end
+
+  #  fyi - :process conflicts with some internal Rails or Ruby symbol name
+  def process_request
     if request.put?
       account_request = UserAccountRequest.find(params[:account_request_id])
       account_request.attributes = params[:user_account_request]
@@ -41,7 +57,7 @@ class Admin::AccountRequestsController < ApplicationController
     end
   end
 
-  def show_account_request
+  def show
     @account_request = UserAccountRequest.find(params[:id])
   end
 

@@ -1,5 +1,5 @@
 <%= render(:partial => "shared/admin/header", 
-           :locals => { :subsection => 'users', :title => 'List User Account Requests' }) %>
+           :locals => { :subsection => 'account_requests', :title => "List #{@list_scope}" }) %>
 
 <h2>
 	Total Account Requests: <%= @account_requests.size %>

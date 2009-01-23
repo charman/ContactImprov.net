@@ -1,5 +1,5 @@
 <%= render(:partial => "shared/admin/header", 
-           :locals => { :subsection => 'users', :title => 'Show User Account Requests' }) %>
+           :locals => { :subsection => 'account_requests', :title => 'Show' }) %>
 
 <% if flash[:notice] %>
 	<div class="errorExplanation" id="errorExplanation">
@@ -10,7 +10,7 @@
 <% if @account_request %>
 
 	<div class="admin_form">
-		<% form_for @account_request, :url => { :action => 'process_account_request' } do |account_request| %>
+		<% form_for @account_request, :url => { :action => 'process_request' } do |account_request| %>
 			<table>
 				<tr>
 					<th>Applicant Name:</th>

@@ -20,7 +20,8 @@ WHEN MOVING SITE TO NEW SERVER:
 
 THIS COMMIT:
 
-Created /admin/account_requests controller.
+Moved the admin actions for handling account requests from
+/admin/users to the new /admin/account_requests controller.
 
 
 ======================================================================

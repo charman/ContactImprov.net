@@ -4,6 +4,7 @@ class Admin::HomeController < ApplicationController
   before_filter :admin_required
   
   def index
+    @total_new_account_requests = UserAccountRequest.count :conditions => "state ='new'"
     @total_events        = EventEntry.count
     @total_jams          = JamEntry.count
     @total_people        = PersonEntry.count
