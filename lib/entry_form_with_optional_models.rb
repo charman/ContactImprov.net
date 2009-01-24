@@ -12,10 +12,7 @@ module EntryFormWithOptionalModels
       @entry.save!
       flush_location_cache(entry_display_name, @entry.location)
 
-      #  TODO: Eventually we want to send emails whenever an Entry of any type is created
-      if entry_display_name == 'Event'
-        UserMailer.deliver_new_event_entry_created(@entry)
-      end
+      UserMailer.deliver_new_entry_created(@entry, entry_display_name)
       
       redirect_to :controller => 'user', :action => 'index'
     else

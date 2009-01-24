@@ -20,8 +20,9 @@ WHEN MOVING SITE TO NEW SERVER:
 
 THIS COMMIT:
 
-Changed URL for Ken's homepage.
-
+Refactored the UserMailer.new_event_entry_created function into the
+more general UserMailer.new_entry_created function.  An email is now
+sent out when any type of Entry is created, not just Event Entries.
 
 ======================================================================
 
@@ -65,17 +66,6 @@ TODO:
     - list view
     - functional testing
 
-@ UserMailer model
-  - email when submitted new
-    - people
-    - jams
-    - organizations
-    - ...
-    - refactor
-      - use accessible_attributes for fields in email
-      - conditional code for email/person/etc fields
-  - email events when they are edited
-
 @ Privacy policy explaining what we will do with your email
   - no commercial emails
   - will email you about major changes to the site
@@ -88,6 +78,9 @@ TODO:
     ...
 
 -- 
+
+@ UserMailer model
+  - email entries when they are edited
 
 @ Update HTML
   - run W3C link checker on the site
