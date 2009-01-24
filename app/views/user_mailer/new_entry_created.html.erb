@@ -4,7 +4,7 @@ NEW <%= @entry_type.upcase %>:
 <%= attribute.upcase %>:
   <%= @entry.send(attribute) %>
 <% end %>
-<% if @entry.person_id %>
+<% if @entry.respond_to?('person') && @entry.person_id %>
 PERSON:
 <%= "#{@entry.person.first_name} #{@entry.person.last_name}" %>
 <% end %>

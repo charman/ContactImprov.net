@@ -20,9 +20,10 @@ WHEN MOVING SITE TO NEW SERVER:
 
 THIS COMMIT:
 
-Refactored the UserMailer.new_event_entry_created function into the
-more general UserMailer.new_entry_created function.  An email is now
-sent out when any type of Entry is created, not just Event Entries.
+Fixed a bug in UserMailer.new_entry_created_function where the
+function would try to access the person object even if the object
+wasn't part of that particular Entry class.  Functional tests now
+pass.
 
 ======================================================================
 
