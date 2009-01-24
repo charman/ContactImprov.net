@@ -5,6 +5,7 @@ module EventHelper
     a << "#{e.person.first_name} #{e.person.last_name}" if e.person
     a << e.phone_number.number if e.phone_number
     a << obfuscate_email_with_javascript(e.email.address) if e.email
+    a << "<a href=\"#{e.url.address}\">#{e.url.address}</a>" if e.url
     a.join(", ")
   end
 

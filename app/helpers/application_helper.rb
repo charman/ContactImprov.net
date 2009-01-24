@@ -31,7 +31,7 @@ module ApplicationHelper
       "var email2 = \"#{server}\"\n" +
       'document.write("<a href=" + "mail" + "to:" + email1 + "@" + email2 + ">" + email1 + "@" + email2 + "</a>")' + "\n" +
       "// -->\n" + 
-      "</script>\n"
+      "</script>"
   end
 
   #  This is a modified version of the text_field_with_auto_complete function from

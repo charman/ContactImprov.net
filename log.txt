@@ -20,13 +20,12 @@ WHEN MOVING SITE TO NEW SERVER:
 
 THIS COMMIT:
 
-Created /history/2008.html page of events form 2008.  
+Modified the event_helper.rb:format_contact_info to print the URL
+address along with the rest of an entry's contact info (person,
+phone_Number, email).
 
-Had to manually clean up a lot of special characters.  The text was
-generated from a webform with ISO-8859-1 encoding, modified and saved
-with an editor using the MacRoman character set, and then displayed on
-a web page that claimed to be using the UTF-8 character set.
-
+Modified the application.rb:obfuscate_email_with_javascript function
+to no longer print any whitespace after the email address.
 
 ======================================================================
 
