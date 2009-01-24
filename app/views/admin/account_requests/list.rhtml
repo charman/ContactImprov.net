@@ -18,7 +18,7 @@
 		<tbody>
 			<% @account_requests.each do |account_request| %>
 				<tr>
-					<td><a href="show_account_request/<%= account_request.id %>">Show</a></td>
+					<td><a href="show/<%= account_request.id %>">Show</a></td>
 					<td><%= account_request.person.last_comma_first %></td>
 					<td><%= account_request.state %></td>
 					<td><%= account_request.created_at.strftime('%Y-%m-%d %I:%M %p') %></td>

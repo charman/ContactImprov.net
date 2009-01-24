@@ -53,7 +53,7 @@ class Admin::AccountRequestsController < ApplicationController
 
       account_request.save!
 
-      redirect_to :action => 'list_account_requests'
+      redirect_to :action => 'list_new'
     end
   end
 

@@ -17,7 +17,7 @@ class Admin::AccountRequestsControllerTest < ActionController::TestCase
     put :process_request,
       :account_request_id => user_account_requests(:account_request1).id,
       :user_account_request => { :ci_notes => 'updated_notes' }
-    assert_redirected_to :action => 'list_account_requests'
+    assert_redirected_to :action => 'list_new'
     user_account_requests(:account_request1).reload
     assert_match 'updated_notes', user_account_requests(:account_request1).ci_notes
   end
@@ -30,7 +30,7 @@ class Admin::AccountRequestsControllerTest < ActionController::TestCase
       :account_request_id => user_account_requests(:account_request1).id,
       :user_account_request => { :ci_notes => 'updated_notes' },
       :commit => 'Accept'
-    assert_redirected_to :action => 'list_account_requests'
+    assert_redirected_to :action => 'list_new'
     user_account_requests(:account_request1).reload
     assert_equal 'updated_notes', user_account_requests(:account_request1).ci_notes
     assert_equal 'accepted', user_account_requests(:account_request1).state

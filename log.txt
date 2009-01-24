@@ -20,10 +20,9 @@ WHEN MOVING SITE TO NEW SERVER:
 
 THIS COMMIT:
 
-Fixed a bug in UserMailer.new_entry_created_function where the
-function would try to access the person object even if the object
-wasn't part of that particular Entry class.  Functional tests now
-pass.
+Fixed some broken links in the /admin/account_requests controller and
+views.
+
 
 ======================================================================
 
@@ -79,6 +78,10 @@ TODO:
     ...
 
 -- 
+
+@ On /user/request_account page, if someone already has an account
+with the listed email address, change error message to be less
+confusing
 
 @ UserMailer model
   - email entries when they are edited
