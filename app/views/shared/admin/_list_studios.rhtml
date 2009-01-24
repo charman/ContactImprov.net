@@ -10,7 +10,7 @@
 		<tbody>
 		<% for studio in @entries %>
 			<tr>
-				<td><a href="/studio/edit/<%= studio.studio_entry_id %>"><%= studio.studio_entry_id %></a></td>
+				<td><a href="/studios/edit/<%= studio.studio_entry_id %>"><%= studio.studio_entry_id %></a></td>
 				<td><%= studio.title %></td>
 				<td><%= format_entry_location(studio) %></td>
 			</tr>

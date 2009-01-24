@@ -10,7 +10,7 @@
 		<tbody>
 		<% for person in @entries %>
 			<tr>
-				<td><a href="/person/edit/<%= person.person_entry_id %>"><%= person.person_entry_id %></a></td>
+				<td><a href="/people/edit/<%= person.person_entry_id %>"><%= person.person_entry_id %></a></td>
 				<td><%= person.person ? "#{person.person.last_name}, #{person.person.first_name}" : '' %></td>
 				<td><%= format_entry_location(person) %></td>
 			</tr>

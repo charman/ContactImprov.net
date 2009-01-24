@@ -20,13 +20,23 @@ WHEN MOVING SITE TO NEW SERVER:
 
 THIS COMMIT:
 
-Fixed some broken links in the /admin/account_requests controller and
-views.
+Fixed a bug in my caching code were the cache wasn't being flushed
+when modifying a non-US entry.
+
+Added sortable_title field to each of the Entry classes.
+sortable_title is the same for all Entry types except PeopleEntry,
+where title = 'firstname lastname' and sortable_title = 'lastname
+firstname'.
+
+Fixed broken links on the /admin/[entry_type]/list pages.
 
 
 ======================================================================
 
 TODO:
+
+@ UserMailer model
+  - email entries when they are edited
 
 @ cron job to dump database tables
 
@@ -50,8 +60,6 @@ TODO:
   - JamEntry model
     - functional testing
   - PersonEntry model
-    - list view
-      - sort people by last name, not first name
     - additional fields
       ...
     - functional testing
@@ -82,9 +90,6 @@ TODO:
 @ On /user/request_account page, if someone already has an account
 with the listed email address, change error message to be less
 confusing
-
-@ UserMailer model
-  - email entries when they are edited
 
 @ Update HTML
   - run W3C link checker on the site
@@ -136,6 +141,18 @@ they can edit for that type of entry
 ==[ LOG ]=============================================================
 
 ----[ day, January , 2009 ]--------------------------------------
+
+
+----[ Saturday, January 24, 2009 ]------------------------------------
+
+@ Fixed a bug in my caching code were the cache wasn't being flushed
+when modifying a non-US entry.
+
+Since memcached is not flushed when Rails is restarted, had to restart
+memcached on my laptop using:
+
+  launchctl unload /Library/LaunchDaemons/org.macports.memcached.plist
+  launchctl load /Library/LaunchDaemons/org.macports.memcached.plist
 
 
 ----[ Tuesday, January 20, 2009 ]-------------------------------------

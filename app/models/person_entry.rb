@@ -52,6 +52,14 @@ class PersonEntry < ActiveRecord::Base
     end
   end
 
+  def sortable_title
+    if person.first_name.blank?
+      person.last_name
+    else
+      "#{person.last_name}, #{person.first_name}"
+    end
+  end
+
   def title
     if person.first_name.blank?
       person.last_name

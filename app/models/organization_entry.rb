@@ -22,6 +22,10 @@ class OrganizationEntry < ActiveRecord::Base
     ['studio_space', 'teaches_contact']
   end
 
+  def sortable_title
+    organization.name
+  end
+
   def title
     organization.name
   end

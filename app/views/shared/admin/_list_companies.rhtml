@@ -10,7 +10,7 @@
 		<tbody>
 		<% for company in @entries %>
 			<tr>
-				<td><a href="/company/edit/<%= company.company_entry_id %>"><%= company.company_entry_id %></a></td>
+				<td><a href="/companies/edit/<%= company.company_entry_id %>"><%= company.company_entry_id %></a></td>
 				<td><%= company.title %></td>
 				<td><%= format_entry_location(company) %></td>
 			</tr>

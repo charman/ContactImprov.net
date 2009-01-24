@@ -18,6 +18,10 @@ class StudioEntry < ActiveRecord::Base
     sanitize_attributes
   end
 
+  def sortable_title
+    studio.name
+  end
+
   def title
     studio.name
   end

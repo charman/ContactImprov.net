@@ -23,6 +23,10 @@ class EventEntry < ActiveRecord::Base
     sanitize_attributes
   end
 
+  def sortable_title
+    title
+  end
+
   def version_condition_met?
     title_changed? || description_changed? || cost_changed? || start_date_changed? || end_date_changed? || ci_notes_changed?
   end

@@ -20,6 +20,10 @@ class JamEntry < ActiveRecord::Base
     sanitize_attributes
   end
 
+  def sortable_title
+    title
+  end
+
   def version_condition_met?
     title_changed? || description_changed? || schedule_changed? || cost_changed? || ci_notes_changed?
   end

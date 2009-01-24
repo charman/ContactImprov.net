@@ -11,7 +11,7 @@
 		<tbody>
 		<% for jam in @entries %>
 			<tr>
-				<td><a href="/jam/edit/<%= jam.jam_entry_id %>"><%= jam.jam_entry_id %></a></td>
+				<td><a href="/jams/edit/<%= jam.jam_entry_id %>"><%= jam.jam_entry_id %></a></td>
 				<td><%= jam.title %></td>
 				<td><%= jam.person ? "#{jam.person.last_name}, #{jam.person.first_name}" : '' %></td>
 				<td><%= format_entry_location(jam) %></td>

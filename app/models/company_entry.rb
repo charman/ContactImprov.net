@@ -18,6 +18,10 @@ class CompanyEntry < ActiveRecord::Base
     sanitize_attributes
   end
 
+  def sortable_title
+    company.name
+  end
+
   def title
     company.name
   end

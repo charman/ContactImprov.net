@@ -54,7 +54,9 @@ class ApplicationController < ActionController::Base
     end
     @country_names_with_entries[entry_type].each do |country_name|
       @entry_ids_for_country[entry_type][country_name] = cache(cache_safe_name("all_#{entry_type}_entries_for_countries", country_name)) do
-        find_all_entries_for_country_by_name(entry_class, entry_type, country_name).sort { |a,b| a.title <=> b.title }.collect { |e| e.id }
+        find_all_entries_for_country_by_name(entry_class, entry_type, country_name).sort { 
+          |a,b| a.sortable_title <=> b.sortable_title 
+        }.collect { |e| e.id }
       end
     end
 
@@ -63,7 +65,9 @@ class ApplicationController < ActionController::Base
     end
     @us_state_names_with_entries[entry_type].each do |us_state_name|
       @entry_ids_for_us_state[entry_type][us_state_name] = cache(cache_safe_name("all_#{entry_type}_entries_for_us_state", us_state_name)) do
-        find_all_entries_for_us_state_by_name(entry_class, entry_type, us_state_name).sort { |a,b| a.title <=> b.title }.collect { |e| e.id }
+        find_all_entries_for_us_state_by_name(entry_class, entry_type, us_state_name).sort { 
+          |a,b| a.sortable_title <=> b.sortable_title 
+        }.collect { |e| e.id }
       end
     end
   end
@@ -112,7 +116,7 @@ class ApplicationController < ActionController::Base
       expire_fragment(:controller => entry_type.pluralize, :action => entry_type, :action_suffix => location.us_state.name)
     else
       cache_store.delete("controller/all_countries_with_#{entry_type}_entries")
-      cache_store.delete(cache_safe_name("controller/all_entries_for_#{entry_type}_countries", location.country_name.english_name))
+      cache_store.delete(cache_safe_name("controller/all_#{entry_type}_entries_for_countries", location.country_name.english_name))
       expire_fragment(:controller => entry_type.pluralize, :action => entry_type, :action_suffix => location.country_name.english_name)
     end
   end
