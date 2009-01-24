@@ -20,15 +20,12 @@ WHEN MOVING SITE TO NEW SERVER:
 
 THIS COMMIT:
 
-Fixed a bug in my caching code were the cache wasn't being flushed
-when modifying a non-US entry.
+Created /history/2008.html page of events form 2008.  
 
-Added sortable_title field to each of the Entry classes.
-sortable_title is the same for all Entry types except PeopleEntry,
-where title = 'firstname lastname' and sortable_title = 'lastname
-firstname'.
-
-Fixed broken links on the /admin/[entry_type]/list pages.
+Had to manually clean up a lot of special characters.  The text was
+generated from a webform with ISO-8859-1 encoding, modified and saved
+with an editor using the MacRoman character set, and then displayed on
+a web page that claimed to be using the UTF-8 character set.
 
 
 ======================================================================
@@ -38,10 +35,10 @@ TODO:
 @ UserMailer model
   - email entries when they are edited
 
-@ cron job to dump database tables
+@ Modify CSS so that formatting for new entries doesn't affect the
+formatting of old entries
 
-@ Create list of past events for 2008 (with file from Mugsy)
-  - manually clean up the HTML
+@ cron job to dump database tables
 
 @ Ken's suggestions
   - allow people to list themselves as the contact person for an Entry
