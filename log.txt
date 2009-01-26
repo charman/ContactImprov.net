@@ -20,18 +20,13 @@ WHEN MOVING SITE TO NEW SERVER:
 
 THIS COMMIT:
 
-Modified the CSS and HTML so that formatting changes to new event
-listings aren't also applied to old event listings.
+Deleted all files related to Studios and Companies.  Entries for
+studios or companies will now be classified as Organizations.
 
 
 ======================================================================
 
 TODO:
-
-@ Modify CSS so that formatting for new entries doesn't affect the
-formatting of old entries
-
-@ cron job to dump database tables
 
 @ Ken's suggestions
   - allow people to list themselves as the contact person for an Entry
@@ -134,6 +129,16 @@ they can edit for that type of entry
 ==[ LOG ]=============================================================
 
 ----[ day, January , 2009 ]--------------------------------------
+
+
+
+----[ Monday, January 26, 2009 ]--------------------------------------
+
+@ Added a cron script:
+
+  /etc/cron.daily/mysqldump_cq_rails
+
+to back up the ci_rails MySQL database daily.
 
 
 ----[ Saturday, January 24, 2009 ]------------------------------------
