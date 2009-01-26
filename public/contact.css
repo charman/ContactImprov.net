@@ -263,6 +263,42 @@ div.entry_list_for_user {
 	margin-bottom: 2em;
 }
 
+div.entry_title {
+	color: #514154;
+	font-family: value, Georgia, "Times New Roman", Times, serif; 
+	font-size: 1.1em;
+	font-weight: bold;
+}
+
+div.entry_location {
+	color: #505050;
+	margin-bottom: 0.5em;
+}
+
+div.entry_description {
+}
+
+div.entry_fee {
+}
+
+div.entry_contact {
+}
+
+div.entry_updated  { 
+	border-top: 1px solid #666;
+	color: #666666; 
+	font-size: xx-small; 
+	font-family: sans-serif, Arial, Helvetica, Verdana; 
+	font-style: normal; 
+	font-variant: normal; 
+	line-height: normal;
+	margin-top: 0.8em;
+	padding-top: 0.2em;
+	text-align: right;
+	text-decoration: none;
+	width: 100%;
+}
+
 
 
 /* === ERROR MESSAGES === */
@@ -321,10 +357,14 @@ div.entry_list_for_user {
 
 
 
-/* -------------------------------------------------------- */
+/* ------------------------------------------------------------------------ */
 
 /* === VESTIGIAL CSS === */
-
+/* The styles below are applied to web pages that were created prior to the
+    transition to a database backend in early 2009.  Changing these styles
+	will change (for example) the archived Event Listings that go back to
+	1995.
+*/
 
 h1,h2,h3,h4 {
 	font-family : Verdana, Geneva, Arial, Helvetica, sans-serif;
@@ -345,18 +385,13 @@ dt {margin-top:10pt}
 	margin-left : 12pt;
 }
 .updated  { 
-	border-top: 1px solid #666;
 	color: #666666; 
 	font-size: xx-small; 
 	font-family: sans-serif, Arial, Helvetica, Verdana; 
 	font-style: normal; 
 	font-variant: normal; 
-	line-height: normal;
-	margin-top: 0.8em;
-	padding-top: 0.2em;
-	text-align: right;
+	line-height: normal; 
 	text-decoration: none;
-	width: 100%;
 }
 .redbold {  
 	font-style: italic; 
@@ -367,9 +402,7 @@ dt {margin-top:10pt}
 	font-variant: small-caps;
 }
 .event { 
-	color: #514154;
 	font-family: value, Georgia, "Times New Roman", Times, serif; 
-	font-size: 1.1em;
 	font-weight: bold;
 }
 .location { 

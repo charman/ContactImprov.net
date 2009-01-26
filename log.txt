@@ -20,7 +20,9 @@ WHEN MOVING SITE TO NEW SERVER:
 
 THIS COMMIT:
 
-Admins now receive an email when an Entry has been modified.
+Modified the CSS and HTML so that formatting changes to new event
+listings aren't also applied to old event listings.
+
 
 ======================================================================
 

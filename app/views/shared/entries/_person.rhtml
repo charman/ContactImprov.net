@@ -2,22 +2,22 @@
 	<div style="float: left; width: 12%;">
 	</div>
 	<div style="float: right; width: 88%;">
-		<div class='event'>
+		<div class='entry_title'>
 			<% if entry.url %>
 				<%= "<a href=\"#{entry.url.address}\">#{entry.title}</a>" %>
 			<% else %>
 				<%= entry.title %>
 			<% end %>
 		</div>
-		<div class='location'><%= format_entry_location(entry) %></div>
+		<div class='entry_location'><%= format_entry_location(entry) %></div>
 		<div style="margin-left: 1em;">
 			<% if !entry.description.blank? %>
 				<div class='entry_description'>
 					<%= RedCloth.new(entry.description.strip, [:filter_html]).to_html %>
 				</div>
 			<% end %>
-			<div class='contact'><span style="color: #555;">CONTACT:</span> <%= format_contact_info(entry) %></div>
-			<div class='updated'>[<%= entry.updated_at.strftime('%b %d %Y') %>]</div>
+			<div class='entry_contact'><span style="color: #555;">CONTACT:</span> <%= format_contact_info(entry) %></div>
+			<div class='entry_updated'>[<%= entry.updated_at.strftime('%b %d %Y') %>]</div>
 		</div>
 	</div>
 </div>
