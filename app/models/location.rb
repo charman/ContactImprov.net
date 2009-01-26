@@ -3,12 +3,10 @@ class Location < ActiveRecord::Base
 
   belongs_to :country_name
   belongs_to :us_state
-  has_one :company_entry
   has_one :jam_entry
   has_one :event_entry
   has_one :organization_entry
   has_one :person_entry
-  has_one :studio_entry
   
   acts_as_mappable
   acts_as_versioned

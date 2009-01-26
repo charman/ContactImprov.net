@@ -20,10 +20,8 @@ WHEN MOVING SITE TO NEW SERVER:
 
 THIS COMMIT:
 
-Deleted the last remaining (hopefully) files related to Studios and
-Companies.
-
-Created a migration to drop all the Studio and Company related tables.
+Removed lingering references to the CompanyEntry and StudioEntry
+models.
 
 
 ======================================================================
@@ -36,6 +34,9 @@ TODO:
 
 @ Entry listings
   - OrganizationEntry model
+    - make Location field optional
+      - have section of /organizations/list for entries without a
+         location 
     - additional fields
       - dance repertory company
       - commercial business
@@ -53,13 +54,6 @@ TODO:
   - WebsiteEntry model
     - how to handle websites for an entire country? (e.g. no city name)
   - modify /admin/user/show to list all types of Entries for a user
-  ~~~
-  - CompanyEntry model
-    - list view
-    - functional testing
-  - StudioEntry model
-    - list view
-    - functional testing
 
 @ Privacy policy explaining what we will do with your email
   - no commercial emails
