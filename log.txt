@@ -20,8 +20,10 @@ WHEN MOVING SITE TO NEW SERVER:
 
 THIS COMMIT:
 
-Deleted all files related to Studios and Companies.  Entries for
-studios or companies will now be classified as Organizations.
+Deleted the last remaining (hopefully) files related to Studios and
+Companies.
+
+Created a migration to drop all the Studio and Company related tables.
 
 
 ======================================================================
