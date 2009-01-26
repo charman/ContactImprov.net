@@ -2,14 +2,31 @@
 <fieldset>
 	<legend><%= defined?(legend) && !legend.nil? ? legend : 'Person' %></legend>
 	<ol>
-		<li>
-			<label>First Name:</label>
-			<%= p.text_field :first_name %>
-		</li>
-		<li>
-			<label>Last Name:</label>
-			<%= p.text_field :last_name %>
-		</li>
+		<% if @user_has_person_entry && @user_person_entry.person %>
+			<% optional_params =  (is_users_model_current_model?('person') ? {:disabled => 'disabled'} : {} ) %>
+			<li>
+				<label>First Name:</label>
+				<%= p.text_field :first_name, optional_params %>
+			</li>
+			<li>
+				<label>Last Name:</label>
+				<%= p.text_field :last_name, optional_params %>
+			</li>
+			<li>
+				<label>&nbsp;</label>
+				<%= check_box_tag "use_user_person_entry_for[person]", '1', is_users_model_current_model?('person') %>
+				<span style="padding-left: 0.2em;">Use my name <i>(<%= @user_person_entry.title %>)</i></span>
+			</li>
+		<% else %>
+			<li>
+				<label>First Name:</label>
+				<%= p.text_field :first_name %>
+			</li>
+			<li>
+				<label>Last Name:</label>
+				<%= p.text_field :last_name %>
+			</li>
+		<% end %>
 	</ol>
 </fieldset>
 <% end %>

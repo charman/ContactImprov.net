@@ -20,22 +20,36 @@ WHEN MOVING SITE TO NEW SERVER:
 
 THIS COMMIT:
 
-Created functional test to confirm that attached models (Person,
-Location, etc) are not destroyed when an EventEntry is deleted.
+When a user with their own PersonEntry is editing a different type of
+Entry, we want them to be able to check a checkbox for each field
+(e.g. Person, Location, Email) where they want to use their own
+contact information, so that they don't have to re-enter it.
+
+Added a check box to the Person sub-form.  When editing an existing
+Entry with a Person sub-form, the check box accurately reflects
+whether the Person model being entried is the same instance (not just
+the same value) as the user's own Person entry.
 
 
 ======================================================================
 
 TODO:
 
+@ Ken's suggestions
+  - allow people to list themselves as the contact person for an Entry
+    - JavaScript to gray out fields when user clicks checkbox
+    - process request data in controller
+    - replicate with
+      - email
+      - location
+      - phone_number
+      - url
+    - examine repercussions of delete_completely_blank_model
+
 @ Modify views/models to allow singular and plural versions of
 category names like "Ongoing Jams/Classes".
 
 @ Display full address for a listing, not just City/State/Country
-
-@ Ken's suggestions
-  - allow people to list themselves as the contact person for an Entry
-    - AJAX to add non-editable text indicating attached Person info
 
 @ Entry listings
   - add text to Entry pages explaining some simple Textile commands

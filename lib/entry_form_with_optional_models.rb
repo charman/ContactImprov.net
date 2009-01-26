@@ -36,6 +36,8 @@ module EntryFormWithOptionalModels
     if valid_id_and_permissions?(params[:id])
       optional_models.each { |model_name| eval("@entry.#{model_name} ||= #{model_name.camelize}.new") }
 
+      set_has_person_entry_variables
+
       if request.put?
         initialize_entry_and_linked_models_from_params(params)
 
@@ -61,6 +63,7 @@ module EntryFormWithOptionalModels
 
   def new
     create_entry_and_linked_models
+    set_has_person_entry_variables
 
     render :partial => "shared/entries/new", :locals => { :entry_display_name => entry_display_name }
   end
@@ -124,6 +127,15 @@ protected
       eval("@entry.#{flag_name} = false")
     else  #  status is true
       eval("@entry.#{flag_name} = true")
+    end
+  end
+
+  def set_has_person_entry_variables
+    if entry_display_name == 'Event' && @current_user.own_person_entry_id
+      @user_has_person_entry = true
+      @user_person_entry = @current_user.own_person_entry
+    else
+      @user_has_person_entry = false
     end
   end
 

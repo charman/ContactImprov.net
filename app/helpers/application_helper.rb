@@ -22,6 +22,14 @@ module ApplicationHelper
     end
   end
 
+  def is_users_model_current_model?(model_name)
+    if @entry.send(model_name) && @entry.send(model_name).id == @user_person_entry.send(model_name).id
+      true
+    else
+      false
+    end
+  end
+
   def obfuscate_email_with_javascript(e)
     address, server = e.split('@')
 
