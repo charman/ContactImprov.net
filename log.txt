@@ -20,19 +20,11 @@ WHEN MOVING SITE TO NEW SERVER:
 
 THIS COMMIT:
 
-Modified the event_helper.rb:format_contact_info to print the URL
-address along with the rest of an entry's contact info (person,
-phone_Number, email).
-
-Modified the application.rb:obfuscate_email_with_javascript function
-to no longer print any whitespace after the email address.
+Admins now receive an email when an Entry has been modified.
 
 ======================================================================
 
 TODO:
-
-@ UserMailer model
-  - email entries when they are edited
 
 @ Modify CSS so that formatting for new entries doesn't affect the
 formatting of old entries
@@ -106,6 +98,9 @@ confusing
 @ Cache Entry list pages (/entries/list and /home/index)
 
 --
+
+@ email notification when Entry is modified
+  - show what fields have changed
 
 @ If someone goes to /#{entry_type}/edit instead of
 /#{entry_type}/edit/ID, display a page listing all of the events that

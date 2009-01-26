@@ -11,9 +11,7 @@ module EntryFormWithOptionalModels
       delete_completely_blank_models
       @entry.save!
       flush_location_cache(entry_display_name, @entry.location)
-
       UserMailer.deliver_new_entry_created(@entry, entry_display_name)
-      
       redirect_to :controller => 'user', :action => 'index'
     else
       render :partial => "shared/entries/new", :locals => { :entry_display_name => entry_display_name }
@@ -50,6 +48,7 @@ module EntryFormWithOptionalModels
           end
           @entry.save!
           flush_location_cache(entry_display_name, @entry.location)
+          UserMailer.deliver_entry_modified(@entry, entry_display_name)
           redirect_to :controller => 'user', :action => 'index'
           return  #  We need to return here so that redirect_to and render aren't both called
         end

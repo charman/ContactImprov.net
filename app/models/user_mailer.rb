@@ -19,6 +19,13 @@ class UserMailer < ActionMailer::Base
     @body[:url] = "#{@base_url}"
   end
 
+  def entry_modified(entry, entry_type)
+    setup_admin_email()
+    @subject   += "Modified #{entry_type}: #{entry.title}"
+    @entry      = entry
+    @entry_type = entry_type
+  end
+
   def new_entry_created(entry, entry_type)
     setup_admin_email()
     @subject   += "New #{entry_type}: #{entry.title}"

@@ -305,6 +305,8 @@ protected
     verify_default_location_fields(updated_event.location)
     assert_equal '666-666-6666',                     updated_event.phone_number.number
     assert_equal 'http://contactimprov.org/newurl/', updated_event.url.address
+    assert_equal(1, @emails.size)
+    assert_match /Modified Event/, @emails.first.subject
   end
 
   def verify_error_messages_for_missing_fields
