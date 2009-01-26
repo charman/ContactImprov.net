@@ -121,6 +121,26 @@ class EventsControllerTest < ActionController::TestCase
     assert_equal false, EventEntry.exists?(100)
   end
 
+  def test_should_not_delete_attached_models
+    login_as :quentin
+    person_id       = event_entries(:complete_event_entry).person.id
+    location_id     = event_entries(:complete_event_entry).location.id
+    email_id        = event_entries(:complete_event_entry).email.id
+    phone_number_id = event_entries(:complete_event_entry).phone_number.id
+    url_id          = event_entries(:complete_event_entry).url.id
+    assert_not_nil person_id
+    assert_not_nil location_id
+    get :delete, :id => 100
+    assert_response :success
+    assert_select "[class=errorExplanation]", false
+    assert_equal false, EventEntry.exists?(100)
+    assert_not_nil Person.find(person_id)
+    assert_not_nil Location.find(location_id)
+    assert_not_nil Email.find(email_id)
+    assert_not_nil PhoneNumber.find(phone_number_id)
+    assert_not_nil Url.find(url_id)
+  end
+
   def test_should_not_delete_unknown_event
     login_as :admin
     get :delete, :id => 6969

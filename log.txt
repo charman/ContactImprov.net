@@ -20,12 +20,18 @@ WHEN MOVING SITE TO NEW SERVER:
 
 THIS COMMIT:
 
-Removed another lingering reference to the CompanyEntry models.
+Created functional test to confirm that attached models (Person,
+Location, etc) are not destroyed when an EventEntry is deleted.
 
 
 ======================================================================
 
 TODO:
+
+@ Modify views/models to allow singular and plural versions of
+category names like "Ongoing Jams/Classes".
+
+@ Display full address for a listing, not just City/State/Country
 
 @ Ken's suggestions
   - allow people to list themselves as the contact person for an Entry
@@ -91,6 +97,11 @@ confusing
 @ Cache Entry list pages (/entries/list and /home/index)
 
 --
+
+@ When destroying an (*)Entry, the attached models are not deleted
+  - delete the attached models iff they are "dangling"
+
+@ The /[entry_type]/delete action should be accessed with PUT, not GET
 
 @ email notification when Entry is modified
   - show what fields have changed
