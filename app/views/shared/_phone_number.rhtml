@@ -2,10 +2,25 @@
 <fieldset>
 	<legend><%= defined?(legend) && !legend.nil? ? legend : 'Phone Number' %></legend>
 	<ol>
-		<li>
-			<label>Number:</label>
-			<%= p.text_field :number %>
-		</li>
+		<% if @user_has_person_entry && @user_person_entry.phone_number %>
+			<% optional_params =  (is_users_model_current_model?('phone_number') ? {:disabled => 'disabled'} : {} ) %>
+			<li>
+				<label>Number:</label>
+				<%= p.text_field :number, optional_params %>
+			</li>
+			<li>
+				<label>&nbsp;</label>
+				<%= check_box_tag "use_user_person_entry_for[phone_number]", '1', is_users_model_current_model?('phone_number'),
+					:onclick => "if ($('use_user_person_entry_for_phone_number').checked) { $('entry_phone_number_number').disabled = 'true'; $('entry_phone_number_number').value ='#{@user_person_entry.phone_number.number}'; } else { $('entry_phone_number_number').disabled = false; }"
+				 %>
+				<span style="padding-left: 0.2em;">Use my phone number <i>(<%= @user_person_entry.phone_number.number %>)</i></span>
+			</li>
+		<% else %>
+			<li>
+				<label>Number:</label>
+				<%= p.text_field :number %>
+			</li>
+		<% end %>
 	</ol>
 </fieldset>
 <% end %>

@@ -2,8 +2,25 @@
 <fieldset>
 	<legend><%= defined?(legend) && !legend.nil? ? legend : 'URL' %></legend>
 	<ol>
-		<label>Address:</label>
-		<%= u.text_field :address %>
+		<% if @user_has_person_entry && @user_person_entry.url %>
+			<% optional_params =  (is_users_model_current_model?('url') ? {:disabled => 'disabled'} : {} ) %>
+			<li>
+				<label>Address:</label>
+				<%= u.text_field :address, optional_params %>
+			</li>
+			<li>
+				<label>&nbsp;</label>
+				<%= check_box_tag "use_user_person_entry_for[url]", '1', is_users_model_current_model?('url'),
+					:onclick => "if ($('use_user_person_entry_for_url').checked) { $('entry_ci_url_address').disabled = 'true'; $('entry_ci_url_address').value ='#{@user_person_entry.url.address}'; } else { $('entry_ci_url_address').disabled = false; }"
+				 %>
+				<span style="padding-left: 0.2em;">Use my website <i>(<%= @user_person_entry.url.address %>)</i></span>
+			</li>
+		<% else %>
+			<li>
+				<label>Address:</label>
+				<%= u.text_field :address %>
+			</li>
+		<% end %>
 	</ol>
 </fieldset>
 <% end %>
