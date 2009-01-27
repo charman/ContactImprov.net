@@ -20,9 +20,11 @@ WHEN MOVING SITE TO NEW SERVER:
 
 THIS COMMIT:
 
-The entry_form_with_optional_models.rb:initialize_entry_and_linked_models_from_params
-function now properly handles the "Use my name (firstname lastname)?"
-checkbox for the Person sub-form.
+Added JavaScript to Person sub-form that enables and disables the text
+boxes when the 'Use my name (firstname lastname)' checkbox is
+toggled.  When the box is changed from unchecked to checked, the text
+fields for firstname and lastname are replaced with the values from
+that user's PersonEntry.
 
 
 ======================================================================
@@ -31,11 +33,9 @@ TODO:
 
 @ Ken's suggestions
   - allow people to list themselves as the contact person for an Entry
-    - JavaScript to gray out fields when user clicks checkbox
-      - and copy over values from the PersonEntry for this form?
     - process request data in controller
       - functional tests
-    - replicate with
+    - repeat form modifications + JavaScript for:
       - email
       - location
       - phone_number
@@ -89,9 +89,9 @@ with the listed email address, change error message to be less
 confusing
 
 @ Update HTML
+  - fix titles
   - run W3C link checker on the site
   - standardize DOCTYPE (to what? HTML/XHMTL/transitional/strict?)
-  - fix titles
 
 @ Fix the way pages look in IE7 (and IE6?) 
   - should be space between text in 'announcements' boxes and left

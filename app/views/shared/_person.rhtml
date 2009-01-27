@@ -14,7 +14,9 @@
 			</li>
 			<li>
 				<label>&nbsp;</label>
-				<%= check_box_tag "use_user_person_entry_for[person]", '1', is_users_model_current_model?('person') %>
+				<%= check_box_tag "use_user_person_entry_for[person]", '1', is_users_model_current_model?('person'),
+					:onclick => "if ($('use_user_person_entry_for_person').checked) { $('entry_person_first_name').disabled = 'true'; $('entry_person_first_name').value ='#{@user_person_entry.person.first_name}'; $('entry_person_last_name').disabled = 'true'; $('entry_person_last_name').value ='#{@user_person_entry.person.last_name}'; } else { $('entry_person_first_name').disabled = false; $('entry_person_last_name').disabled = false; }"
+				 %>
 				<span style="padding-left: 0.2em;">Use my name <i>(<%= @user_person_entry.title %>)</i></span>
 			</li>
 		<% else %>
