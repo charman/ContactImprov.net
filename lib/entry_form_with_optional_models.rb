@@ -43,11 +43,13 @@ module EntryFormWithOptionalModels
 
         if entry_and_linked_models_valid?
           delete_completely_blank_models
+#debugger
           mandatory_models.each { |model_name| @entry.send(model_name).save! }
           optional_models.each do |model_name| 
             model = @entry.send(model_name)
             model.save! if not model.completely_blank?
           end
+#debugger
           @entry.save!
           flush_location_cache(entry_display_name, @entry.location)
           UserMailer.deliver_entry_modified(@entry, entry_display_name)
@@ -114,13 +116,13 @@ protected
         #  TODO: If the user had created a separate model and then specifies that they want to
         #         use the model associated with their PersonEntry, we need to clean up the original
         #         model.  As is, we're currently orphaning database records.
-        @entry.send(model_name).id = @user_person_entry.send(model_name).id
+        eval("@entry.#{model_name} = @user_person_entry.#{model_name}")
       else
         #  lemma: The checkbox for "Use my [model_name] ([model values])" is unchecked, per the if clause above
         #  If the checkbox is unchecked and this @entry's model_name is the same instance as the model
         #   associated with the user's PersonEntry, then we need to create a new model for @entry so that
         #   changes to @entry's model don't modify the original model associated with the user's PersonEntry.
-        if @entry.send(model_name) && @user_has_person_entry && (@entry.send(model_name).id == @user_person_entry.send(model_name).id)
+        if @entry.send(model_name) && @user_has_person_entry && @user_person_entry.send(model_name) && (@entry.send(model_name).id == @user_person_entry.send(model_name).id)
           eval("@entry.#{model_name} = #{model_name.camelize}.new")
         end
 

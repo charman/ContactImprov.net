@@ -13,18 +13,25 @@
 			if prefix =~ /(.*)\[\]/ && !location.new_record?
 				prefix = "#{$1}[#{location.id}]"
 			end
+
+			#  Disable the form fields if this Location is the same instance as the user's PersonEntry Location.
+			if @user_has_person_entry && @user_person_entry.location && is_users_model_current_model?('location')
+				optional_params = {:disabled => 'disabled'}
+			else
+				optional_params = {}
+			end
 		%>
 		<li>
 			<label>Address - Line 1:</label>
-			<%= location_form.text_field :street_address_line_1, :size => 40  %>
+			<%= location_form.text_field :street_address_line_1, { :size => 40 }.merge(optional_params)  %>
 		</li>
 		<li>
 			<label>Address - Line 2:</label>
-			<%= location_form.text_field :street_address_line_2, :size => 40  %>
+			<%= location_form.text_field :street_address_line_2, { :size => 40 }.merge(optional_params)  %>
 		</li>
 		<li>
 			<label>City:*</label>
-			<%= location_form.text_field :city_name %>
+			<%= location_form.text_field :city_name, optional_params %>
 		</li>
 		<li>
 			<label>State/Region:</label>
@@ -34,42 +41,70 @@
 			    #   in one field (Location.us_state_id, which links to UsState), and non-US
 			    #   regions in another field (Location.region_name) - but we are using the 
 			    #   'State/Region' form field for both object fields.
-				#
+					#
 			    #  TODO: Should we create a separate 'regions' table containing both US and 
 			    #         Canadian (and ...) regions?
 				if location && location.is_in_usa?
-	        		@us_state = location.us_state
-	      		else
-	        		@us_state = UsState.new
-					if location
-	        			@us_state.name = location.region_name
-					end
-	      		end
+	        @us_state = location.us_state
+	      else
+	      	@us_state = UsState.new
+      		@us_state.name = location.region_name if location
+	    	end
 			%>
 			<% #  We use a custom validation for the us_state field here and country_name field below,
 			   #   and so we need to do custom error highlighting here (and below) in the form.
 			   if location.errors.on(:us_state) %><div class="fieldWithErrors"><% end %>
-			<%= text_field_with_prefix_and_auto_complete prefix, :us_state, :name, {:name => "#{prefix}[us_state][name]"} %>
+			<%= text_field_with_prefix_and_auto_complete prefix, :us_state, :name, 
+						{:name => "#{prefix}[us_state][name]"}.merge(optional_params) %>
 			<% if location.errors.on(:us_state) %></div><% end %>
 		</li>
 		<li>
 			<label>Postal Code:</label>
-			<%= location_form.text_field :postal_code, :size => 10 %>
+			<%= location_form.text_field :postal_code, { :size => 10 }.merge(optional_params) %>
 		</li>
 		<li>
 			<label>Country:*</label>
-			<%  if location
-					@country_name = location.country_name 
-				end
-			%>
+			<% @country_name = location.country_name if location %>
 			<% if location.errors.on(:country_name) %><div class="fieldWithErrors"><% end %>
-			<% if location.user_submitted_unknown_country_name %>
-				<%= country_select("country_name", "english_name", @priority_countries, {}, {:name => "#{prefix}[country_name][english_name]"}) %>
-			<% else %>
-				<%= text_field_with_prefix_and_auto_complete prefix, :country_name, :english_name, {:name => "#{prefix}[country_name][english_name]"} %>
-			<% end %>
+				<% if location.user_submitted_unknown_country_name %>
+					<%= country_select("country_name", "english_name", @priority_countries, {}, 
+								{:name => "#{prefix}[country_name][english_name]"}.merge(optional_params)) %>
+				<% else %>
+					<%= text_field_with_prefix_and_auto_complete prefix, :country_name, :english_name, 
+								{:name => "#{prefix}[country_name][english_name]"}.merge(optional_params) %>
+				<% end %>
 			<% if location.errors.on(:country_name) %></div><% end %>
 		</li>
+		<% if @user_has_person_entry && @user_person_entry.person %>
+			<li>
+				<label>&nbsp;</label>
+				<%= check_box_tag "use_user_person_entry_for[location]", '1', is_users_model_current_model?('location'),
+					:onclick => 
+				 "if ($('use_user_person_entry_for_location').checked) { 
+						$('entry_location_street_address_line_1').disabled     = 'true'; 
+						$('entry_location_street_address_line_1').value        = '#{@user_person_entry.location.street_address_line_1}';
+						$('entry_location_street_address_line_2').disabled     = 'true'; 
+						$('entry_location_street_address_line_2').value        = '#{@user_person_entry.location.street_address_line_2}';  
+						$('entry_location_city_name').disabled                 = 'true'; 
+						$('entry_location_city_name').value                    = '#{@user_person_entry.location.city_name}';  
+						$('entry_location_us_state_name').disabled             = 'true'; 
+						$('entry_location_us_state_name').value                = '#{(@user_person_entry.location.is_in_usa? ? @user_person_entry.location.us_state.name : @user_person_entry.location.region_name)}';  
+						$('entry_location_postal_code').disabled               = 'true'; 
+						$('entry_location_postal_code').value                  = '#{@user_person_entry.location.postal_code}';  
+						$('entry_location_country_name_english_name').disabled = 'true'; 
+						$('entry_location_country_name_english_name').value    = '#{@user_person_entry.location.country_name.english_name}';  
+					} else { 
+						$('entry_location_street_address_line_1').disabled     = false; 
+						$('entry_location_street_address_line_2').disabled     = false; 
+						$('entry_location_city_name').disabled                 = false; 
+						$('entry_location_us_state_name').disabled             = false; 
+						$('entry_location_postal_code').disabled               = false; 
+						$('entry_location_country_name_english_name').disabled = false; 
+					}"
+				 %>
+				<span style="padding-left: 0.2em;">Use my location <i>(<%= @user_person_entry.location.full_address_one_line %>)</i></span>
+			</li>
+		<% end %>
 	</ol>
 </fieldset>
 <% end %>

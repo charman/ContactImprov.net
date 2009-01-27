@@ -99,6 +99,20 @@ class Location < ActiveRecord::Base
     end
   end
 
+  def full_address_one_line
+    fa = Array.new
+    fa << self.street_address_line_1 if !self.street_address_line_1.blank?
+    fa << self.street_address_line_2 if !self.street_address_line_2.blank?
+    if self.is_in_usa?
+      fa << "#{self.city_name}, #{self.us_state.abbreviation} #{self.postal_code} #{self.country_name.english_name}"
+    else
+      fa << self.city_name   if !self.city_name.blank?
+      fa << self.region_name if !self.region_name.blank?
+      fa << self.country_name.english_name
+    end
+    fa.join(', ')
+  end
+
   def geocode
     geoloc = GeoKit::GeoLoc.new
     geoloc.city              = self.city_name

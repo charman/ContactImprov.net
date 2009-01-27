@@ -20,7 +20,16 @@ WHEN MOVING SITE TO NEW SERVER:
 
 THIS COMMIT:
 
-Added navigation_bar partial template to the repository.
+Modified location sub-form to display "Use my location" checkbox that
+controls whether or not an Entry's location is the same instance as
+the Location for the user's PersonEntry (if they have their own
+PersonEntry).
+
+Fixed a bug where the "Use my [model_name]" checkboxes weren't
+actually working.
+
+Created the Location.full_address_one_line function.
+
 
 ======================================================================
 
@@ -30,8 +39,6 @@ TODO:
   - allow people to list themselves as the contact person for an Entry
     - process request data in controller
       - functional tests
-    - repeat form modifications + JavaScript for:
-      - location
     - examine repercussions of delete_completely_blank_models
        (hint: shit hits the fan)
 
@@ -76,6 +83,9 @@ category names like "Ongoing Jams/Classes".
     ...
 
 -- 
+
+@ Move person/email/etc sub-forms from app/views/shared to
+app/views/forms
 
 @ On /user/request_account page, if someone already has an account
 with the listed email address, change error message to be less
