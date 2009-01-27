@@ -20,12 +20,15 @@ WHEN MOVING SITE TO NEW SERVER:
 
 THIS COMMIT:
 
-Added JavaScript to Email, PhoneNumber and Url sub-forms that enables
-and disables the text boxes when the 'Use my [modelname] ([PersonEntry
-values])' checkbox is toggled.  When the box is changed from unchecked
-to checked, the text fields for the model's values are replaced with
-the values from that user's PersonEntry.
+If the user created an Entry and used the checkboxes to indicate that
+the Person/Email/etc info should be the same as the values from the
+user's own PersonEntry, and then went back, edited the form by
+unchecking the checkboxes, and saved the form, the Person/Email/etc
+data from the user's PersonEntry would not be decoupled from the Entry
+currently being modified.  If you changed the Email for the current
+entry, the Email for the user's PersonEntry would also be changed.
 
+Fixed the problem.
 
 ======================================================================
 
@@ -33,9 +36,6 @@ TODO:
 
 @ Ken's suggestions
   - allow people to list themselves as the contact person for an Entry
-    - fix problem where checking/saving/editing/unchecking/saving
-       causes the original model from the PersonEntry to be
-       overwritten, instead of creating a new/separate model
     - process request data in controller
       - functional tests
     - repeat form modifications + JavaScript for:

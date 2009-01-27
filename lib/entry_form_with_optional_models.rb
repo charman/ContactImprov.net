@@ -109,12 +109,21 @@ protected
   def initialize_entry_and_linked_models_from_params(p)
     @entry.attributes = p[entry_class.to_s.tableize.singularize]
     all_models.each do |model_name| 
+      #  Check if the checkbox for "Use my [model_name] ([model values])" is checked
       if p.has_key?('use_user_person_entry_for') && p[:use_user_person_entry_for].has_key?(model_name)
         #  TODO: If the user had created a separate model and then specifies that they want to
         #         use the model associated with their PersonEntry, we need to clean up the original
-        #         model.  As is, we're currently creating database orphans.
+        #         model.  As is, we're currently orphaning database records.
         @entry.send(model_name).id = @user_person_entry.send(model_name).id
       else
+        #  lemma: The checkbox for "Use my [model_name] ([model values])" is unchecked, per the if clause above
+        #  If the checkbox is unchecked and this @entry's model_name is the same instance as the model
+        #   associated with the user's PersonEntry, then we need to create a new model for @entry so that
+        #   changes to @entry's model don't modify the original model associated with the user's PersonEntry.
+        if @entry.send(model_name) && @user_has_person_entry && (@entry.send(model_name).id == @user_person_entry.send(model_name).id)
+          eval("@entry.#{model_name} = #{model_name.camelize}.new")
+        end
+
         if model_name == 'url'
           #  We can't use 'url' as a parameter name because of a namespace conflict with a Rails variable
           #  TODO: Check if this has really been fixed in Rails 2.3/3.0, per deprecation warning.
