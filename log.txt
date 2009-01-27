@@ -20,15 +20,9 @@ WHEN MOVING SITE TO NEW SERVER:
 
 THIS COMMIT:
 
-When a user with their own PersonEntry is editing a different type of
-Entry, we want them to be able to check a checkbox for each field
-(e.g. Person, Location, Email) where they want to use their own
-contact information, so that they don't have to re-enter it.
-
-Added a check box to the Person sub-form.  When editing an existing
-Entry with a Person sub-form, the check box accurately reflects
-whether the Person model being entried is the same instance (not just
-the same value) as the user's own Person entry.
+The entry_form_with_optional_models.rb:initialize_entry_and_linked_models_from_params
+function now properly handles the "Use my name (firstname lastname)?"
+checkbox for the Person sub-form.
 
 
 ======================================================================
@@ -38,7 +32,9 @@ TODO:
 @ Ken's suggestions
   - allow people to list themselves as the contact person for an Entry
     - JavaScript to gray out fields when user clicks checkbox
+      - and copy over values from the PersonEntry for this form?
     - process request data in controller
+      - functional tests
     - replicate with
       - email
       - location

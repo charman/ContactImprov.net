@@ -2,7 +2,7 @@ module EntryFormWithOptionalModels
 
   def create
     create_entry_and_linked_models
-    
+    set_has_person_entry_variables
     initialize_entry_and_linked_models_from_params(params)
     
     @entry.owner_user = current_user
@@ -109,12 +109,19 @@ protected
   def initialize_entry_and_linked_models_from_params(p)
     @entry.attributes = p[entry_class.to_s.tableize.singularize]
     all_models.each do |model_name| 
-      if model_name == 'url'
-        #  We can't use 'url' as a parameter name because of a namespace conflict with a Rails variable
-        #  TODO: Check if this has really been fixed in Rails 2.3/3.0, per deprecation warning.
-        @entry.send(model_name).attributes = p[:entry][:ci_url]
+      if p.has_key?('use_user_person_entry_for') && p[:use_user_person_entry_for].has_key?(model_name)
+        #  TODO: If the user had created a separate model and then specifies that they want to
+        #         use the model associated with their PersonEntry, we need to clean up the original
+        #         model.  As is, we're currently creating database orphans.
+        @entry.send(model_name).id = @user_person_entry.send(model_name).id
       else
-        @entry.send(model_name).attributes = p[:entry][model_name]
+        if model_name == 'url'
+          #  We can't use 'url' as a parameter name because of a namespace conflict with a Rails variable
+          #  TODO: Check if this has really been fixed in Rails 2.3/3.0, per deprecation warning.
+          @entry.send(model_name).attributes = p[:entry][:ci_url]
+        else
+          @entry.send(model_name).attributes = p[:entry][model_name]
+        end
       end
     end
     if defined?(@entry.boolean_flag_names) && !@entry.boolean_flag_names.empty?
@@ -130,6 +137,7 @@ protected
     end
   end
 
+  #  TODO: We're modifying global variables in this and other protected functions.  Isn't there a better way?
   def set_has_person_entry_variables
     if entry_display_name == 'Event' && @current_user.own_person_entry_id
       @user_has_person_entry = true
