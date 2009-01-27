@@ -20,15 +20,7 @@ WHEN MOVING SITE TO NEW SERVER:
 
 THIS COMMIT:
 
-If the user created an Entry and used the checkboxes to indicate that
-the Person/Email/etc info should be the same as the values from the
-user's own PersonEntry, and then went back, edited the form by
-unchecking the checkboxes, and saved the form, the Person/Email/etc
-data from the user's PersonEntry would not be decoupled from the Entry
-currently being modified.  If you changed the Email for the current
-entry, the Email for the user's PersonEntry would also be changed.
-
-Fixed the problem.
+Added navigation_bar partial template to the repository.
 
 ======================================================================
 
@@ -40,7 +32,8 @@ TODO:
       - functional tests
     - repeat form modifications + JavaScript for:
       - location
-    - examine repercussions of delete_completely_blank_model
+    - examine repercussions of delete_completely_blank_models
+       (hint: shit hits the fan)
 
 @ Modify views/models to allow singular and plural versions of
 category names like "Ongoing Jams/Classes".
