@@ -24,7 +24,7 @@
 				<%= entry.title %>
 			<% end %>
 		</div>
-		<div class='entry_location'><%= format_entry_location(entry) %></div>
+		<div class='entry_location'><%= entry.location.full_address_one_line %></div>
 		<div style="margin-left: 1em;">
 			<% if !entry.description.blank? %>
 				<div class='entry_description'>

@@ -20,15 +20,8 @@ WHEN MOVING SITE TO NEW SERVER:
 
 THIS COMMIT:
 
-Modified location sub-form to display "Use my location" checkbox that
-controls whether or not an Entry's location is the same instance as
-the Location for the user's PersonEntry (if they have their own
-PersonEntry).
-
-Fixed a bug where the "Use my [model_name]" checkboxes weren't
-actually working.
-
-Created the Location.full_address_one_line function.
+Changed the partial that displays EventEntry templates to display the
+full address for the Event, instead of just the City/[state/]Country.
 
 
 ======================================================================
@@ -39,13 +32,14 @@ TODO:
   - allow people to list themselves as the contact person for an Entry
     - process request data in controller
       - functional tests
+      - integration tests
     - examine repercussions of delete_completely_blank_models
        (hint: shit hits the fan)
 
 @ Modify views/models to allow singular and plural versions of
 category names like "Ongoing Jams/Classes".
 
-@ Display full address for a listing, not just City/State/Country
+@ Display full address listings, not just City/State/Country
 
 @ Entry listings
   - add text to Entry pages explaining some simple Textile commands

@@ -104,10 +104,13 @@ class Location < ActiveRecord::Base
     fa << self.street_address_line_1 if !self.street_address_line_1.blank?
     fa << self.street_address_line_2 if !self.street_address_line_2.blank?
     if self.is_in_usa?
-      fa << "#{self.city_name}, #{self.us_state.abbreviation} #{self.postal_code} #{self.country_name.english_name}"
+      fa << "#{self.city_name}, #{self.us_state.abbreviation} #{self.postal_code} USA"
     else
-      fa << self.city_name   if !self.city_name.blank?
-      fa << self.region_name if !self.region_name.blank?
+      if !self.region_name.blank?
+        fa << "#{self.city_name}, #{self.region_name} #{self.postal_code}"
+      else
+        fa << "#{self.city_name} #{self.postal_code}"
+      end
       fa << self.country_name.english_name
     end
     fa.join(', ')
