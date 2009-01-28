@@ -107,9 +107,9 @@ class Location < ActiveRecord::Base
       fa << "#{self.city_name}, #{self.us_state.abbreviation} #{self.postal_code} USA"
     else
       if !self.region_name.blank?
-        fa << "#{self.city_name}, #{self.region_name} #{self.postal_code}"
+        fa << "#{self.city_name}, #{self.region_name} #{self.postal_code}".strip
       else
-        fa << "#{self.city_name} #{self.postal_code}"
+        fa << "#{self.city_name} #{self.postal_code}".strip
       end
       fa << self.country_name.english_name
     end

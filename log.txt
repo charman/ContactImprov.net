@@ -20,8 +20,11 @@ WHEN MOVING SITE TO NEW SERVER:
 
 THIS COMMIT:
 
-Changed the partial that displays EventEntry templates to display the
-full address for the Event, instead of just the City/[state/]Country.
+Added some text to the EventEntry form that explains some simple
+Textile commands.
+
+Modified the Location.full_address_one_line function to eliminate a
+space that sometimes snuck in between a field and a comma.
 
 
 ======================================================================
@@ -30,11 +33,11 @@ TODO:
 
 @ Ken's suggestions
   - allow people to list themselves as the contact person for an Entry
+    - examine repercussions of delete_completely_blank_models
+       (hint: shit hits the fan)
     - process request data in controller
       - functional tests
       - integration tests
-    - examine repercussions of delete_completely_blank_models
-       (hint: shit hits the fan)
 
 @ Modify views/models to allow singular and plural versions of
 category names like "Ongoing Jams/Classes".
@@ -43,6 +46,8 @@ category names like "Ongoing Jams/Classes".
 
 @ Entry listings
   - add text to Entry pages explaining some simple Textile commands
+    - add link to unhide a <div> with more formatting info (copy from
+       BaseCamp Writeboards)
   - OrganizationEntry model
     - make Location field optional
       - have section of /organizations/list for entries without a

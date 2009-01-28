@@ -17,7 +17,7 @@
 <p>
 	<fieldset>
 		<legend>Event Information*</legend>
-		<ol>
+		<ol style="margin-bottom: 0em;">
 			<li style="clear: both; padding-bottom: 0.4em;">
 				<label>Title:*</label>
 				<%= the_entry.text_field :title, :size => 60 %>
@@ -26,20 +26,30 @@
 				<label>Description:*</label>
 				<%= the_entry.text_area :description, :rows => 12, :cols => 60 %>
 			</li>
-			<li style="clear: both; padding-bottom: 0.4em;">
+			<li style="clear: both;">
 				<label>Cost:</label>
 				<%= the_entry.text_area :cost, :rows => 6, :cols => 60 %>
 			</li>
 		</ol>
+		<div style="padding-left: 17em; padding-bottom: 0.8em;">
+			Simple formatting codes for <i>Description</i> and <i>Cost</i> fields:
+			<div style="padding-left: 2em; font-size: 0.9em;">
+				<code>_emphasized_</code> &#8594; <em>emphasized</em>
+				<br />
+				<code>*strong*</code> &#8594; <strong>strong</strong>
+				<br />
+				<code>"Contact":http://contactimprov.net</code> &#8594; <a href="http://contactimprov.net">Contact</a>
+			</div>
+		</div>
 		<table>
 			<tr style="vertical-align: top;">
-				<td style="width: 10em; text-align: right;">Start Date:*</td>
+				<td style="width: 11m; text-align: right;">Start Date:*</td>
 				<td style="padding: 0em 1em 1em 1em;">
 					<%= the_entry.calendar_date_select :start_date, :embedded => true, :year_range => 0.years.ago..2.years.from_now %>
 				</td>
 			</tr>
 			<tr style="vertical-align: top;">
-				<td style="width: 10em; text-align: right;">End Date:*</td>
+				<td style="width: 11em; text-align: right;">End Date:*</td>
 				<td style="padding: 0em 1em 1em 1em;">
 					<%= the_entry.calendar_date_select :end_date, :embedded => true, :year_range => 0.years.ago..2.years.from_now %>
 				</td>

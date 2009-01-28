@@ -80,7 +80,7 @@
 				<label>&nbsp;</label>
 				<%= check_box_tag "use_user_person_entry_for[location]", '1', is_users_model_current_model?('location'),
 					:onclick => 
-				 "if ($('use_user_person_entry_for_location').checked) { 
+					"if ($('use_user_person_entry_for_location').checked) { 
 						$('entry_location_street_address_line_1').disabled     = 'true'; 
 						$('entry_location_street_address_line_1').value        = '#{@user_person_entry.location.street_address_line_1}';
 						$('entry_location_street_address_line_2').disabled     = 'true'; 
