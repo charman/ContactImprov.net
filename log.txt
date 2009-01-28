@@ -20,11 +20,7 @@ WHEN MOVING SITE TO NEW SERVER:
 
 THIS COMMIT:
 
-Added some text to the EventEntry form that explains some simple
-Textile commands.
-
-Modified the Location.full_address_one_line function to eliminate a
-space that sometimes snuck in between a field and a comma.
+Updated Contact definition with text from Nancy.
 
 
 ======================================================================
@@ -43,11 +39,18 @@ TODO:
 category names like "Ongoing Jams/Classes".
 
 @ Display full address listings, not just City/State/Country
+  - jams
+  - organizations
+  - (?) people
+
+@ Update category information
+  - use new navigation bar for .html/.rhtml files include files +
+     homepage
+  - change font size for detailed category descriptions on the
+     homepage 
+  - add text to category pages with link to old copies of pages
 
 @ Entry listings
-  - add text to Entry pages explaining some simple Textile commands
-    - add link to unhide a <div> with more formatting info (copy from
-       BaseCamp Writeboards)
   - OrganizationEntry model
     - make Location field optional
       - have section of /organizations/list for entries without a
@@ -60,15 +63,16 @@ category names like "Ongoing Jams/Classes".
       - web group/presence
       ...
     - functional testing
+  - modify /admin/user/show to list all types of Entries for a user
   - JamEntry model
     - functional testing
   - PersonEntry model
     - additional fields
       ...
     - functional testing
-  - WebsiteEntry model
-    - how to handle websites for an entire country? (e.g. no city name)
-  - modify /admin/user/show to list all types of Entries for a user
+  - add text to Entry pages explaining some simple Textile commands
+    - add link to unhide a <div> with more formatting info (copy from
+       BaseCamp Writeboards)
 
 @ Privacy policy explaining what we will do with your email
   - no commercial emails
