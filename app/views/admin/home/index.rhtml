@@ -27,6 +27,11 @@
 </p>
 
 <p style="font-size: x-large;">
+	<%= link_to 'Geocoding', :action => 'index', :controller => 'admin/geocoding' %> 
+	(<%= @total_ungeocoded_locations %> ungeocodable locations)
+</p>
+
+<p style="font-size: x-large;">
 	<%= link_to 'Motivation', :action => 'index', :controller => 'admin/motivation' %> 
 	- <span style="font-size: medium;">reasons that Users like Contact Improv</span>
 </p>

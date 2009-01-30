@@ -1,0 +1,14 @@
+<%= render(:partial => "shared/admin/header", :locals => { :subsection => 'geocoding', :title => 'Overview' } )%>
+
+<h2>Locations that could not be Geocoded (<%= @total_ungeocoded_locations %> total)</h2>
+
+<% if @total_ungeocoded_locations > 0 %>
+	<% @ungeocoded_locations.each do |location| %>
+	<p>
+		<%= link_to location.id, :action => 'index', :controller => 'admin/geocoding', :id => location.id %> 
+		- <%= location.city_state_country %>
+	</p>
+	<% end %>
+<% end %>
+
+<%= render(:partial => "shared/admin/footer" )%>

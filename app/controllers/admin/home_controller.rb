@@ -10,6 +10,7 @@ class Admin::HomeController < ApplicationController
     @total_people        = PersonEntry.count
     @total_organizations = OrganizationEntry.count
     @total_users         = User.count
+    @total_ungeocoded_locations = Location.count(:all, :conditions => 'geocode_precision is NULL')
   end
   
 end

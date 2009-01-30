@@ -20,12 +20,21 @@ WHEN MOVING SITE TO NEW SERVER:
 
 THIS COMMIT:
 
-Updated Contact definition with text from Nancy.
-
+Created the /admin/geocoding page, which (currently) lists Locations
+that could not be geocoded.
 
 ======================================================================
 
 TODO:
+
+@ No /denied route
+  - modify functional tests to catch this error
+
+@ Geocoding
+  - upgrade GeoKit plugin
+  - admin page for locations that could not be geocoded
+    - add links to actual actions
+  - admin action to attempt to re-geocode
 
 @ Ken's suggestions
   - allow people to list themselves as the contact person for an Entry
