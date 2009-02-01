@@ -1,17 +1,4 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html>
-
-	<head>
-		<meta http-equiv="content-type" content="text/html;charset=utf-8">
-		<meta http-equiv="expires" content="+3">
-		<title>Contact Improvisation: People and Places</title>
-		<link href="/contact.css" type="text/css" rel="stylesheet" />
-	</head>
-
-	<body>
-
-		<!--#include virtual="/includes/header.html"-->
+<%= render(:partial => "shared/header", :locals => { :title => 'Old list of People' } )%>
 
 		<h2>
 			<a name="people" id="people">People</a>
@@ -1184,7 +1171,4 @@ heather at satorimedia dot com
 <dt> Zen Monkey Project (McGuffey Art Center)</dt><dd> 201 2nd Street NW Charlottesville, VA 22902<br>
 				 434 973-2387 bradstoller at gmail dot com</dd></dl>
 
-			<!--#include virtual="/includes/footer.html"-->
-				
-	</body>
-</html>
+<%= render(:partial => "shared/footer" )%>
