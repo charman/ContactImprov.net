@@ -20,29 +20,23 @@ WHEN MOVING SITE TO NEW SERVER:
 
 THIS COMMIT:
 
-In lib/entry_form_with_optional_models.rb, renamed
-delete_completely_blank_models to disconnect_completely_blank_models,
-and changed the function's functionality to reflect the name change.
+Modified the header partial to only display the "Manage your account"
+link if someone is actually logged into their account.
+
+Modified the RHTML and HTML header files to use the shared
+navigation_bar partial template.
+
+Fixed a glaring typo in public/about.html.
 
 
 ======================================================================
 
 TODO:
 
-@ No /denied route
-  - modify functional tests to catch this error
-
-@ Geocoding
-  - upgrade GeoKit plugin
-  - admin page for locations that could not be geocoded
-    - add links to actual actions
-  - admin action to attempt to re-geocode
-
-@ Ken's suggestions
-  - allow people to list themselves as the contact person for an Entry
-    - process request data in controller
-      - functional tests
-      - integration tests
+@ Update category information
+  - change font size for detailed category descriptions on the
+     homepage 
+  - add text to category pages with link to old copies of pages
 
 @ Modify views/models to allow singular and plural versions of
 category names like "Ongoing Jams/Classes".
@@ -51,13 +45,6 @@ category names like "Ongoing Jams/Classes".
   - jams
   - organizations
   - (?) people
-
-@ Update category information
-  - use new navigation bar for .html/.rhtml files include files +
-     homepage
-  - change font size for detailed category descriptions on the
-     homepage 
-  - add text to category pages with link to old copies of pages
 
 @ Entry listings
   - OrganizationEntry model
@@ -82,6 +69,21 @@ category names like "Ongoing Jams/Classes".
   - add text to Entry pages explaining some simple Textile commands
     - add link to unhide a <div> with more formatting info (copy from
        BaseCamp Writeboards)
+
+@ No /denied route
+  - modify functional tests to catch this error
+
+@ Geocoding
+  - upgrade GeoKit plugin
+  - admin page for locations that could not be geocoded
+    - add links to actual actions
+  - admin action to attempt to re-geocode
+
+@ Ken's suggestions
+  - allow people to list themselves as the contact person for an Entry
+    - process request data in controller
+      - functional tests
+      - integration tests
 
 @ Privacy policy explaining what we will do with your email
   - no commercial emails
