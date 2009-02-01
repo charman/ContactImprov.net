@@ -8,7 +8,7 @@ module EntryFormWithOptionalModels
     @entry.owner_user = current_user
 
     if entry_and_linked_models_valid?
-      delete_completely_blank_models
+      disconnect_completely_blank_models
       @entry.save!
       flush_location_cache(entry_display_name, @entry.location)
       UserMailer.deliver_new_entry_created(@entry, entry_display_name)
@@ -42,14 +42,14 @@ module EntryFormWithOptionalModels
         initialize_entry_and_linked_models_from_params(params)
 
         if entry_and_linked_models_valid?
-          delete_completely_blank_models
-#debugger
+          disconnect_completely_blank_models
+
           mandatory_models.each { |model_name| @entry.send(model_name).save! }
           optional_models.each do |model_name| 
             model = @entry.send(model_name)
-            model.save! if not model.completely_blank?
+            model.save! if (model && !model.completely_blank?)
           end
-#debugger
+
           @entry.save!
           flush_location_cache(entry_display_name, @entry.location)
           UserMailer.deliver_entry_modified(@entry, entry_display_name)
@@ -82,14 +82,16 @@ protected
     all_models.each { |model_name| eval("@entry.#{model_name} = #{model_name.camelize}.new") }
   end
 
-  #  TODO: Do we *really* want to delete the linked models?  Would we ever link to
-  #         the same Email/Location from multiple models?
-  def delete_completely_blank_models
+  #  TODO: We are currently disconnecting the completely blank linked models instead of
+  #         destroying them.  We should destroy the linked models iff they are not linked
+  #         to any other models.  As is, we're creating orphaned database records.
+  def disconnect_completely_blank_models
     optional_models.each do |model_name|
-      model = @entry.send(model_name)
-      if model.completely_blank?
-        model.destroy
-        model = nil
+      if @entry.respond_to?(model_name) && @entry.send(model_name) && @entry.send(model_name).completely_blank?
+        eval("@entry.#{model_name} = nil")
+#        model = @entry.send(model_name)
+#        model.destroy
+#        model = nil
       end
     end
   end

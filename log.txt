@@ -1,4 +1,4 @@
-======================================================================
+I ======================================================================
 
 WAITING FOR:
 
@@ -20,8 +20,10 @@ WHEN MOVING SITE TO NEW SERVER:
 
 THIS COMMIT:
 
-Created the /admin/geocoding page, which (currently) lists Locations
-that could not be geocoded.
+In lib/entry_form_with_optional_models.rb, renamed
+delete_completely_blank_models to disconnect_completely_blank_models,
+and changed the function's functionality to reflect the name change.
+
 
 ======================================================================
 
@@ -38,8 +40,6 @@ TODO:
 
 @ Ken's suggestions
   - allow people to list themselves as the contact person for an Entry
-    - examine repercussions of delete_completely_blank_models
-       (hint: shit hits the fan)
     - process request data in controller
       - functional tests
       - integration tests

@@ -254,6 +254,39 @@ class EventsControllerTest < ActionController::TestCase
     assert_match /City name can.t be blank/, @response.body
   end
 
+  def test_should_edit_and_disconnect_empty_non_mandatory_fields
+    login_as :quentin
+    put :edit, :id => event_entries(:complete_event_entry).event_entry_id,
+      :event_entry => {
+        :title            => 'newtitle',
+        :description      => 'newdescription',
+        :cost             => 'newcost',
+        :start_date       => '2006-06-06',
+        :end_date         => '2006-06-06'
+      },
+      :entry => {
+        :email => { :address => '' },
+        :location => @@default_location_fields,
+        :phone_number => { :number => '' },
+        :ci_url => { :address => '' }
+      }
+    assert_redirected_to :controller => 'user', :action => 'index'
+    
+    updated_event = EventEntry.find(event_entries(:complete_event_entry).event_entry_id)
+    assert_equal users(:quentin),                    updated_event.owner_user
+    assert_equal 'newtitle',                         updated_event.title
+    assert_equal 'newdescription',                   updated_event.description
+    assert_equal 'newcost',                          updated_event.cost
+    assert_equal '2006-06-06',                       updated_event.start_date.strftime('%Y-%m-%d')
+    assert_equal '2006-06-06',                       updated_event.end_date.strftime('%Y-%m-%d')
+    assert_nil updated_event.email
+    verify_default_location_fields(updated_event.location)
+    assert_nil updated_event.phone_number
+    assert_nil updated_event.url
+    assert_equal(1, @emails.size)
+    assert_match /Modified Event/, @emails.first.subject
+  end
+
   def test_should_let_owner_user_edit_event_entry_application
     login_as :quentin
     post_data_to_edit_and_test_response
