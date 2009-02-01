@@ -14,19 +14,21 @@ WHEN MOVING SITE TO NEW SERVER:
   Create config/deliver_email file.
 
   Copy httpd.conf redirects  
+    - /jams.html -> /jams
+    - /events.html -> /events
+    - /people.html -> /people
 
 
 ======================================================================
 
 THIS COMMIT:
 
-Modified the header partial to only display the "Manage your account"
-link if someone is actually logged into their account.
+Modified homepage to use new category names and tried to clean up the
+HTML.
 
-Modified the RHTML and HTML header files to use the shared
-navigation_bar partial template.
-
-Fixed a glaring typo in public/about.html.
+Updated the home page and navigation bar to use the links to the Rails
+actions instead of the old .html files (e.g. '/jams' instead of
+'/jams.html').
 
 
 ======================================================================
@@ -34,8 +36,6 @@ Fixed a glaring typo in public/about.html.
 TODO:
 
 @ Update category information
-  - change font size for detailed category descriptions on the
-     homepage 
   - add text to category pages with link to old copies of pages
 
 @ Modify views/models to allow singular and plural versions of
