@@ -20,6 +20,14 @@ class OrganizationsController < ApplicationController
 
 protected
 
+  def category_name_plural
+    'Organizations'
+  end
+
+  def category_name_singular
+    'Organization'
+  end
+
   def entry_class
     OrganizationEntry
   end

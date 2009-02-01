@@ -1,4 +1,4 @@
-<%= render(:partial => "shared/header", :locals => { :title => "Add a new #{entry_display_name}" } )%>
+<%= render(:partial => "shared/header", :locals => { :title => "Add a new #{category_name_singular}" } )%>
 
 <div id="ci_form_page">
 	<% if flash[:notice] %>
@@ -9,7 +9,7 @@
 
 	<% if defined?(@error_messages) && !@error_messages.empty? %>
 		<div class="errorExplanation" id="errorExplanation">
-			<h2>Unable to update your <%= entry_display_name %> listing</h2>
+			<h2>Unable to update your <%= category_name_singular %> listing</h2>
 			<p><%= content_tag(:ul, @error_messages.map {|m| content_tag(:li, m)}) %></p>
 		</div>
 	<% end %>
@@ -23,7 +23,7 @@
 					Required form fields are marked with an *
 				</p>
 				<p>
-					<%= submit_tag "Add #{entry_display_name}" %>
+					<%= submit_tag "Add #{category_name_singular}" %>
 					&nbsp;&nbsp;&nbsp;&nbsp;
 					<a href="/">Cancel</a>
 				</p>

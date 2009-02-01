@@ -20,6 +20,14 @@ class PeopleController < ApplicationController
 
 protected
 
+  def category_name_plural
+    'People'
+  end
+
+  def category_name_singular
+    'Person'
+  end
+  
   def entry_class
     PersonEntry
   end

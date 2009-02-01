@@ -14,7 +14,10 @@ module EntryFormWithOptionalModels
       UserMailer.deliver_new_entry_created(@entry, entry_display_name)
       redirect_to :controller => 'user', :action => 'index'
     else
-      render :partial => "shared/entries/new", :locals => { :entry_display_name => entry_display_name }
+      render :partial => "shared/entries/new", :locals => { 
+        :category_name_singular => category_name_singular,
+        :entry_display_name     => entry_display_name
+      }
     end
   end
 
@@ -24,7 +27,10 @@ module EntryFormWithOptionalModels
       @entry.destroy 
     end
 
-    render :partial => "shared/entries/delete", :locals => { :entry_display_name => entry_display_name }
+    render :partial => "shared/entries/delete", :locals => { 
+      :category_name_singular => category_name_singular,
+      :entry_display_name     => entry_display_name
+    }
   end
 
   def edit
@@ -60,14 +66,17 @@ module EntryFormWithOptionalModels
     end
 
     #  render needs to be called *after* @entry is initialized (or not) in valid_id_and_permissions?
-    render :partial => "shared/entries/edit", :locals => { :entry_display_name => entry_display_name }
+    render :partial => "shared/entries/edit", :locals => { 
+      :category_name_singular => category_name_singular,
+      :entry_display_name     => entry_display_name
+    }
   end
 
   def new
     create_entry_and_linked_models
     set_has_person_entry_variables
 
-    render :partial => "shared/entries/new", :locals => { :entry_display_name => entry_display_name }
+    render :partial => "shared/entries/new", :locals => { :category_name_singular => category_name_singular }
   end
 
 

@@ -23,15 +23,19 @@ WHEN MOVING SITE TO NEW SERVER:
 
 THIS COMMIT:
 
-Moved old HTML jams.html and people.html to Rails actions /jams/old
-and /people/old, respectively.
+Rewrote introductory paragraph to indicate that all types of listings
+(and not just events) can be added to the site.
 
-Updated links to jams.html and people.html throughout the site to
-point to /jams and /people.
+Added prominent mailto links for listings@contactimprov.net.
 
 ======================================================================
 
 TODO:
+
+@ Update HTML
+  - ...
+
+@ (?) Make city field optional for Locations
 
 @ Display full address listings, not just City/State/Country
   - jams
@@ -39,6 +43,8 @@ TODO:
   - (?) people
 
 @ Entry listings
+  - font sizes country/state names on List pages
+  - add per-country/state links to top of page
   - OrganizationEntry model
     - make Location field optional
       - have section of /organizations/list for entries without a
@@ -61,6 +67,9 @@ TODO:
   - add text to Entry pages explaining some simple Textile commands
     - add link to unhide a <div> with more formatting info (copy from
        BaseCamp Writeboards)
+  - in listings controller, rename entry_display_name functions, since
+     category_name_singular now actually fills that role (while a
+     renamed entry_display_name is still needed for generating routes)
 
 @ No /denied route
   - modify functional tests to catch this error

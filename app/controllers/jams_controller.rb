@@ -20,6 +20,14 @@ class JamsController < ApplicationController
 
 protected
 
+  def category_name_plural
+    'Ongoing Jams/Classes'
+  end
+
+  def category_name_singular
+    'Ongoing Jam/Class'
+  end
+  
   def entry_class
     JamEntry
   end

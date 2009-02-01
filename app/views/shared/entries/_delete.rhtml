@@ -1,4 +1,4 @@
-<%= render(:partial => "shared/header", :locals => { :title => "Delete #{entry_display_name} entry" } )%>
+<%= render(:partial => "shared/header", :locals => { :title => "Delete #{category_name_singular} entry" } )%>
 
 <div id="ci_form_page">
 	<% if flash[:notice] %>
@@ -6,13 +6,13 @@
 			<%= flash[:notice] %>
 		</div>
 	<% else %>
-		<h2>We have deleted your <%= entry_display_name %> entry</h2>
+		<h2>We have deleted your <%= category_name_singular %> listing</h2>
 		<p style="font-size: large;">
 			<a href="/user">Return to <b>Online Account Home</b></a>
 		</p>
 		<% if @current_user.admin? %>
 			<p style="font-size: large;">
-				<a href="/admin/<%= entry_display_name.downcase.pluralize %>/list">Return to <b>Admin-Contacts: List <%= entry_display_name %> Entries</b></a>
+				<a href="/admin/<%= entry_display_name.downcase.pluralize %>/list">Return to <b>Admin-Contacts: List <%= category_name_singular %> listings</b></a>
 			</p>
 		<% end %>
 	<% end %>

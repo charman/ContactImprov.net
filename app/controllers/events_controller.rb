@@ -18,6 +18,14 @@ class EventsController < ApplicationController
 
 protected
 
+  def category_name_plural
+    'Special Events'
+  end
+
+  def category_name_singular
+    'Special Event'
+  end
+
   def entry_class
     EventEntry
   end
