@@ -44,6 +44,7 @@ class ApplicationController < ActionController::Base
     entry_type = entry_class.to_s.gsub(/(.*)Entry/, '\1').downcase
     @country_names_with_entries ||= Hash.new
     @us_state_names_with_entries ||= Hash.new
+    @us_state_abbreviations_with_entries ||= Hash.new
     @entry_ids_for_country ||= Hash.new
     @entry_ids_for_us_state ||= Hash.new
     @entry_ids_for_country[entry_type] ||= Hash.new
@@ -69,6 +70,10 @@ class ApplicationController < ActionController::Base
           |a,b| a.sortable_title <=> b.sortable_title 
         }.collect { |e| e.id }
       end
+    end
+    
+    @us_state_abbreviations_with_entries[entry_type] = cache("all_us_state_abbreviations_with_#{entry_type}_entries") do 
+      find_all_us_states_with_entries(entry_type).collect { |s| s.abbreviation } 
     end
   end
 
@@ -101,7 +106,7 @@ class ApplicationController < ActionController::Base
   end
 
   def find_all_us_states_with_entries(entry_type)
-    UsState.find_by_sql("SELECT DISTINCT ci_us_states.name " + 
+    UsState.find_by_sql("SELECT DISTINCT ci_us_states.name, ci_us_states.abbreviation " + 
       "FROM ci_#{entry_type}_entries, ci_locations, ci_us_states " + 
       "WHERE ci_us_states.us_state_id = ci_locations.us_state_id " + 
       "AND ci_#{entry_type}_entries.location_id = ci_locations.location_id " + 
@@ -112,6 +117,7 @@ class ApplicationController < ActionController::Base
     entry_type = display_name.singularize.downcase
     if location.country_name.is_usa?
       cache_store.delete("controller/all_us_states_with_#{entry_type}_entries")
+      cache_store.delete("controller/all_us_state_abbreviations_with_#{entry_type}_entries")
       cache_store.delete(cache_safe_name("controller/all_#{entry_type}_entries_for_us_state", location.us_state.name))
       expire_fragment(:controller => entry_type.pluralize, :action => entry_type, :action_suffix => location.us_state.name)
     else

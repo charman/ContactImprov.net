@@ -30,6 +30,19 @@ module ApplicationHelper
     end
   end
 
+	#  Converts a string written in CamelCase or mixed case to all lowercase
+	#   with underscores in between the words, e.g.:
+	#     Email           =>  email
+	#     PhoneNumber     =>  phone_number
+  #     United Kingdom  =>  united_kingdom
+  def lower_under_ize(name)
+  	name.gsub(/([a-z])([A-Z])/, '\1_\2').gsub(' ', '_').gsub(',', '').downcase
+  end
+
+  def link_safe_name(name)
+    name.gsub(' ', '_').gsub(/[\(\)\.',]/, "")
+  end
+
   def obfuscate_email_with_javascript(e)
     address, server = e.split('@')
 

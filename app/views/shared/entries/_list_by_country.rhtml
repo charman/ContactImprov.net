@@ -1,7 +1,20 @@
-<% @country_names_with_entries[@entry_type].each do |country_name| %>
-	<h2><%= country_name.upcase %></h2>
+<div style="border-top: 1px solid #AAA; border-bottom: 1px solid #AAA; padding: 0.3em; text-align: center; font-size: 0.9em;">
+	<% @country_names_with_entries[@entry_type].each do |country_name| %>
+		<span style="padding-left: 0.4em;"><a href="#<%= link_safe_name(country_name) %>"><%= country_name %></a></span>
+	<% end %>
+</div>
+<!--
+<div style="border-bottom: 1px solid #AAA; padding: 0.3em; text-align: center; font-size: 0.9em;">
+	<% @us_state_abbreviations_with_entries[@entry_type].each do |us_state_abbreviation| %>
+		<span style="padding-left: 0.4em;"><a href="#<%= us_state_abbreviation %>"><%= us_state_abbreviation %></a></span>
+	<% end %>
+</div>
+-->
 
-	<% #  We can't use country.is_usa? here because when country (as part of @countries_with_entries)
+<% @country_names_with_entries[@entry_type].each do |country_name| %>
+	<h2><a name="<%= link_safe_name(country_name) %>" /><%= country_name.upcase %></h2>
+
+	<% #  We can't use country.is_usa? here because when country (as part of @country_names_with_entries)
 	   #   is cached, we can only access the member variables of the cached objects, and not the
 	   #   methods of the cached objects.
 	   if country_name == 'United States' %>

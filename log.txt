@@ -23,16 +23,16 @@ WHEN MOVING SITE TO NEW SERVER:
 
 THIS COMMIT:
 
-Rewrote introductory paragraph to indicate that all types of listings
-(and not just events) can be added to the site.
+Added per-country links to the /shared/entries/list_by_country partial
+template.
 
-Added prominent mailto links for listings@contactimprov.net.
 
 ======================================================================
 
 TODO:
 
 @ Update HTML
+  - home page: change description of Special Events
   - ...
 
 @ (?) Make city field optional for Locations
@@ -43,8 +43,8 @@ TODO:
   - (?) people
 
 @ Entry listings
+  - add per-state links to top of page
   - font sizes country/state names on List pages
-  - add per-country/state links to top of page
   - OrganizationEntry model
     - make Location field optional
       - have section of /organizations/list for entries without a
