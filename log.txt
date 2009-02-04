@@ -26,15 +26,9 @@ WHEN MOVING SITE TO NEW SERVER:
 
 THIS COMMIT:
 
-Created UserMailer template for please_update_your_legacy_listing.
-
-Extracted all email addresses from the Eudora mailbox that Mugsy
-sent me full of unanswered emails.
-
-Created script to email people asking them to update their listings.
-
-Uncommented the Add/Edit links for the different types of listings on
-the /user/index page.
+Updated /user/request_account page.  Removed text about only being
+able to add/update events.  Added text explaining what we will do with
+your email address.
 
 
 ======================================================================
@@ -42,7 +36,6 @@ the /user/index page.
 TODO:
 
 @ Update HTML
-  - update 'request_account' page
   - example Textile commands on all types of listings
   - ...
 
@@ -93,13 +86,6 @@ TODO:
     - process request data in controller
       - functional tests
       - integration tests
-
-@ Privacy policy explaining what we will do with your email
-  - no commercial emails
-  - will email you about major changes to the site
-  - will email you to confirm that your listing is up to date
-    - if you're the contact person and we can't reach you, we may
-       expire your listing
 
 @ UI/text tweaks
   - change color of error messages
