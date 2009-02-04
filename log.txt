@@ -23,11 +23,7 @@ WHEN MOVING SITE TO NEW SERVER:
 
 THIS COMMIT:
 
-Switched from using <hX> tags to using CSS for the headings for the
-Entry list pages and for the Country Name and US State headings on the
-Entry lists that are sorted by location.
-
-Updated description of Special Events on the home page.
+Made the city_name field optional for Locations.
 
 
 ======================================================================
@@ -36,8 +32,6 @@ TODO:
 
 @ Update HTML
   - ...
-
-@ (?) Make city field optional for Locations
 
 @ Display full address listings, not just City/State/Country
   - jams

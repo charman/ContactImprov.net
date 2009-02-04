@@ -251,7 +251,7 @@ class EventsControllerTest < ActionController::TestCase
     assert_response :success
     assert_select "[class=errorExplanation]"
     assert_match /Country name can.t be blank/, @response.body
-    assert_match /City name can.t be blank/, @response.body
+#    assert_match /City name can.t be blank/, @response.body
   end
 
   def test_should_edit_and_disconnect_empty_non_mandatory_fields
@@ -370,7 +370,7 @@ protected
     assert_match /Title can.t be blank/, @response.body
     assert_match /Description can.t be blank/, @response.body
     assert_match /Country name can.t be blank/, @response.body
-    assert_match /City name can.t be blank/, @response.body
+#    assert_match /City name can.t be blank/, @response.body
   end
 
 end

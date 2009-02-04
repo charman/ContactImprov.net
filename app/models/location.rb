@@ -17,7 +17,7 @@ class Location < ActiveRecord::Base
 
   delegate :iso_3166_1_a2_code, :to => "country_name.nil? ? false : country_name"
 
-  validates_presence_of :city_name
+#  validates_presence_of :city_name
   validate :validate_country_name_and_us_state
 
 
@@ -103,13 +103,14 @@ class Location < ActiveRecord::Base
     fa = Array.new
     fa << self.street_address_line_1 if !self.street_address_line_1.blank?
     fa << self.street_address_line_2 if !self.street_address_line_2.blank?
+    fa << self.city_name if !self.city_name.blank?
     if self.is_in_usa?
-      fa << "#{self.city_name}, #{self.us_state.abbreviation} #{self.postal_code} USA"
+      fa << "#{self.us_state.abbreviation} #{self.postal_code} USA"
     else
       if !self.region_name.blank?
-        fa << "#{self.city_name}, #{self.region_name} #{self.postal_code}".strip
+        fa << "#{self.region_name} #{self.postal_code}".strip
       else
-        fa << "#{self.city_name} #{self.postal_code}".strip
+        fa << "#{self.postal_code}".strip if !self.postal_code.blank?
       end
       fa << self.country_name.english_name
     end
