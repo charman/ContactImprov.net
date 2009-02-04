@@ -23,11 +23,9 @@
 		</div>
 
 		<%= render(:partial => "list_entries_for_user", :locals => { :entry_type => 'event' } )%>
-		<!--
 		<%= render(:partial => "list_entries_for_user", :locals => { :entry_type => 'jam' } )%>
 		<%= render(:partial => "list_entries_for_user", :locals => { :entry_type => 'organization' } )%>
-		-->
-<!--
+
 		<h2>People</h2>
 		<div class="entry_list_for_user">
 			<% if @user.admin? %>
@@ -59,7 +57,6 @@
 				<% end %>
 			<% end %>
 		</div>
--->
 
 	<% end %>
 </div>

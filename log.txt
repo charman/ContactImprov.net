@@ -7,11 +7,14 @@ WAITING FOR:
 
 WHEN MOVING SITE TO NEW SERVER:
 
-  Recreate log directory.
+  mkdir log
+  chmod 777 log
 
   chown charman config/environment.rb
 
-  Create config/deliver_email file.
+  touch config/deliver_email
+
+  ln -s google_maps_api_key.contactimprov_net.txt google_maps_api_key.txt
 
   Copy httpd.conf redirects  
     - /jams.html -> /jams
@@ -23,7 +26,15 @@ WHEN MOVING SITE TO NEW SERVER:
 
 THIS COMMIT:
 
-Created flush_memcached_osx script.
+Created UserMailer template for please_update_your_legacy_listing.
+
+Extracted all email addresses from the Eudora mailbox that Mugsy
+sent me full of unanswered emails.
+
+Created script to email people asking them to update their listings.
+
+Uncommented the Add/Edit links for the different types of listings on
+the /user/index page.
 
 
 ======================================================================
@@ -31,6 +42,8 @@ Created flush_memcached_osx script.
 TODO:
 
 @ Update HTML
+  - update 'request_account' page
+  - example Textile commands on all types of listings
   - ...
 
 @ Display full address listings, not just City/State/Country

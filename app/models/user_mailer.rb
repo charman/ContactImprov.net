@@ -50,6 +50,11 @@ class UserMailer < ActionMailer::Base
     @body[:new_password] = new_password
   end
   
+  def please_update_your_legacy_listing(email)
+    setup_email(email)
+    @subject = "How to update your listing on ContactImprov.net"
+  end
+
   def signup_notification(user)
     setup_user_email(user)
     @subject     = 'We have created a ContactImprov.net account for you'
