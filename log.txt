@@ -26,9 +26,9 @@ WHEN MOVING SITE TO NEW SERVER:
 
 THIS COMMIT:
 
-Updated /user/request_account page.  Removed text about only being
-able to add/update events.  Added text explaining what we will do with
-your email address.
+Fixed a problem with /organizations/list where it wouldn't display
+*any* organizations that *should* have been caught with the most basic
+functional test.
 
 
 ======================================================================
