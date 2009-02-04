@@ -56,9 +56,9 @@
 				:locals => { :prefix => 'uar_email',  :legend => 'Your email address' } 
 			%></p>
 
-			<fieldset>
+			<fieldset style="margin-top: 1em;">
 				<legend>Additional Information</legend>
-				<table style="margin-top: 1em;">
+				<table>
 					<tr style="vertical-align: top; ">
 						<td style="width: 10em; text-align: right;"></td>
 						<td style="padding: 0em 1em 1em 1em;">
@@ -69,6 +69,7 @@
 							<%= request.text_area :something_about_contact_improv, :rows => 4, :cols => 60 %>
 						</td>
 					</tr>
+<!--
 					<tr style="vertical-align: top;">
 						<td style="width: 10em; text-align: right;"></td>
 						<td style="padding: 0em 1em 1em 1em;">
@@ -77,6 +78,7 @@
 							<%= request.text_area :existing_entries, :rows => 4, :cols => 60 %>
 						</td>
 					</tr>
+-->
 				</table>
 			</fieldset>
 

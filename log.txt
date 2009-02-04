@@ -26,11 +26,13 @@ WHEN MOVING SITE TO NEW SERVER:
 
 THIS COMMIT:
 
-Further tweaked the CSS for displaying entries/listings by
-Country/State.  Moved style information for displaying the list of
-Countries at the top of the page from a partial template into
-contact.css.
+Removed the question:
 
+  Are you responsible for any existing Contact Person or Contact Jam
+  listings on the website?
+
+from the /user/request_account form, as it looks like people were
+expecting me to add listings for them.
 
 ======================================================================
 
