@@ -1,4 +1,4 @@
-I ======================================================================
+======================================================================
 
 WAITING FOR:
 
@@ -23,8 +23,11 @@ WHEN MOVING SITE TO NEW SERVER:
 
 THIS COMMIT:
 
-Added per-country links to the /shared/entries/list_by_country partial
-template.
+Switched from using <hX> tags to using CSS for the headings for the
+Entry list pages and for the Country Name and US State headings on the
+Entry lists that are sorted by location.
+
+Updated description of Special Events on the home page.
 
 
 ======================================================================
@@ -32,7 +35,6 @@ template.
 TODO:
 
 @ Update HTML
-  - home page: change description of Special Events
   - ...
 
 @ (?) Make city field optional for Locations
@@ -43,8 +45,7 @@ TODO:
   - (?) people
 
 @ Entry listings
-  - add per-state links to top of page
-  - font sizes country/state names on List pages
+  - (?) add per-state links to top of page
   - OrganizationEntry model
     - make Location field optional
       - have section of /organizations/list for entries without a

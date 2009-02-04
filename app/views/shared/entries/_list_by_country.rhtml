@@ -12,7 +12,7 @@
 -->
 
 <% @country_names_with_entries[@entry_type].each do |country_name| %>
-	<h2><a name="<%= link_safe_name(country_name) %>" /><%= country_name.upcase %></h2>
+	<div class="country_name_heading_for_entry_list"><a name="<%= link_safe_name(country_name) %>" /><%= country_name.upcase %></div>
 
 	<% #  We can't use country.is_usa? here because when country (as part of @country_names_with_entries)
 	   #   is cached, we can only access the member variables of the cached objects, and not the
@@ -20,7 +20,7 @@
 	   if country_name == 'United States' %>
 		<% @us_state_names_with_entries[@entry_type].each do |us_state_name| %>
 			<% cache(:action => @entry_type, :action_suffix => us_state_name) do %>
-				<h3><i><%= us_state_name.upcase %></i></h3>
+				<div class="us_state_name_heading_for_entry_list"><i><%= us_state_name.upcase %></i></div>
 				<% @entry_ids_for_us_state[@entry_type][us_state_name].each do |entry_id| %>
 					<%= render(:partial => "shared/entries/#{@entry_type}", :locals => { :entry => @entry_class.find(entry_id) } )%>
 				<% end %>

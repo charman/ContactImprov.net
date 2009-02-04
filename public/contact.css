@@ -127,6 +127,20 @@ span.ci_bulleted_list_subtitle {
 }
 
 
+/* === CATEGORY TITLE === */
+
+span.category_title {
+	font-size: 2em;
+	font-weight: bold;
+	padding-right: 0.2em;
+}
+
+span.category_subtitle {
+	font-size: 1.4em;
+}
+
+
+
 /* === DATES === */
 /* Adapted from: http://www.avenuegc.co.uk/css/main.css */
 
@@ -267,6 +281,16 @@ td.login_method {
 
 
 /* === ENTRIES === */
+
+div.country_name_heading_for_entry_list {
+	font-size: 1.6em;
+	font-weight: bold;
+}
+
+div.us_state_name_heading_for_entry_list {
+	font-size: 1.5em;
+	font-weight: bold;
+}
 
 .entry_description p {
 	margin-top: 0em;
