@@ -26,9 +26,7 @@ WHEN MOVING SITE TO NEW SERVER:
 
 THIS COMMIT:
 
-Fixed a problem with /organizations/list where it wouldn't display
-*any* organizations that *should* have been caught with the most basic
-functional test.
+Tweaked the CSS for displaying entries/listings by Country/State.
 
 
 ======================================================================

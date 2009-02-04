@@ -283,13 +283,12 @@ td.login_method {
 /* === ENTRIES === */
 
 div.country_name_heading_for_entry_list {
-	font-size: 1.6em;
+	font-size: 1.2em;
 	font-weight: bold;
 }
 
 div.us_state_name_heading_for_entry_list {
-	font-size: 1.5em;
-	font-weight: bold;
+	font-style: italic;
 }
 
 .entry_description p {
