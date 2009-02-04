@@ -26,7 +26,10 @@ WHEN MOVING SITE TO NEW SERVER:
 
 THIS COMMIT:
 
-Tweaked the CSS for displaying entries/listings by Country/State.
+Further tweaked the CSS for displaying entries/listings by
+Country/State.  Moved style information for displaying the list of
+Countries at the top of the page from a partial template into
+contact.css.
 
 
 ======================================================================
