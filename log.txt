@@ -23,7 +23,7 @@ WHEN MOVING SITE TO NEW SERVER:
 
 THIS COMMIT:
 
-Made the city_name field optional for Locations.
+Created flush_memcached_osx script.
 
 
 ======================================================================
