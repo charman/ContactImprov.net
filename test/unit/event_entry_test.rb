@@ -91,4 +91,18 @@ class EventEntryTest < ActiveSupport::TestCase
     assert_equal 'sanitized', c.cost
   end
  
+  def test_should_not_break_textile_url_markup
+    c = EventEntry.new
+    c.title = '"quoted string"'
+    c.description = '["craig":http://craigharman.net]'
+    c.cost = '<b>sanitized</b>'
+    c.start_date = DateTime.now
+    c.end_date   = DateTime.now
+    c.save!
+    c.reload
+    assert_equal '&quot;quoted string&quot;', c.title
+    assert_equal '["craig":http://craigharman.net]', c.description
+    assert_equal 'sanitized', c.cost
+  end
+ 
 end

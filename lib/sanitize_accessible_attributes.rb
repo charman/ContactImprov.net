@@ -7,7 +7,20 @@ module SanitizeAccessibleAttributes
     self.class.accessible_attributes.each do |aa|
       v = self.send(aa)
       if !v.blank? && (v.class == String || v.class == IO)
-        Sanitize.clean!(v) 
+        Sanitize.clean!(v)
+
+        #  The regex below fixes a problem where Sanitize interferes with RedCLoth
+        #
+        #  Textile allows you to specify URL's using:
+        #     "craig":http://craigharman.net   ->   <a href="http://craigharman.net">craig</a>
+        #   but Sanitize converts all quotation marks into the corresponding HTML entities, e.g.:
+        #    "foo"   ->   &quot;foo&quot;
+        #  The regex below converts the HTML entities for quotation marks back into quotation
+        #   marks, iff the quotation marks surround a string with no whitespace and are immediately
+        #   followed by a colon.
+        #
+        #  TODO: This regex probably opens us back up to some Client-Side Scripting exploits...
+        v.gsub!(/&quot;(\S+)&quot;:/, '"\1":')
       end
     end
   end
