@@ -26,13 +26,9 @@ WHEN MOVING SITE TO NEW SERVER:
 
 THIS COMMIT:
 
-Removed the question:
+Created script and text file to email people who had listings on the
+older version of the website.
 
-  Are you responsible for any existing Contact Person or Contact Jam
-  listings on the website?
-
-from the /user/request_account form, as it looks like people were
-expecting me to add listings for them.
 
 ======================================================================
 
