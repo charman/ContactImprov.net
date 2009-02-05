@@ -95,14 +95,14 @@ class EventEntryTest < ActiveSupport::TestCase
     c = EventEntry.new
     c.title = '"quoted string"'
     c.description = '["craig":http://craigharman.net]'
-    c.cost = '["craig harman":http://craigharman.net]'
+    c.cost = '["craig harman":http://craigharman.net] ["ci":http://contactimprov.net]'
     c.start_date = DateTime.now
     c.end_date   = DateTime.now
     c.save!
     c.reload
     assert_equal '&quot;quoted string&quot;', c.title
     assert_equal '["craig":http://craigharman.net]', c.description
-    assert_equal '["craig harman":http://craigharman.net]', c.cost
+    assert_equal '["craig harman":http://craigharman.net]  ["ci":http://contactimprov.net]', c.cost
   end
  
 end

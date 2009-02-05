@@ -26,9 +26,9 @@ WHEN MOVING SITE TO NEW SERVER:
 
 THIS COMMIT:
 
-Fixed a problem with the regex from the previous commit, where it
-wouldn't allow Textile style links if there were spaces in the title
-for the URL.
+Fixed a problem with the regex from the previous commit, where the
+regex was trying to perform a greedy match when it should have been
+performing a minimal match.
 
 
 ======================================================================
