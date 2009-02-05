@@ -26,11 +26,9 @@ WHEN MOVING SITE TO NEW SERVER:
 
 THIS COMMIT:
 
-Fixed a problem where Sanitize was converting all quotation marks to
-the corresponding HTML entities, which prevented Textile from
-generating URL links.  Now, quotation mark HTML entities that surround
-a string without any whitespace and that are immediately followed by a
-colon are converted back from entities to normal quotation marks.
+Fixed a problem with the regex from the previous commit, where it
+wouldn't allow Textile style links if there were spaces in the title
+for the URL.
 
 
 ======================================================================

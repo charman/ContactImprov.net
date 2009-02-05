@@ -16,11 +16,11 @@ module SanitizeAccessibleAttributes
         #   but Sanitize converts all quotation marks into the corresponding HTML entities, e.g.:
         #    "foo"   ->   &quot;foo&quot;
         #  The regex below converts the HTML entities for quotation marks back into quotation
-        #   marks, iff the quotation marks surround a string with no whitespace and are immediately
-        #   followed by a colon.
+        #   marks, iff the quotation marks surround a string with and are immediately followed
+        #   by a colon and 'http'
         #
         #  TODO: This regex probably opens us back up to some Client-Side Scripting exploits...
-        v.gsub!(/&quot;(\S+)&quot;:/, '"\1":')
+        v.gsub!(/&quot;(.*)&quot;:http/, '"\1":http')
       end
     end
   end
