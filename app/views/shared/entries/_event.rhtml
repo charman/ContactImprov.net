@@ -32,7 +32,7 @@
 				</div>
 			<% end %>
 			<% if !entry.cost.blank? %>
-				<div class='entry_fee'>
+				<div class='entry_cost'>
 					<%= RedCloth.new(entry.cost.strip, [:filter_html]).to_html %>
 				</div>
 			<% end %>

@@ -29,6 +29,8 @@ THIS COMMIT:
 The entries/jam partial template was only displaying the description
 field for jams, and not the cost or schedule fields.
 
+Tweaked CSS spacing between description, cost and schedule fields.
+
 Added HTML describing somte Textile commands to the form_fields
 partials for Jam, Person and Organization entries.
 

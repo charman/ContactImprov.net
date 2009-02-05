@@ -329,9 +329,14 @@ div.entry_location {
 }
 
 div.entry_description {
+	margin-bottom: 0.1em;
 }
 
-div.entry_fee {
+div.entry_cost {
+	margin-bottom: 0.1em;
+}
+
+div.entry_schedule {
 }
 
 div.entry_contact {

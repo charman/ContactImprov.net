@@ -17,12 +17,12 @@
 				</div>
 			<% end %>
 			<% if !entry.cost.blank? %>
-				<div class='entry_description'>
+				<div class='entry_cost'>
 					<%= RedCloth.new(entry.cost.strip, [:filter_html]).to_html %>
 				</div>
 			<% end %>
 			<% if !entry.schedule.blank? %>
-				<div class='entry_description'>
+				<div class='entry_schedule'>
 					<%= RedCloth.new(entry.schedule.strip, [:filter_html]).to_html %>
 				</div>
 			<% end %>
