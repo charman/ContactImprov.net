@@ -25,6 +25,17 @@
 	</fieldset>
 </p>
 
+<div style="padding-left: 17em; padding-bottom: 0.8em;">
+	Simple formatting codes for the <i>Description</i> field:
+	<div style="padding-left: 2em; font-size: 0.9em;">
+		<code>_emphasized_</code> &#8594; <em>emphasized</em>
+		<br />
+		<code>*strong*</code> &#8594; <strong>strong</strong>
+		<br />
+		<code>"Contact":http://contactimprov.net</code> &#8594; <a href="http://contactimprov.net">Contact</a>
+	</div>
+</div>
+
 <p>
 	<%= render :partial => 'shared/url', :object => @entry.url,
 		:locals => { :prefix => 'entry[ci_url]', :legend => 'Website' } %>

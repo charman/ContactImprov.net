@@ -26,8 +26,11 @@ WHEN MOVING SITE TO NEW SERVER:
 
 THIS COMMIT:
 
-Created script and text file to email people who had listings on the
-older version of the website.
+The entries/jam partial template was only displaying the description
+field for jams, and not the cost or schedule fields.
+
+Added HTML describing somte Textile commands to the form_fields
+partials for Jam, Person and Organization entries.
 
 
 ======================================================================
@@ -35,7 +38,6 @@ older version of the website.
 TODO:
 
 @ Update HTML
-  - example Textile commands on all types of listings
   - ...
 
 @ Display full address listings, not just City/State/Country

@@ -16,6 +16,16 @@
 					<%= RedCloth.new(entry.description.strip, [:filter_html]).to_html %>
 				</div>
 			<% end %>
+			<% if !entry.cost.blank? %>
+				<div class='entry_description'>
+					<%= RedCloth.new(entry.cost.strip, [:filter_html]).to_html %>
+				</div>
+			<% end %>
+			<% if !entry.schedule.blank? %>
+				<div class='entry_description'>
+					<%= RedCloth.new(entry.schedule.strip, [:filter_html]).to_html %>
+				</div>
+			<% end %>
 			<div class='entry_contact'><span style="color: #555;">CONTACT:</span> <%= format_contact_info(entry) %></div>
 			<div class='entry_updated'>[<%= entry.updated_at.strftime('%b %d %Y') %>]</div>
 		</div>
