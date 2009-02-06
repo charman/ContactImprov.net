@@ -26,9 +26,7 @@ WHEN MOVING SITE TO NEW SERVER:
 
 THIS COMMIT:
 
-Fixed a problem with the regex from the previous commit, where the
-regex was trying to perform a greedy match when it should have been
-performing a minimal match.
+Fixed a typo on the home page.
 
 
 ======================================================================
@@ -80,11 +78,9 @@ TODO:
     - add links to actual actions
   - admin action to attempt to re-geocode
 
-@ Ken's suggestions
-  - allow people to list themselves as the contact person for an Entry
-    - process request data in controller
-      - functional tests
-      - integration tests
+@ Allow people to list themselves as the contact person for an Entry
+  - functional tests
+  - integration tests
 
 @ UI/text tweaks
   - change color of error messages
