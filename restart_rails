@@ -1,5 +1,7 @@
 #!/bin/bash
 echo "Changing permissions on config/environment.rb"
 chown charman:charman config/environment.rb
+echo "Flushing memcached"
+./flush_memcached_ubuntu
 echo "Restarting Apache"
 apachectl restart
