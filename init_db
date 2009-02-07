@@ -2,15 +2,4 @@
 mysql -u root --password=borkborkbork -e "DROP DATABASE IF EXISTS ci_rails"
 mysql -u root --password=borkborkbork -e "CREATE DATABASE ci_rails DEFAULT CHARACTER SET utf8"
 mysql -u root --password=borkborkbork -e "GRANT ALL ON ci_rails.* TO 'ci_rails'@'localhost' IDENTIFIED BY 'hellnoiwontgowherethebuffaloroam'"
-
-mysql -u root --password=borkborkbork -e "DROP DATABASE IF EXISTS ci_rails_test"
-mysql -u root --password=borkborkbork -e "CREATE DATABASE ci_rails_test DEFAULT CHARACTER SET utf8"
-mysql -u root --password=borkborkbork -e "GRANT ALL ON ci_rails_test.* TO 'ci_rails'@'localhost'"
-
-rake db:migrate
-
-mysql -u root --password=borkborkbork ci_rails < initialize_db/country_names.sql
-mysql -u root --password=borkborkbork ci_rails < initialize_db/us_states.sql
-
-script/runner initialize_db/create_initial_accounts.rb
-script/runner initialize_db/add_event_info.rb
+mysql -u root --password=borkborkbork ci_rails < initialize_db/ci_rails-2009-02-06.sql

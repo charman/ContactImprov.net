@@ -26,7 +26,8 @@ WHEN MOVING SITE TO NEW SERVER:
 
 THIS COMMIT:
 
-Fixed a typo on the home page.
+Modified the init_db script to use the MySQL database snapshot from
+2009-02-06.
 
 
 ======================================================================
