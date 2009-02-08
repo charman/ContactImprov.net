@@ -3,13 +3,12 @@
 		<span style="padding-left: 0.4em;"><a href="#<%= link_safe_name(country_name) %>"><%= country_name %></a></span>
 	<% end %>
 </div>
-<!--
-<div style="border-bottom: 1px solid #AAA; padding: 0.3em; text-align: center; font-size: 0.9em;">
+<div class="list_of_states">
+	<i>US States:</i>
 	<% @us_state_abbreviations_with_entries[@entry_type].each do |us_state_abbreviation| %>
 		<span style="padding-left: 0.4em;"><a href="#<%= us_state_abbreviation %>"><%= us_state_abbreviation %></a></span>
 	<% end %>
 </div>
--->
 
 <% @country_names_with_entries[@entry_type].each do |country_name| %>
 	<div class="country_name_heading_for_entry_list"><a name="<%= link_safe_name(country_name) %>" /><%= country_name.upcase %></div>

@@ -26,8 +26,8 @@ WHEN MOVING SITE TO NEW SERVER:
 
 THIS COMMIT:
 
-Listings for Jams, Organizations and People now display the full
-address, instead of just City/State/Country.
+Add links to entries for each US State (with entries) to
+shared/entries/list_by_country.rhtml.
 
 ======================================================================
 
@@ -37,7 +37,6 @@ TODO:
   - ...
 
 @ Entry listings
-  - (?) add per-state links to top of page
   - OrganizationEntry model
     - make Location field optional
       - have section of /organizations/list for entries without a
