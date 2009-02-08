@@ -26,9 +26,8 @@ WHEN MOVING SITE TO NEW SERVER:
 
 THIS COMMIT:
 
-Modified the init_db script to use the MySQL database snapshot from
-2009-02-06.
-
+Listings for Jams, Organizations and People now display the full
+address, instead of just City/State/Country.
 
 ======================================================================
 
@@ -36,11 +35,6 @@ TODO:
 
 @ Update HTML
   - ...
-
-@ Display full address listings, not just City/State/Country
-  - jams
-  - organizations
-  - (?) people
 
 @ Entry listings
   - (?) add per-state links to top of page
