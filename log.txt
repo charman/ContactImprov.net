@@ -26,8 +26,8 @@ WHEN MOVING SITE TO NEW SERVER:
 
 THIS COMMIT:
 
-Added admin/organizations controller+views.
-
+Fixed problem in unit test for EventEntry caused by my adding an extra
+space to a string.
 
 ======================================================================
 

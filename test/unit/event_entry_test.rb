@@ -102,7 +102,7 @@ class EventEntryTest < ActiveSupport::TestCase
     c.reload
     assert_equal '&quot;quoted string&quot;', c.title
     assert_equal '["craig":http://craigharman.net]', c.description
-    assert_equal '["craig harman":http://craigharman.net]  ["ci":http://contactimprov.net]', c.cost
+    assert_equal '["craig harman":http://craigharman.net] ["ci":http://contactimprov.net]', c.cost
   end
  
 end
