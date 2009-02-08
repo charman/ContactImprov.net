@@ -26,8 +26,8 @@ WHEN MOVING SITE TO NEW SERVER:
 
 THIS COMMIT:
 
-Add links to entries for each US State (with entries) to
-shared/entries/list_by_country.rhtml.
+Added admin/organizations controller+views.
+
 
 ======================================================================
 
@@ -37,6 +37,7 @@ TODO:
   - ...
 
 @ Entry listings
+  - modify /admin/user/show to list all types of Entries for a user
   - OrganizationEntry model
     - make Location field optional
       - have section of /organizations/list for entries without a
@@ -49,7 +50,6 @@ TODO:
       - web group/presence
       ...
     - functional testing
-  - modify /admin/user/show to list all types of Entries for a user
   - JamEntry model
     - functional testing
   - PersonEntry model

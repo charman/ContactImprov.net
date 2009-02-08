@@ -17,6 +17,11 @@
 </p>
 
 <p style="font-size: x-large;">
+	<%= link_to 'Administer Organizations', :action => 'index', :controller => 'admin/organizations' %> 
+	(<%= @total_organizations %> total)
+</p>
+
+<p style="font-size: x-large;">
 	<%= link_to 'Administer People', :action => 'index', :controller => 'admin/people' %> 
 	(<%= @total_people %> total)
 </p>

@@ -1,0 +1,41 @@
+<div id="organizationTableContainer" class="yui-skin-sam">
+	<table id="organizationTable">
+		<thead>
+			<tr>
+				<th>ID</th>
+				<th>Organization</th>
+				<th>Location</th>
+			</tr>
+		</thead>
+		<tbody>
+		<% for organization in @entries %>
+			<tr>
+				<td><a href="/organizations/edit/<%= organization.organization_entry_id %>"><%= organization.organization_entry_id %></a></td>
+				<td><%= organization.title %></td>
+				<td><%= format_entry_location(organization) %></td>
+			</tr>
+		<% end %>
+		</tbody>
+	</table>
+</div>
+
+
+<script type="text/javascript">
+var myDataSource = new YAHOO.util.DataSource(YAHOO.util.Dom.get("organizationTable"));
+myDataSource.responseType = YAHOO.util.DataSource.TYPE_HTMLTABLE;
+myDataSource.responseSchema = {
+    fields: [
+	    {key:"id"},
+		{key:"organization"},
+	    {key:"location"}
+    ]
+};
+
+var myColumnDefs = [ 
+	{key:"id", label:"ID", sortable:true},
+	{key:"organization", label:"Organization", sortable:true},
+	{key:"location", label:"Location", sortable:true}
+];
+
+var myDataTable = new YAHOO.widget.DataTable("organizationTableContainer", myColumnDefs, myDataSource);
+</script>
