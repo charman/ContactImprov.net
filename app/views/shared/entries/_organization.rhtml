@@ -11,9 +11,9 @@
 		</div>
 		<div class='entry_location'><%= entry.location.full_address_one_line %></div>
 		<div style="margin-left: 1em;">
-			<% if !entry.description.blank? %>
+			<% if !entry.organization.description.blank? %>
 				<div class='entry_description'>
-					<%= RedCloth.new(entry.description.strip, [:filter_html]).to_html %>
+					<%= RedCloth.new(entry.organization.description.strip, [:filter_html]).to_html %>
 				</div>
 			<% end %>
 			<div class='entry_contact'><span style="color: #555;">CONTACT:</span> <%= format_contact_info(entry) %></div>

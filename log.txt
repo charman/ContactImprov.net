@@ -26,8 +26,10 @@ WHEN MOVING SITE TO NEW SERVER:
 
 THIS COMMIT:
 
-Fixed problem in unit test for EventEntry caused by my adding an extra
-space to a string.
+Fixed a problem where the Organization description wasn't being
+displayed for Organization entries by the shared/entries/organization
+partial.  The Organization description is being stored with the
+Organization model, not the OrganizationEntry model.
 
 ======================================================================
 
