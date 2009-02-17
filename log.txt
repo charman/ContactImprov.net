@@ -26,10 +26,9 @@ WHEN MOVING SITE TO NEW SERVER:
 
 THIS COMMIT:
 
-Fixed a problem where the Organization description wasn't being
-displayed for Organization entries by the shared/entries/organization
-partial.  The Organization description is being stored with the
-Organization model, not the OrganizationEntry model.
+Added anchors for state names to the shared/entries/list_by_country
+partial template.  (Problem caught by Ken Manheimer)
+
 
 ======================================================================
 

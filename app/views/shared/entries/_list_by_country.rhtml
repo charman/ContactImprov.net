@@ -19,7 +19,7 @@
 	   if country_name == 'United States' %>
 		<% @us_state_names_with_entries[@entry_type].each do |us_state_name| %>
 			<% cache(:action => @entry_type, :action_suffix => us_state_name) do %>
-				<div class="us_state_name_heading_for_entry_list"><%= us_state_name.upcase %></div>
+				<div class="us_state_name_heading_for_entry_list"><a name="<%= UsState.find_by_name(us_state_name).abbreviation %>" /><%= us_state_name.upcase %></div>
 				<% @entry_ids_for_us_state[@entry_type][us_state_name].each do |entry_id| %>
 					<%= render(:partial => "shared/entries/#{@entry_type}", :locals => { :entry => @entry_class.find(entry_id) } )%>
 				<% end %>
