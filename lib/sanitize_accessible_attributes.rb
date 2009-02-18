@@ -20,7 +20,7 @@ module SanitizeAccessibleAttributes
         #   by a colon and 'http'
         #
         #  TODO: This regex probably opens us back up to some Client-Side Scripting exploits...
-        v.gsub!(/&quot;(.*?)&quot;:http/, '"\1":http')
+        v.gsub!(/&quot;(.*?)&quot;:([http|\/|\.])/, '"\1":\2')
       end
     end
   end

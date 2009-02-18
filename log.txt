@@ -26,9 +26,10 @@ WHEN MOVING SITE TO NEW SERVER:
 
 THIS COMMIT:
 
-Added anchors for state names to the shared/entries/list_by_country
-partial template.  (Problem caught by Ken Manheimer)
-
+Ken noticed that my hack in lib/sanitize_accessible_attributes.rb to
+prevent Sanitize from mangling Textile URL's prevented people from
+using relative URL's.  Fixed the problem by using a different RegEx
+for identifying Textile URL's.
 
 ======================================================================
 
@@ -38,6 +39,7 @@ TODO:
   - ...
 
 @ Entry listings
+  - permalinks
   - modify /admin/user/show to list all types of Entries for a user
   - OrganizationEntry model
     - make Location field optional
