@@ -79,6 +79,13 @@ module EntryFormWithOptionalModels
     render :partial => "shared/entries/new", :locals => { :category_name_singular => category_name_singular }
   end
 
+  def show
+    @entry = entry_class.find(params[:id]) if entry_class.exists?(params[:id])
+    @entry_type = entry_display_name.downcase
+
+    render :partial => "shared/entries/show", :locals => { :category_name_singular => category_name_singular }
+  end
+
 
 protected
 

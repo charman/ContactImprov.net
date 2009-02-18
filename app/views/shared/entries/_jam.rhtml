@@ -3,7 +3,7 @@
 	</div>
 	<div style="float: right; width: 88%;">
 		<div class='entry_title'>
-			<% if entry.url %>
+			<% if !entry.url.blank? %>
 				<%= "<a href=\"#{entry.url.address}\">#{entry.title}</a>" %>
 			<% else %>
 				<%= entry.title %>

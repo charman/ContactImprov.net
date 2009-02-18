@@ -1,0 +1,29 @@
+<%= render(:partial => "shared/header", :locals => { :title => "Show #{category_name_singular}" } )%>
+
+<div id="ci_form_page">
+	<% if flash[:notice] %>
+		<div class="errorExplanation" id="errorExplanation">
+			<%= flash[:notice] %>
+		</div>
+	<% end %>
+
+	<% if defined?(@error_messages) && !@error_messages.empty? %>
+		<div class="errorExplanation" id="errorExplanation">
+			<h2>Unable to update your <%= category_name_singular %> listing</h2>
+			<p><%= content_tag(:ul, @error_messages.map {|m| content_tag(:li, m)}) %></p>
+		</div>
+	<% end %>
+
+	<% if @entry %>
+		<div class="ci_form">
+			<%= render(:partial => "shared/entries/#{@entry_type}", :locals => { :entry => @entry } ) %>
+		</div>
+	<% else %>
+		<div class="errorExplanation" id="errorExplanation">
+			<h2>Listing not found</h2>
+			<p>Unable to update the requested <%= category_name_singular %> listing.</p>
+		</div>
+	<% end %>
+</div>
+
+<%= render(:partial => "shared/footer" )%>

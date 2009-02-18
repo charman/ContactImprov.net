@@ -26,16 +26,16 @@ WHEN MOVING SITE TO NEW SERVER:
 
 THIS COMMIT:
 
-Ken noticed that my hack in lib/sanitize_accessible_attributes.rb to
-prevent Sanitize from mangling Textile URL's prevented people from
-using relative URL's.  Fixed the problem by using a different RegEx
-for identifying Textile URL's.
+Added a 'show' action for the different types of entries.
+
 
 ======================================================================
 
 TODO:
 
 @ Update HTML
+  - add text on old jams page asking people to email me to remove
+     listings
   - ...
 
 @ Entry listings
