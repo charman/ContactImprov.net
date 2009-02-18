@@ -26,8 +26,12 @@ WHEN MOVING SITE TO NEW SERVER:
 
 THIS COMMIT:
 
-Added a 'show' action for the different types of entries.
+The 'Cancel' button on the new and edit pages for entries now links
+back to /user instead of /.
 
+Added a 'Login' link to the homepage.
+
+(Both changes requested by Ken)
 
 ======================================================================
 

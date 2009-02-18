@@ -1,16 +1,40 @@
-<table>
-	<tr>
-		<th class="navigation_bar_entry" style="width: 25%;">
-			<a href="/events">Special Events</a>
-		</th>
-		<th class="navigation_bar_entry" style="width: 35%;">
-			<a href="/jams">Ongoing Jams/Classes</a>
-		</th>
-		<th class="navigation_bar_entry" style="width: 15%;">
-			<a href="/people">People</a>
-		</th>
-		<th class="navigation_bar_entry" style="width: 25%;">
-			<a href="/organizations">Organizations</a>
-		</th>
-   	</tr>
-</table>
+<div class="navigation_bar">
+	<table>
+		<tr>
+			<th class="navigation_bar_entry" style="width: 25%;">
+				<a href="/events">Special Events</a>
+			</th>
+			<th class="navigation_bar_entry" style="width: 35%;">
+				<a href="/jams">Ongoing Jams/Classes</a>
+			</th>
+			<th class="navigation_bar_entry" style="width: 15%;">
+				<a href="/people">People</a>
+			</th>
+			<th class="navigation_bar_entry" style="width: 25%;">
+				<a href="/organizations">Organizations</a>
+			</th>
+	   	</tr>
+	</table>
+
+	<div style="font-size: small; margin-top: 0em; width: 100%;">
+		<span style="float: left; text-align: left;">
+			<% if logged_in? %>
+				<a href="/user">Manage your account</a>
+			<% end %>
+		</span>
+		<span style="float: right; text-align: right;">
+			<% if logged_in? %>
+				<b>Logged in</b> as
+				<% if current_user.person %>
+					<%= "#{current_user.first_name} #{current_user.last_name}"%>
+				<% else %>
+					<%= current_user.email %>
+				<% end %>
+				| <a href="/logout">Logout</a>
+			<% else %>
+				<b>You are not logged in</b>
+				| <a href="/login">Login</a>
+			<% end %>
+		</span>
+	</div>
+</div>

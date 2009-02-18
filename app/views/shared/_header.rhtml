@@ -21,31 +21,7 @@
 				<a href="/"><img src="/images/ContactImprovNet-Banner.png" height="130" width="840" alt="" /></a>
 			</div>
 
-			<div class="navigation_bar">
-				<%= render(:partial => "shared/navigation_bar")%>
-
-				<div style="font-size: small; margin-top: 0em; width: 100%;">
-					<span style="float: left; text-align: left;">
-						<% if logged_in? %>
-							<a href="/user">Manage your account</a>
-						<% end %>
-					</span>
-					<span style="float: right; text-align: right;">
-						<% if logged_in? %>
-							<b>Logged in</b> as
-							<% if current_user.person %>
-								<%= "#{current_user.first_name} #{current_user.last_name}"%>
-							<% else %>
-								<%= current_user.email %>
-							<% end %>
-							| <a href="/logout">Logout</a>
-						<% else %>
-							<b>You are not logged in</b>
-							| <a href="/login">Login</a>
-						<% end %>
-					</span>
-				</div>
-			</div>
+			<%= render(:partial => "shared/navigation_bar")%>
 
 			<p style="text-align: right;  clear: both;">
 			</p>
