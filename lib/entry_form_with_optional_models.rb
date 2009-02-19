@@ -12,7 +12,8 @@ module EntryFormWithOptionalModels
       @entry.save!
       flush_location_cache(entry_display_name, @entry.location)
       UserMailer.deliver_new_entry_created(@entry, entry_display_name)
-      redirect_to :controller => 'user', :action => 'index'
+#      redirect_to :controller => 'user', :action => 'index'
+      redirect_to :action => 'show', :id => @entry.id
     else
       render :partial => "shared/entries/new", :locals => { 
         :category_name_singular => category_name_singular,
@@ -59,7 +60,7 @@ module EntryFormWithOptionalModels
           @entry.save!
           flush_location_cache(entry_display_name, @entry.location)
           UserMailer.deliver_entry_modified(@entry, entry_display_name)
-          redirect_to :controller => 'user', :action => 'index'
+          redirect_to :action => 'show', :id => @entry.id
           return  #  We need to return here so that redirect_to and render aren't both called
         end
       end

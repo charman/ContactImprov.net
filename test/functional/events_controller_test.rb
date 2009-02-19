@@ -32,7 +32,7 @@ class EventsControllerTest < ActionController::TestCase
         :phone_number => { :number => phone_numbers(:complete_event_entry).number },
         :ci_url => { :address => urls(:complete_event_entry).address }
       }
-    assert_redirected_to :controller => 'user', :action => 'index'
+    assert_redirected_to :action => 'show'
     new_entry = EventEntry.find(:last)    
     assert_equal users(:quentin), new_entry.owner_user
     assert_equal event_entries(:complete_event_entry).title,           new_entry.title
@@ -65,7 +65,7 @@ class EventsControllerTest < ActionController::TestCase
         :phone_number => { :number => '' },
         :ci_url => { :address => '' }
       }
-    assert_redirected_to :controller => 'user', :action => 'index'
+    assert_redirected_to :action => 'show'
     new_entry = EventEntry.find(:last)
     assert_equal event_entries(:complete_event_entry).title,       new_entry.title
     assert_equal event_entries(:complete_event_entry).description, new_entry.description
@@ -270,7 +270,7 @@ class EventsControllerTest < ActionController::TestCase
         :phone_number => { :number => '' },
         :ci_url => { :address => '' }
       }
-    assert_redirected_to :controller => 'user', :action => 'index'
+    assert_redirected_to :action => 'show'
     
     updated_event = EventEntry.find(event_entries(:complete_event_entry).event_entry_id)
     assert_equal users(:quentin),                    updated_event.owner_user
@@ -343,7 +343,7 @@ protected
         :phone_number => { :number => '666-666-6666' },
         :ci_url => { :address => 'http://contactimprov.org/newurl/' }
       }
-    assert_redirected_to :controller => 'user', :action => 'index'
+    assert_redirected_to :action => 'show'
     
     #  Verify that field values have been updated
     updated_event = EventEntry.find(event_entries(:complete_event_entry).event_entry_id)
@@ -370,7 +370,6 @@ protected
     assert_match /Title can.t be blank/, @response.body
     assert_match /Description can.t be blank/, @response.body
     assert_match /Country name can.t be blank/, @response.body
-#    assert_match /City name can.t be blank/, @response.body
   end
 
 end

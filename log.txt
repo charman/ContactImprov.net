@@ -26,7 +26,8 @@ WHEN MOVING SITE TO NEW SERVER:
 
 THIS COMMIT:
 
-Added permalinks to the entry partial templates in shared/entries.
+After editing or creating a listing, the user is redirected to the
+show page for that particular listing, instead of the /user page.
 
 
 ======================================================================
@@ -39,7 +40,10 @@ TODO:
   - ...
 
 @ Entry listings
-  - add 'edit' link to show pages for entries (when applicable)
+  - entry show page
+    - when user is owner/admin
+      - add edit link
+      - add prominent link back to manage your account
   - modify /admin/user/show to list all types of Entries for a user
   - improve edit process
     - show formatted entry at top of edit page
