@@ -26,12 +26,8 @@ WHEN MOVING SITE TO NEW SERVER:
 
 THIS COMMIT:
 
-The 'Cancel' button on the new and edit pages for entries now links
-back to /user instead of /.
+Added permalinks to the entry partial templates in shared/entries.
 
-Added a 'Login' link to the homepage.
-
-(Both changes requested by Ken)
 
 ======================================================================
 
@@ -43,8 +39,12 @@ TODO:
   - ...
 
 @ Entry listings
-  - permalinks
+  - add 'edit' link to show pages for entries (when applicable)
   - modify /admin/user/show to list all types of Entries for a user
+  - improve edit process
+    - show formatted entry at top of edit page
+    - after successfully editing (or creating), redirect to a review
+       page showing what the formatted entry looks like
   - OrganizationEntry model
     - make Location field optional
       - have section of /organizations/list for entries without a

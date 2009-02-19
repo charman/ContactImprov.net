@@ -17,7 +17,12 @@
 				</div>
 			<% end %>
 			<div class='entry_contact'><span style="color: #555;">CONTACT:</span> <%= format_contact_info(entry) %></div>
-			<div class='entry_updated'>[<%= entry.updated_at.strftime('%b %d %Y') %>]</div>
+			<div class='entry_updated'>
+				<%= link_to 'Permalink', :action => 'show', :controller => 'people', :id => entry.id %>
+				&mdash;
+				Updated:
+				<%= entry.updated_at.strftime('%b %d %Y') %>
+			</div>
 		</div>
 	</div>
 </div>
