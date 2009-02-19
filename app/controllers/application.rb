@@ -81,6 +81,12 @@ class ApplicationController < ActionController::Base
     "#{prefix}_#{suffix}".gsub(' ', '_').gsub(/[\(\)\.',]/, "")
   end
 
+  def current_user_can_modify_entry?(entry)
+    return false if !@current_user
+    return true if @current_user.admin?
+    return @current_user == entry.owner_user && entry.owner_user != nil
+  end
+
   def find_all_countries_with_entries(entry_type)
     CountryName.find_by_sql("SELECT DISTINCT ci_country_names.english_name " + 
       "FROM ci_#{entry_type}_entries, ci_locations, ci_country_names " + 

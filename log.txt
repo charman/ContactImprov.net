@@ -26,10 +26,10 @@ WHEN MOVING SITE TO NEW SERVER:
 
 THIS COMMIT:
 
-In the navigation bar, changed "Manage your account" to "Manage your
-listings".
+If the owner of an entry or an admin is viewing the 'show' page for
+that entry, the 'show' page now has an 'Edit this listing' link.
 
-At NSS's request, changed "Contact Improv" to "Contact Improvisation".
+Created current_user_can_modify_entry?(entry) function.
 
 
 ======================================================================
@@ -42,15 +42,9 @@ TODO:
   - ...
 
 @ Entry listings
-  - entry show page
-    - when user is owner/admin
-      - add edit link
-      - add prominent link back to manage your account
   - modify /admin/user/show to list all types of Entries for a user
   - improve edit process
     - show formatted entry at top of edit page
-    - after successfully editing (or creating), redirect to a review
-       page showing what the formatted entry looks like
   - OrganizationEntry model
     - make Location field optional
       - have section of /organizations/list for entries without a

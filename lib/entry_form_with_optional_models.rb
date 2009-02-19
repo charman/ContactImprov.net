@@ -82,6 +82,7 @@ module EntryFormWithOptionalModels
   def show
     @entry = entry_class.find(params[:id]) if entry_class.exists?(params[:id])
     @entry_type = entry_display_name.downcase
+    @entry_editable_by_user = current_user_can_modify_entry?(@entry)
 
     render :partial => "shared/entries/show", :locals => { :category_name_singular => category_name_singular }
   end
@@ -196,7 +197,7 @@ protected
     end
 
     #  Restrict access to admins or the user who owns the current contact entry
-    if !@current_user.admin? && (@current_user != @entry.owner_user || @entry.owner_user == nil)
+    if !current_user_can_modify_entry?(@entry)
       flash[:notice] = "<h2>Access Denied</h2><p>You do not have permission to edit this #{entry_display_name}.</p>"
       return false
     end

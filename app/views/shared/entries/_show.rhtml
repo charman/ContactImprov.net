@@ -15,6 +15,12 @@
 	<% end %>
 
 	<% if @entry %>
+		<% if @entry_editable_by_user %>
+			<div style="font-size: 1.5em;">
+				<%= link_to "Edit this #{category_name_singular}", :action => 'edit', :id => @entry.id %>
+			</div>
+		<% end %>
+
 		<div class="ci_form">
 			<%= render(:partial => "shared/entries/#{@entry_type}", :locals => { :entry => @entry } ) %>
 		</div>

@@ -324,7 +324,40 @@ class EventsControllerTest < ActionController::TestCase
     get :new
     assert_redirected_to :controller => 'session', :action => 'new'
   end
-  
+
+
+  #  Test 'show' action
+
+  def test_should_allow_access_to_show
+    get :show, :id => event_entries(:complete_event_entry)
+    assert_response :success
+    assert_select "[class=errorExplanation]", false
+    assert_no_match /Edit this/, @response.body
+  end
+
+  def test_should_show_owner_user_edit_link
+    login_as :quentin
+    get :show, :id => event_entries(:complete_event_entry)
+    assert_response :success
+    assert_select "[class=errorExplanation]", false
+    assert_match /Edit this/, @response.body
+  end
+
+  def test_should_show_admin_user_edit_link
+    login_as :admin
+    get :show, :id => event_entries(:complete_event_entry)
+    assert_response :success
+    assert_select "[class=errorExplanation]", false
+    assert_match /Edit this/, @response.body
+  end
+
+  def test_should_display_error_for_show_with_invalid_id
+    get :show, :id => 666
+    assert_response :success
+    assert_select "[class=errorExplanation]"
+    assert_match /Listing not found/, @response.body
+  end
+
 
 protected
 
