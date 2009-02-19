@@ -39,6 +39,8 @@ module EntryFormWithOptionalModels
       return
     end
 
+    @entry_type = entry_display_name.downcase
+
     if valid_id_and_permissions?(params[:id])
       optional_models.each { |model_name| eval("@entry.#{model_name} ||= #{model_name.camelize}.new") }
 

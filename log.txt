@@ -26,10 +26,8 @@ WHEN MOVING SITE TO NEW SERVER:
 
 THIS COMMIT:
 
-If the owner of an entry or an admin is viewing the 'show' page for
-that entry, the 'show' page now has an 'Edit this listing' link.
-
-Created current_user_can_modify_entry?(entry) function.
+The 'edit' page for entries now shows a formatted version of the entry
+at the top of the page.
 
 
 ======================================================================
@@ -43,8 +41,6 @@ TODO:
 
 @ Entry listings
   - modify /admin/user/show to list all types of Entries for a user
-  - improve edit process
-    - show formatted entry at top of edit page
   - OrganizationEntry model
     - make Location field optional
       - have section of /organizations/list for entries without a

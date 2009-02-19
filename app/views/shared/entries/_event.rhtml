@@ -3,7 +3,7 @@
 		<div class="date_box"> 
 			<span class="day"><%= entry.start_date.strftime('%e') %></span> 
 			<span class="month"><%= entry.start_date.strftime('%b').upcase %></span> 
-		  <span class="year"><%= entry.start_date.strftime('%Y') %></span> 
+			<span class="year"><%= entry.start_date.strftime('%Y') %></span> 
 		</div>
 		<% if entry.start_date != entry.end_date %>
 			<div style="padding-left: 28px; padding-bottom: 4px;">

@@ -14,7 +14,19 @@
 		</div>
 	<% end %>
 
-	<% if not flash[:notice]  %>	
+	<% if not flash[:notice]  %>
+		<% if !(defined?(@error_messages) && !@error_messages.empty?) %>
+			<div style="font-size: 1.3em; font-weight:bold; margin-left: -2em;">
+				Current version of your listing:
+			</div>
+			<div class="ci_form">
+				<%= render(:partial => "shared/entries/#{@entry_type}", :locals => { :entry => @entry } ) %>
+			</div>
+		<% end %>
+		
+		<div style="font-size: 1.3em; font-weight:bold; margin-left: -2em;">
+			Edit your listing:
+		</div>
 		<div class="ci_form">
 			<% form_for @entry, :url => { :action => 'edit' } do |the_entry| %>
 				<%= render(:partial => "form_fields", :locals => { :the_entry => the_entry } ) %>
