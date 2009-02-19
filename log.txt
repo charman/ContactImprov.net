@@ -26,8 +26,11 @@ WHEN MOVING SITE TO NEW SERVER:
 
 THIS COMMIT:
 
-The 'edit' page for entries now shows a formatted version of the entry
-at the top of the page.
+Entries that are sorted by country can now be filtered by country or
+US state, e.g.:
+
+  /jams/list/Canada
+  /jams/list/United_States/Florida
 
 
 ======================================================================
@@ -40,6 +43,10 @@ TODO:
   - ...
 
 @ Entry listings
+  - index pages for listings grouped by country
+    - instead of being alias for list, add links for:
+      - all entries
+      - all entries for specific countries/states
   - modify /admin/user/show to list all types of Entries for a user
   - OrganizationEntry model
     - make Location field optional
@@ -86,7 +93,7 @@ TODO:
 -- 
 
 @ Move person/email/etc sub-forms from app/views/shared to
-app/views/forms
+app/views/shared/entries/forms
 
 @ On /user/request_account page, if someone already has an account
 with the listed email address, change error message to be less

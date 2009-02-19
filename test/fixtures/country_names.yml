@@ -2,23 +2,28 @@ united_states:
     country_name_id: 1
     iso_3166_1_a2_code: 'US'
     english_name: 'United States'
+    underlined_english_name: 'United_States'
 
 canada:
     country_name_id: 2
     iso_3166_1_a2_code: 'CA'
     english_name: 'Canada'
+    underlined_english_name: 'Canada'
 
 germany:
     country_name_id: 3
     iso_3166_1_a2_code: 'DE'
     english_name: 'Germany'
+    underlined_english_name: 'Germany'
     
 united_kingdom:
     country_name_id: 4
     iso_3166_1_a2_code: 'GB'
     english_name: 'United Kingdom'
+    underlined_english_name: 'United_Kingdom'
 
 ukraine:
     country_name_id: 5
     iso_3166_1_a2_code: 'UA'
     english_name: 'Ukraine'
+    underlined_english_name: 'Ukraine'

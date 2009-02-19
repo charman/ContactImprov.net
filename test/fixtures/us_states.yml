@@ -2,8 +2,10 @@ new_york:
     us_state_id: 1
     abbreviation: 'NY'
     name: 'New York'
+    underlined_name: 'New_York'
 
 pennsylvania:
     us_state_id: 2
     abbreviation: 'PA'
     name: 'Pennsylvania'
+    underlined_name: 'Pennsylvania'

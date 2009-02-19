@@ -161,6 +161,27 @@ protected
     end
   end
 
+  def list_by_country
+    require 'RedCloth'
+
+    @entry_class = entry_class
+    @entry_type = entry_display_name.downcase
+
+    cache_entries_for_countries(entry_class)
+    
+    @country_filter = CountryName.find_by_underlined_english_name(params[:country_name])
+    @us_state_filter = nil
+    if @country_filter
+      @country_names_with_entries[@entry_type] = [@country_filter.english_name]
+      
+      @us_state_filter = UsState.find_by_underlined_name(params[:us_state])
+      if @us_state_filter
+        @us_state_names_with_entries[@entry_type] = [@us_state_filter.name] 
+        @us_state_abbreviations_with_entries[@entry_type] = [@us_state_filter.abbreviation] 
+      end
+    end
+  end
+
   def set_boolean_flag(flag_name, flag)
     if flag == false || flag == :false || flag == 'false' || flag.blank?
       eval("@entry.#{flag_name} = false")

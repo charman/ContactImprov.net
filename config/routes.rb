@@ -52,6 +52,13 @@ ActionController::Routing::Routes.draw do |map|
   map.jams_index          '/jams',          :controller => 'jams',          :action => 'list'
   map.people_index        '/people',        :controller => 'people',        :action => 'list'
   map.organizations_index '/organizations', :controller => 'organizations', :action => 'list'
+
+  map.connect '/jams/list/:country_name/:us_state',          :controller => 'jams',          :action => 'list'
+  map.connect '/jams/list/:country_name',                    :controller => 'jams',          :action => 'list'
+  map.connect '/organizations/list/:country_name/:us_state', :controller => 'organizations', :action => 'list'
+  map.connect '/organizations/list/:country_name',           :controller => 'organizations', :action => 'list'
+  map.connect '/people/list/:country_name/:us_state',        :controller => 'people',        :action => 'list'
+  map.connect '/people/list/:country_name',                  :controller => 'people',        :action => 'list'
   # [/CTH]
 
   # Install the default routes as the lowest priority.

@@ -12,10 +12,7 @@ class PeopleController < ApplicationController
 
 
   def list
-    require 'RedCloth'
-    cache_entries_for_countries(entry_class)
-    @entry_class = entry_class
-    @entry_type = entry_display_name.downcase
+    list_by_country
   end
 
 protected
