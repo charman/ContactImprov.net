@@ -98,38 +98,46 @@
 	</div>
 
 	<hr />
+
+	<% if @jam_entries.size > 0 %>
+		<h2>Contact Jams owned by User</h2>
 	
-	<h2>Contact Jams owned by User</h2>
+		<div style="margin-left: 2em; margin-bottom: 1em;">
+			<%= render(:partial => "shared/admin/list_jams", :locals => { :entries => @jam_entries })%>
+		</div>
 	
-	<div style="margin-left: 2em; margin-bottom: 1em;">
-		<%= render(:partial => "shared/admin/list_jams", :locals => { :entries => @jam_entries })%>
-	</div>
+		<hr />
+	<% end %>
+
+	<% if @event_entries.size > 0 %>
+		<h2>Contact Events owned by User</h2>
 	
-	<hr />
+		<div style="margin-left: 2em; margin-bottom: 1em;">
+			<%= render(:partial => "shared/admin/list_events", :locals => { :entries => @event_entries })%>
+		</div>
 	
-	<h2>Contact Events owned by User</h2>
+		<hr />
+	<% end %>
+
+	<% if @person_entries.size > 0 %>
+		<h2>Contact People owned by User</h2>
 	
-	<div style="margin-left: 2em; margin-bottom: 1em;">
-		<%= render(:partial => "shared/admin/list_events", :locals => { :entries => @event_entries })%>
-	</div>
+		<div style="margin-left: 2em; margin-bottom: 1em;">
+			<%= render(:partial => "shared/admin/list_people", :locals => { :entries => @person_entries })%>
+		</div>
 	
-	<hr />
+		<hr />
+	<% end %>
+
+	<% if @organization_entries.size > 0 %>
+		<h2>Contact Organizations owned by User</h2>
 	
-	<h2>Contact People owned by User</h2>
+		<div style="margin-left: 2em; margin-bottom: 1em;">
+			<%= render(:partial => "shared/admin/list_organizations", :locals => { :entries => @organization_entries })%>
+		</div>
 	
-	<div style="margin-left: 2em; margin-bottom: 1em;">
-		<%= render(:partial => "shared/admin/list_people", :locals => { :entries => @person_entries })%>
-	</div>
-	
-	<hr />
-	
-	<h2>Contact Organizations owned by User</h2>
-	
-	<div style="margin-left: 2em; margin-bottom: 1em;">
-		<%= render(:partial => "shared/admin/list_organizations", :locals => { :entries => @organization_entries })%>
-	</div>
-	
-	<hr />
+		<hr />
+	<% end %>
 	
 	<script type="text/javascript">
 	//  People Table

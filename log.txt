@@ -26,8 +26,9 @@ WHEN MOVING SITE TO NEW SERVER:
 
 THIS COMMIT:
 
-Modified /admin/users/show to list all types of entries owned by a
-user, and not just event entries.
+Modified /admin/users/show to only show tables for each type of entry
+if the user owns at least one of that type of entry.  This reduces
+visual clutter.
 
 
 ======================================================================
