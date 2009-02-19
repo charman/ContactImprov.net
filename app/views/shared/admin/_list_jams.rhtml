@@ -9,7 +9,7 @@
 			</tr>
 		</thead>
 		<tbody>
-		<% for jam in @entries %>
+		<% for jam in entries %>
 			<tr>
 				<td><a href="/jams/edit/<%= jam.jam_entry_id %>"><%= jam.jam_entry_id %></a></td>
 				<td><%= jam.title %></td>

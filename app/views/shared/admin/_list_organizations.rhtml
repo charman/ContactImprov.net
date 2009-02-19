@@ -8,7 +8,7 @@
 			</tr>
 		</thead>
 		<tbody>
-		<% for organization in @entries %>
+		<% for organization in entries %>
 			<tr>
 				<td><a href="/organizations/edit/<%= organization.organization_entry_id %>"><%= organization.organization_entry_id %></a></td>
 				<td><%= organization.title %></td>

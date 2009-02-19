@@ -11,7 +11,7 @@
 			</tr>
 		</thead>
 		<tbody>
-		<% for event in @entries %>
+		<% for event in entries %>
 			<tr>
 				<td><a href="/events/edit/<%= event.event_entry_id %>"><%= event.event_entry_id %></a></td>
 				<td><%= event.title %></td>

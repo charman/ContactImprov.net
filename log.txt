@@ -26,11 +26,8 @@ WHEN MOVING SITE TO NEW SERVER:
 
 THIS COMMIT:
 
-Entries that are sorted by country can now be filtered by country or
-US state, e.g.:
-
-  /jams/list/Canada
-  /jams/list/United_States/Florida
+Modified /admin/users/show to list all types of entries owned by a
+user, and not just event entries.
 
 
 ======================================================================
@@ -47,7 +44,6 @@ TODO:
     - instead of being alias for list, add links for:
       - all entries
       - all entries for specific countries/states
-  - modify /admin/user/show to list all types of Entries for a user
   - OrganizationEntry model
     - make Location field optional
       - have section of /organizations/list for entries without a

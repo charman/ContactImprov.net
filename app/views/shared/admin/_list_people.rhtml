@@ -8,7 +8,7 @@
 			</tr>
 		</thead>
 		<tbody>
-		<% for person in @entries %>
+		<% for person in entries %>
 			<tr>
 				<td><a href="/people/edit/<%= person.person_entry_id %>"><%= person.person_entry_id %></a></td>
 				<td><%= person.person ? "#{person.person.last_name}, #{person.person.first_name}" : '' %></td>

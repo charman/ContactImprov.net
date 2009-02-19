@@ -130,7 +130,10 @@ class Admin::UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
-    @entries = EventEntry.find(:all, :conditions => ["owner_user_id = ?", params[:id]])
+    @jam_entries          = JamEntry.find(:all, :conditions => ["owner_user_id = ?", params[:id]])
+    @event_entries        = EventEntry.find(:all, :conditions => ["owner_user_id = ?", params[:id]])
+    @person_entries       = PersonEntry.find(:all, :conditions => ["owner_user_id = ?", params[:id]])
+    @organization_entries = OrganizationEntry.find(:all, :conditions => ["owner_user_id = ?", params[:id]])
   end
 
   def suspend
