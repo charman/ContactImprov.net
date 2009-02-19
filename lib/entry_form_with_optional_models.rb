@@ -12,7 +12,6 @@ module EntryFormWithOptionalModels
       @entry.save!
       flush_location_cache(entry_display_name, @entry.location)
       UserMailer.deliver_new_entry_created(@entry, entry_display_name)
-#      redirect_to :controller => 'user', :action => 'index'
       redirect_to :action => 'show', :id => @entry.id
     else
       render :partial => "shared/entries/new", :locals => { 

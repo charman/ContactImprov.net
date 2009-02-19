@@ -26,8 +26,10 @@ WHEN MOVING SITE TO NEW SERVER:
 
 THIS COMMIT:
 
-After editing or creating a listing, the user is redirected to the
-show page for that particular listing, instead of the /user page.
+In the navigation bar, changed "Manage your account" to "Manage your
+listings".
+
+At NSS's request, changed "Contact Improv" to "Contact Improvisation".
 
 
 ======================================================================
