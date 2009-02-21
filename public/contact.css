@@ -367,6 +367,21 @@ div.entry_updated  {
 }
 
 
+/* ===  ENTRY SUMMARY TABLE === */
+
+.entry_summary_table th {
+	border-bottom:0px solid #666666;
+	padding-top: 1em;
+	text-align: left;
+}
+.entry_summary_table td {
+    border-bottom:1px solid #ccc;
+	padding-right: 1em;
+}
+.entry_summary_table tr {
+	vertical-align: top;
+}
+
 
 /* === ERROR MESSAGES === */
 

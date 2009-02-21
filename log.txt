@@ -26,14 +26,20 @@ WHEN MOVING SITE TO NEW SERVER:
 
 THIS COMMIT:
 
-Removed list of Special Events from the home page.
+Modified index pages for listings that are sorted by location (Jams,
+People, Organizations) so that the page displayed a table summarizing
+the listings instead of the detailed listings themselves.
 
 
 ======================================================================
 
 TODO:
 
-@ The /[entry_type]/delete action should be accessed with PUT, not GET
+@ Geocoding
+  - upgrade GeoKit plugin
+  - admin page for locations that could not be geocoded
+    - add links to actual actions
+  - admin action to attempt to re-geocode
 
 @ Update HTML
   - add text on old jams page asking people to email me to remove
@@ -42,9 +48,8 @@ TODO:
 
 @ Entry listings
   - index pages for listings grouped by country
-    - instead of being alias for list, add links for:
-      - all entries
-      - all entries for specific countries/states
+    - Google Maps
+  - 'preview' feature for editing/creating entries
   - OrganizationEntry model
     - make Location field optional
       - have section of /organizations/list for entries without a
@@ -72,12 +77,6 @@ TODO:
 
 @ No /denied route
   - modify functional tests to catch this error
-
-@ Geocoding
-  - upgrade GeoKit plugin
-  - admin page for locations that could not be geocoded
-    - add links to actual actions
-  - admin action to attempt to re-geocode
 
 @ Allow people to list themselves as the contact person for an Entry
   - functional tests

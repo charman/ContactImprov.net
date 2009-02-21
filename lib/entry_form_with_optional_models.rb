@@ -129,6 +129,17 @@ protected
     entry_valid && mandatory_models_valid && optional_models_valid
   end
 
+  def index_by_country
+    @entry_class = entry_class
+    @entry_type = entry_display_name.downcase
+
+    cache_entries_for_countries(entry_class)
+
+    render :partial => "shared/entries/index_by_country", :locals => { 
+      :category_name_singular => category_name_singular,
+    }
+  end
+
   def initialize_entry_and_linked_models_from_params(p)
     @entry.attributes = p[entry_class.to_s.tableize.singularize]
     all_models.each do |model_name| 

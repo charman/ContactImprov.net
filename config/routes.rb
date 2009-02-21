@@ -49,9 +49,9 @@ ActionController::Routing::Routes.draw do |map|
   map.admin_index '/admin', :controller => 'admin/home', :action => 'index'
   
   map.events_index        '/events',        :controller => 'events',        :action => 'list'
-  map.jams_index          '/jams',          :controller => 'jams',          :action => 'list'
-  map.people_index        '/people',        :controller => 'people',        :action => 'list'
-  map.organizations_index '/organizations', :controller => 'organizations', :action => 'list'
+  map.jams_index          '/jams',          :controller => 'jams',          :action => 'index'
+  map.people_index        '/people',        :controller => 'people',        :action => 'index'
+  map.organizations_index '/organizations', :controller => 'organizations', :action => 'index'
 
   map.connect '/jams/list/:country_name/:us_state',          :controller => 'jams',          :action => 'list'
   map.connect '/jams/list/:country_name',                    :controller => 'jams',          :action => 'list'

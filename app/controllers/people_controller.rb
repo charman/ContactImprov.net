@@ -11,6 +11,10 @@ class PeopleController < ApplicationController
     :only => ['auto_complete_for_country_name_english_name', 'auto_complete_for_us_state_name']
 
 
+  def index
+    index_by_country
+  end
+
   def list
     list_by_country
   end
