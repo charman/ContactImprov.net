@@ -16,6 +16,8 @@ class PeopleController < ApplicationController
   end
 
   def list
+    @category_title    = category_title
+    @category_subtitle = category_subtitle
     list_by_country
   end
 
@@ -29,6 +31,14 @@ protected
     'Person'
   end
   
+  def category_title
+    "#{category_name_plural} &mdash; "
+  end
+  
+  def category_subtitle
+    "teaching, performing, or otherwise involved in Contact"
+  end
+
   def entry_class
     PersonEntry
   end

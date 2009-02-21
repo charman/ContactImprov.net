@@ -16,6 +16,8 @@ class JamsController < ApplicationController
   end
 
   def list
+    @category_title    = category_title
+    @category_subtitle = category_subtitle
     list_by_country
   end
 
@@ -27,6 +29,14 @@ protected
 
   def category_name_singular
     'Ongoing Jam/Class'
+  end
+  
+  def category_title
+    "#{category_name_plural} &mdash; "
+  end
+  
+  def category_subtitle
+    "local classes and jams – <i>&quot;regularly scheduled dancing&quot;</i>"
   end
   
   def entry_class

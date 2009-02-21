@@ -27,8 +27,8 @@ WHEN MOVING SITE TO NEW SERVER:
 THIS COMMIT:
 
 Modified index pages for listings that are sorted by location (Jams,
-People, Organizations) so that the page displayed a table summarizing
-the listings instead of the detailed listings themselves.
+People, Organizations) to display the proper title and subtitle for
+the listing category.
 
 
 ======================================================================

@@ -16,6 +16,8 @@ class OrganizationsController < ApplicationController
   end
 
   def list
+    @category_title    = category_title
+    @category_subtitle = category_subtitle
     list_by_country
   end
 
@@ -27,6 +29,14 @@ protected
 
   def category_name_singular
     'Organization'
+  end
+
+  def category_title
+    "#{category_name_plural} &mdash; "
+  end
+  
+  def category_subtitle
+    "regional websites, studios, companies, etc. – <i>&quot;everything else&quot;</i>"
   end
 
   def entry_class

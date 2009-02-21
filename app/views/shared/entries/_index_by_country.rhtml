@@ -1,8 +1,8 @@
-<%= render(:partial => "shared/header", :locals => { :title => "Overview of #{category_name_singular}" } )%>
+<%= render(:partial => "shared/header", :locals => { :title => "Overview of #{category_name_plural}" } )%>
 
 <div style="padding-bottom: 1em; padding-top: 1em;">
-	<span class="category_title">Ongoing Jams/Classes&mdash;</span>
-	<span class="category_subtitle">local classes and jams – <i>"regularly scheduled dancing"</i></span>
+	<span class="category_title"><%= category_title %></span>
+	<span class="category_subtitle"><%= category_subtitle %></span>
 </div>
 
 <div style="border-bottom: solid 1px #808080; padding-bottom: 1em;"></div>

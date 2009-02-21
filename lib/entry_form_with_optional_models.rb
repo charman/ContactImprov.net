@@ -70,6 +70,9 @@ module EntryFormWithOptionalModels
     #  render needs to be called *after* @entry is initialized (or not) in valid_id_and_permissions?
     render :partial => "shared/entries/edit", :locals => { 
       :category_name_singular => category_name_singular,
+      :category_name_plural   => category_name_plural,
+      :category_title         => category_title,
+      :category_subtitle      => category_subtitle,
       :entry_display_name     => entry_display_name
     }
   end
@@ -137,6 +140,9 @@ protected
 
     render :partial => "shared/entries/index_by_country", :locals => { 
       :category_name_singular => category_name_singular,
+      :category_name_plural   => category_name_plural,
+      :category_title         => category_title,
+      :category_subtitle      => category_subtitle
     }
   end
 
