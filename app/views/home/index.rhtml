@@ -122,21 +122,8 @@
 				</ul>
 			</div>
 
-			<div style="border-bottom: solid 1px black; padding-bottom: 1.5em;"></div>
-
-			<div style="padding-top: 1em;">
-				<span class="category_title">Special Events &mdash;</span>
-				<span class="category_subtitle">conferences, festivals, regional jams and workshops</span>
-			</div>
-
-			<p>Events are listed in chronological order. For historical interest, see also the <a href="/past-events.html">list of past events</a>.</p>
-
-			<% @entries.each do |entry| %>
-				<%= render(:partial => "shared/entries/event", :locals => { :entry => entry } )%>
-			<% end %>
+			<div style="border-bottom: solid 1px #808080; padding-bottom: 1em;"></div>
 			
-			<p style="border-bottom: solid 1px black;" />
-
 			<div style="font-size: small; text-align: right;">
 				<p>
 					As of January 15, 2009, this site is maintained by 
