@@ -26,6 +26,14 @@ protected
     'Special Event'
   end
 
+  def category_title
+    "#{category_name_plural} &mdash; "
+  end
+  
+  def category_subtitle
+    "conferences, festivals, regional jams and workshops"
+  end
+  
   def entry_class
     EventEntry
   end

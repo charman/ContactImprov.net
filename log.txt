@@ -26,9 +26,10 @@ WHEN MOVING SITE TO NEW SERVER:
 
 THIS COMMIT:
 
-Modified index pages for listings that are sorted by location (Jams,
-People, Organizations) to display the proper title and subtitle for
-the listing category.
+The /event/edit page could not be viewed because the
+lib/entry_form_with_optional_models.rb file expected the
+EventsController class did not have category_title and
+category_subtitle functions.
 
 
 ======================================================================
