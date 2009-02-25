@@ -44,6 +44,7 @@ module ApplicationHelper
   end
 
   def obfuscate_email_with_javascript(e)
+    return '' if e.blank?
     address, server = e.split('@')
 
     '<script language="javascript" type="text/javascript"><!--' + "\n" +

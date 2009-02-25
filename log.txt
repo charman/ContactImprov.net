@@ -26,11 +26,12 @@ WHEN MOVING SITE TO NEW SERVER:
 
 THIS COMMIT:
 
-The /event/edit page could not be viewed because the
-lib/entry_form_with_optional_models.rb file expected the
-EventsController class did not have category_title and
-category_subtitle functions.
+Fixed a problem with event_helper.rb/format_contact_info where the
+function would not check if the text fields of the Email, PhoneNumber
+and Url classes were blank before trying to format them.
 
+Updated the 500 error message page with more detailed information
+about the troubleshooting process.
 
 ======================================================================
 
