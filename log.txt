@@ -26,12 +26,10 @@ WHEN MOVING SITE TO NEW SERVER:
 
 THIS COMMIT:
 
-Fixed a problem with event_helper.rb/format_contact_info where the
-function would not check if the text fields of the Email, PhoneNumber
-and Url classes were blank before trying to format them.
+When users try to access /[events|people|etc]/create using a GET
+request, they are now redirected to the 'new' action for that
+controller instead of being shown an error message.
 
-Updated the 500 error message page with more detailed information
-about the troubleshooting process.
 
 ======================================================================
 
@@ -50,7 +48,9 @@ TODO:
 
 @ Entry listings
   - index pages for listings grouped by country
+    - sort listings by city name, then title
     - Google Maps
+    - implement caching
   - 'preview' feature for editing/creating entries
   - OrganizationEntry model
     - make Location field optional

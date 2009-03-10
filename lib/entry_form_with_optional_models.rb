@@ -1,23 +1,27 @@
 module EntryFormWithOptionalModels
 
   def create
-    create_entry_and_linked_models
-    set_has_person_entry_variables
-    initialize_entry_and_linked_models_from_params(params)
+    if request.put?
+      create_entry_and_linked_models
+      set_has_person_entry_variables
+      initialize_entry_and_linked_models_from_params(params)
     
-    @entry.owner_user = current_user
+      @entry.owner_user = current_user
 
-    if entry_and_linked_models_valid?
-      disconnect_completely_blank_models
-      @entry.save!
-      flush_location_cache(entry_display_name, @entry.location)
-      UserMailer.deliver_new_entry_created(@entry, entry_display_name)
-      redirect_to :action => 'show', :id => @entry.id
+      if entry_and_linked_models_valid?
+        disconnect_completely_blank_models
+        @entry.save!
+        flush_location_cache(entry_display_name, @entry.location)
+        UserMailer.deliver_new_entry_created(@entry, entry_display_name)
+        redirect_to :action => 'show', :id => @entry.id
+      else
+        render :partial => "shared/entries/new", :locals => { 
+          :category_name_singular => category_name_singular,
+          :entry_display_name     => entry_display_name
+        }
+      end
     else
-      render :partial => "shared/entries/new", :locals => { 
-        :category_name_singular => category_name_singular,
-        :entry_display_name     => entry_display_name
-      }
+      redirect_to :action => 'new'
     end
   end
 
