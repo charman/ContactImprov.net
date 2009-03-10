@@ -26,9 +26,7 @@ WHEN MOVING SITE TO NEW SERVER:
 
 THIS COMMIT:
 
-When users try to access /[events|people|etc]/create using a GET
-request, they are now redirected to the 'new' action for that
-controller instead of being shown an error message.
+Fixed a regression introduced by the previous commit.
 
 
 ======================================================================

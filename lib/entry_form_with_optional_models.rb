@@ -1,7 +1,7 @@
 module EntryFormWithOptionalModels
 
   def create
-    if request.put?
+    if request.post?
       create_entry_and_linked_models
       set_has_person_entry_variables
       initialize_entry_and_linked_models_from_params(params)
