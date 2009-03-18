@@ -26,12 +26,31 @@ WHEN MOVING SITE TO NEW SERVER:
 
 THIS COMMIT:
 
-Fixed a regression introduced by the previous commit.
+When listing entries by country, the entries are now sorted first by
+city name, and then by title.
 
+Moved person/email/etc sub-forms from app/views/shared to
+app/views/shared/forms.
 
 ======================================================================
 
 TODO:
+
+@ Add more recent database snapshot to the Subversion repository
+
+@ email every user whose account status is pending - perhaps from
+GMail account?
+
+@ email obfuscation script:
+    http://www.projecthoneypot.org/how_to_avoid_spambots_3.php
+
+@ Account request process
+  - create page where people can check the status of their account requests
+  - immediately send an email 
+    - link to account request URL
+  - on "request received" page
+    - inform people to check their email accounts, check spam filters
+    - provide link to URL
 
 @ Geocoding
   - upgrade GeoKit plugin
@@ -46,7 +65,6 @@ TODO:
 
 @ Entry listings
   - index pages for listings grouped by country
-    - sort listings by city name, then title
     - Google Maps
     - implement caching
   - 'preview' feature for editing/creating entries
@@ -84,12 +102,10 @@ TODO:
 
 @ UI/text tweaks
   - change color of error messages
+    - use Adobe Kuler site to find a less appalling shade of red
     ...
 
 -- 
-
-@ Move person/email/etc sub-forms from app/views/shared to
-app/views/shared/entries/forms
 
 @ On /user/request_account page, if someone already has an account
 with the listed email address, change error message to be less
@@ -107,9 +123,6 @@ confusing
 @ Create Google sitemap
 
 @ Google search box for site
-
-@ email obfuscation script:
-    http://www.projecthoneypot.org/how_to_avoid_spambots_3.php
 
 @ Cache Entry list pages (/entries/list and /home/index)
 
@@ -130,6 +143,8 @@ they can edit for that type of entry
 @ Refactor auto-complete location actions to separate controllers
 
 @ Update 404/500 error pages
+  - read 404 page guidelines on SmashingMagazine
+  - add Google search box
 
 @ RSS feeds
 

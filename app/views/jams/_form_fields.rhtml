@@ -34,22 +34,22 @@
 </div>
 
 <p>
-	<%= render :partial => 'shared/person', :object => @entry.person,
+	<%= render :partial => 'shared/forms/person', :object => @entry.person,
 		:locals => { :prefix => 'entry[person]', :legend => 'Contact Person' } %>
 </p>
 <p>
-	<%= render :partial => 'shared/url', :object => @entry.url,
+	<%= render :partial => 'shared/forms/url', :object => @entry.url,
 		:locals => { :prefix => 'entry[ci_url]', :legend => 'Website' } %>
 </p>
 <p>
-	<%= render :partial => 'shared/email', :object => @entry.email,
+	<%= render :partial => 'shared/forms/email', :object => @entry.email,
 		:locals => { :prefix => 'entry[email]', :legend => 'Email Address' } %>
 </p>
 <p>
-	<%= render :partial => 'shared/phone_number', :object => @entry.phone_number,
+	<%= render :partial => 'shared/forms/phone_number', :object => @entry.phone_number,
 		:locals => { :prefix => 'entry[phone_number]', :legend => 'Phone Number' } %>
 </p>
 <p>
-	<%= render :partial => 'shared/location', :object => @entry.location,
+	<%= render :partial => 'shared/forms/location', :object => @entry.location,
 		:locals => { :prefix => 'entry[location]', :legend => 'Location*' } %>
 </p>
