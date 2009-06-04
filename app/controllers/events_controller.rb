@@ -12,7 +12,6 @@ class EventsController < ApplicationController
 
 
   def list
-    require 'RedCloth'
     @entries = EventEntry.find(:all, :order => 'start_date ASC')
   end
 

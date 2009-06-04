@@ -26,17 +26,10 @@ WHEN MOVING SITE TO NEW SERVER:
 
 THIS COMMIT:
 
-When listing entries by country, the entries are now sorted first by
-city name, and then by title.
-
-Moved person/email/etc sub-forms from app/views/shared to
-app/views/shared/forms.
 
 ======================================================================
 
 TODO:
-
-@ Add more recent database snapshot to the Subversion repository
 
 @ email every user whose account status is pending - perhaps from
 GMail account?
@@ -106,6 +99,9 @@ GMail account?
     ...
 
 -- 
+
+@ Explore Google hosting of Yahoo YUI files:
+   http://yuiblog.com/blog/2008/11/19/yui-google/
 
 @ On /user/request_account page, if someone already has an account
 with the listed email address, change error message to be less

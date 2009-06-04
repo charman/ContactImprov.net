@@ -183,8 +183,6 @@ protected
   end
 
   def list_by_country
-    require 'RedCloth'
-
     @entry_class = entry_class
     @entry_type = entry_display_name.downcase
 

@@ -27,8 +27,7 @@ class ApplicationController < ActionController::Base
 
 
   # Pick a unique cookie name to distinguish our session data from others'
-  session :session_key => 'www.contactimprov.net'
-
+  session = { :session_key => 'www.contactimprov.net' }
 
   # See ActionController::RequestForgeryProtection for details
   # Uncomment the :secret if you're not using the cookie session store
