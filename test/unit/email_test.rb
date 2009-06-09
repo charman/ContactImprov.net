@@ -31,7 +31,7 @@ class EmailTest < ActiveSupport::TestCase
     assert_match /does not appear to be a valid e-mail address/, e.errors.on(:address)
   end
 
-  def test_should_validate_email_address
+  def test_should_not_validate_email_address
     e = Email.new
     e.address = 'not_a_valid_email'
     assert !e.save
