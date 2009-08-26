@@ -20,6 +20,11 @@ class Email < ActiveRecord::Base
     sanitize_attributes
   end
 
+  def before_validation
+    #  Remove leading/trailing whitespace, which causes validates_email_format_of to fail
+    self.address.strip!
+  end
+
   def completely_blank?
     self.address.blank?
   end

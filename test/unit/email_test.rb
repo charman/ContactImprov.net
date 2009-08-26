@@ -15,13 +15,19 @@ class EmailTest < ActiveSupport::TestCase
   def test_should_validate_with_address
     e = Email.new
     e.address = 'charman@acm.org'
-    assert_equal e.valid?, true
+    assert_equal true, e.valid?
+  end
+
+  def test_should_validate_address_with_whitespace
+    e = Email.new
+    e.address = "\tcharman@acm.org "
+    assert_equal true, e.valid?
   end
 
   def test_should_not_validate_with_empty_address
     e = Email.new
     e.address = ''
-    assert_equal e.valid?, false
+    assert_equal false, e.valid?
   end
 
   def test_should_not_validate_address_with_html
