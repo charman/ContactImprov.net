@@ -26,8 +26,7 @@ WHEN MOVING SITE TO NEW SERVER:
 
 THIS COMMIT:
 
-Fixed a problem (identified by Cheryl Pallant) where email addresses
-wouldn't validate if they had leading or trailing whitespace.
+Updated the Rails version to 2.3.3.
 
 
 ======================================================================
