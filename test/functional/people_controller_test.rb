@@ -24,8 +24,8 @@ class PeopleControllerTest < ActionController::TestCase
         :ci_url => { :address => 'http://craigharman.net/newurl' }
       },
       :teaches_contact => 'true'
-    assert_redirected_to :action => 'show'
     new_entry = PersonEntry.find(:last)    
+    assert_redirected_to :controller => 'people', :action => 'show', :id => new_entry.id
     assert_equal users(:quentin),              new_entry.owner_user
     assert_equal 'newdescription',             new_entry.description
     assert_equal 'newfirstname',               new_entry.person.first_name
@@ -54,8 +54,8 @@ class PeopleControllerTest < ActionController::TestCase
         :ci_url => { :address => 'http://craigharman.net/newurl' }
       },
       :teaches_contact => 'false'
-    assert_redirected_to :action => 'show'
     new_entry = PersonEntry.find(:last)    
+    assert_redirected_to :controller => 'people', :action => 'show', :id => new_entry.id
     assert_equal false,                        new_entry.teaches_contact
   end
 

@@ -32,8 +32,8 @@ class EventsControllerTest < ActionController::TestCase
         :phone_number => { :number => phone_numbers(:complete_event_entry).number },
         :ci_url => { :address => urls(:complete_event_entry).address }
       }
-    assert_redirected_to :action => 'show'
     new_entry = EventEntry.find(:last)    
+    assert_redirected_to :controller => 'events', :action => 'show', :id => new_entry.id
     assert_equal users(:quentin), new_entry.owner_user
     assert_equal event_entries(:complete_event_entry).title,           new_entry.title
     assert_equal event_entries(:complete_event_entry).description,     new_entry.description
@@ -65,8 +65,8 @@ class EventsControllerTest < ActionController::TestCase
         :phone_number => { :number => '' },
         :ci_url => { :address => '' }
       }
-    assert_redirected_to :action => 'show'
     new_entry = EventEntry.find(:last)
+    assert_redirected_to :controller => 'events', :action => 'show', :id => new_entry.id
     assert_equal event_entries(:complete_event_entry).title,       new_entry.title
     assert_equal event_entries(:complete_event_entry).description, new_entry.description
     assert_equal event_entries(:complete_event_entry).start_date,  new_entry.start_date
@@ -270,9 +270,8 @@ class EventsControllerTest < ActionController::TestCase
         :phone_number => { :number => '' },
         :ci_url => { :address => '' }
       }
-    assert_redirected_to :action => 'show'
-    
     updated_event = EventEntry.find(event_entries(:complete_event_entry).event_entry_id)
+    assert_redirected_to :controller => 'events', :action => 'show', :id => updated_event.id
     assert_equal users(:quentin),                    updated_event.owner_user
     assert_equal 'newtitle',                         updated_event.title
     assert_equal 'newdescription',                   updated_event.description
@@ -376,10 +375,9 @@ protected
         :phone_number => { :number => '666-666-6666' },
         :ci_url => { :address => 'http://contactimprov.org/newurl/' }
       }
-    assert_redirected_to :action => 'show'
-    
     #  Verify that field values have been updated
     updated_event = EventEntry.find(event_entries(:complete_event_entry).event_entry_id)
+    assert_redirected_to :controller => 'events', :action => 'show', :id => updated_event.id
     #  owner_user should not be updated when Contact Event is edited by an admin
     assert_equal users(:quentin),                    updated_event.owner_user
     assert_equal 'newtitle',                         updated_event.title

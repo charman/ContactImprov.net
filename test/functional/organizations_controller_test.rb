@@ -22,8 +22,8 @@ class OrganizationsControllerTest < ActionController::TestCase
       },
       :teaches_contact => 'true',
       :studio_space    => 'true'
-    assert_redirected_to :action => 'show'
     new_entry = OrganizationEntry.find(:last)    
+    assert_redirected_to :controller => 'organizations', :action => 'show', :id => new_entry.id
     assert_equal users(:quentin),              new_entry.owner_user
     assert_equal 'newdescription',             new_entry.description
     assert_equal 'newname',                    new_entry.organization.name
@@ -50,8 +50,8 @@ class OrganizationsControllerTest < ActionController::TestCase
       },
       :teaches_contact => 'false',
       :studio_space    => 'false'
-    assert_redirected_to :action => 'show'
     new_entry = OrganizationEntry.find(:last)    
+    assert_redirected_to :controller => 'organizations', :action => 'show', :id => new_entry.id
     assert_equal users(:quentin),              new_entry.owner_user
     assert_equal 'newdescription',             new_entry.description
     assert_equal 'newname',                    new_entry.organization.name

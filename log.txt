@@ -26,7 +26,7 @@ WHEN MOVING SITE TO NEW SERVER:
 
 THIS COMMIT:
 
-Updated the Rails version to 2.3.3.
+Updated the Rails version to 2.3.4
 
 
 ======================================================================
