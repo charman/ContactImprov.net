@@ -26,8 +26,10 @@ WHEN MOVING SITE TO NEW SERVER:
 
 THIS COMMIT:
 
-Modified the '/events/list' action to be filtered by year and month
-using '/events/list/YEAR' and '/events/list/YEAR/MONTH'.
+Added EventEntry.distinct_years() and EventEntry.distinct_months(year)
+functions.  Did some refactoring of '/events/list' in preparation for
+grouping events on that page by year and month, instead of just one
+long sorted chronological list.
 
 
 ======================================================================
