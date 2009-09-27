@@ -1,34 +1,5 @@
 <%= render(:partial => "shared/header", :locals => { :title => 'List Ongoing Jams/Classes' } )%>
 
-<div class="announcement">
-	<fieldset>
-		<legend>
-			February 1, 2009 &mdash; Where are all the Ongoing Jams/Classes listings?
-		</legend>
-		<p>
-			We want to make certain that all listings on ContactImprov.net are up
-			to date.  We have emailed all of the contact people for the listings
-			asking them to update their information using our new user account
-			system and database backend.
-		</p>
-		<p>
-  			It may take until the end of February 2009 for people to update their listings.
-			Until then, you may also want to check the 
-			<%= link_to 'Old list of Ongoing Jams/Classes', :action => 'old' %>
-			page.
-		</p>
-		<p>
-			If you want your Ongoing Jam/Class to be listed on this page, please
-			<%= link_to 'request an account', :action => 'request_account', :controller => 'user' %>.
-			Thanks!
-		</p>
-		<p>
-			Please email <a href="mailto:listings@contactimprov.net">listings@contactimprov.net</a>
-			if you have any questions.
-		</p>
-	</fieldset>
-</div>
-
 <div style="padding-bottom: 1em; padding-top: 1em;">
 	<span class="category_title"><%= @category_title %></span>
 	<span class="category_subtitle"><%= @category_subtitle %></span>

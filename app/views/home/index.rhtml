@@ -21,24 +21,36 @@
 				<%= render(:partial => "shared/navigation_bar")%>
 			</div>
 			
+			<div class="ci_bulleted_list">
+				<p>
+					<span class="ci_bulleted_list_title">Directory</span>
+					<span  class="ci_bulleted_list_subtitle">&mdash; where to find Contact Improvisation worldwide</span>
+				</p>
+				<ul>
+					<li>
+						<%= link_to 'Special Events', :action => 'index', :controller => 'events' %>
+						&ndash; conferences, festivals, regional jams and workshops
+					</li>
+					<li>
+						<%= link_to 'Ongoing Jams/Classes', :action => 'index', :controller => 'jams' %>
+						&ndash; local classes and jams &ndash; <i>"regularly scheduled dancing"</i>
+					</li>
+					<li>
+						<%= link_to 'People', :action => 'index', :controller => 'people' %>
+						&ndash; teaching, performing, or otherwise involved in Contact
+					</li>
+					<li>
+						<%= link_to 'Organizations', :action => 'index', :controller => 'organizations' %>
+						&ndash; regional websites, studios, companies, etc. &ndash; <i>"everything else"</i>
+					</li>
+				</ul>
+			</div>
 			<div class="announcement">
 				<fieldset>
 					<legend>
-						January 15, 2009 &mdash; Upgrading ContactImprov.net
+						Submitting Listings to the Directory
 					</legend>
 					<p>
-						We are working on making it easier for the Contact Improvisation community to 
-						add information about <b>jams, workshops, classes and teachers</b> to this site
-						and to keep that information up to date.
-
-						We will be making a number of improvements to the site between now and mid-February -
-						but we will never charge for any of our services.
-				
-						This site is a labor of love for the community, not a business.
-					</p>
-					<p>
-						If you previously submitted a listing, we ask that you please <b>resubmit</b>
-						the information by following these steps:
 						<ol>
 							<li>
 								Fill out the 
@@ -68,30 +80,6 @@
 				</fieldset>
 			</div>
 			
-			<div class="ci_bulleted_list">
-				<p>
-					<span class="ci_bulleted_list_title">Directory</span>
-					<span  class="ci_bulleted_list_subtitle">&mdash; where to find Contact Improvisation worldwide</span>
-				</p>
-				<ul>
-					<li>
-						<%= link_to 'Special Events', :action => 'list', :controller => 'events' %>
-						&ndash; conferences, festivals, regional jams and workshops
-					</li>
-					<li>
-						<%= link_to 'Ongoing Jams/Classes', :action => 'list', :controller => 'jams' %>
-						&ndash; local classes and jams &ndash; <i>"regularly scheduled dancing"</i>
-					</li>
-					<li>
-						<%= link_to 'People', :action => 'list', :controller => 'people' %>
-						&ndash; teaching, performing, or otherwise involved in Contact
-					</li>
-					<li>
-						<%= link_to 'Organizations', :action => 'list', :controller => 'organizations' %>
-						&ndash; regional websites, studios, companies, etc. &ndash; <i>"everything else"</i>
-					</li>
-				</ul>
-			</div>
 			
 
 			<div class="ci_bulleted_list">
@@ -102,6 +90,11 @@
 				<ul>
 					<li>
 						<a href="/about.html">About Contact Improvisation</a>
+					</li>
+					<li>
+						<a href="http://www.contactquarterly.com/cq/webtext/resource.html">More About Contact Improvisation</a>
+						&ndash; definitions, history, development &amp; applications, practice, documentation and resources
+						(from <i><a href="http://www.contactquarterly.com/" style="font-size: 1em;">Contact Quarterly</a></i>)
 					</li>
 					<li>
 						<a href="announce.html">Announcements and Links</a>

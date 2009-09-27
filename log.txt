@@ -26,16 +26,19 @@ WHEN MOVING SITE TO NEW SERVER:
 
 THIS COMMIT:
 
-Updated init_db script to use latest database snapshot.
+Removed references on website to changes made in January and February.
+
+The links on the homepage under the Directory heading now link to the
+summary pages for each category (Special Events, People, etc), instead
+of the pages with all listings for that category.
+
+Updated homepage and 'About Contact Improvisation' page with links to
+the CQ "CI Resources" page.
 
 
 ======================================================================
 
 TODO:
-
-@ Update text on homepage
-  - text from Nancy
-  ...
 
 @ Sort events by date
   ...
