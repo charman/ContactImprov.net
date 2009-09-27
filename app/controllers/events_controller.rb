@@ -12,7 +12,13 @@ class EventsController < ApplicationController
 
 
   def list
-    @entries = EventEntry.find(:all, :order => 'start_date ASC')
+    if params[:year] and params[:month]
+      @entries = EventEntry.find_by_year_month(params[:year], params[:month])
+    elsif params[:year]
+      @entries = EventEntry.find_by_year(params[:year])
+    else
+      @entries = EventEntry.find(:all, :order => 'start_date ASC')
+    end
   end
 
 protected

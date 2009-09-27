@@ -26,14 +26,8 @@ WHEN MOVING SITE TO NEW SERVER:
 
 THIS COMMIT:
 
-Removed references on website to changes made in January and February.
-
-The links on the homepage under the Directory heading now link to the
-summary pages for each category (Special Events, People, etc), instead
-of the pages with all listings for that category.
-
-Updated homepage and 'About Contact Improvisation' page with links to
-the CQ "CI Resources" page.
+Modified the '/events/list' action to be filtered by year and month
+using '/events/list/YEAR' and '/events/list/YEAR/MONTH'.
 
 
 ======================================================================
@@ -41,6 +35,8 @@ the CQ "CI Resources" page.
 TODO:
 
 @ Sort events by date
+  - unit tests for EventEntry.find_by_year[_month]()
+  - functional tests for /events/list/YEAR[/MONTH]
   ...
 
 @ email every user whose account status is pending - perhaps from

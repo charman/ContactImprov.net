@@ -53,6 +53,8 @@ ActionController::Routing::Routes.draw do |map|
   map.people_index        '/people',        :controller => 'people',        :action => 'index'
   map.organizations_index '/organizations', :controller => 'organizations', :action => 'index'
 
+  map.connect '/events/list/:year/:month',                   :controller => 'events',        :action => 'list'
+  map.connect '/events/list/:year',                          :controller => 'events',        :action => 'list'
   map.connect '/jams/list/:country_name/:us_state',          :controller => 'jams',          :action => 'list'
   map.connect '/jams/list/:country_name',                    :controller => 'jams',          :action => 'list'
   map.connect '/organizations/list/:country_name/:us_state', :controller => 'organizations', :action => 'list'
