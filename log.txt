@@ -26,12 +26,19 @@ WHEN MOVING SITE TO NEW SERVER:
 
 THIS COMMIT:
 
-Updated the Rails version to 2.3.4
+Updated init_db script to use latest database snapshot.
 
 
 ======================================================================
 
 TODO:
+
+@ Update text on homepage
+  - text from Nancy
+  ...
+
+@ Sort events by date
+  ...
 
 @ email every user whose account status is pending - perhaps from
 GMail account?
