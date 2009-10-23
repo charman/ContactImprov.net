@@ -1,0 +1,21 @@
+<%= render(:partial => "shared/header", :locals => { :title => 'List Special Events' } )%>
+
+<a name="events" id="events"></a>
+<div style="padding-bottom: 1em;">
+	<span class="category_title">Special Events &mdash;</span>
+	<span class="category_subtitle">conferences, festivals, regional jams and workshops</span>
+</div>
+
+<% EventEntry.distinct_years.each do |y| %>
+	<div style="padding-bottom: 1em; padding-left: 2em;">
+		<span style="font-size: 1.2em; font-weight: bold;"><a href="#<%= y %>"><%= y %></a>:</span>
+		<% EventEntry.distinct_months(y).each do |m| %>
+			<span style="font-size: 1.1em; padding-left: 0.4em; padding-right: 0.4em;">
+				<a href="#<%= "#{Date::MONTHNAMES[m.to_i]}_#{y}" %>"><%= Date::MONTHNAMES[m.to_i] %></a>
+			</span>
+		<% end %>
+	</div>
+<% end %>
+
+
+<%= render(:partial => "shared/footer" )%>
