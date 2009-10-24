@@ -36,8 +36,8 @@ class EventEntry < ActiveRecord::Base
   end
 
   def self.distinct_nonpast_years
-    EventEntry.find_by_sql("SELECT DISTINCT DATE_FORMAT(start_date, '%Y') " + 
-      "AS year FROM ci_event_entries WHERE year > #{Date.today.strftime('%Y')} " +
+    EventEntry.find_by_sql("SELECT DISTINCT DATE_FORMAT(start_date, '%Y') AS year " + 
+      "FROM ci_event_entries WHERE start_date > '#{Date.today.strftime('%Y')}-01-01' " +
       "ORDER BY year;").collect { |e| e.year }
   end
 
