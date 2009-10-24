@@ -11,6 +11,17 @@ class EventsController < ApplicationController
     :only => ['auto_complete_for_country_name_english_name', 'auto_complete_for_us_state_name']
 
 
+  def index
+    @entries = EventEntry.find(:all, :order => 'start_date ASC', 
+      :conditions => [ "start_date > ?",  Date.today])
+
+    @entries_by_year_month = Hash.new
+    EventEntry.distinct_nonpast_years.each do |y| 
+      @entries_by_year_month[y] = Hash.new
+      EventEntry.distinct_nonpast_months(y).each { |m| @entries_by_year_month[y][m] = EventEntry.find_by_start_date_year_month(y, m) }
+    end
+  end
+
   def list
     year = params[:year]
     month = params[:month]

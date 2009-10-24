@@ -37,8 +37,12 @@ long sorted chronological list.
 TODO:
 
 @ Sort events by date
-  - unit tests for EventEntry.find_by_year[_month]()
-  - functional tests for /events/list/YEAR[/MONTH]
+  - unit tests for 
+    - EventEntry.find_by_year[_month]()
+    - EventEntry.distinct_nonpast_years() 
+    - EventEntry.distinct_nonpast_months()
+  - functional tests for 
+    - /events/list/YEAR[/MONTH]
   ...
 
 @ email every user whose account status is pending - perhaps from
