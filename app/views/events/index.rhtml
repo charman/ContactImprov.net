@@ -44,17 +44,19 @@
 		<% EventEntry.distinct_nonpast_years.each do |y| %>
 			<% EventEntry.distinct_nonpast_months(y).each do |m| %>
 				<tr>
-					<td style="font-size: large;">
-						<b><%= y %> - <%= Date::MONTHNAMES[m.to_i] %></b>
+					<td colspan="2" style="font-size: large;">
+						<b><%= Date::MONTHNAMES[m.to_i] %> - <%= y %></b>
 					</td>
-					<td colspan="2" />
+					<td></td>
 				</tr>
 
 				<% @entries_by_year_month[y][m].each do |entry| %>
 			    	<tr>
 						<td style="border-bottom: none; width: 7em;" />
-						<td style="font-size: 0.9em;"><%= entry.start_date.strftime('%Y-%m-%d') %></td>
-						<td style="font-size: 0.9em;"><%= entry.title %></td>
+						<td style="font-size: 0.9em;"><%= format_event_date_range_without_year(entry) %></td>
+						<td style="font-size: 0.9em;">
+							<a href="/events/show/<%= entry.id %>"><%= entry.title %></a>
+						</td>
 					</tr>
 				<% end %>
 			<% end %>
