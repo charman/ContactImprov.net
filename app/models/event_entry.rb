@@ -22,9 +22,23 @@ class EventEntry < ActiveRecord::Base
       "WHERE DATE_FORMAT(start_date, '%Y') = '#{year}' ORDER BY year, month;").collect { |e| e.month }
   end
 
+  def self.distinct_nonpast_months(year)
+    EventEntry.find_by_sql("SELECT DISTINCT DATE_FORMAT(start_date, '%Y') AS year, " + 
+      "DATE_FORMAT(start_date, '%m') AS month FROM ci_event_entries " + 
+      "WHERE DATE_FORMAT(start_date, '%Y') = '#{year}' " + 
+      "AND start_date >= '#{Date.today.strftime('%Y-%m-01')}' " +
+      "ORDER BY year, month;").collect { |e| e.month }
+  end
+
   def self.distinct_years
     EventEntry.find_by_sql("SELECT DISTINCT DATE_FORMAT(start_date, '%Y') " + 
       "AS year FROM ci_event_entries ORDER BY year;").collect { |e| e.year }
+  end
+
+  def self.distinct_nonpast_years
+    EventEntry.find_by_sql("SELECT DISTINCT DATE_FORMAT(start_date, '%Y') " + 
+      "AS year FROM ci_event_entries WHERE year > #{Date.today.strftime('%Y')} " +
+      "ORDER BY year;").collect { |e| e.year }
   end
 
   def self.find_by_year(year, by_start_date_only = false)
