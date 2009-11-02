@@ -26,15 +26,14 @@ WHEN MOVING SITE TO NEW SERVER:
 
 THIS COMMIT:
 
-Added EventEntry.distinct_years() and EventEntry.distinct_months(year)
-functions.  Did some refactoring of '/events/list' in preparation for
-grouping events on that page by year and month, instead of just one
-long sorted chronological list.
+Added location column to events/index page.
 
 
 ======================================================================
 
 TODO:
+
+@ Fix static pages with both Login and Logout links
 
 @ Sort events by date
   - unit tests for 
