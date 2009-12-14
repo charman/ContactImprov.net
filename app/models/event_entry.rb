@@ -70,6 +70,19 @@ class EventEntry < ActiveRecord::Base
     self.find_by_year_month(year, month, true)
   end
 
+  def self.find_future_geocoded_entries
+    self.find(:all,
+      :from => "ci_event_entries, ci_locations",
+      :conditions => "end_date > CURRENT_DATE() " +
+                     "AND ci_event_entries.location_id = ci_locations.location_id " + 
+                     "AND geocode_precision IS NOT NULL"
+    )
+  end
+
+  def self.find_geocoded_entries
+    self.find_future_geocoded_entries
+  end
+
 
   def before_save
     if self.start_date > self.end_date

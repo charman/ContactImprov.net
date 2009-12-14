@@ -16,6 +16,15 @@ class JamEntry < ActiveRecord::Base
   validates_presence_of :title, :description, :schedule, :cost
 
 
+  def self.find_geocoded_entries
+    self.find(:all,
+      :from => "ci_jam_entries, ci_locations",
+      :conditions => "ci_jam_entries.location_id = ci_locations.location_id " + 
+                     "AND geocode_precision IS NOT NULL"
+    )
+  end
+
+
   def before_save
     sanitize_attributes
   end

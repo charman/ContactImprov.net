@@ -138,7 +138,7 @@ CREATE TABLE `ci_location_versions` (
   KEY `index_ci_location_versions_on_location_id` (`location_id`),
   KEY `index_ci_location_versions_on_us_state_id` (`us_state_id`),
   KEY `index_ci_location_versions_on_country_name_id` (`country_name_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=15379 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=15465 DEFAULT CHARSET=utf8;
 
 CREATE TABLE `ci_locations` (
   `location_id` int(11) NOT NULL AUTO_INCREMENT,

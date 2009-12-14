@@ -16,6 +16,14 @@ class PersonEntry < ActiveRecord::Base
   validate :limit_non_admins_to_one_person_entry
 
 
+  def self.find_geocoded_entries
+    self.find(:all,
+      :from => "ci_person_entries, ci_locations",
+      :conditions => "ci_person_entries.location_id = ci_locations.location_id " + 
+                     "AND geocode_precision IS NOT NULL"
+    )
+  end
+
   def self.total_entries_for_user(user)
     PersonEntry.count :conditions => ["owner_user_id = ?", user.id]
   end

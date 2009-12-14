@@ -26,12 +26,30 @@ WHEN MOVING SITE TO NEW SERVER:
 
 THIS COMMIT:
 
-Added location column to events/index page.
+Major maps update -
+
+Upgraded Google Maps support from v2 to v3.
+
+Added self.find_geocoded_entries function to each of the *Entry
+classes.
+
+Modified the map/index view to show different icons for the different
+types of geocoded entries.
 
 
 ======================================================================
 
 TODO:
+
+@ Google Maps
+  - tabbed info windows when multiple things at one location
+  - use different icon colors
+  - caching
+
+@ Geocoding
+  - admin page for locations that could not be geocoded
+    - add links to actual actions
+  - admin action to attempt to re-geocode
 
 @ Fix static pages with both Login and Logout links
 
@@ -57,12 +75,6 @@ GMail account?
   - on "request received" page
     - inform people to check their email accounts, check spam filters
     - provide link to URL
-
-@ Geocoding
-  - upgrade GeoKit plugin
-  - admin page for locations that could not be geocoded
-    - add links to actual actions
-  - admin action to attempt to re-geocode
 
 @ Update HTML
   - add text on old jams page asking people to email me to remove

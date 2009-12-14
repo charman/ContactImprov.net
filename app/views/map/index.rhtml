@@ -1,25 +1,73 @@
 <%= render(:partial => "shared/header", :locals => { :title => 'Map' } )%>
 
-<div id="map"  style="width: 100%; height: 500px; border: 1px solid #666;">
-</div>
-
 <script type="text/javascript" src="http://www.google.com/jsapi?key=<%= GeoKit::Geocoders::google %>"></script>
+<script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script>
 <script type="text/javascript">
-	google.load("maps", "2");
 
-	// Call this function when the page has been loaded
+	var map;
+	var markers = new Array(<%= @marker_info.size %>);
+
 	function initialize() {
-		var map = new google.maps.Map2(document.getElementById("map"));
-		map.setCenter(new google.maps.LatLng(37.4419, 0), 2);
-	    map.addControl(new google.maps.LargeMapControl());
-	    map.addControl(new google.maps.MapTypeControl());		
+		var map_center = new google.maps.LatLng(37.4419, 0);
+		var myOptions = {
+			zoom: 2,
+			center: map_center,
+			mapTypeId: google.maps.MapTypeId.ROADMAP
+		};
+		map = new google.maps.Map(document.getElementById("map_canvas"), myOptions);
 
-		<% for location in @locations %>
-		    map.addOverlay(new google.maps.Marker(new google.maps.LatLng(<%= location.lat %>, <%= location.lng %>)));
+		var markercount = 0;
+		<% if @marker_info.size > 0 %>
+			<% @marker_info.each do |latlng, info| %>
+				<% if info.size > 1 %>
+				<% else %>
+					add_info_window(
+						<%= latlng[0] %>, <%= latlng[1] %>,
+						"<%= info[0]['mouseover_text'] %>",
+						"<%= info[0]['infowindow_html'].gsub(/\"/, '\"') %>",
+						"<%= info[0]['class'] %>",
+						markercount++
+					);
+				<% end %>
+			<% end %>
 		<% end %>
 	}
+
+	function add_info_window(lat, lng, mouseover_text, infowindow_html, entry_class, markercount) {
+		var latlng = new google.maps.LatLng(lat, lng);
+		markers[markercount] = new google.maps.Marker({
+			position: latlng,
+			map: map,
+			title: mouseover_text,
+			icon: image_url_for_entry_class(entry_class)
+		});
+		var infowindow = new google.maps.InfoWindow({
+			content: infowindow_html
+		});
+		google.maps.event.addListener(markers[markercount], 'click', 
+			function() { infowindow.open(map, markers[markercount]); } );
+	}
+
+	function add_tabbed_info_window() {
+	}
+
+	function image_url_for_entry_class(entry_class) {
+		switch(entry_class) {
+			case 'EventEntry':
+				return 'http://www.google.com/mapfiles/markerE.png';
+			case 'JamEntry':
+				return 'http://www.google.com/mapfiles/markerJ.png';
+			case 'OrganizationEntry':
+				return 'http://www.google.com/mapfiles/markerO.png';
+			case 'PersonEntry':
+				return 'http://www.google.com/mapfiles/markerP.png';
+		}
+	}
+
 	google.setOnLoadCallback(initialize);
 
 </script>
+
+<div id="map_canvas"  style="width: 100%; height: 500px; border: 1px solid #666;"></div>
 
 <%= render(:partial => "shared/footer" )%>
