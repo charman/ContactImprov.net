@@ -1,9 +1,15 @@
 <%= render(:partial => "shared/header", :locals => { :title => 'Map' } )%>
 
+<link type="text/css" href="http://jqueryui.com/latest/themes/base/ui.all.css" rel="stylesheet" />
+
 <script type="text/javascript" src="http://www.google.com/jsapi?key=<%= GeoKit::Geocoders::google %>"></script>
 <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script>
-<script type="text/javascript">
 
+<script type="text/javascript" src="http://jqueryui.com/latest/jquery-1.3.2.js"></script>
+<script type="text/javascript" src="http://jqueryui.com/latest/ui/ui.core.js"></script>
+<script type="text/javascript" src="http://jqueryui.com/latest/ui/ui.tabs.js"></script>
+
+<script type="text/javascript">
 	var map;
 	var markers = new Array(<%= @marker_info.size %>);
 
@@ -20,20 +26,28 @@
 		<% if @marker_info.size > 0 %>
 			<% @marker_info.each do |latlng, info| %>
 				<% if info.size > 1 %>
+					add_tabbed_infowindow(
+						<%= latlng[0] %>, <%= latlng[1] %>,
+						"<%= info[0]['mouseover_text'] %>",
+						<%= javascript_array_for_tabbed_infowindow(info) %>,
+						markercount++
+					);
 				<% else %>
-					add_info_window(
+					add_infowindow(
 						<%= latlng[0] %>, <%= latlng[1] %>,
 						"<%= info[0]['mouseover_text'] %>",
 						"<%= info[0]['infowindow_html'].gsub(/\"/, '\"') %>",
-						"<%= info[0]['class'] %>",
+						"<%= info[0]['entry_class'] %>",
 						markercount++
 					);
 				<% end %>
 			<% end %>
 		<% end %>
+		
+//		$("#tabs").tabs();
 	}
 
-	function add_info_window(lat, lng, mouseover_text, infowindow_html, entry_class, markercount) {
+	function add_infowindow(lat, lng, mouseover_text, infowindow_html, entry_class, markercount) {
 		var latlng = new google.maps.LatLng(lat, lng);
 		markers[markercount] = new google.maps.Marker({
 			position: latlng,
@@ -48,25 +62,79 @@
 			function() { infowindow.open(map, markers[markercount]); } );
 	}
 
-	function add_tabbed_info_window() {
+	function add_tabbed_infowindow(lat, lng, mouseover_text, marker_info_array, markercount) {
+		var latlng = new google.maps.LatLng(lat, lng);
+		markers[markercount] = new google.maps.Marker({
+			position: latlng,
+			map: map,
+			title: mouseover_text,
+			icon: 'http://www.google.com/mapfiles/marker_purple.png'
+		});
+		var infowindow = new google.maps.InfoWindow({
+			content: get_tabbed_infowindow_html(marker_info_array, markercount)
+		});
+		google.maps.event.addListener(markers[markercount], 'click', 
+			function() { 
+				infowindow.open(map, markers[markercount]); 
+				$("#tabs_" + markercount).tabs();
+			} 
+		);
 	}
 
 	function image_url_for_entry_class(entry_class) {
 		switch(entry_class) {
-			case 'EventEntry':
+			case 'Event':
 				return 'http://www.google.com/mapfiles/markerE.png';
-			case 'JamEntry':
+			case 'Jam':
 				return 'http://www.google.com/mapfiles/markerJ.png';
-			case 'OrganizationEntry':
+			case 'Organization':
 				return 'http://www.google.com/mapfiles/markerO.png';
-			case 'PersonEntry':
+			case 'Person':
 				return 'http://www.google.com/mapfiles/markerP.png';
 		}
 	}
 
-	google.setOnLoadCallback(initialize);
+	function get_tabbed_infowindow_html(marker_info_array, markercount) {
+		var s;
+		
+		s = '<div id="tabs_' + markercount + '" style="font-size: 11px; width: 320px; height: 120px;">' +
+		    '<ul>';
+		for (var i = 0; i < marker_info_array.length; i++) {
+	        s += '<li><a href="#fragment-' + i + '_' + markercount + '"><span>' + 
+				marker_info_array[i]['entry_class'] + '</span></a></li>';
+		}
+		s += '</ul>';
+		for (var i = 0; i < marker_info_array.length; i++) {
+			s += '<div id="fragment-' + i + '_' + markercount + '">' +
+			    marker_info_array[i]['infowindow_html'] +
+			    '</div>';
+		}
+	    s += '</div>';
 
+		return s;
+	}
+
+	google.setOnLoadCallback(initialize);
 </script>
+
+<!--
+<div id="tabs" style="font-size: 11px;"> 
+	<ul> 
+	    <li><a href="#fragment-1"><span>One</span></a></li> 
+	    <li><a href="#fragment-2"><span>Two</span></a></li> 
+	    <li><a href="#fragment-3"><span>Three</span></a></li> 
+	</ul> 
+	<div id="fragment-1"> 
+	    <p>Tab 1</p> 
+	</div> 
+	<div id="fragment-2"> 
+	   <p>Tab 2</p> 
+	</div> 
+	<div id="fragment-3"> 
+	   <p>Tab 3</p> 
+	</div> 
+</div>
+-->
 
 <div id="map_canvas"  style="width: 100%; height: 500px; border: 1px solid #666;"></div>
 

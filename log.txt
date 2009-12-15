@@ -26,15 +26,7 @@ WHEN MOVING SITE TO NEW SERVER:
 
 THIS COMMIT:
 
-Major maps update -
-
-Upgraded Google Maps support from v2 to v3.
-
-Added self.find_geocoded_entries function to each of the *Entry
-classes.
-
-Modified the map/index view to show different icons for the different
-types of geocoded entries.
+Got tabbed infowindows working with Google Maps v3 and jQuery.
 
 
 ======================================================================
@@ -42,7 +34,8 @@ types of geocoded entries.
 TODO:
 
 @ Google Maps
-  - tabbed info windows when multiple things at one location
+  - add addresses to infowindows
+  - fix javascript warning message
   - use different icon colors
   - caching
 
@@ -187,6 +180,15 @@ they can edit for that type of entry
 ==[ LOG ]=============================================================
 
 ----[ day, January , 2009 ]--------------------------------------
+
+
+
+----[ Monday, December 14, 2009 ]-------------------------------------
+
+@ Found this sample code for implementing tabbed windows using the
+Google Maps API v3 with jQuery:
+
+  http://gmaps-samples-v3.googlecode.com/svn/trunk/infowindow/tabs.html
 
 
 
