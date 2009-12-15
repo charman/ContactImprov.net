@@ -107,9 +107,9 @@ class EventEntry < ActiveRecord::Base
   def date_range_without_year
     #  lemma: start_date <= end_date because of EventEntry.before_save
     if self.start_date.month != self.end_date.month
-      "#{e.start_date.strftime('%b %e')} - #{e.end_date.strftime('%b %e')}"
+      "#{self.start_date.strftime('%b %e')} - #{self.end_date.strftime('%b %e')}"
     elsif self.start_date.day != self.end_date.day
-      "#{e.start_date.strftime('%b %e')} - #{e.end_date.strftime('%e')}"
+      "#{self.start_date.strftime('%b %e')} - #{self.end_date.strftime('%e')}"
     else
       self.start_date.strftime('%b %e')
     end
