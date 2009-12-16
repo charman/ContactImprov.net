@@ -24,8 +24,8 @@ protected
   def marker_info_for_entry(entry)
     marker_info = Hash.new
     marker_info['entry_class'] = entry.class.to_s.sub(/Entry/,'')
-    marker_info['mouseover_text'] = entry.title
-    marker_info['infowindow_html'] = infowindow_for_entry(entry)
+    marker_info['mouseover_text'] = HTMLEntities.new.decode(entry.title).gsub(/\"/, '\"')
+    marker_info['infowindow_html'] = infowindow_for_entry(entry).gsub(/\"/, '\"')
     marker_info
   end
 

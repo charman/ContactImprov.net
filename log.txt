@@ -26,8 +26,9 @@ WHEN MOVING SITE TO NEW SERVER:
 
 THIS COMMIT:
 
-Added the decode_html_entities_of_attributes! function to
-lib/sanitize_accessible_attributes.rb.
+Converted HTML entities	back to	UTF 8 for the mouseover	text map
+markers, since the HTML	entities in this text are not converted	back
+to UTF-8 before	being displayed.
 
 ======================================================================
 
@@ -35,7 +36,6 @@ TODO:
 
 @ Google Maps
   - change mouseover text for tabbed infowindows
-  - convert (common) HTML entities to characters in mouseover text
   - add addresses to infowindows
   - fix javascript warning message
   - use different icon colors
