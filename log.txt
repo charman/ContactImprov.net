@@ -26,23 +26,31 @@ WHEN MOVING SITE TO NEW SERVER:
 
 THIS COMMIT:
 
-Got tabbed infowindows working with Google Maps v3 and jQuery.
-
+Added the decode_html_entities_of_attributes! function to
+lib/sanitize_accessible_attributes.rb.
 
 ======================================================================
 
 TODO:
 
 @ Google Maps
+  - change mouseover text for tabbed infowindows
+  - convert (common) HTML entities to characters in mouseover text
   - add addresses to infowindows
   - fix javascript warning message
   - use different icon colors
   - caching
 
+@ HTML entity decoding when editing forms
+  - change sanitize_attributes to sanitize_attributes!
+  - (?) move decode_html_entities_of_attributes! 
+  - unit testing
+
 @ Geocoding
   - admin page for locations that could not be geocoded
     - add links to actual actions
   - admin action to attempt to re-geocode
+  - send admin an email if geocoding failed
 
 @ Fix static pages with both Login and Logout links
 
