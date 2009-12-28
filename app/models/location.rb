@@ -129,9 +129,14 @@ class Location < ActiveRecord::Base
     if self.is_in_usa?
       geoloc.state           = self.us_state.name
     end
-    new_geoloc = GeoKit::Geocoders::GoogleGeocoder.geocode(geoloc)
+
+    begin
+      new_geoloc = GeoKit::Geocoders::GoogleGeocoder.geocode(geoloc)
+    rescue SocketError
+      # TODO: Handle error when Geocoder throws an exception
+    end
     
-    if new_geoloc.success
+    if new_geoloc && new_geoloc.success
       self.lat               = new_geoloc.lat
       self.lng               = new_geoloc.lng
       self.geocode_precision = new_geoloc.precision
@@ -141,7 +146,7 @@ class Location < ActiveRecord::Base
       self.geocode_precision = nil
     end
     
-    new_geoloc.success
+    new_geoloc ? new_geoloc.success : nil
   end
   
   def human_readable_attribute(attribute_name)
