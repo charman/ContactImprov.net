@@ -26,9 +26,12 @@ WHEN MOVING SITE TO NEW SERVER:
 
 THIS COMMIT:
 
-Converted HTML entities	back to	UTF 8 for the mouseover	text map
-markers, since the HTML	entities in this text are not converted	back
-to UTF-8 before	being displayed.
+Modified location.geocode to be more robust to failures when a
+geocoding service is unavailable.
+
+Modified the edit action for all of the *Entry forms to decode the
+HTML attributes before the contents of the form fields are displayed.
+
 
 ======================================================================
 
@@ -45,6 +48,17 @@ TODO:
   - change sanitize_attributes to sanitize_attributes!
   - (?) move decode_html_entities_of_attributes! 
   - unit testing
+  - rename sanitize_accessible_attributes.rb to ?? (modify_a_a.rb ??)
+
+@ Calendars
+  - buttons for adding events to Google calendars
+  - iCal feeds
+    - use respond_to to add ical support for any of the event feeds
+
+@ Microformats
+  - lat/lng
+  - locations
+  - events
 
 @ Geocoding
   - admin page for locations that could not be geocoded

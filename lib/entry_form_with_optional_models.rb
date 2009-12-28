@@ -46,9 +46,11 @@ module EntryFormWithOptionalModels
     @entry_type = entry_display_name.downcase
 
     if valid_id_and_permissions?(params[:id])
+      #  lemma: @entry points to valid Entry type because valid_id_and_permissions? was non-nil
       optional_models.each { |model_name| eval("@entry.#{model_name} ||= #{model_name.camelize}.new") }
 
       set_has_person_entry_variables
+      @entry.decode_html_entities_of_attributes!
 
       if request.put?
         initialize_entry_and_linked_models_from_params(params)
