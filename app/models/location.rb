@@ -78,7 +78,7 @@ class Location < ActiveRecord::Base
   end
 
   def before_save
-    sanitize_attributes
+    sanitize_attributes!
     self.geocode
     true  #  We always return true, so that the object is saved regardless of whether or not geocoding succeeded
   end

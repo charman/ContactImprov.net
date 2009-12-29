@@ -15,7 +15,7 @@ module SanitizeAccessibleAttributes
     end
   end
 
-  def sanitize_attributes
+  def sanitize_attributes!
     return if self.class.accessible_attributes.blank?
     self.class.accessible_attributes.each do |aa|
       v = self.send(aa)

@@ -26,8 +26,7 @@ WHEN MOVING SITE TO NEW SERVER:
 
 THIS COMMIT:
 
-Added city/state/country information to the infowindows for the Google
-Maps markers.
+Renamed the sanitize_attributes function to sanitize_attributes!.
 
 
 ======================================================================
@@ -44,7 +43,6 @@ TODO:
   - caching
 
 @ HTML entity decoding when editing forms
-  - change sanitize_attributes to sanitize_attributes!
   - (?) move decode_html_entities_of_attributes! 
   - unit testing
   - rename sanitize_accessible_attributes.rb to ?? (modify_a_a.rb ??)

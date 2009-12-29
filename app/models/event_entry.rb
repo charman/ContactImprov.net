@@ -88,7 +88,7 @@ class EventEntry < ActiveRecord::Base
     if self.start_date > self.end_date
       self.start_date, self.end_date = self.end_date, self.start_date
     end
-    sanitize_attributes
+    sanitize_attributes!
   end
 
   def date_range

@@ -26,7 +26,7 @@ class JamEntry < ActiveRecord::Base
 
 
   def before_save
-    sanitize_attributes
+    sanitize_attributes!
   end
 
   def sortable_title

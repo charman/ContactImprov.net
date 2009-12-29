@@ -12,7 +12,7 @@ class Organization < ActiveRecord::Base
 
 
   def before_save
-    sanitize_attributes
+    sanitize_attributes!
   end
 
   def version_condition_met?

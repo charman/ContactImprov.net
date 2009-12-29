@@ -41,7 +41,7 @@ class PersonEntry < ActiveRecord::Base
   end
 
   def before_save
-    sanitize_attributes
+    sanitize_attributes!
   end
 
   def boolean_flag_names

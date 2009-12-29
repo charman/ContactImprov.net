@@ -29,7 +29,7 @@ class UserAccountRequest < ActiveRecord::Base
 
 
   def before_save
-    sanitize_attributes
+    sanitize_attributes!
   end
 
   def create_user_account_and_deliver_signup_email

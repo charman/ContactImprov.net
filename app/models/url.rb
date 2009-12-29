@@ -32,7 +32,7 @@ class Url < ActiveRecord::Base
 
   def before_save
     self.address = self.address_with_protocol
-    sanitize_attributes
+    sanitize_attributes!
   end
 
   def completely_blank?

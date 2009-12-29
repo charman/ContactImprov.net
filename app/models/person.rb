@@ -16,7 +16,7 @@ class Person < ActiveRecord::Base
 
 
   def before_save
-    sanitize_attributes
+    sanitize_attributes!
   end
 
   def completely_blank?
