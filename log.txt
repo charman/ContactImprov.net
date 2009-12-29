@@ -26,16 +26,16 @@ WHEN MOVING SITE TO NEW SERVER:
 
 THIS COMMIT:
 
-Modified location.geocode to be more robust to failures when a
-geocoding service is unavailable.
-
-Modified the edit action for all of the *Entry forms to decode the
-HTML attributes before the contents of the form fields are displayed.
+Fixed an improperly escaped string in two text fixtures.
 
 
 ======================================================================
 
 TODO:
+
+@ Modify signup page
+  - require users to provide one line description of what information 
+     they want to add to the website
 
 @ Google Maps
   - change mouseover text for tabbed infowindows
@@ -49,6 +49,14 @@ TODO:
   - (?) move decode_html_entities_of_attributes! 
   - unit testing
   - rename sanitize_accessible_attributes.rb to ?? (modify_a_a.rb ??)
+
+@ Add image sidebar
+  - create <div> that floats right
+  - images
+    - find Flickr page with images
+    - download images
+    - resize images
+  - add lightbox code to sidebar that floats on right
 
 @ Calendars
   - buttons for adding events to Google calendars

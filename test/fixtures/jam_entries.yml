@@ -3,7 +3,7 @@ complete_jam_entry:
     title: 'Complete Contact Event'
     description: 'A completely complete Contact Event application'
     schedule: "Once upon a time"
-    cost: "If you have to ask, you can't afford it."
+    cost: "If you have to ask, you can\'t afford it."
     owner_user_id: 1
     person_id: 100
     location_id: 100
