@@ -26,7 +26,8 @@ WHEN MOVING SITE TO NEW SERVER:
 
 THIS COMMIT:
 
-Fixed an improperly escaped string in two text fixtures.
+Changed Google Maps marker colors for different type of entries
+(e.g. Person, Jam, etc).
 
 
 ======================================================================
@@ -41,7 +42,6 @@ TODO:
   - change mouseover text for tabbed infowindows
   - add addresses to infowindows
   - fix javascript warning message
-  - use different icon colors
   - caching
 
 @ HTML entity decoding when editing forms
