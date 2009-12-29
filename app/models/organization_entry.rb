@@ -1,5 +1,5 @@
 class OrganizationEntry < ActiveRecord::Base
-  include SanitizeAccessibleAttributes
+  include AccessibleAttributeEncoding
 
   belongs_to :organization
   belongs_to :email

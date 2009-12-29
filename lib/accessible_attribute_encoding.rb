@@ -1,4 +1,4 @@
-module SanitizeAccessibleAttributes
+module AccessibleAttributeEncoding
 
   require 'htmlentities'
   require 'sanitize'

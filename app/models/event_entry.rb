@@ -1,5 +1,5 @@
 class EventEntry < ActiveRecord::Base
-  include SanitizeAccessibleAttributes
+  include AccessibleAttributeEncoding
 
   belongs_to :email
   belongs_to :location

@@ -1,5 +1,5 @@
 class Organization < ActiveRecord::Base
-  include SanitizeAccessibleAttributes
+  include AccessibleAttributeEncoding
 
   has_one :organization_entry
 

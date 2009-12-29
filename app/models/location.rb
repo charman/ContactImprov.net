@@ -1,5 +1,5 @@
 class Location < ActiveRecord::Base
-  include SanitizeAccessibleAttributes
+  include AccessibleAttributeEncoding
 
   belongs_to :country_name
   belongs_to :us_state

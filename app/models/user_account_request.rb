@@ -1,5 +1,5 @@
 class UserAccountRequest < ActiveRecord::Base
-  include SanitizeAccessibleAttributes
+  include AccessibleAttributeEncoding
 
   belongs_to :person
   belongs_to :email

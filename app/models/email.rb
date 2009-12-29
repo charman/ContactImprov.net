@@ -1,5 +1,5 @@
 class Email < ActiveRecord::Base
-  include SanitizeAccessibleAttributes
+  include AccessibleAttributeEncoding
 
   has_one :jam_entry
   has_one :event_entry
