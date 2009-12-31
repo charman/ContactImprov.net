@@ -7,6 +7,11 @@ class MapController < ApplicationController
     add_marker_info_for_entry_class(@marker_info, JamEntry)
     add_marker_info_for_entry_class(@marker_info, OrganizationEntry)
     add_marker_info_for_entry_class(@marker_info, PersonEntry)
+    
+    respond_to do |format|
+      format.html  # index.rhtml
+      format.json { render :layout => false, :json => @marker_info }
+    end
   end
 
 
@@ -16,8 +21,9 @@ protected
     entries = entry_class.find_geocoded_entries
 
     entries.each do |entry|
-      marker_info[[entry.location.lat, entry.location.lng]] ||= Array.new
-      marker_info[[entry.location.lat, entry.location.lng]] << marker_info_for_entry(entry)
+      coordinate_string = "#{entry.location.lat}|#{entry.location.lng}"
+      marker_info[coordinate_string] ||= Array.new
+      marker_info[coordinate_string] << marker_info_for_entry(entry)
     end
   end
 

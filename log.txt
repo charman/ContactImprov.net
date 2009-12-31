@@ -26,8 +26,16 @@ WHEN MOVING SITE TO NEW SERVER:
 
 THIS COMMIT:
 
-Renamed the lib/sanitize_accessible_attributes.rb file to
-lib/accessible_attribute_encoding.rb.
+Modified the map/index action to return a JSON object with the Google
+Maps Marker info, when the server is asked for data in JSON format.
+
+Modified the JavaScript on the map/index view to use the JSON data,
+instead of having Rails generate tons of JavaScript function calls.
+
+Changed the mouseover text for tabbed infowindows to show all listings
+at a given location.
+
+Removed a no longer used function from the map helper.
 
 
 ======================================================================
@@ -39,7 +47,8 @@ TODO:
      they want to add to the website
 
 @ Google Maps
-  - change mouseover text for tabbed infowindows
+  - refactor JavaScript into separate file
+  - create minimal example code
   - fix javascript warning message
   - caching
 

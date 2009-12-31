@@ -10,10 +10,11 @@
 <script type="text/javascript" src="http://jqueryui.com/latest/ui/ui.tabs.js"></script>
 
 <script type="text/javascript">
+	//  Declare global variables
 	var map;
-	var markers = new Array(<%= @marker_info.size %>);
+	var markers = new Array();
 
-	function initialize() {
+	function contactimprov_initialize_map() {
 		var map_center = new google.maps.LatLng(37.4419, 0);
 		var myOptions = {
 			zoom: 2,
@@ -22,47 +23,57 @@
 		};
 		map = new google.maps.Map(document.getElementById("map_canvas"), myOptions);
 
-		var markercount = 0;
-		<% if @marker_info.size > 0 %>
-			<% @marker_info.each do |latlng, info| %>
-				<% if info.size > 1 %>
-					add_tabbed_infowindow(
-						<%= latlng[0] %>, <%= latlng[1] %>,
-						"<%= info[0]['mouseover_text'] %>",
-						<%= javascript_array_for_tabbed_infowindow(info) %>,
+		new Ajax.Request('/map/index', {
+		  method:'get',
+		  requestHeaders: {Accept: 'application/json'},
+		  onSuccess: function(transport){
+		    var marker_info = transport.responseText.evalJSON(true);
+			var markercount = 0;
+
+			for (var coordinates in marker_info) {
+				var lat_lng = coordinates.split('|');
+
+				if (marker_info[coordinates].size() > 1) {
+					contactimprov_add_tabbed_infowindow(
+						lat_lng[0], lat_lng[1],
+						marker_info[coordinates],
 						markercount++
 					);
-				<% else %>
-					add_infowindow(
-						<%= latlng[0] %>, <%= latlng[1] %>,
-						"<%= info[0]['mouseover_text'] %>",
-						"<%= info[0]['infowindow_html'] %>",
-						"<%= info[0]['entry_class'] %>",
+				}
+				else {
+					contactimprov_add_infowindow(
+						lat_lng[0], lat_lng[1],
+						marker_info[coordinates][0],
 						markercount++
 					);
-				<% end %>
-			<% end %>
-		<% end %>
-		
-//		$("#tabs").tabs();
+				}
+			}
+		  }
+		});
 	}
 
-	function add_infowindow(lat, lng, mouseover_text, infowindow_html, entry_class, markercount) {
+	function contactimprov_add_infowindow(lat, lng, marker_info, markercount) {
 		var latlng = new google.maps.LatLng(lat, lng);
 		markers[markercount] = new google.maps.Marker({
 			position: latlng,
 			map: map,
-			title: mouseover_text,
-			icon: image_url_for_entry_class(entry_class)
+			title: marker_info.mouseover_text,
+			icon: contactimprov_image_url_for_entry_class(marker_info.entry_class)
 		});
 		var infowindow = new google.maps.InfoWindow({
-			content: infowindow_html
+			content: marker_info.infowindow_html
 		});
 		google.maps.event.addListener(markers[markercount], 'click', 
 			function() { infowindow.open(map, markers[markercount]); } );
 	}
 
-	function add_tabbed_infowindow(lat, lng, mouseover_text, marker_info_array, markercount) {
+	function contactimprov_add_tabbed_infowindow(lat, lng, marker_info_array, markercount) {
+		var mouseover_text_array = [];
+		for (var i = 0; i < marker_info_array.size(); i++) {
+			mouseover_text_array.push(marker_info_array[i].mouseover_text);
+		}
+		var mouseover_text = mouseover_text_array.join(",\n");
+
 		var latlng = new google.maps.LatLng(lat, lng);
 		markers[markercount] = new google.maps.Marker({
 			position: latlng,
@@ -71,7 +82,7 @@
 			icon: 'http://www.google.com/mapfiles/marker_purple.png'
 		});
 		var infowindow = new google.maps.InfoWindow({
-			content: get_tabbed_infowindow_html(marker_info_array, markercount)
+			content: contactimprov_get_tabbed_infowindow_html(marker_info_array, markercount)
 		});
 		google.maps.event.addListener(markers[markercount], 'click', 
 			function() { 
@@ -81,7 +92,7 @@
 		);
 	}
 
-	function image_url_for_entry_class(entry_class) {
+	function contactimprov_image_url_for_entry_class(entry_class) {
 		switch(entry_class) {
 			case 'Event':
 				return 'http://www.google.com/mapfiles/marker_greenE.png';
@@ -94,7 +105,7 @@
 		}
 	}
 
-	function get_tabbed_infowindow_html(marker_info_array, markercount) {
+	function contactimprov_get_tabbed_infowindow_html(marker_info_array, markercount) {
 		var s;
 		
 		s = '<div id="tabs_' + markercount + '" style="font-size: 11px; width: 320px; height: 120px;">' +
@@ -114,27 +125,8 @@
 		return s;
 	}
 
-	google.setOnLoadCallback(initialize);
+	google.setOnLoadCallback(contactimprov_initialize_map);
 </script>
-
-<!--
-<div id="tabs" style="font-size: 11px;"> 
-	<ul> 
-	    <li><a href="#fragment-1"><span>One</span></a></li> 
-	    <li><a href="#fragment-2"><span>Two</span></a></li> 
-	    <li><a href="#fragment-3"><span>Three</span></a></li> 
-	</ul> 
-	<div id="fragment-1"> 
-	    <p>Tab 1</p> 
-	</div> 
-	<div id="fragment-2"> 
-	   <p>Tab 2</p> 
-	</div> 
-	<div id="fragment-3"> 
-	   <p>Tab 3</p> 
-	</div> 
-</div>
--->
 
 <div id="map_canvas"  style="width: 100%; height: 500px; border: 1px solid #666;"></div>
 
