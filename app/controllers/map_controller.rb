@@ -28,7 +28,7 @@ protected
   end
 
   def escape_quotes(s)
-    s.gsub(/\"/, '\"').gsub(/\'/, '\\\'')
+    s.gsub(/\'/, '\\\'')
   end
 
   def marker_info_for_entry(entry)

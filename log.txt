@@ -26,24 +26,24 @@ WHEN MOVING SITE TO NEW SERVER:
 
 THIS COMMIT:
 
-Refactored the JavaScripts for displaying markers on a map into a 
-separate .js file.
-
-Created the map/embed_example view, which shows the minimal HTML
-needed to embed the map in a web page.
+Fixed a bug in the escape_quotes function in the map controller that
+was doubly escaping double-quotes, now that to_json is escaping the
+quotes properly.
 
 
 ======================================================================
 
 TODO:
 
+@ Google Maps
+  - move functions from controller to helper
+  - add map key explaining what the markers mean
+  - fix javascript warning message
+  - caching
+
 @ Modify signup page
   - require users to provide one line description of what information 
      they want to add to the website
-
-@ Google Maps
-  - fix javascript warning message
-  - caching
 
 @ Fix left margin when viewing an entry
 
