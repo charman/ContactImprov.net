@@ -26,7 +26,11 @@ WHEN MOVING SITE TO NEW SERVER:
 
 THIS COMMIT:
 
-Modified the map/index view to use jQuery instead of Prototype.
+Refactored the JavaScripts for displaying markers on a map into a 
+separate .js file.
+
+Created the map/embed_example view, which shows the minimal HTML
+needed to embed the map in a web page.
 
 
 ======================================================================
@@ -38,8 +42,6 @@ TODO:
      they want to add to the website
 
 @ Google Maps
-  - refactor JavaScript into separate file
-  - create minimal example code
   - fix javascript warning message
   - caching
 

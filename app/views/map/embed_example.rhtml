@@ -1,0 +1,35 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8;" />
+	<title>ContactImprov.net - Map Embedding Example</title>
+
+	<link type="text/css" href="http://jqueryui.com/latest/themes/base/ui.all.css" rel="stylesheet" />
+
+	<script type="text/javascript" src="http://www.google.com/jsapi"></script>
+	<script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script>
+
+	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/prototype/1.6.0.3/prototype.js"></script>
+
+	<script type="text/javascript" src="http://jqueryui.com/latest/jquery-1.3.2.js"></script>
+	<script type="text/javascript" src="http://jqueryui.com/latest/ui/ui.core.js"></script>
+	<script type="text/javascript" src="http://jqueryui.com/latest/ui/ui.tabs.js"></script>
+
+	<script type="text/javascript" src="http://contactimprov.net/javascripts/ci_map.js"></script>
+</head>
+
+<body>
+
+	<script type="text/javascript">
+		//  Declare global variables
+		var map;
+		var markers = new Array();
+
+		google.setOnLoadCallback(ci_map_initialize);
+	</script>
+
+	<div id="map_canvas"  style="width: 100%; height: 500px; border: 1px solid #666;"></div>
+
+</body>
+</html>
