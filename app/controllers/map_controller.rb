@@ -1,5 +1,20 @@
 class MapController < ApplicationController
 
+  def all
+    @marker_info = Hash.new
+    @entry_category = 'all'
+
+    add_marker_info_for_entry_class(@marker_info, EventEntry)
+    add_marker_info_for_entry_class(@marker_info, JamEntry)
+    add_marker_info_for_entry_class(@marker_info, OrganizationEntry)
+    add_marker_info_for_entry_class(@marker_info, PersonEntry)
+    
+    respond_to do |format|
+      format.html { render :action => 'index' }
+      format.json { render :layout => false, :json => @marker_info }
+    end
+  end
+
   def events
     @marker_info = Hash.new
     @entry_category = 'events'

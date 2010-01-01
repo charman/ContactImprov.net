@@ -11,7 +11,7 @@ function ci_map_initialize() {
 	//         better way to do this?
 	var json_url = "/map/" + entry_category;
 
-	$.getJSON(entry_category,
+	$.getJSON(json_url,
 		function(marker_info) {
 			var markercount = 0;
 
