@@ -86,7 +86,7 @@ protected
 
   def infowindow_for_event(event)
     "<div style=\"font-size: 1.1em; font-weight: bold;\">" + 
-      "<a href=\"/events/show/#{event.id}\">#{event.title}</a></div>" +
+      "<a href=\"#{request.host_with_port}/events/show/#{event.id}\">#{event.title}</a></div>" +
       "<div>#{event.date_range}</div> " +
       "<div style=\"color: #444; margin-left: 0.5em;\">#{event.location.city_state_country}</div>" +
       (event.url ? "<div style=\"font-size: 0.9em; margin-left: 0.5em;\"><a href=\"#{event.url.address}\">#{event.url.address}</a></div>" : '')
@@ -94,21 +94,21 @@ protected
 
   def infowindow_for_jam(jam)
     "<div style=\"font-size: 1.1em; font-weight: bold;\">" + 
-      "<a href=\"/jams/show/#{jam.id}\">#{jam.title}</a></div>" +
+      "<a href=\"#{request.host_with_port}/jams/show/#{jam.id}\">#{jam.title}</a></div>" +
       "<div style=\"color: #444; margin-left: 0.5em;\">#{jam.location.city_state_country}</div>" +
       (jam.url ? "<div style=\"font-size: 0.9em; margin-left: 0.5em;\"><a href=\"#{jam.url.address}\">#{jam.url.address}</a></div>" : '')
   end
 
   def infowindow_for_organization(organization)
     "<div style=\"font-size: 1.1em; font-weight: bold;\">" + 
-      "<a href=\"/organizations/show/#{organization.id}\">#{organization.title}</a></div>" +
+      "<a href=\"#{request.host_with_port}/organizations/show/#{organization.id}\">#{organization.title}</a></div>" +
       "<div style=\"color: #444; margin-left: 0.5em;\">#{organization.location.city_state_country}</div>" +
       (organization.url ? "<div style=\"font-size: 0.9em; margin-left: 0.5em;\"><a href=\"#{organization.url.address}\">#{organization.url.address}</a></div>" : '')
   end
 
   def infowindow_for_person(person)
     "<div style=\"font-size: 1.1em; font-weight: bold;\">" + 
-      "<a href=\"/people/show/#{person.id}\">#{person.title}</a></div>" +
+      "<a href=\"#{request.host_with_port}/people/show/#{person.id}\">#{person.title}</a></div>" +
       "<div style=\"color: #444; margin-left: 0.5em;\">#{person.location.city_state_country}</div>" +
       (person.url ? "<div style=\"font-size: 0.9em; margin-left: 0.5em;\"><a href=\"#{person.url.address}\">#{person.url.address}</a></div>" : '')
   end

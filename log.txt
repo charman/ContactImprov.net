@@ -26,10 +26,10 @@ WHEN MOVING SITE TO NEW SERVER:
 
 THIS COMMIT:
 
-DRY'ed up code for the map controller's actions.  Created a separate
-JSON action/view, so that the JSON code can be downloaded without
-having to supply an "accepts" header when requesting the page from the
-web server.
+The infowindow_for_* functions in the map controller now output URL's
+that include the full hostname of the server, instead of just a
+relative URL pathname.  This should make it possible to embed the map
+on another site without breaking any of the links.
 
 
 ======================================================================
