@@ -62,7 +62,7 @@ function ci_map_add_tabbed_infowindow(lat, lng, marker_info_array, markercount) 
 	google.maps.event.addListener(markers[markercount], 'click', 
 		function() { 
 			infowindow.open(map, markers[markercount]); 
-			$("#tabs_{markercount}").tabs();
+			$("#tabs_" + markercount).tabs();
 		} 
 	);
 }
