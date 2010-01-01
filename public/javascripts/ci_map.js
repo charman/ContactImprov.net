@@ -9,7 +9,7 @@ function ci_map_initialize() {
 
 	//  TODO: entry_category is being passed as a global variable.  Isn't there a
 	//         better way to do this?
-	var json_url = "/map/" + entry_category;
+	var json_url = "/map/json/" + entry_category;
 
 	$.getJSON(json_url,
 		function(marker_info) {

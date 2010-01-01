@@ -26,8 +26,10 @@ WHEN MOVING SITE TO NEW SERVER:
 
 THIS COMMIT:
 
-Added views for events, jams, people and organizations to the map
-controller.
+DRY'ed up code for the map controller's actions.  Created a separate
+JSON action/view, so that the JSON code can be downloaded without
+having to supply an "accepts" header when requesting the page from the
+web server.
 
 
 ======================================================================
@@ -41,8 +43,6 @@ TODO:
 @ Google Maps
   - caching
   ...
-  - maps showing only people/jams/etc.
-    - DRY up controller actions
   - map key explaining what the markers mean
     - figure out how to reduce size of key markers
     - change purple dot icon to something more explanatory

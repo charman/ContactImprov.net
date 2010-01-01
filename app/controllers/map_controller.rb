@@ -1,81 +1,49 @@
 class MapController < ApplicationController
 
-  def all
-    @marker_info = Hash.new
-    @entry_category = 'all'
-
-    add_marker_info_for_entry_class(@marker_info, EventEntry)
-    add_marker_info_for_entry_class(@marker_info, JamEntry)
-    add_marker_info_for_entry_class(@marker_info, OrganizationEntry)
-    add_marker_info_for_entry_class(@marker_info, PersonEntry)
-    
-    respond_to do |format|
-      format.html { render :action => 'index' }
-      format.json { render :layout => false, :json => @marker_info }
-    end
-  end
-
   def events
-    @marker_info = Hash.new
     @entry_category = 'events'
-
-    add_marker_info_for_entry_class(@marker_info, EventEntry)
-    
-    respond_to do |format|
-      format.html { render :action => 'index' }
-      format.json { render :layout => false, :json => @marker_info }
-    end
+    render :action => 'index'
   end
 
   def index
-    @marker_info = Hash.new
     @entry_category = 'all'
-
-    add_marker_info_for_entry_class(@marker_info, EventEntry)
-    add_marker_info_for_entry_class(@marker_info, JamEntry)
-    add_marker_info_for_entry_class(@marker_info, OrganizationEntry)
-    add_marker_info_for_entry_class(@marker_info, PersonEntry)
-    
-    respond_to do |format|
-      format.html  # index.rhtml
-      format.json { render :layout => false, :json => @marker_info }
-    end
   end
 
   def jams
-    @marker_info = Hash.new
     @entry_category = 'jams'
+    render :action => 'index'
+  end
 
-    add_marker_info_for_entry_class(@marker_info, JamEntry)
+  def json
+    @marker_info = Hash.new
     
-    respond_to do |format|
-      format.html { render :action => 'index' }
-      format.json { render :layout => false, :json => @marker_info }
+    case params[:id]
+    when 'events'
+      add_marker_info_for_entry_class(@marker_info, EventEntry)
+    when 'jams'
+      add_marker_info_for_entry_class(@marker_info, JamEntry)
+    when 'people'
+      add_marker_info_for_entry_class(@marker_info, PersonEntry)
+    when 'organizations'
+      add_marker_info_for_entry_class(@marker_info, OrganizationEntry)
+    else 
+      add_marker_info_for_entry_class(@marker_info, EventEntry)
+      add_marker_info_for_entry_class(@marker_info, JamEntry)
+      add_marker_info_for_entry_class(@marker_info, OrganizationEntry)
+      add_marker_info_for_entry_class(@marker_info, PersonEntry)
     end
+      
+    render :layout => false, :json => @marker_info
   end
 
   def people
-    @marker_info = Hash.new
     @entry_category = 'people'
-
-    add_marker_info_for_entry_class(@marker_info, PersonEntry)
-    
-    respond_to do |format|
-      format.html { render :action => 'index' }
-      format.json { render :layout => false, :json => @marker_info }
-    end
+    render :action => 'index'
   end
 
   def organizations
-    @marker_info = Hash.new
     @entry_category = 'organizations'
-
-    add_marker_info_for_entry_class(@marker_info, OrganizationEntry)
-    
-    respond_to do |format|
-      format.html { render :action => 'index' }
-      format.json { render :layout => false, :json => @marker_info }
-    end
+    render :action => 'index'
   end
 
 
