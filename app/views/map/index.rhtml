@@ -2,7 +2,7 @@
 
 <link type="text/css" href="http://jqueryui.com/latest/themes/base/ui.all.css" rel="stylesheet" />
 
-<script type="text/javascript" src="http://www.google.com/jsapi?key=<%= GeoKit::Geocoders::google %>"></script>
+<script type="text/javascript" src="http://www.google.com/jsapi"></script>
 <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script>
 
 <script type="text/javascript" src="http://jqueryui.com/latest/jquery-1.3.2.js"></script>
@@ -14,7 +14,7 @@
 	var map;
 	var markers = new Array();
 
-	function contactimprov_initialize_map() {
+	function ci_map_initialize() {
 		var map_center = new google.maps.LatLng(37.4419, 0);
 		var myOptions = {
 			zoom: 2,
@@ -23,42 +23,31 @@
 		};
 		map = new google.maps.Map(document.getElementById("map_canvas"), myOptions);
 
-		new Ajax.Request('/map/index', {
-		  method:'get',
-		  requestHeaders: {Accept: 'application/json'},
-		  onSuccess: function(transport){
-		    var marker_info = transport.responseText.evalJSON(true);
-			var markercount = 0;
+		$.getJSON('/map/index',
+			function(marker_info) {
+				var markercount = 0;
 
-			for (var coordinates in marker_info) {
-				var lat_lng = coordinates.split('|');
+				for (var coordinates in marker_info) {
+					var lat_lng = coordinates.split('|');
 
-				if (marker_info[coordinates].size() > 1) {
-					contactimprov_add_tabbed_infowindow(
-						lat_lng[0], lat_lng[1],
-						marker_info[coordinates],
-						markercount++
-					);
-				}
-				else {
-					contactimprov_add_infowindow(
-						lat_lng[0], lat_lng[1],
-						marker_info[coordinates][0],
-						markercount++
-					);
+					if (marker_info[coordinates].size() > 1) {
+						ci_map_add_tabbed_infowindow(lat_lng[0], lat_lng[1], marker_info[coordinates], markercount++);
+					}
+					else {
+						ci_map_add_infowindow(lat_lng[0], lat_lng[1], marker_info[coordinates][0], markercount++);
+					}
 				}
 			}
-		  }
-		});
+		);
 	}
 
-	function contactimprov_add_infowindow(lat, lng, marker_info, markercount) {
+	function ci_map_add_infowindow(lat, lng, marker_info, markercount) {
 		var latlng = new google.maps.LatLng(lat, lng);
 		markers[markercount] = new google.maps.Marker({
 			position: latlng,
 			map: map,
 			title: marker_info.mouseover_text,
-			icon: contactimprov_image_url_for_entry_class(marker_info.entry_class)
+			icon: ci_map_image_url_for_entry_class(marker_info.entry_class)
 		});
 		var infowindow = new google.maps.InfoWindow({
 			content: marker_info.infowindow_html
@@ -67,7 +56,7 @@
 			function() { infowindow.open(map, markers[markercount]); } );
 	}
 
-	function contactimprov_add_tabbed_infowindow(lat, lng, marker_info_array, markercount) {
+	function ci_map_add_tabbed_infowindow(lat, lng, marker_info_array, markercount) {
 		var mouseover_text_array = [];
 		for (var i = 0; i < marker_info_array.size(); i++) {
 			mouseover_text_array.push(marker_info_array[i].mouseover_text);
@@ -82,7 +71,7 @@
 			icon: 'http://www.google.com/mapfiles/marker_purple.png'
 		});
 		var infowindow = new google.maps.InfoWindow({
-			content: contactimprov_get_tabbed_infowindow_html(marker_info_array, markercount)
+			content: ci_map_get_tabbed_infowindow_html(marker_info_array, markercount)
 		});
 		google.maps.event.addListener(markers[markercount], 'click', 
 			function() { 
@@ -92,7 +81,7 @@
 		);
 	}
 
-	function contactimprov_image_url_for_entry_class(entry_class) {
+	function ci_map_image_url_for_entry_class(entry_class) {
 		switch(entry_class) {
 			case 'Event':
 				return 'http://www.google.com/mapfiles/marker_greenE.png';
@@ -105,7 +94,7 @@
 		}
 	}
 
-	function contactimprov_get_tabbed_infowindow_html(marker_info_array, markercount) {
+	function ci_map_get_tabbed_infowindow_html(marker_info_array, markercount) {
 		var s;
 		
 		s = '<div id="tabs_' + markercount + '" style="font-size: 11px; width: 320px; height: 120px;">' +
@@ -125,7 +114,7 @@
 		return s;
 	}
 
-	google.setOnLoadCallback(contactimprov_initialize_map);
+	google.setOnLoadCallback(ci_map_initialize);
 </script>
 
 <div id="map_canvas"  style="width: 100%; height: 500px; border: 1px solid #666;"></div>

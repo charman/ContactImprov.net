@@ -26,16 +26,7 @@ WHEN MOVING SITE TO NEW SERVER:
 
 THIS COMMIT:
 
-Modified the map/index action to return a JSON object with the Google
-Maps Marker info, when the server is asked for data in JSON format.
-
-Modified the JavaScript on the map/index view to use the JSON data,
-instead of having Rails generate tons of JavaScript function calls.
-
-Changed the mouseover text for tabbed infowindows to show all listings
-at a given location.
-
-Removed a no longer used function from the map helper.
+Modified the map/index view to use jQuery instead of Prototype.
 
 
 ======================================================================
@@ -51,6 +42,8 @@ TODO:
   - create minimal example code
   - fix javascript warning message
   - caching
+
+@ Fix left margin when viewing an entry
 
 @ HTML entity decoding when editing forms
   - unit testing
