@@ -26,10 +26,10 @@ WHEN MOVING SITE TO NEW SERVER:
 
 THIS COMMIT:
 
-The infowindow_for_* functions in the map controller now output URL's
-that include the full hostname of the server, instead of just a
-relative URL pathname.  This should make it possible to embed the map
-on another site without breaking any of the links.
+Modified the ci_map.js file to use an absolute pathname for the JSON
+URL if the user is not connecting from localhost.  This should make it
+possible to embed the map on another site without breaking any of the
+links.
 
 
 ======================================================================

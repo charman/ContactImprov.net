@@ -11,6 +11,13 @@ function ci_map_initialize() {
 	//         better way to do this?
 	var json_url = "/map/json/" + entry_category;
 
+	//  HACK: If the user is connecting from localhost (e.g. during development), then
+	//         we allow a relative pathname.  Otherwise, we use an absolute pathname
+	//         with a hostname so that the map can be embedded in other sites.
+	if (location.hostname.search(/localhost/) == -1) {
+		json_url = "http://contactimprov.net" + json_url;
+	}
+
 	$.getJSON(json_url,
 		function(marker_info) {
 			var markercount = 0;
