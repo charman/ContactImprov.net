@@ -32,7 +32,9 @@ class MapController < ApplicationController
       add_marker_info_for_entry_class(@marker_info, OrganizationEntry)
       add_marker_info_for_entry_class(@marker_info, PersonEntry)
     end
-      
+
+    #  The 'callback' parameter to render allows browsers to load JSON data from
+    #   remote sites using (in this case) jQuery.
     render :layout => false, :json => @marker_info, :callback => params[:callback]
   end
 

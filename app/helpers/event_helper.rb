@@ -12,15 +12,9 @@ module EventHelper
   end
 
   def format_entry_location(e)
-    if e.location.is_in_usa?
-      "#{e.location.city_name}, #{e.location.us_state.abbreviation}, USA"
-    else
-      if e.location.region_name.blank?
-        "#{e.location.city_name}, #{e.location.country_name.english_name}"
-      else
-        "#{e.location.city_name}, #{e.location.region_name}, #{e.location.country_name.english_name}"
-      end
-    end
+    s = e.location.city_state_country
+    s += ', USA' if e.location.is_in_usa?
+    s
   end
 
 end

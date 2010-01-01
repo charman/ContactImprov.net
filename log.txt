@@ -26,27 +26,32 @@ WHEN MOVING SITE TO NEW SERVER:
 
 THIS COMMIT:
 
-Further modifications to ci_map.js and the map controller in an
-attempt to allow other sites to retrieve JSON data from
-http://contactimprov.net.
+Modified the Location.city_state_country function to not print a comma
+after the city name field if if the city name is blank.
 
+Refactored the format_entry_location function in event_helper.rb to
+use the Location.city_state_country function.
 
 ======================================================================
 
 TODO:
 
-@ Debugging
-  - why are two Canadian organizations (ACI and REAson detre
-     Productions) being shown on the map in California?
+@ Go through logs, identify people who tried to update their entry and
+failed (since 12/20), send out emails explaining/apologizing
 
 @ Google Maps
   - caching
+  - switch from JSON to XML
   ...
   - map key explaining what the markers mean
     - figure out how to reduce size of key markers
     - change purple dot icon to something more explanatory
        (multi-colored icon with # of things?)
   - fix javascript warning message
+
+@ KML
+  - read documentation:
+      http://code.google.com/apis/kml/
 
 @ Modify signup page
   - require users to provide one line description of what information 
