@@ -26,10 +26,9 @@ WHEN MOVING SITE TO NEW SERVER:
 
 THIS COMMIT:
 
-Modified the ci_map.js file to use an absolute pathname for the JSON
-URL if the user is not connecting from localhost.  This should make it
-possible to embed the map on another site without breaking any of the
-links.
+Further modifications to ci_map.js and the map controller in an
+attempt to allow other sites to retrieve JSON data from
+http://contactimprov.net.
 
 
 ======================================================================

@@ -33,7 +33,7 @@ class MapController < ApplicationController
       add_marker_info_for_entry_class(@marker_info, PersonEntry)
     end
       
-    render :layout => false, :json => @marker_info
+    render :layout => false, :json => @marker_info, :callback => params[:callback]
   end
 
   def people

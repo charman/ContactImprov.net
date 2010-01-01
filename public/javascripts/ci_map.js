@@ -15,7 +15,14 @@ function ci_map_initialize() {
 	//         we allow a relative pathname.  Otherwise, we use an absolute pathname
 	//         with a hostname so that the map can be embedded in other sites.
 	if (location.hostname.search(/localhost/) == -1) {
-		json_url = "http://contactimprov.net" + json_url;
+		//  jQuery uses the 'callback=?' parameter to accept JSON from a remote site.
+		//   For more details, see:
+		//     http://docs.jquery.com/Ajax/jQuery.getJSON
+		//  The Rails controller also needs to be modififed to support remote JSON
+		//   queries using:
+		//      render :layout => false, :json => [...], :callback => params[:callback]
+		//  TODO: Switch from JSON to XML to avoid all the JSON related security issues
+		json_url = "http://contactimprov.net" + json_url + "?callback=?";
 	}
 
 	$.getJSON(json_url,
