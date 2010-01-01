@@ -16,9 +16,39 @@
 	var map;
 	var markers = new Array();
 
+	//  TODO: Passing a function argument through a global variable, a horrible hack,
+	//         but it doesn't look like you can pass arguments to callback functions
+	//         that are loaded by google.setOnLoadCallback().
+	var entry_category = '<%= @entry_category %>';
+
 	google.setOnLoadCallback(ci_map_initialize);
 </script>
 
 <div id="map_canvas"  style="width: 100%; height: 500px; border: 1px solid #666;"></div>
+
+<div class="ci_bulleted_list">
+	<ul>
+		<li style="list-style-image: url(http://www.google.com/mapfiles/marker_greenE.png);">
+			<%= link_to 'Special Events', :action => 'events', :controller => 'map' %>
+			&ndash; conferences, festivals, regional jams and workshops
+		</li>
+		<li style="list-style-image: url(http://www.google.com/mapfiles/marker_yellowJ.png)">
+			<%= link_to 'Ongoing Jams/Classes', :action => 'jams', :controller => 'map' %>
+			&ndash; local classes and jams &ndash; <i>"regularly scheduled dancing"</i>
+		</li>
+		<li style="list-style-image: url(http://www.google.com/mapfiles/marker_orangeP.png)">
+			<%= link_to 'People', :action => 'people', :controller => 'map' %>
+			&ndash; teaching, performing, or otherwise involved in Contact
+		</li>
+		<li style="list-style-image: url(http://www.google.com/mapfiles/marker_brownO.png)">
+			<%= link_to 'Organizations', :action => 'organizations', :controller => 'map' %>
+			&ndash; regional websites, studios, companies, etc. &ndash; <i>"everything else"</i>
+		</li>
+		<li style="list-style-image: url(http://www.google.com/mapfiles/marker_purple.png)">
+			<%= link_to 'Multiple Listings', :action => 'index', :controller => 'map' %>
+			&ndash; more than one Events, Jams, People or Organizations at one location
+		</li>
+	</ul>
+</div>
 
 <%= render(:partial => "shared/footer" )%>

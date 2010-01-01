@@ -1,7 +1,20 @@
 class MapController < ApplicationController
 
+  def events
+    @marker_info = Hash.new
+    @entry_category = 'events'
+
+    add_marker_info_for_entry_class(@marker_info, EventEntry)
+    
+    respond_to do |format|
+      format.html { render :action => 'index' }
+      format.json { render :layout => false, :json => @marker_info }
+    end
+  end
+
   def index
     @marker_info = Hash.new
+    @entry_category = 'all'
 
     add_marker_info_for_entry_class(@marker_info, EventEntry)
     add_marker_info_for_entry_class(@marker_info, JamEntry)
@@ -10,6 +23,42 @@ class MapController < ApplicationController
     
     respond_to do |format|
       format.html  # index.rhtml
+      format.json { render :layout => false, :json => @marker_info }
+    end
+  end
+
+  def jams
+    @marker_info = Hash.new
+    @entry_category = 'jams'
+
+    add_marker_info_for_entry_class(@marker_info, JamEntry)
+    
+    respond_to do |format|
+      format.html { render :action => 'index' }
+      format.json { render :layout => false, :json => @marker_info }
+    end
+  end
+
+  def people
+    @marker_info = Hash.new
+    @entry_category = 'people'
+
+    add_marker_info_for_entry_class(@marker_info, PersonEntry)
+    
+    respond_to do |format|
+      format.html { render :action => 'index' }
+      format.json { render :layout => false, :json => @marker_info }
+    end
+  end
+
+  def organizations
+    @marker_info = Hash.new
+    @entry_category = 'organizations'
+
+    add_marker_info_for_entry_class(@marker_info, OrganizationEntry)
+    
+    respond_to do |format|
+      format.html { render :action => 'index' }
       format.json { render :layout => false, :json => @marker_info }
     end
   end

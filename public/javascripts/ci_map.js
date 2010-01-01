@@ -7,7 +7,11 @@ function ci_map_initialize() {
 	};
 	map = new google.maps.Map(document.getElementById("map_canvas"), myOptions);
 
-	$.getJSON('/map/index',
+	//  TODO: entry_category is being passed as a global variable.  Isn't there a
+	//         better way to do this?
+	var json_url = "/map/" + entry_category;
+
+	$.getJSON(entry_category,
 		function(marker_info) {
 			var markercount = 0;
 
