@@ -26,8 +26,7 @@ WHEN MOVING SITE TO NEW SERVER:
 
 THIS COMMIT:
 
-Added sidebar of images to the home page with pictures from Stefano
-Bussolon.
+Added links to the map from the homepage.
 
 
 ======================================================================
@@ -40,6 +39,9 @@ TODO:
 @ Google Maps
   - caching
   - switch from JSON to XML
+  - maps on more pages
+    - 
+  - directions to here, from here
   ...
   - map key explaining what the markers mean
     - figure out how to reduce size of key markers
