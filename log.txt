@@ -26,16 +26,12 @@ WHEN MOVING SITE TO NEW SERVER:
 
 THIS COMMIT:
 
-Modified the navigation bar so that the login/logout links won't
-appear when the banner is being sent as plain HTML instead of RHTML.
+Added lightbox code to image sidebar on right side of homepage.
 
 
 ======================================================================
 
 TODO:
-
-@ Add image sidebar
-  - add lightbox code to sidebar that floats on right
 
 @ Google Maps
   - caching
