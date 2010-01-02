@@ -26,6 +26,8 @@
 			<% end %>
 		</span>
 		<span style="float: right; text-align: right;">
+			<!--
+			<%= '--' + '>' %>
 			<% if logged_in? %>
 				<b>Logged in</b> as
 				<% if current_user.person %>
@@ -38,6 +40,8 @@
 				<b>You are not logged in</b>
 				| <a href="/login">Login</a>
 			<% end %>
+			<%= '<!' + '--' %>
+			-->
 		</span>
 	</div>
 </div>

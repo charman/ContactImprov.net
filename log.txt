@@ -26,7 +26,8 @@ WHEN MOVING SITE TO NEW SERVER:
 
 THIS COMMIT:
 
-Added links to the map from the homepage.
+Modified the navigation bar so that the login/logout links won't
+appear when the banner is being sent as plain HTML instead of RHTML.
 
 
 ======================================================================
@@ -41,7 +42,7 @@ TODO:
   - switch from JSON to XML
   - maps on more pages
     - 
-  - directions to here, from here
+  - links for directions to here, from here
   ...
   - map key explaining what the markers mean
     - figure out how to reduce size of key markers
@@ -80,8 +81,6 @@ TODO:
     - add links to actual actions
   - admin action to attempt to re-geocode
   - send admin an email if geocoding failed
-
-@ Fix static pages with both Login and Logout links
 
 @ Sort events by date
   - unit tests for 
