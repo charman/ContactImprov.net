@@ -26,18 +26,15 @@ WHEN MOVING SITE TO NEW SERVER:
 
 THIS COMMIT:
 
-Modified the Location.city_state_country function to not print a comma
-after the city name field if if the city name is blank.
+Fixed a problem where the links in the info markers were not using
+absolute paths properly because of a missing protocol prefix, e.g.:
 
-Refactored the format_entry_location function in event_helper.rb to
-use the Location.city_state_country function.
+  http://www.contactimprov.net/map/contactimprov.net/jams/show/15026
+
 
 ======================================================================
 
 TODO:
-
-@ Go through logs, identify people who tried to update their entry and
-failed (since 12/20), send out emails explaining/apologizing
 
 @ Google Maps
   - caching
@@ -74,6 +71,9 @@ failed (since 12/20), send out emails explaining/apologizing
   - buttons for adding events to Google calendars
   - iCal feeds
     - use respond_to to add ical support for any of the event feeds
+
+@ Allow images to be added to listings
+  [...]
 
 @ Microformats
   - lat/lng
