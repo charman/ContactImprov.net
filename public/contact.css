@@ -7,13 +7,14 @@ PAGE TEMPLATE:
 			table.navigation_bar
 				td
 					th.navigation_bar_entry
-			...
-			div.announcement
-			...
-			div#ci_form_page
-				div.ci_form
+			div
+				[div.lightbox_sidebar]
+				div.announcement
 				...
-			...
+				div#ci_form_page
+					div.ci_form
+					...
+				...
 
 COLOR PALETTE:
 	Based on 'savanna shadow':
@@ -90,6 +91,33 @@ th.navigation_bar_entry {
 }
 
 
+/* === LIGHTBOX SIDEBAR === */
+
+div.lightbox_sidebar {
+	border: 1px solid black;
+	float: right; 
+	margin-left: 1.5em;
+	width: 120px; 
+}
+
+.lightbox_sidebar img {
+	border-bottom: 1px solid black;
+	border-left: 0px;
+	border-right: 0px;
+	border-top: 0px;
+	margin: 0px;
+	padding: 0px;
+}
+
+div.lightbox_sidebar_caption {
+	font-size: 0.8em;
+	margin-left: auto;
+	margin-right: auto;
+	padding-bottom: 2px;
+	text-align: center;
+}
+
+
 /* === ANNOUNCEMENTS === */
 
 .announcement fieldset {
@@ -97,7 +125,7 @@ th.navigation_bar_entry {
 	background-color: #FFF8F8;
 	margin-left: auto;
 	margin-right: auto;
-	width: 90%;
+/*	width: 90%; */
 }
 
 .announcement legend {

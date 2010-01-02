@@ -26,15 +26,16 @@ WHEN MOVING SITE TO NEW SERVER:
 
 THIS COMMIT:
 
-Fixed a problem where the links in the info markers were not using
-absolute paths properly because of a missing protocol prefix, e.g.:
-
-  http://www.contactimprov.net/map/contactimprov.net/jams/show/15026
+Added sidebar of images to the home page with pictures from Stefano
+Bussolon.
 
 
 ======================================================================
 
 TODO:
+
+@ Add image sidebar
+  - add lightbox code to sidebar that floats on right
 
 @ Google Maps
   - caching
@@ -58,14 +59,6 @@ TODO:
 
 @ HTML entity decoding when editing forms
   - unit testing
-
-@ Add image sidebar
-  - create <div> that floats right
-  - images
-    - find Flickr page with images
-    - download images
-    - resize images
-  - add lightbox code to sidebar that floats on right
 
 @ Calendars
   - buttons for adding events to Google calendars
