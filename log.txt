@@ -26,18 +26,22 @@ WHEN MOVING SITE TO NEW SERVER:
 
 THIS COMMIT:
 
-Added lightbox code to image sidebar on right side of homepage.
+Added 'Add to Google Calendar' buttons to the events/show view.
 
 
 ======================================================================
 
 TODO:
 
+@ Calendars
+  - iCal feeds
+    - use respond_to to add ical support for any of the event feeds
+
 @ Google Maps
   - caching
   - switch from JSON to XML
   - maps on more pages
-    - 
+    - [...]
   - links for directions to here, from here
   ...
   - map key explaining what the markers mean
@@ -46,11 +50,15 @@ TODO:
        (multi-colored icon with # of things?)
   - fix javascript warning message
 
+@ Create function for Events/People/etc to generate listing URL
+  - refactor code in events_helper.rb
+
 @ KML
   - read documentation:
       http://code.google.com/apis/kml/
 
-@ Modify signup page
+@ Account requests
+  - remove white text box from home page
   - require users to provide one line description of what information 
      they want to add to the website
 
@@ -58,11 +66,6 @@ TODO:
 
 @ HTML entity decoding when editing forms
   - unit testing
-
-@ Calendars
-  - buttons for adding events to Google calendars
-  - iCal feeds
-    - use respond_to to add ical support for any of the event feeds
 
 @ Allow images to be added to listings
   [...]
