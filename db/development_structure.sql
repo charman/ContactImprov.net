@@ -138,7 +138,7 @@ CREATE TABLE `ci_location_versions` (
   KEY `index_ci_location_versions_on_location_id` (`location_id`),
   KEY `index_ci_location_versions_on_us_state_id` (`us_state_id`),
   KEY `index_ci_location_versions_on_country_name_id` (`country_name_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=15466 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=15379 DEFAULT CHARSET=utf8;
 
 CREATE TABLE `ci_locations` (
   `location_id` int(11) NOT NULL AUTO_INCREMENT,
@@ -224,7 +224,7 @@ CREATE TABLE `ci_people` (
   `created_at` datetime DEFAULT NULL,
   `updated_at` datetime DEFAULT NULL,
   PRIMARY KEY (`person_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=15412 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=15411 DEFAULT CHARSET=utf8;
 
 CREATE TABLE `ci_person_entries` (
   `person_entry_id` int(11) NOT NULL AUTO_INCREMENT,
@@ -270,7 +270,7 @@ CREATE TABLE `ci_person_versions` (
   `last_name` varchar(255) DEFAULT NULL,
   `updated_at` datetime DEFAULT NULL,
   PRIMARY KEY (`person_version_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=15420 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=15419 DEFAULT CHARSET=utf8;
 
 CREATE TABLE `ci_phone_number_versions` (
   `phone_number_version_id` int(11) NOT NULL AUTO_INCREMENT,

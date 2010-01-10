@@ -39,9 +39,7 @@ module EventHelper
   end
 
   def format_entry_location(e)
-    s = e.location.city_state_country
-    s += ', USA' if e.location.is_in_usa?
-    s
+    e.location.city_state_country
   end
 
   #  Return the Event's website if available; otherwise return contactimprov.net URL

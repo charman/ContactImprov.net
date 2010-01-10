@@ -86,9 +86,9 @@ class Location < ActiveRecord::Base
   def city_state_country
     if self.is_in_usa?
       if self.city_name.blank?
-        "#{self.us_state.abbreviation} #{self.country_name.english_name}"
+        "#{self.us_state.abbreviation} USA"
       else
-        "#{self.city_name}, #{self.us_state.abbreviation} #{self.country_name.english_name}"
+        "#{self.city_name}, #{self.us_state.abbreviation} USA"
       end
     else
       if self.city_name.blank?
