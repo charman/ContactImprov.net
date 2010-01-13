@@ -26,7 +26,7 @@ WHEN MOVING SITE TO NEW SERVER:
 
 THIS COMMIT:
 
-Added 'Add to Google Calendar' buttons to the events/show view.
+Created EventEntry.to_ical_event function.
 
 
 ======================================================================
@@ -35,7 +35,11 @@ TODO:
 
 @ Calendars
   - iCal feeds
-    - use respond_to to add ical support for any of the event feeds
+    - functional tests for routes
+    - find icons for adding iCal calendars
+
+@ Get rid of CountryName.english_name_with_underscores, which is
+deprecated thanks to the underlined_english_name database field
 
 @ Google Maps
   - caching

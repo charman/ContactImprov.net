@@ -39,15 +39,14 @@ ActionController::Routing::Routes.draw do |map|
   map.resource :session, :collection => { :no_cookies_for_you => :get }
 
   map.activate '/activate/:activation_code', :controller => 'user', :action => 'activate'
+  #  TODO: Should this be 'map.reset_password'?
   map.activate '/reset_password/:password_reset_code', :controller => 'user', :action => 'reset_password'
 
   map.login '/login', :controller => 'sessions', :action => 'new'
   map.logout '/logout', :controller => 'sessions', :action => 'destroy'
   
-  map.index '/', :controller => 'home', :action => 'index'
-
-  map.admin_index '/admin', :controller => 'admin/home', :action => 'index'
-  
+  map.index               '/',              :controller => 'home',          :action => 'index'
+  map.admin_index         '/admin',         :controller => 'admin/home',    :action => 'index'
   map.events_index        '/events',        :controller => 'events',        :action => 'index'
   map.jams_index          '/jams',          :controller => 'jams',          :action => 'index'
   map.people_index        '/people',        :controller => 'people',        :action => 'index'
@@ -61,6 +60,11 @@ ActionController::Routing::Routes.draw do |map|
   map.connect '/organizations/list/:country_name',           :controller => 'organizations', :action => 'list'
   map.connect '/people/list/:country_name/:us_state',        :controller => 'people',        :action => 'list'
   map.connect '/people/list/:country_name',                  :controller => 'people',        :action => 'list'
+
+  #  TODO: Is this first connection needed?
+  map.connect '/events/calendar.ics',                         :controller => 'events', :action => 'calendar'
+  map.connect '/events/:country_name/calendar.ics',           :controller => 'events', :action => 'calendar'
+  map.connect '/events/:country_name/:us_state/calendar.ics', :controller => 'events', :action => 'calendar'
   # [/CTH]
 
   # Install the default routes as the lowest priority.
