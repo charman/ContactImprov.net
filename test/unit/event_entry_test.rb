@@ -105,4 +105,21 @@ class EventEntryTest < ActiveSupport::TestCase
     assert_equal '["craig harman":http://craigharman.net] ["ci":http://contactimprov.net] ["ci":./foo] ["ci":/foo]', c.cost
   end
  
+ 
+  def test_should_find_future_us_event
+    new_york = UsState.find_by_abbreviation('NY')
+    assert_not_nil new_york
+    future_events = EventEntry.find_future_by_us_state(new_york)
+    assert_equal 1, future_events.size
+    assert_equal event_entries(:future_us_event_entry), future_events[0]
+  end
+ 
+  def test_should_find_future_canadian_event
+    canada = CountryName.find_by_english_name('Canada')
+    assert_not_nil canada
+    future_events = EventEntry.find_future_by_country_name(canada)
+    assert_equal 1, future_events.size
+    assert_equal event_entries(:future_canadian_event_entry), future_events[0]
+  end
+ 
 end

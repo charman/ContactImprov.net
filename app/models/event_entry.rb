@@ -16,6 +16,8 @@ class EventEntry < ActiveRecord::Base
   validates_presence_of :title, :description, :start_date, :end_date
 
 
+  # TODO: Are any of these find_by_* functions susceptible to SQL injection attacks?
+  
   def self.distinct_months(year)
     EventEntry.find_by_sql("SELECT DISTINCT DATE_FORMAT(start_date, '%Y') " + 
       "AS year, DATE_FORMAT(start_date, '%m') AS month FROM ci_event_entries " + 
@@ -68,6 +70,24 @@ class EventEntry < ActiveRecord::Base
 
   def self.find_by_start_date_year_month(year, month)
     self.find_by_year_month(year, month, true)
+  end
+
+  def self.find_future_by_country_name(country_name)
+    self.find(:all,
+      :from => "ci_event_entries, ci_locations",
+      :conditions => "end_date > CURRENT_DATE() " +
+                     "AND ci_event_entries.location_id = ci_locations.location_id " + 
+                     "AND country_name_id = '#{country_name.id}'" 
+    )
+  end
+
+  def self.find_future_by_us_state(us_state)
+    self.find(:all,
+      :from => "ci_event_entries, ci_locations",
+      :conditions => "end_date > CURRENT_DATE() " +
+                     "AND ci_event_entries.location_id = ci_locations.location_id " + 
+                     "AND us_state_id = '#{us_state.id}'"
+    )
   end
 
   def self.find_future_geocoded_entries

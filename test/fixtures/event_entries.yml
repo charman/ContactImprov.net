@@ -11,3 +11,29 @@ complete_event_entry:
     email_id: 100
     phone_number_id: 100
     url_id: 100
+
+future_us_event_entry:
+    event_entry_id: 101
+    title: 'Future Event Entry in the US'
+    description: 'An Event that occurs in the future - in the US.'
+    start_date: 2100-01-01
+    end_date: 2100-01-02
+    owner_user_id: 1
+    person_id: 100
+    location_id: 1
+    email_id: 100
+    phone_number_id: 100
+    url_id: 100
+
+future_canadian_event_entry:
+    event_entry_id: 102
+    title: 'Future Event Entry in Canada'
+    description: 'An Event that occurs in the future - in Canada!'
+    start_date: 2100-01-01
+    end_date: 2100-01-02
+    owner_user_id: 1
+    person_id: 100
+    location_id: 2
+    email_id: 100
+    phone_number_id: 100
+    url_id: 100
