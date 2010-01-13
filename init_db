@@ -1,5 +1,0 @@
-#!/bin/bash
-mysql -u root --password=borkborkbork -e "DROP DATABASE IF EXISTS ci_rails"
-mysql -u root --password=borkborkbork -e "CREATE DATABASE ci_rails DEFAULT CHARACTER SET utf8"
-mysql -u root --password=borkborkbork -e "GRANT ALL ON ci_rails.* TO 'ci_rails'@'localhost' IDENTIFIED BY 'hellnoiwontgowherethebuffaloroam'"
-mysql -u root --password=borkborkbork ci_rails < initialize_db/ci_rails-2010-01-12.sql
