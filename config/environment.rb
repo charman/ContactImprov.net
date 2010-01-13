@@ -107,6 +107,7 @@ end
 # Include your application configuration below
 
 require 'RedCloth'
+require 'icalendar'
 
 
 ActionController::Base.cache_store = :mem_cache_store
