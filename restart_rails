@@ -3,5 +3,7 @@ echo "Changing permissions on config/environment.rb"
 chown charman:charman config/environment.rb
 echo "Flushing memcached"
 ./flush_memcached_ubuntu
-echo "Restarting Apache"
-apachectl restart
+#echo "Restarting Apache"
+#apachectl restart
+echo "Restarting the application by touching tmp/restart.txt"
+touch tmp/restart.txt
