@@ -26,7 +26,8 @@ WHEN MOVING SITE TO NEW SERVER:
 
 THIS COMMIT:
 
-Created EventEntry.to_ical_event function.
+Added a calendar action to the events controller, which generates iCal
+(.ics) files.
 
 
 ======================================================================
@@ -37,6 +38,9 @@ TODO:
   - iCal feeds
     - functional tests for routes
     - find icons for adding iCal calendars
+        http://www.oxygen-inc.com/kenx/
+    - for events with start/end dates greater than X, create separate
+       start and end date events instead of having one giant event
 
 @ Get rid of CountryName.english_name_with_underscores, which is
 deprecated thanks to the underlined_english_name database field

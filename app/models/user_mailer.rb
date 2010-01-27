@@ -19,6 +19,13 @@ class UserMailer < ActionMailer::Base
     @body[:url] = "#{@base_url}"
   end
 
+  def ci_rochester(subject, email)
+    @from        = "Craig Harman <craig@craigharman.net>"
+    @sent_on     = Time.now
+    @subject     = subject
+    @recipients  = email
+  end
+
   def entry_modified(entry, entry_type)
     setup_admin_email()
     @subject   += "Modified #{entry_type}: #{entry.title}"
