@@ -53,6 +53,8 @@ module EventHelper
 
   #  This function ganked from:  http://railsruby.blogspot.com/2006/07/url-escape-and-url-unescape.html
   def url_escape(string)
+    return '' if string.blank?
+
     string.gsub(/([^ a-zA-Z0-9_.-]+)/n) do
       '%' + $1.unpack('H2' * $1.size).join('%').upcase
     end.tr(' ', '+')
