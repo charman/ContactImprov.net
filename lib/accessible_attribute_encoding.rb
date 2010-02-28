@@ -6,11 +6,9 @@ module AccessibleAttributeEncoding
   def decode_html_entities_of_attributes!
     return if self.class.accessible_attributes.blank?
     self.class.accessible_attributes.each do |aa|
-      v = self.send(aa)
       coder = HTMLEntities.new
-      if !v.blank? && (v.class == String || v.class == IO)
-        # TODO: Isn't there a better way to do this than using eval?
-        eval("self.#{aa} = coder.decode('#{v}')")
+      if !self[aa].blank? && (self[aa].class == String || self[aa].class == IO)
+        self[aa] = coder.decode(self[aa])
       end
     end
   end
