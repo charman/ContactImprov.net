@@ -65,13 +65,13 @@ class JamEntryTest < ActiveSupport::TestCase
     c.title = '<b>sanitized</b>'
     c.description = '<b>sanitized</b>'
     c.schedule = '<b>sanitized</b>'
-    c.cost = '<b>sanitized</b>'
+    c.cost = "*It's on again:*"
     c.save!
     c.reload
     assert_equal 'sanitized', c.title
     assert_equal 'sanitized', c.description
     assert_equal 'sanitized', c.schedule
-    assert_equal 'sanitized', c.cost
+    assert_equal "*It's on again:*", c.cost
   end
  
 end
