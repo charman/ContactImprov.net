@@ -68,4 +68,35 @@ class PeopleControllerTest < ActionController::TestCase
     assert_select "[class=errorExplanation]", false
   end
 
+  def test_should_list_all_for_unknown_country_name
+    get :list, :country_name => 'ZombieVille'
+    assert_response :success
+    assert_match /Canada/, @response.body
+    assert_select "[class=errorExplanation]", false
+  end
+
+  def test_should_list_no_entries_for_country_with_no_entries
+    get :list, :country_name => 'Ukraine'
+    assert_response :success
+    assert_match /There are currently no listings for Ukraine/, @response.body
+    assert_select "[class=errorExplanation]", false
+  end
+
+  def test_should_list_all_states_for_unknown_state_name
+    get :list, :country_name => 'United_States', :us_state => 'ZombieVille'
+    assert_response :success
+    assert_match /UNITED STATES/, @response.body
+    assert_no_match /Canada/, @response.body
+    assert_select "[class=errorExplanation]", false
+  end
+
+  def test_should_list_no_entries_for_state_with_no_entries
+    get :list, :country_name => 'United_States', :us_state => 'Pennsylvania'
+    assert_response :success
+    assert_match /UNITED STATES/, @response.body
+    assert_no_match /Canada/, @response.body
+    assert_match /There are currently no listings for Pennsylvania/, @response.body
+    assert_select "[class=errorExplanation]", false
+  end
+
 end

@@ -6,3 +6,12 @@ complete_person_entry:
     email_id: 100
     phone_number_id: 100
     url_id: 100
+
+us_person_entry:
+    person_entry_id: 101
+    owner_user_id: 1
+    person_id: 1
+    location_id: 1
+    email_id: 100
+    phone_number_id: 100
+    url_id: 100
