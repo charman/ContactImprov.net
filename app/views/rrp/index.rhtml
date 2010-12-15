@@ -15,11 +15,8 @@
   <script src="/javascripts/rrp/fullcalendar/fullcalendar.js"></script>
 
   <script type="text/javascript">
-    // TODO: Need to allow jQuery to retrieve data from non-local sites
-
     function get_events_from_ical_text(ical_formatted_text) {
       var calendar_data = $.icalendar.parse(ical_formatted_text);
-
       var events = [];
       
       //  TODO: Need to handle the case where calendar_data.vevent is an object (because there 
