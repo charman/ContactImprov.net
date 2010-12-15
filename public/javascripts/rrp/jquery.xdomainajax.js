@@ -16,7 +16,10 @@ jQuery.ajax = (function(_ajax){
         hostname = location.hostname,
         exRegex = RegExp(protocol + '//' + hostname),
         YQL = 'http' + (/^https/.test(protocol)?'s':'') + '://query.yahooapis.com/v1/public/yql?callback=?',
-        query = 'select * from html where url="{URL}" and xpath="*"';
+        //  [CTH]  Request the page as Base64 encoded data instead of as HTML
+        query = 'select * from data.uri where url="{URL}"';
+//        query = 'select * from html where url="{URL}" and xpath="*"';
+        //  [/CTH]
     
     function isExternal(url) {
         return !exRegex.test(url) && /:\/\//.test(url);
@@ -54,13 +57,17 @@ jQuery.ajax = (function(_ajax){
                 return function(data) {
                     
                     if (_success) {
-                        // Fake XHR callback.
-                        _success.call(this, {
-                            responseText: data.results[0]
-                                // YQL screws with <script>s
-                                // Get rid of them
-                                .replace(/<script[^>]+?\/>|<script(.|\s)*?\/script>/gi, '')
-                        }, 'success');
+                        //  [CTH]
+                        var decoded_base64_data = $.base64Decode($(data.results[0].replace(/\&#xd;/g, '')).text().replace(/(.*base64,)(.*)/, "$2"));
+                        _success.call(this, decoded_base64_data);
+//                        // Fake XHR callback.
+//                        _success.call(this, {
+//                            responseText: data.results[0]
+//                            // YQL screws with <script>s
+//                            // Get rid of them
+//                            .replace(/<script[^>]+?\/>|<script(.|\s)*?\/script>/gi, '')
+//                        }, 'success');
+                        //  [/CTH]
                     }
                     
                 };

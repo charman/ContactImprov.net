@@ -1,17 +1,18 @@
 <html>
 <head>
-	<meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
 
   <title>RRP iCal test</title>
 
   <link rel="stylesheet" type="text/css" href="/stylesheets/smoothness/jquery-ui-1.8.6.custom.css" />
-  <link rel="stylesheet" type="text/css" href="/javascripts/rrp/jquery.icalendar.css">
   <link rel="stylesheet" type="text/css" href="/javascripts/rrp/fullcalendar/fullcalendar.css">
 
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.4.4/jquery.min.js"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.6/jquery-ui.min.js"></script>
 
-  <script src="/javascripts/rrp/jquery.icalendar.js "></script>
+  <script src="/javascripts/rrp/jquery.base64.js"></script>
+  <script src="/javascripts/rrp/jquery.xdomainajax.js"></script>
+  <script src="/javascripts/rrp/jquery.icalendar.js"></script>
   <script src="/javascripts/rrp/fullcalendar/fullcalendar.js"></script>
 
   <script type="text/javascript">
@@ -36,9 +37,26 @@
       $('#calendar_widget').fullCalendar({
         events: function(start, end, callback) {
           $.ajax({
-            url: '/events/calendar',
-            success: function(icalendar_text) {
-              var events = get_events_from_ical_text(icalendar_text);
+            url: 'http://www.contactimprov.net/events/calendar',
+//            url: '/events/calendar',
+            type: 'GET',
+            dataType: 'text',
+            success: function(ical_data) {
+              var events;
+              
+              switch (typeof ical_data) {
+                case 'string':
+                  //  lemma: The iCal data is on the same server as this script
+                  events = get_events_from_ical_text(ical_data);
+                  break;
+                case 'object':
+                  //  lemma: The iCal data is on a different domain, and was retrieved
+                  //          as an HTML document using the jQuery xdomainajax plugin
+                  events = get_events_from_ical_text($(ical_data.responseText).text());
+                  break;
+              }
+
+              //  Pass the array of events to the fullCalendar library's callback function
               callback(events);
             }
           });
