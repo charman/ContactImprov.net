@@ -18,8 +18,16 @@
 
   <script type="text/javascript">
     function get_events_from_ical_text(ical_formatted_text) {
-      var calendar_data = $.icalendar.parse(ical_formatted_text);
+      var calendar_data;
       var events = [];
+
+      try {
+        calendar_data = $.icalendar.parse(ical_formatted_text);
+      }
+      catch (e) {
+        //  Return an empty array if the iCal data could not be parsed
+        return [];
+      }
       
       //  TODO: Need to handle the case where calendar_data.vevent is an object (because there 
       //        is only one event listed in the iCal feed), and not an array of objects
