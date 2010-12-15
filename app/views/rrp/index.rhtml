@@ -35,7 +35,8 @@
         events.push({
           title: calendar_data.vevent[i]['summary'],
           start: calendar_data.vevent[i]['dtstart'],
-          end:   calendar_data.vevent[i]['dtend']
+          end:   calendar_data.vevent[i]['dtend'],
+          url:   calendar_data.vevent[i]['url']
         });
       }
 
