@@ -1,0 +1,59 @@
+<html>
+<head>
+	<meta http-equiv="content-type" content="text/html; charset=utf-8">
+
+  <title>RRP iCal test</title>
+
+  <link rel="stylesheet" type="text/css" href="/stylesheets/smoothness/jquery-ui-1.8.6.custom.css" />
+  <link rel="stylesheet" type="text/css" href="/javascripts/rrp/jquery.icalendar.css">
+  <link rel="stylesheet" type="text/css" href="/javascripts/rrp/fullcalendar/fullcalendar.css">
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.4.4/jquery.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.6/jquery-ui.min.js"></script>
+
+  <script src="/javascripts/rrp/jquery.icalendar.js "></script>
+  <script src="/javascripts/rrp/fullcalendar/fullcalendar.js"></script>
+
+  <script type="text/javascript">
+    // TODO: Need to allow jQuery to retrieve data from non-local sites
+
+    function get_events_from_ical_text(ical_formatted_text) {
+      var calendar_data = $.icalendar.parse(ical_formatted_text);
+
+      var events = [];
+      
+      //  TODO: Need to handle the case where calendar_data.vevent is an object (because there 
+      //        is only one event listed in the iCal feed), and not an array of objects
+      for (var i = 0; i < calendar_data.vevent.length; i++) {
+        events.push({
+          title: calendar_data.vevent[i]['summary'],
+          start: calendar_data.vevent[i]['dtstart'],
+          end:   calendar_data.vevent[i]['dtend']
+        });
+      }
+
+      return events;
+    }
+
+    $(function() {
+      $('#calendar_widget').fullCalendar({
+        events: function(start, end, callback) {
+          $.ajax({
+            url: '/events/calendar',
+            success: function(icalendar_text) {
+              var events = get_events_from_ical_text(icalendar_text);
+              callback(events);
+            }
+          });
+        }
+      });
+    });
+  </script>
+</head>
+<body>
+
+  <div id="calendar_widget">
+  </div>
+
+</body>
+</html>
