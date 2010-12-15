@@ -146,6 +146,12 @@ class EventEntry < ActiveRecord::Base
       event.geo_location = geo
     end
     event.location = self.location.full_address_one_line
+    if self.url && !self.url.address.empty?
+      event.url = self.url.address 
+    else
+      #  TODO: Replace this with a function that generates the correct URL, instead of having it hard-coded
+      event.url = "http://www.contactimprov.net/events/show/#{self.id}"
+    end
 
     event
   end
