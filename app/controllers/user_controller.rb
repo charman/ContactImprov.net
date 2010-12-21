@@ -6,14 +6,9 @@ class UserController < ApplicationController
     :reset_password, :request_account, :account_requested, :edit,
     :change_password, :change_email, :activate
 
-  auto_complete_with_params_prefix_for :country_name, :english_name
-  auto_complete_with_params_prefix_for :us_state, :name
-
   #  In order for the AJAX auto_complete plugin to work, we need to disable authenticity
   #   checking when using POST requests to the auto_complete_[object]_[method] action that 
-  #   is created by auto_complete_for.  Alternatively, we can use GET requests instead of
-  #   POST requests, using code like this in the view:
-  #     <%= text_field_with_auto_complete :country_name, :english_name, {}, {:method => :get} %>
+  #   is created by auto_complete_for.
   skip_before_filter :verify_authenticity_token, 
     :only => ['auto_complete_for_country_name_english_name', 'auto_complete_for_us_state_name']
 
@@ -99,6 +94,32 @@ class UserController < ApplicationController
         redirect_to :action => "index"
       end
     end
+  end
+
+  def auto_complete_for_country_name_english_name
+    country_names = CountryName.find(:all,
+      :conditions => [ "LOWER(english_name) LIKE ?", '%' + params[:term] + '%'],
+      :limit => 20,
+      :order => 'english_name'
+    )
+
+    results = country_names.collect do |country_name|
+      { 'value' => h(country_name.english_name) }
+    end
+    render :json => results.to_json
+  end
+
+  def auto_complete_for_us_state_name
+    us_states = UsState.find(:all,
+      :conditions => [ "LOWER(name) LIKE ?", '%' + params[:term] + '%'],
+      :limit => 20,
+      :order => 'name'
+    )
+
+    results = us_states.collect do |us_state|
+      { 'value' => h(us_state.name)  }
+    end
+    render :json => results.to_json
   end
 
   def change_email

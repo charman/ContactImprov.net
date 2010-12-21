@@ -1,3 +1,19 @@
+<% content_for :head do %>
+  <script>
+    $(function() {
+      $("#country_name_english_name_autocomplete_textbox").autocomplete({
+        source: "/home/auto_complete_for_country_name_english_name",
+        minLength: 2
+      })
+      $("#us_state_name_autocomplete_textbox").autocomplete({
+        source: "/home/auto_complete_for_us_state_name",
+        minLength: 2
+      })
+    });
+  </script>
+<% end %>
+
+
 <% fields_for prefix, location do |location_form| %>
 <fieldset>
 	<legend><%= defined?(legend) && !legend.nil? ? legend : 'Location' %></legend>
@@ -54,8 +70,14 @@
 			<% #  We use a custom validation for the us_state field here and country_name field below,
 			   #   and so we need to do custom error highlighting here (and below) in the form.
 			   if location.errors.on(:us_state) %><div class="fieldWithErrors"><% end %>
-			<%= text_field_with_prefix_and_auto_complete prefix, :us_state, :name, 
-						{:name => "#{prefix}[us_state][name]"}.merge(optional_params) %>
+ 		  <input id="us_state_name_autocomplete_textbox" 
+ 		         name="<%= "#{prefix}[us_state][name]" %>" 
+ 		         <% if location.is_in_usa? && location.us_state %>
+ 		           value="<%= location.us_state.name %>"
+ 		         <% elsif !location.is_in_usa? %>
+ 		           value="<%= location.region_name %>"
+ 		         <% end %>
+ 		  />
 			<% if location.errors.on(:us_state) %></div><% end %>
 		</li>
 		<li>
@@ -70,8 +92,12 @@
 					<%= country_select("country_name", "english_name", @priority_countries, {}, 
 								{:name => "#{prefix}[country_name][english_name]"}.merge(optional_params)) %>
 				<% else %>
-					<%= text_field_with_prefix_and_auto_complete prefix, :country_name, :english_name, 
-								{:name => "#{prefix}[country_name][english_name]"}.merge(optional_params) %>
+				  <input id="country_name_english_name_autocomplete_textbox" 
+			          name="<%= "#{prefix}[country_name][english_name]" %>" 
+			          <% if location.country_name %>
+			            value="<%= location.country_name.english_name %>"
+			          <% end %>
+			    />
 				<% end %>
 			<% if location.errors.on(:country_name) %></div><% end %>
 		</li>

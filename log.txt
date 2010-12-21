@@ -26,13 +26,13 @@ WHEN MOVING SITE TO NEW SERVER:
 
 THIS COMMIT:
 
-Added a calendar action to the events controller, which generates iCal
-(.ics) files.
 
 
 ======================================================================
 
 TODO:
+
+@ Fix auto-complete for /admin/users/index action
 
 @ Calendars
   - iCal feeds
