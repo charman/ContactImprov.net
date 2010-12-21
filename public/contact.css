@@ -450,23 +450,6 @@ div.entry_updated  {
 }
 
 
-/* === RESET CALENDAR_DATE_SELECT TO DEFAULTS === */
-/* The .ci_form CSS fields change settings that the calendar_date_select should override (but doesn't) */
-
-.calendar_date_select thead th {
-	font-size: 1em;
-	padding-right: 0em;
-	vertical-align: center;
-	text-align: center;
-	width: 1em;
-}
-
-.calendar_date_select td {
-	padding-bottom: 0em;
-}
-
-
-
 /* ------------------------------------------------------------------------ */
 
 /* === VESTIGIAL CSS === */

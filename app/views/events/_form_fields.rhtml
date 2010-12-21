@@ -1,3 +1,12 @@
+<% content_for :head do %>
+  <script>
+    $(function() {
+      $("#event_entry_start_date").datepicker();
+      $("#event_entry_end_date").datepicker();
+    });
+  </script>
+<% end %>
+
 <p>
 	<fieldset>
 		<legend>Special Event Information*</legend>
@@ -29,13 +38,13 @@
 			<tr style="vertical-align: top;">
 				<td style="width: 11m; text-align: right;">Start Date:*</td>
 				<td style="padding: 0em 1em 1em 1em;">
-					<%= the_entry.calendar_date_select :start_date, :embedded => true, :year_range => 0.years.ago..2.years.from_now %>
+					<%= the_entry.text_field :start_date %>
 				</td>
 			</tr>
 			<tr style="vertical-align: top;">
 				<td style="width: 11em; text-align: right;">End Date:*</td>
 				<td style="padding: 0em 1em 1em 1em;">
-					<%= the_entry.calendar_date_select :end_date, :embedded => true, :year_range => 0.years.ago..2.years.from_now %>
+					<%= the_entry.text_field :end_date %>
 				</td>
 			</tr>
 		</table>

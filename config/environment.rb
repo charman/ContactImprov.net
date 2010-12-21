@@ -83,8 +83,6 @@ Rails::Initializer.run do |config|
   #                configuration option is still necessary.
   config.active_record.schema_format = :sql
 
-  config.gem "calendar_date_select"
-  
   config.gem "geokit"
   #  [/CTH]
 
