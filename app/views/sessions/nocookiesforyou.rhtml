@@ -1,4 +1,6 @@
-<%= render(:partial => "shared/header", :locals => { :title => 'Error logging in to your account' } )%>
+<% content_for :title do %>
+  Error logging in to your account
+<% end %>
 
 <h1>Do you have cookies disabled?</h1>
 
@@ -24,6 +26,3 @@
 <p>
 	We apologize for the trouble.
 </p>
-
-
-<%= render(:partial => "shared/footer" )%>

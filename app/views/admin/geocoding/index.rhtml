@@ -1,4 +1,6 @@
-<%= render(:partial => "shared/admin/header", :locals => { :subsection => 'geocoding', :title => 'Overview' } )%>
+<% content_for :title do %>
+  Overview
+<% end %>
 
 <h2>Locations that could not be Geocoded (<%= @total_ungeocoded_locations %> total)</h2>
 
@@ -10,5 +12,3 @@
 	</p>
 	<% end %>
 <% end %>
-
-<%= render(:partial => "shared/admin/footer" )%>

@@ -1,5 +1,6 @@
-<%= render(:partial => "shared/admin/header",
-           :locals => { :subsection => 'users', :title => 'Create a New User' } )%>
+<% content_for :title do %>
+  Create a new User
+<% end %>
 
 <%= error_messages_for :user, :header_message => 'Unable to create new user' %>
 <% form_for :user, :url => '/admin/users/create' do |u| -%>
@@ -18,5 +19,3 @@
 
 <p><%= submit_tag 'Sign up' %></p>
 <% end -%>
-
-<%= render(:partial => "shared/admin/footer" )%>

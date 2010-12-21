@@ -1,4 +1,6 @@
-<%= render(:partial => "shared/header", :locals => { :title => 'Manage your account' } )%>
+<% content_for :title do %>
+  Manage your account
+<% end %>
 
 <div id="ci_form_page">
 	<% if @user %> 
@@ -60,5 +62,3 @@
 
 	<% end %>
 </div>
-
-<%= render(:partial => "shared/footer" )%>

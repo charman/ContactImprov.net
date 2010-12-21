@@ -1,4 +1,6 @@
-<%= render(:partial => "shared/header", :locals => { :title => 'List Special Events' } )%>
+<% content_for :title do %>
+  List Special Events
+<% end %>
 
 <a name="events" id="events" />
 <div>
@@ -11,5 +13,3 @@
 <% @entries.each do |entry| %>
 	<%= render(:partial => "shared/entries/event", :locals => { :entry => entry } )%>
 <% end %>
-
-<%= render(:partial => "shared/footer" )%>

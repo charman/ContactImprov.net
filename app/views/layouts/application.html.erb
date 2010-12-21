@@ -1,15 +1,15 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-	
 <html>
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8;" />
-	<title>ContactImprov.net - <%= title %></title>
+  <meta http-equiv="keywords" content="Contact Improvisation, Contact Improv, Contact Dance Improvisation, Contact Jams, Improv Dance Workshops Festivals">
+	<title>ContactImprov.net - <%= yield :title %></title>
 	<link rel="stylesheet" href="/contact.css" type="text/css" />
 
 	<%= javascript_include_tag :defaults, :include_google_js => true, 
           :versions => {:scriptaculous => "1.8", :prototype => "1.6"} %>
 	<%= calendar_date_select_includes nil %>
+	<script type="text/javascript" src="/javascripts/moo.fx.js"></script>
+	<script type="text/javascript" src="/javascripts/litebox-1.0.js"></script>
 	
 	<script type="text/javascript">
 
@@ -24,6 +24,11 @@
     })();
 
   </script>
+  
+  
+	<link type="text/css" rel="stylesheet" href="/contact.css">
+	<link type="text/css" rel="stylesheet" href="/lightbox.css">
+	
 </head>
 
 <body>
@@ -37,5 +42,12 @@
 
 			<%= render(:partial => "shared/navigation_bar")%>
 
-			<p style="text-align: right;  clear: both;">
-			</p>
+			<p style="text-align: right;  clear: both;"></p>
+
+      <%= yield %>
+
+  	</div>
+  </div>
+
+</body>
+</html>

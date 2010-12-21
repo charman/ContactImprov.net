@@ -1,5 +1,6 @@
-<%= render(:partial => "shared/admin/header",
-           :locals => { :subsection => 'home', :title => 'Overview' } )%>
+<% content_for :title do %>
+  Overview
+<% end %>
 
 <p style="font-size: x-large;">
 	<%= link_to 'Administer Account Requests', :action => 'index', :controller => 'admin/account_requests' %> 
@@ -40,6 +41,3 @@
 	<%= link_to 'Motivation', :action => 'index', :controller => 'admin/motivation' %> 
 	- <span style="font-size: medium;">reasons that Users like Contact Improvisation</span>
 </p>
-
-
-<%= render(:partial => "shared/admin/footer" )%>

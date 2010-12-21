@@ -1,4 +1,6 @@
-<%= render(:partial => "shared/header", :locals => { :title => "Add a new #{category_name_singular}" } )%>
+<% content_for :title do %>
+  Add a new <%= category_name_singular %>
+<% end %>
 
 <div id="ci_form_page">
 	<% if flash[:notice] %>
@@ -31,5 +33,3 @@
 		<% end -%>
 	</div>
 </div>
-
-<%= render(:partial => "shared/footer" )%>

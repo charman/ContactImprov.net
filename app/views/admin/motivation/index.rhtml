@@ -1,5 +1,6 @@
-<%= render(:partial => "shared/admin/header",
-           :locals => { :subsection => 'motivation', :title => '(hopefully)' } )%>
+<% content_for :title do %>
+  (hopefully)
+<% end %>
 
 <h2>Please tell us something you like about Contact Improvisation in two or three sentences:</h2>
 
@@ -10,5 +11,3 @@
 	<% end %>
 
 </div>
-
-<%= render(:partial => "shared/admin/footer" )%>

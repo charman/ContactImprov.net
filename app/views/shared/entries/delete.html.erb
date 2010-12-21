@@ -1,4 +1,7 @@
-<%= render(:partial => "shared/header", :locals => { :title => "Delete #{category_name_singular} entry" } )%>
+<% content_for :title do %>
+  Delete <%= category_name_singular %> entry
+  Account request received
+<% end %>
 
 <div id="ci_form_page">
 	<% if flash[:notice] %>
@@ -17,5 +20,3 @@
 		<% end %>
 	<% end %>
 </div>
-
-<%= render(:partial => "shared/footer" )%>

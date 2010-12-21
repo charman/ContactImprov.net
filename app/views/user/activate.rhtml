@@ -1,4 +1,6 @@
-<%= render(:partial => "shared/header", :locals => { :title => 'Activate your ContactImprov.net account' } )%>
+<% content_for :title do %>
+  Activate your ContactImprov.net account
+<% end %>
 
 <div id="ci_form_page">
 
@@ -79,5 +81,3 @@
 	<% end %>
 
 </div>
-
-<%= render(:partial => "shared/footer" )%>

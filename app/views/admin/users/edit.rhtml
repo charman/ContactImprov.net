@@ -1,5 +1,6 @@
-<%= render(:partial => "shared/admin/header",
-           :locals => { :subsection => 'users', :title => 'Edit a User' } )%>
+<% content_for :title do %>
+  Edit a User
+<% end %>
 
 
 <% #  TODO: Most of this code is duplicated from /user/edit - refactor to minimize duplication %>
@@ -32,6 +33,3 @@
 	</div>
 
 <% end %>
-
-
-<%= render(:partial => "shared/admin/footer" )%>

@@ -1,11 +1,8 @@
-<%= render(:partial => "shared/admin/header",
-           :locals => { :subsection => 'users', :title => 'Map of Users' } )%>
+<% content_for :title do %>
+  Map of Users
+<% end %>
 
-
-<div id="map"  style="width: 100%; height: 500px;">
-</div>
-
-
+<div id="map"  style="width: 100%; height: 500px;"></div>
 
 <script type="text/javascript" src="http://www.google.com/jsapi?key=<%= GeoKit::Geocoders::google %>"></script>
 <script type="text/javascript">
@@ -25,6 +22,3 @@
 	google.setOnLoadCallback(initialize);
 
 </script>
-
-
-<%= render(:partial => "shared/admin/footer" )%>

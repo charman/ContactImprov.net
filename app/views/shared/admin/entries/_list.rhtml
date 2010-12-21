@@ -1,10 +1,9 @@
-<%= render(:partial => "shared/admin/header",
-           :locals => { :subsection => entry_display_name, :title => 'List All' } )%>
+<% content_for :title do %>
+  List All
+<% end %>
 
 <h2>
 	Total <%= entry_display_name.titlecase %>: <%= @entries.size %>
 </h2>
 
 <%= render(:partial => "shared/admin/list_#{entry_display_name}", :locals => { :entries => @entries } )%>
-
-<%= render(:partial => "shared/admin/footer" )%>

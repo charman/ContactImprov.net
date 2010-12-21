@@ -1,13 +1,10 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-	
 <html>
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8;" />
 	<title>
 		CI-Admin:
 		<%= defined?(subsection) && !subsection.nil? ? " #{subsection.titleize.gsub('_', ' ')}: " : '' %>
-		<%= title %>
+		<%= yield :title %>
 	</title>
 
 	<%= javascript_include_tag :defaults, :include_google_js => true, 
@@ -101,7 +98,7 @@
 <h1><a href="/">CI</a>-<a href="/admin">Admin</a><%= 
 	defined?(subsection) && !subsection.nil? ? "-<a href=\"/admin/#{subsection.downcase}\">#{subsection.titleize.gsub('_', ' ')}</a>" : '' 
 %>:
-<%= title %></h1>
+<%= yield :title %></h1>
 
 	<div style="margin-left: 2em;">
 
@@ -116,3 +113,11 @@
 		</p>
 
 		<hr />
+  
+    <%= yield %>
+    
+
+  </div>
+
+</body>
+</html>

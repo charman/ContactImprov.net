@@ -1,4 +1,6 @@
-<%= render(:partial => "shared/header", :locals => { :title => 'Account request received' } )%>
+<% content_for :title do %>
+  Account request received
+<% end %>
 
 <div id="ci_form_page">
 
@@ -9,5 +11,3 @@
 	</p>
 
 </div>
-
-<%= render(:partial => "shared/footer" )%>

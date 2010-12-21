@@ -1,4 +1,6 @@
-<%= render(:partial => "shared/header", :locals => { :title => 'Change your email address' } )%>
+<% content_for :title do %>
+  Change your email address
+<% end %>
 
 <div id="ci_form_page">
 
@@ -62,5 +64,3 @@
 	<% end %>
 
 </div>
-
-<%= render(:partial => "shared/footer" )%>

@@ -1,4 +1,6 @@
-<%= render(:partial => "shared/header", :locals => { :title => "Edit #{category_name_singular}" } )%>
+<% content_for :title do %>
+  Edit <%= category_name_singular %>
+<% end %>
 
 <div id="ci_form_page">
 	<% if flash[:notice] %>
@@ -52,5 +54,3 @@
 		</div>
 	<% end %>
 </div>
-
-<%= render(:partial => "shared/footer" )%>

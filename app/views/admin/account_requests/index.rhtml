@@ -1,5 +1,6 @@
-<%= render(:partial => "shared/admin/header", 
-           :locals => { :subsection => 'account_requests', :title => 'Index' }) %>
+<% content_for :title do %>
+  Index
+<% end %>
 
 <p style="font-size: x-large;">
 	<%= link_to 'List All', :action => 'list', :controller => 'admin/account_requests' %> 
@@ -20,6 +21,3 @@
 	<%= link_to 'List Rejected', :action => 'list_rejected', :controller => 'admin/account_requests' %> 
 	(<%= @total_rejected_account_requests %> rejected requests)
 </p>
-
-
-<%= render(:partial => "shared/admin/footer" )%>

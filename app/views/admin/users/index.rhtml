@@ -1,5 +1,6 @@
-<%= render(:partial => "shared/admin/header",
-           :locals => { :subsection => 'users', :title => 'Overview' } )%>
+<% content_for :title do %>
+  Overview
+<% end %>
 
 <p style="font-size: x-large;">
 	<%= link_to 'Create a New User', :action => 'new', :controller => 'admin/users' %>
@@ -38,7 +39,6 @@
 	- <span style="font-size: medium;">Sent activation email, but haven't activated user account yet.</span>
 </p>
 
-
 <p style="font-size: x-large;">
 	<%= link_to 'Map of Locations', :action => 'map', :controller => 'admin/users' %> 
 	<span style="font-size: medium;">
@@ -46,7 +46,3 @@
 		[<%= @total_geocodable_locations %>/<%= @total_locations %>]
 	</span>
 </p>
-
-
-
-<%= render(:partial => "shared/admin/footer" )%>

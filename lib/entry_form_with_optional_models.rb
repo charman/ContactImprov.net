@@ -15,7 +15,7 @@ module EntryFormWithOptionalModels
         UserMailer.deliver_new_entry_created(@entry, entry_display_name)
         redirect_to :action => 'show', :id => @entry.id
       else
-        render :partial => "shared/entries/new", :locals => { 
+        render "shared/entries/new", :locals => { 
           :category_name_singular => category_name_singular,
           :entry_display_name     => entry_display_name
         }
@@ -31,7 +31,7 @@ module EntryFormWithOptionalModels
       @entry.destroy 
     end
 
-    render :partial => "shared/entries/delete", :locals => { 
+    render "shared/entries/delete", :locals => { 
       :category_name_singular => category_name_singular,
       :entry_display_name     => entry_display_name
     }
@@ -74,7 +74,7 @@ module EntryFormWithOptionalModels
     end
 
     #  render needs to be called *after* @entry is initialized (or not) in valid_id_and_permissions?
-    render :partial => "shared/entries/edit", :locals => { 
+    render "shared/entries/edit", :locals => { 
       :category_name_singular => category_name_singular,
       :category_name_plural   => category_name_plural,
       :category_title         => category_title,
@@ -87,7 +87,7 @@ module EntryFormWithOptionalModels
     create_entry_and_linked_models
     set_has_person_entry_variables
 
-    render :partial => "shared/entries/new", :locals => { :category_name_singular => category_name_singular }
+    render "shared/entries/new", :locals => { :category_name_singular => category_name_singular }
   end
 
   def show
@@ -95,7 +95,7 @@ module EntryFormWithOptionalModels
     @entry_type = entry_display_name.downcase
     @entry_editable_by_user = current_user_can_modify_entry?(@entry)
 
-    render :partial => "shared/entries/show", :locals => { :category_name_singular => category_name_singular }
+    render "shared/entries/show", :locals => { :category_name_singular => category_name_singular }
   end
 
 
@@ -144,7 +144,7 @@ protected
 
     cache_entries_for_countries(entry_class)
 
-    render :partial => "shared/entries/index_by_country", :locals => { 
+    render "shared/entries/index_by_country", :locals => { 
       :category_name_singular => category_name_singular,
       :category_name_plural   => category_name_plural,
       :category_title         => category_title,

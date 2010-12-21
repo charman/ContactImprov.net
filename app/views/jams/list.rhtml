@@ -1,4 +1,6 @@
-<%= render(:partial => "shared/header", :locals => { :title => 'List Ongoing Jams/Classes' } )%>
+<% content_for :title do %>
+  List Ongoing Jams/Classes
+<% end %>
 
 <div style="padding-bottom: 1em; padding-top: 1em;">
 	<span class="category_title"><%= @category_title %></span>
@@ -6,5 +8,3 @@
 </div>
 
 <%= render(:partial => "shared/entries/list_by_country" )%>
-
-<%= render(:partial => "shared/footer" )%>

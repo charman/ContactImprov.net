@@ -1,6 +1,5 @@
-<%= render(:partial => "shared/admin/header",
-           :locals => { :subsection => 'users', :title => 'List Pending' } )%>
+<% content_for :title do %>
+  List Pending
+<% end %>
 
 <%= render(:partial => "list_users" )%>
-
-<%= render(:partial => "shared/admin/footer" )%>

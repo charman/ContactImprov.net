@@ -1,4 +1,6 @@
-<%= render(:partial => "shared/header", :locals => { :title => 'Old list of People' } )%>
+<% content_for :title do %>
+  Old list of People
+<% end %>
 
 		<h2>
 			<a name="people" id="people">People</a>
@@ -1170,5 +1172,3 @@ heather at satorimedia dot com
 				
 <dt> Zen Monkey Project (McGuffey Art Center)</dt><dd> 201 2nd Street NW Charlottesville, VA 22902<br>
 				 434 973-2387 bradstoller at gmail dot com</dd></dl>
-
-<%= render(:partial => "shared/footer" )%>

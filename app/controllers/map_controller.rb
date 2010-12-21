@@ -1,5 +1,8 @@
 class MapController < ApplicationController
 
+  layout nil
+
+
   def events
     @entry_category = 'events'
     render :action => 'index'

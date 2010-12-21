@@ -1,5 +1,6 @@
-<%= render(:partial => "shared/admin/header", 
-           :locals => { :subsection => 'account_requests', :title => 'Show' }) %>
+<% content_for :title do %>
+  Show
+<% end %>
 
 <% if flash[:notice] %>
 	<div class="errorExplanation" id="errorExplanation">
@@ -71,5 +72,3 @@
 <% else %>
 	TODO: Write error message text explaining what went wrong...
 <% end %>
-
-<%= render(:partial => "shared/admin/footer" )%>

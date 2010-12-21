@@ -1,5 +1,6 @@
-<%= render(:partial => "shared/admin/header",
-           :locals => { :subsection => 'users', :title => 'Activate a User' } )%>
+<% content_for :title do %>
+  Activate a User
+<% end %>
 
 <%= error_messages_for :user, :header_message => 'Unable to Activate User' %>
 <% form_for :user, :url => { :action => 'activate'} do |f| -%>
@@ -18,5 +19,3 @@
 <p>
 	An email will be sent to the user that contains the password you specify.
 </p>
-
-<%= render(:partial => "shared/admin/footer" )%>

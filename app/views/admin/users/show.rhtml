@@ -1,5 +1,6 @@
-<%= render(:partial => "shared/admin/header",
-           :locals => { :subsection => 'users',  :title => 'Show User Information' } )%>
+<% content_for :title do %>
+  Show User Information
+<% end %>
 
 <style>
 	div.userinfo {
@@ -189,9 +190,4 @@
 	</script>
 	
 <% else %>
-	
-	
 <% end %>
-
-
-<%= render(:partial => "shared/admin/footer" )%>
