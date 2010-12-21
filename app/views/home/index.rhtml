@@ -1,19 +1,30 @@
+<% content_for :head do %>
+  <script type="text/javascript" src="/javascripts/fancybox/jquery.fancybox-1.3.4.pack.js"></script>
+  <link rel="stylesheet" href="/javascripts/fancybox/jquery.fancybox-1.3.4.css" type="text/css" media="screen" />
+
+  <script>
+    $(function() {
+      $("a[rel=lightbox_image]").fancybox();
+    });
+  </script>
+<% end %>
+
 			<div>
 				<div class="lightbox_sidebar">
-					<div class="lightbox">
-						<a href="/images/Stefano_Bussolon/Stefano_Bussolon_3.jpg" rel="lightbox[contact_images]">
+					<div class="lightbox" id="lightbox_images">
+						<a href="/images/Stefano_Bussolon/Stefano_Bussolon_3.jpg" rel="lightbox_image">
 							<img src="/images/Stefano_Bussolon/Stefano_Bussolon_3_w120.jpg" />
 						</a>
-						<a href="/images/Stefano_Bussolon/Stefano_Bussolon_4.jpg" rel="lightbox[contact_images]">
+						<a href="/images/Stefano_Bussolon/Stefano_Bussolon_4.jpg" rel="lightbox_image">
 							<img src="/images/Stefano_Bussolon/Stefano_Bussolon_4_w120.jpg" />
 						</a>
-						<a href="/images/Stefano_Bussolon/Stefano_Bussolon_5.jpg" rel="lightbox[contact_images]">
+						<a href="/images/Stefano_Bussolon/Stefano_Bussolon_5.jpg" rel="lightbox_image">
 							<img src="/images/Stefano_Bussolon/Stefano_Bussolon_5_w120.jpg" />
 						</a>
-						<a href="/images/Stefano_Bussolon/Stefano_Bussolon_8.jpg" rel="lightbox[contact_images]">
+						<a href="/images/Stefano_Bussolon/Stefano_Bussolon_8.jpg" rel="lightbox_image">
 							<img src="/images/Stefano_Bussolon/Stefano_Bussolon_8_w120.jpg" />
 						</a>
-						<a href="/images/Stefano_Bussolon/Stefano_Bussolon_9.jpg" rel="lightbox[contact_images]">
+						<a href="/images/Stefano_Bussolon/Stefano_Bussolon_9.jpg" rel="lightbox_image">
 							<img src="/images/Stefano_Bussolon/Stefano_Bussolon_9_w120.jpg" />
 						</a>
 					</div>

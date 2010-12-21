@@ -34,7 +34,7 @@ function ci_map_initialize() {
 
 				//  TODO: For some reason, marker_info[coordinates] is not treated as an Array
 				//         unless the Prototype JavaScript framework has been loded.
-				if (marker_info[coordinates].size() > 1) {
+				if (marker_info[coordinates].length > 1) {
 					ci_map_add_tabbed_infowindow(lat_lng[0], lat_lng[1], marker_info[coordinates], markercount++);
 				}
 				else {
@@ -62,7 +62,7 @@ function ci_map_add_infowindow(lat, lng, marker_info, markercount) {
 
 function ci_map_add_tabbed_infowindow(lat, lng, marker_info_array, markercount) {
 	var mouseover_text_array = [];
-	for (var i = 0; i < marker_info_array.size(); i++) {
+	for (var i = 0; i < marker_info_array.length; i++) {
 		mouseover_text_array.push(marker_info_array[i].mouseover_text);
 	}
 	var mouseover_text = mouseover_text_array.join(",\n");

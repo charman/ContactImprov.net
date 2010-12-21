@@ -5,14 +5,12 @@
 	<title>ContactImprov.net - Map</title>
 	<link rel="stylesheet" href="/contact.css" type="text/css" />
 
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.4/jquery.min.js"></script>
   <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.6/jquery-ui.min.js"></script>
-  <script src="http://ajax.googleapis.com/ajax/libs/prototype/1.7.0.0/prototype.js"></script>
-	<%= calendar_date_select_includes nil %>
-	<script type="text/javascript" src="/javascripts/moo.fx.js"></script>
-	<script type="text/javascript" src="/javascripts/litebox-1.0.js"></script>
-	
-	<script type="text/javascript">
+  <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script>
+  <script type="text/javascript" src="/javascripts/ci_map.js"></script>
 
+	<script type="text/javascript">
     var _gaq = _gaq || [];
     _gaq.push(['_setAccount', 'UA-18542553-1']);
     _gaq.push(['_trackPageview']);
@@ -22,17 +20,26 @@
       ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
       var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
     })();
-
   </script>
   
-  
-	<link type="text/css" rel="stylesheet" href="/contact.css">
-	<link type="text/css" rel="stylesheet" href="/lightbox.css">
-	
+  <script>
+    //  Declare global variables
+  	var map;
+  	var markers = new Array();
+
+  	//  TODO: Passing a function argument through a global variable, a horrible hack,
+  	//         but it doesn't look like you can pass arguments to callback functions
+  	//         that are loaded by google.setOnLoadCallback().
+  	var entry_category = '<%= @entry_category %>';
+
+	  //  Call ci_map_initialize() on page load
+    $(function() {
+      ci_map_initialize();
+    });
+  </script>
 </head>
 
 <body>
-
 	<div class="main">
 		<div class="content">
 
@@ -44,60 +51,34 @@
 
 			<p style="text-align: right;  clear: both;"></p>
 
-<link type="text/css" href="http://jqueryui.com/latest/themes/base/ui.all.css" rel="stylesheet" />
+      <div id="map_canvas"  style="width: 100%; height: 500px; border: 1px solid #666;"></div>
 
-<script type="text/javascript" src="http://www.google.com/jsapi"></script>
-<script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script>
-
-<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.1/jquery.min.js"></script>
-<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.7.2/jquery-ui.min.js"></script>
-
-<script type="text/javascript" src="/javascripts/ci_map.js"></script>
-
-<script type="text/javascript">
-	//  Declare global variables
-	var map;
-	var markers = new Array();
-
-	//  TODO: Passing a function argument through a global variable, a horrible hack,
-	//         but it doesn't look like you can pass arguments to callback functions
-	//         that are loaded by google.setOnLoadCallback().
-	var entry_category = '<%= @entry_category %>';
-
-	google.setOnLoadCallback(ci_map_initialize);
-</script>
-
-<div id="map_canvas"  style="width: 100%; height: 500px; border: 1px solid #666;"></div>
-
-<div class="ci_bulleted_list">
-	<ul>
-		<li style="list-style-image: url(http://www.google.com/mapfiles/marker_greenE.png);">
-			<%= link_to 'Special Events', :action => 'events', :controller => 'map' %>
-			&ndash; conferences, festivals, regional jams and workshops
-		</li>
-		<li style="list-style-image: url(http://www.google.com/mapfiles/marker_yellowJ.png)">
-			<%= link_to 'Ongoing Jams/Classes', :action => 'jams', :controller => 'map' %>
-			&ndash; local classes and jams &ndash; <i>"regularly scheduled dancing"</i>
-		</li>
-		<li style="list-style-image: url(http://www.google.com/mapfiles/marker_orangeP.png)">
-			<%= link_to 'People', :action => 'people', :controller => 'map' %>
-			&ndash; teaching, performing, or otherwise involved in Contact
-		</li>
-		<li style="list-style-image: url(http://www.google.com/mapfiles/marker_brownO.png)">
-			<%= link_to 'Organizations', :action => 'organizations', :controller => 'map' %>
-			&ndash; regional websites, studios, companies, etc. &ndash; <i>"everything else"</i>
-		</li>
-		<li style="list-style-image: url(http://www.google.com/mapfiles/marker_purple.png)">
-			<%= link_to 'Multiple Listings', :action => 'index', :controller => 'map' %>
-			&ndash; more than one Events, Jams, People or Organizations at one location
-		</li>
-	</ul>
-</div>
-
-
+      <div class="ci_bulleted_list">
+      	<ul>
+      		<li style="list-style-image: url(http://www.google.com/mapfiles/marker_greenE.png);">
+      			<%= link_to 'Special Events', :action => 'events', :controller => 'map' %>
+      			&ndash; conferences, festivals, regional jams and workshops
+      		</li>
+      		<li style="list-style-image: url(http://www.google.com/mapfiles/marker_yellowJ.png)">
+      			<%= link_to 'Ongoing Jams/Classes', :action => 'jams', :controller => 'map' %>
+      			&ndash; local classes and jams &ndash; <i>"regularly scheduled dancing"</i>
+      		</li>
+      		<li style="list-style-image: url(http://www.google.com/mapfiles/marker_orangeP.png)">
+      			<%= link_to 'People', :action => 'people', :controller => 'map' %>
+      			&ndash; teaching, performing, or otherwise involved in Contact
+      		</li>
+      		<li style="list-style-image: url(http://www.google.com/mapfiles/marker_brownO.png)">
+      			<%= link_to 'Organizations', :action => 'organizations', :controller => 'map' %>
+      			&ndash; regional websites, studios, companies, etc. &ndash; <i>"everything else"</i>
+      		</li>
+      		<li style="list-style-image: url(http://www.google.com/mapfiles/marker_purple.png)">
+      			<%= link_to 'Multiple Listings', :action => 'index', :controller => 'map' %>
+      			&ndash; more than one Events, Jams, People or Organizations at one location
+      		</li>
+      	</ul>
+      </div>
 
   	</div>
   </div>
-
 </body>
 </html>

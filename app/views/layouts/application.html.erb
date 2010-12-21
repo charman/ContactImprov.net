@@ -5,16 +5,10 @@
 	<title>ContactImprov.net - <%= yield :title %></title>
 	<link rel="stylesheet" href="/contact.css" type="text/css" />
 
-  <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.6/jquery-ui.min.js"></script>
-  <script src="http://ajax.googleapis.com/ajax/libs/prototype/1.7.0.0/prototype.js"></script>
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.4/jquery.min.js"></script>
+  <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.7/jquery-ui.min.js"></script>
 
-	<script type="text/javascript" src="/javascripts/moo.fx.js"></script>
-	<script type="text/javascript" src="/javascripts/litebox-1.0.js"></script>
-
-	<%= calendar_date_select_includes nil %>
-	
 	<script type="text/javascript">
-
     var _gaq = _gaq || [];
     _gaq.push(['_setAccount', 'UA-18542553-1']);
     _gaq.push(['_trackPageview']);
@@ -24,13 +18,9 @@
       ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
       var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
     })();
-
   </script>
   
-  
-	<link type="text/css" rel="stylesheet" href="/contact.css">
-	<link type="text/css" rel="stylesheet" href="/lightbox.css">
-	
+	<%= yield :head %>
 </head>
 
 <body>
