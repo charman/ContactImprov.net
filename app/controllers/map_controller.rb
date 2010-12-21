@@ -1,6 +1,6 @@
 class MapController < ApplicationController
 
-  layout nil
+  layout "application", :except => [:embed_example]
 
 
   def events
