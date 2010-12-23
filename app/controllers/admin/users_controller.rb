@@ -27,14 +27,19 @@ class Admin::UsersController < ApplicationController
   def auto_complete_for_user_by_person
     users = User.find(:all, 
       :conditions => [ "LOWER(first_name) LIKE ? OR LOWER(last_name) LIKE ?", 
-        '%' + params[:user][:by_person] + '%',
-        '%' + params[:user][:by_person] + '%'],
+        '%' + params[:term] + '%',
+        '%' + params[:term] + '%'],
       :limit => 20,
       :joins => 'INNER JOIN ci_people ON ci_users.person_id = ci_people.person_id', 
       :order => 'last_name ASC')
 
-    items = users.map { |user| "<li id=\"#{user.id}\">" + ERB::Util.h("#{user.person.last_name}, #{user.person.first_name}") + '</li>' }
-    render :inline => "<ul>#{items.uniq.to_s}</ul>"
+    results = users.collect do |user|
+      { 
+        'value' => h("#{user.person.last_name}, #{user.person.first_name}"),
+        'user_id' => user.id
+      }
+    end
+    render :json => results.to_json
   end
 
   def create

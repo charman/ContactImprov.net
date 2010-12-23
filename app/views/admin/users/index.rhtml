@@ -2,24 +2,32 @@
   Overview
 <% end %>
 
+<% content_for :head do %>
+  <script>
+    $(function() {
+      $("#user_by_person").autocomplete({
+        source: "/admin/users/auto_complete_for_user_by_person",
+        minLength: 2,
+        select: function( event, ui ) {
+          $("#user_id").val(ui.item.user_id);
+        }
+      })
+    });
+  </script>
+<% end %>
+
 <p style="font-size: x-large;">
 	<%= link_to 'Create a New User', :action => 'new', :controller => 'admin/users' %>
 </p>
 
-<p>
-	<% form_tag(:action => 'index', :controller => 'admin/users') do %>
-	<span style="font-size: x-large;">Find a User by Name:</span>
-	<%= 
-		text_field_with_auto_complete :user, :by_person, {}, 
-			{ :url => '/admin/users/auto_complete_for_user_by_person', 
-			  :min_chars => 2, 
-			  :after_update_element => 
-				"function getSelectionID(text, li) { $('user_id').value = li.id }" }
-	%>
-	<%= hidden_field(:user, :id) %>
-	<%= submit_tag 'Find' %>
-	<% end %>
-</p>
+<% form_tag(:action => 'index', :controller => 'admin/users') do %>
+  <p>
+	  <span style="font-size: x-large;">Find a User by Name:</span>
+    <%= text_field :user, :by_person %>
+	  <%= hidden_field(:user, :id) %>
+	  <%= submit_tag 'Find' %>
+  </p>
+<% end %>
 
 
 <p style="font-size: x-large;">
