@@ -55,7 +55,7 @@ CREATE TABLE `ci_event_entries` (
   `created_at` datetime DEFAULT NULL,
   `updated_at` datetime DEFAULT NULL,
   PRIMARY KEY (`event_entry_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=15197 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=15199 DEFAULT CHARSET=utf8;
 
 CREATE TABLE `ci_event_entry_versions` (
   `event_entry_version_id` int(11) NOT NULL AUTO_INCREMENT,
@@ -77,7 +77,7 @@ CREATE TABLE `ci_event_entry_versions` (
   `ci_notes` text,
   `updated_at` datetime DEFAULT NULL,
   PRIMARY KEY (`event_entry_version_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=15366 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=15368 DEFAULT CHARSET=utf8;
 
 CREATE TABLE `ci_jam_entries` (
   `jam_entry_id` int(11) NOT NULL AUTO_INCREMENT,
@@ -138,7 +138,7 @@ CREATE TABLE `ci_location_versions` (
   KEY `index_ci_location_versions_on_location_id` (`location_id`),
   KEY `index_ci_location_versions_on_us_state_id` (`us_state_id`),
   KEY `index_ci_location_versions_on_country_name_id` (`country_name_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=15920 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=15922 DEFAULT CHARSET=utf8;
 
 CREATE TABLE `ci_locations` (
   `location_id` int(11) NOT NULL AUTO_INCREMENT,
@@ -158,7 +158,7 @@ CREATE TABLE `ci_locations` (
   PRIMARY KEY (`location_id`),
   KEY `index_ci_locations_on_us_state_id` (`us_state_id`),
   KEY `index_ci_locations_on_country_name_id` (`country_name_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=15437 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=15439 DEFAULT CHARSET=utf8;
 
 CREATE TABLE `ci_organization_entries` (
   `organization_entry_id` int(11) NOT NULL AUTO_INCREMENT,
