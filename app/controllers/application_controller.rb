@@ -10,8 +10,6 @@ class ApplicationController < ActionController::Base
   # Send an email when an unhandled exception occurs
   include ExceptionNotifiable
 
-  include AutoCompleteWithParamsPrefix
-
   include SslRequirement
 
   #  Allow SSL to be used on all pages.  Prevents an https -> http -> https redirection
