@@ -22,11 +22,15 @@ class User < ActiveRecord::Base
   #  Per the Rails docs, these validations will not fail if the association hasn't been assigned.
   validates_associated :person
   
-  before_save :encrypt_password
+#  before_save :encrypt_password
 
   # prevents a user from submitting a crafted form that bypasses activation
   # anything else you want your user to change should be added here.
   attr_accessible :email, :password, :password_confirmation
+
+  acts_as_authentic do |c|
+    c.act_like_restful_authentication = true
+  end
 
   # [CTH]  Even though we specify an initial state for the state machine,
   #        the state is actually nil when we create a Users object using
@@ -118,16 +122,16 @@ class User < ActiveRecord::Base
   def self.encrypt(password, salt)
     Digest::SHA1.hexdigest("--#{salt}--#{password}--")
   end
-
+  
   def authenticated?(password)
     crypted_password == encrypt(password)
   end
-
+  
   # Encrypts the password with the user salt
   def encrypt(password)
     self.class.encrypt(password, salt)
   end
-
+  
   def encrypt_password
     return if password.blank?
     self.salt = Digest::SHA1.hexdigest("--#{Time.now.to_s}--#{email}--") if new_record?

@@ -55,7 +55,7 @@ CREATE TABLE `ci_event_entries` (
   `created_at` datetime DEFAULT NULL,
   `updated_at` datetime DEFAULT NULL,
   PRIMARY KEY (`event_entry_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=15199 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=15197 DEFAULT CHARSET=utf8;
 
 CREATE TABLE `ci_event_entry_versions` (
   `event_entry_version_id` int(11) NOT NULL AUTO_INCREMENT,
@@ -77,7 +77,7 @@ CREATE TABLE `ci_event_entry_versions` (
   `ci_notes` text,
   `updated_at` datetime DEFAULT NULL,
   PRIMARY KEY (`event_entry_version_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=15368 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=15366 DEFAULT CHARSET=utf8;
 
 CREATE TABLE `ci_jam_entries` (
   `jam_entry_id` int(11) NOT NULL AUTO_INCREMENT,
@@ -138,7 +138,7 @@ CREATE TABLE `ci_location_versions` (
   KEY `index_ci_location_versions_on_location_id` (`location_id`),
   KEY `index_ci_location_versions_on_us_state_id` (`us_state_id`),
   KEY `index_ci_location_versions_on_country_name_id` (`country_name_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=15922 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=15920 DEFAULT CHARSET=utf8;
 
 CREATE TABLE `ci_locations` (
   `location_id` int(11) NOT NULL AUTO_INCREMENT,
@@ -158,7 +158,7 @@ CREATE TABLE `ci_locations` (
   PRIMARY KEY (`location_id`),
   KEY `index_ci_locations_on_us_state_id` (`us_state_id`),
   KEY `index_ci_locations_on_country_name_id` (`country_name_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=15439 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=15437 DEFAULT CHARSET=utf8;
 
 CREATE TABLE `ci_organization_entries` (
   `organization_entry_id` int(11) NOT NULL AUTO_INCREMENT,
@@ -347,6 +347,17 @@ CREATE TABLE `ci_user_account_requests` (
   PRIMARY KEY (`user_account_request_id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=15375 DEFAULT CHARSET=utf8;
 
+CREATE TABLE `ci_user_sessions` (
+  `ci_user_session_id` int(11) NOT NULL AUTO_INCREMENT,
+  `session_id` varchar(255) NOT NULL,
+  `data` text,
+  `created_at` datetime DEFAULT NULL,
+  `updated_at` datetime DEFAULT NULL,
+  PRIMARY KEY (`ci_user_session_id`),
+  KEY `index_ci_user_sessions_on_session_id` (`session_id`),
+  KEY `index_ci_user_sessions_on_updated_at` (`updated_at`)
+) ENGINE=MyISAM AUTO_INCREMENT=15000 DEFAULT CHARSET=utf8;
+
 CREATE TABLE `ci_users` (
   `user_id` int(11) NOT NULL AUTO_INCREMENT,
   `email` varchar(255) DEFAULT NULL,
@@ -363,6 +374,12 @@ CREATE TABLE `ci_users` (
   `last_login_at` datetime DEFAULT NULL,
   `remember_token` varchar(255) DEFAULT NULL,
   `remember_token_expires_at` datetime DEFAULT NULL,
+  `persistence_token` varchar(255) NOT NULL,
+  `login_count` int(11) NOT NULL DEFAULT '0',
+  `last_request_at` datetime DEFAULT NULL,
+  `current_login_at` datetime DEFAULT NULL,
+  `last_login_ip` varchar(255) DEFAULT NULL,
+  `current_login_up` varchar(255) DEFAULT NULL,
   `created_at` datetime DEFAULT NULL,
   `updated_at` datetime DEFAULT NULL,
   PRIMARY KEY (`user_id`),
@@ -370,7 +387,9 @@ CREATE TABLE `ci_users` (
   KEY `index_ci_users_on_person_id` (`person_id`),
   KEY `index_ci_users_on_state` (`state`),
   KEY `index_ci_users_on_password_reset_code` (`password_reset_code`),
-  KEY `index_ci_users_on_activation_code` (`activation_code`)
+  KEY `index_ci_users_on_activation_code` (`activation_code`),
+  KEY `index_ci_users_on_persistence_token` (`persistence_token`),
+  KEY `index_ci_users_on_last_request_at` (`last_request_at`)
 ) ENGINE=MyISAM AUTO_INCREMENT=15319 DEFAULT CHARSET=utf8;
 
 INSERT INTO ci_schema_migrations (version) VALUES ('20081216170645');
@@ -418,3 +437,7 @@ INSERT INTO ci_schema_migrations (version) VALUES ('20090118172825');
 INSERT INTO ci_schema_migrations (version) VALUES ('20090118174147');
 
 INSERT INTO ci_schema_migrations (version) VALUES ('20090126191118');
+
+INSERT INTO ci_schema_migrations (version) VALUES ('20101223194518');
+
+INSERT INTO ci_schema_migrations (version) VALUES ('20101223201613');

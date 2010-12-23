@@ -30,8 +30,8 @@ class ActiveSupport::TestCase
   # then set this back to true.
   self.use_instantiated_fixtures  = false
 
-  # Add more helper methods to be used by all tests here...
-  include AuthenticatedTestHelper
+#  # Add more helper methods to be used by all tests here...
+#  include AuthenticatedTestHelper
 
   # Setup all fixtures in test/fixtures/*.(yml|csv) for all tests in alphabetical order.
   #

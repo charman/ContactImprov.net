@@ -4,8 +4,8 @@
 class ApplicationController < ActionController::Base
   helper :all # include all helpers, all the time
 
-  # Be sure to include AuthenticationSystem [sic] in Application Controller instead
-  include AuthenticatedSystem
+  # # Be sure to include AuthenticationSystem [sic] in Application Controller instead
+  # include AuthenticatedSystem
 
   # Send an email when an unhandled exception occurs
   include ExceptionNotifiable
@@ -35,6 +35,9 @@ class ApplicationController < ActionController::Base
   # Uncomment this to filter the contents of submitted sensitive data parameters
   # from your application log (in this case, all fields with names like "password"). 
   # filter_parameter_logging :password
+
+
+  helper_method :current_user_session, :current_user
   
   
   def cache_entries_for_countries(entry_class)
@@ -134,6 +137,19 @@ class ApplicationController < ActionController::Base
         a.location.city_name <=> b.location.city_name
       end  
     end
+  end
+
+
+private
+
+  def current_user_session
+    return @current_user_session if defined?(@current_user_session)
+    @current_user_session = UserSession.find
+  end
+
+  def current_user
+    return @current_user if defined?(@current_user)
+    @current_user = current_user_session && current_user_session.user
   end
 
 end

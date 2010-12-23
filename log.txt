@@ -32,18 +32,17 @@ THIS COMMIT:
 
 TODO:
 
-@ Fix auto-complete for /admin/users/index action
+@ Replace restful_authentication
+  
 
-@ Calendars
-  - iCal feeds
-    - functional tests for routes
-    - find icons for adding iCal calendars
-        http://www.oxygen-inc.com/kenx/
-    - for events with start/end dates greater than X, create separate
-       start and end date events instead of having one giant event
 
-@ Get rid of CountryName.english_name_with_underscores, which is
-deprecated thanks to the underlined_english_name database field
+@ Google search box for site
+
+@ Geocoding
+  - admin page for locations that could not be geocoded
+    - add links to actual actions
+  - admin action to attempt to re-geocode
+  - send admin an email if geocoding failed
 
 @ Google Maps
   - caching
@@ -57,6 +56,25 @@ deprecated thanks to the underlined_english_name database field
     - change purple dot icon to something more explanatory
        (multi-colored icon with # of things?)
   - fix javascript warning message
+
+@ email every user whose account status is pending - perhaps from
+GMail account?
+
+@ email obfuscation script:
+    http://www.projecthoneypot.org/how_to_avoid_spambots_3.php
+
+---
+
+@ Calendars
+  - iCal feeds
+    - functional tests for routes
+    - find icons for adding iCal calendars
+        http://www.oxygen-inc.com/kenx/
+    - for events with start/end dates greater than X, create separate
+       start and end date events instead of having one giant event
+
+@ Get rid of CountryName.english_name_with_underscores, which is
+deprecated thanks to the underlined_english_name database field
 
 @ Create function for Events/People/etc to generate listing URL
   - refactor code in events_helper.rb
@@ -83,12 +101,6 @@ deprecated thanks to the underlined_english_name database field
   - locations
   - events
 
-@ Geocoding
-  - admin page for locations that could not be geocoded
-    - add links to actual actions
-  - admin action to attempt to re-geocode
-  - send admin an email if geocoding failed
-
 @ Sort events by date
   - unit tests for 
     - EventEntry.find_by_year[_month]()
@@ -98,12 +110,6 @@ deprecated thanks to the underlined_english_name database field
     - /events/list/YEAR[/MONTH]
   ...
 
-@ email every user whose account status is pending - perhaps from
-GMail account?
-
-@ email obfuscation script:
-    http://www.projecthoneypot.org/how_to_avoid_spambots_3.php
-
 @ Account request process
   - create page where people can check the status of their account requests
   - immediately send an email 
@@ -111,11 +117,6 @@ GMail account?
   - on "request received" page
     - inform people to check their email accounts, check spam filters
     - provide link to URL
-
-@ Update HTML
-  - add text on old jams page asking people to email me to remove
-     listings
-  - ...
 
 @ Entry listings
   - index pages for listings grouped by country
@@ -161,25 +162,9 @@ GMail account?
 
 -- 
 
-@ Explore Google hosting of Yahoo YUI files:
-   http://yuiblog.com/blog/2008/11/19/yui-google/
-
 @ On /user/request_account page, if someone already has an account
 with the listed email address, change error message to be less
 confusing
-
-@ Update HTML
-  - fix titles
-  - run W3C link checker on the site
-  - standardize DOCTYPE (to what? HTML/XHMTL/transitional/strict?)
-
-@ Fix the way pages look in IE7 (and IE6?) 
-  - should be space between text in 'announcements' boxes and left
-     margin
-
-@ Create Google sitemap
-
-@ Google search box for site
 
 @ Cache Entry list pages (/entries/list and /home/index)
 
@@ -207,8 +192,6 @@ they can edit for that type of entry
 
 @ Entry listings
   - validation function for "has at least one of these models"
-
-@ Refactor 'auto_complete_with_params_prefix' into a plugin
 
 @ Send email when rejecting a user account request
 
