@@ -31,17 +31,19 @@
       
       //  TODO: Need to handle the case where calendar_data.vevent is an object (because there 
       //        is only one event listed in the iCal feed), and not an array of objects
-      for (var i = 0; i < calendar_data.vevent.length; i++) {
-        events.push({
-          title: calendar_data.vevent[i]['summary'],
-          //  We (currently) use the toISOString() function to prevent the fullCalendar library
-          //   from interpreting the JavaScript Date objects (calendar_data.vevent[i]['dtstart'],
-          //   calendar_data.vevent[i]['dtend']) for all day events that start at midnight (with no
-          //   time zone specified) as actually starting at 7pm EST on the day before.
-          start: calendar_data.vevent[i]['dtstart'].toISOString(),
-          end:   calendar_data.vevent[i]['dtend'].toISOString(),
-          url:   calendar_data.vevent[i]['url']
-        });
+      if (calendar_data.vevent != undefined) {
+        for (var i = 0; i < calendar_data.vevent.length; i++) {
+          events.push({
+            title: calendar_data.vevent[i]['summary'],
+            //  We (currently) use the toISOString() function to prevent the fullCalendar library
+            //   from interpreting the JavaScript Date objects (calendar_data.vevent[i]['dtstart'],
+            //   calendar_data.vevent[i]['dtend']) for all day events that start at midnight (with no
+            //   time zone specified) as actually starting at 7pm EST on the day before.
+            start: calendar_data.vevent[i]['dtstart'].toISOString(),
+            end:   calendar_data.vevent[i]['dtend'].toISOString(),
+            url:   calendar_data.vevent[i]['url']
+          });
+        }
       }
 
       return events;
