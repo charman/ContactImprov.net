@@ -8,8 +8,7 @@ class Location < ActiveRecord::Base
   has_one :organization_entry
   has_one :person_entry
 
-  #  TODO: Uncomment 'acts_as_mappable' after reinstalling Geokit
-#  acts_as_mappable
+  acts_as_mappable
 
   acts_as_versioned
   self.non_versioned_columns << 'created_at'

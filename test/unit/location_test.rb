@@ -3,7 +3,7 @@ require 'test_helper'
 class LocationTest < ActiveSupport::TestCase
   fixtures :country_names, :locations
 
-#  include GeoKit::Geocoders
+  include GeoKit::Geocoders
 
   def test_acts_as_versioned
     l = Location.new

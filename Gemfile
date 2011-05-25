@@ -3,7 +3,8 @@
 source 'http://rubygems.org'
 
 gem 'authlogic', '3.0.3'
-#gem 'geokit'
+gem 'geokit'
+gem 'geokit-rails3'
 gem 'htmlentities'
 gem 'memcache-client'
 gem 'mysql2', '0.2.7'
