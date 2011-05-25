@@ -16,6 +16,8 @@ class Location < ActiveRecord::Base
   attr_accessible :street_address_line_1, :street_address_line_2, :city_name, :region_name, 
                   :us_state_id, :postal_code, :country_name_id
 
+  before_save :attempt_to_geocode, :sanitize_attributes!
+  
   delegate :iso_3166_1_a2_code, :to => "country_name.nil? ? false : country_name"
 
 #  validates_presence_of :city_name
@@ -24,6 +26,11 @@ class Location < ActiveRecord::Base
 
   @user_submitted_unknown_country_name = false
 
+
+  def attempt_to_geocode
+    self.geocode
+    true  #  We always return true, so that the object is saved regardless of whether or not geocoding succeeded
+  end
 
   def attributes=(params)
     #  This method verifies that the user has provided us with a valid country name and, if in the US, a
@@ -76,12 +83,6 @@ class Location < ActiveRecord::Base
     some_column_names.find_all { |attribute_name| 
       self.send(attribute_name) != other_version.send(attribute_name)
     }
-  end
-
-  def before_save
-    sanitize_attributes!
-    self.geocode
-    true  #  We always return true, so that the object is saved regardless of whether or not geocoding succeeded
   end
 
   def city_state_country

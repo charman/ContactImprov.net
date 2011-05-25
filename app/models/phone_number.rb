@@ -11,12 +11,10 @@ class PhoneNumber < ActiveRecord::Base
 
   attr_accessible :number
 
+  before_save :sanitize_attributes!
+
   validates_presence_of :number
 
-
-  def before_save
-    sanitize_attributes!
-  end
 
   def completely_blank?
     self.number.blank?

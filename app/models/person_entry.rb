@@ -13,6 +13,9 @@ class PersonEntry < ActiveRecord::Base
 
   attr_accessible :description
 
+  after_save :set_person_entry_for_non_admin_user
+  before_save :sanitize_attributes!
+
   validate :limit_non_admins_to_one_person_entry
 
 
@@ -29,21 +32,6 @@ class PersonEntry < ActiveRecord::Base
   end
 
 
-  def after_save
-    #  When a non-admin User saves a PersonEntry, their User account is updated
-    #   to treat this PersonEntry as an entry for that User account.
-    #  With the limit_non_admins_to_one_person_entry functions, this restricts
-    #   non-admin Users to one PersonEntry, which is an entry for that User.
-    if !self.owner_user.admin?
-      self.owner_user.own_person_entry = self
-      self.owner_user.save!
-    end
-  end
-
-  def before_save
-    sanitize_attributes!
-  end
-
   def boolean_flag_names
     ['teaches_contact']
   end
@@ -57,6 +45,17 @@ class PersonEntry < ActiveRecord::Base
       return false
     else
       return true
+    end
+  end
+
+  def set_person_entry_for_non_admin_user
+    #  When a non-admin User saves a PersonEntry, their User account is updated
+    #   to treat this PersonEntry as an entry for that User account.
+    #  With the limit_non_admins_to_one_person_entry functions, this restricts
+    #   non-admin Users to one PersonEntry, which is an entry for that User.
+    if !self.owner_user.admin?
+      self.owner_user.own_person_entry = self
+      self.owner_user.save!
     end
   end
 

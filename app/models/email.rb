@@ -12,21 +12,20 @@ class Email < ActiveRecord::Base
 
   attr_accessible :address
 
+  before_save :sanitize_attributes!
+  before_validation :strip_address!
+
   validates_presence_of :address
   validates_email_format_of :address, :domain_lookup => false
 
 
-  def before_save
-    sanitize_attributes!
-  end
-
-  def before_validation
-    #  Remove leading/trailing whitespace, which causes validates_email_format_of to fail
-    self.address.strip!
-  end
-
   def completely_blank?
     self.address.blank?
+  end
+
+  def strip_address!
+    #  Remove leading/trailing whitespace, which causes validates_email_format_of to fail
+    self.address.strip!
   end
 
   def version_condition_met?

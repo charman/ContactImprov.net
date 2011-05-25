@@ -13,6 +13,8 @@ class EventEntry < ActiveRecord::Base
 
   attr_accessible :title, :description, :cost, :start_date, :end_date
 
+  before_save :move_start_date_before_end_date!, :sanitize_attributes!
+
   validates_presence_of :title, :description, :start_date, :end_date
 
 
@@ -104,13 +106,6 @@ class EventEntry < ActiveRecord::Base
   end
 
 
-  def before_save
-    if self.start_date > self.end_date
-      self.start_date, self.end_date = self.end_date, self.start_date
-    end
-    sanitize_attributes!
-  end
-
   def date_range
     #  lemma: start_date <= end_date because of EventEntry.before_save
     if self.start_date.year != self.end_date.year
@@ -132,6 +127,12 @@ class EventEntry < ActiveRecord::Base
       "#{self.start_date.strftime('%b %e')} - #{self.end_date.strftime('%e')}"
     else
       self.start_date.strftime('%b %e')
+    end
+  end
+
+  def move_start_date_before_end_date!
+    if self.start_date > self.end_date
+      self.start_date, self.end_date = self.end_date, self.start_date
     end
   end
 

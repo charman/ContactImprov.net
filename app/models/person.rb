@@ -12,12 +12,10 @@ class Person < ActiveRecord::Base
 
   attr_accessible :first_name, :last_name
 
+  before_save :sanitize_attributes!
+
   validates_presence_of :last_name
 
-
-  def before_save
-    sanitize_attributes!
-  end
 
   def completely_blank?
     self.first_name.blank? && self.last_name.blank?

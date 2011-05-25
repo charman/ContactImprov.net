@@ -7,6 +7,8 @@ class UserAccountRequest < ActiveRecord::Base
 
   attr_accessible :something_about_contact_improv, :existing_entries
 
+  before_save :sanitize_attributes!
+
   validates_presence_of :something_about_contact_improv 
 
   acts_as_state_machine :initial => :new
@@ -27,10 +29,6 @@ class UserAccountRequest < ActiveRecord::Base
     transitions :from => :new, :to => :contacted
   end
 
-
-  def before_save
-    sanitize_attributes!
-  end
 
   def create_user_account_and_deliver_signup_email
     user = User.new

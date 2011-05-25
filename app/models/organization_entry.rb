@@ -13,6 +13,8 @@ class OrganizationEntry < ActiveRecord::Base
 
   attr_accessible :description
 
+  before_save :sanitize_attributes!
+
 
   def self.find_geocoded_entries
     self.find(:all,
@@ -22,10 +24,6 @@ class OrganizationEntry < ActiveRecord::Base
     )
   end
 
-
-  def before_save
-    sanitize_attributes!
-  end
 
   def boolean_flag_names
     ['studio_space', 'teaches_contact']

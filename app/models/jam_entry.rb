@@ -13,6 +13,8 @@ class JamEntry < ActiveRecord::Base
 
   attr_accessible :title, :description, :schedule, :cost
 
+  before_save :sanitize_attributes!
+
   validates_presence_of :title, :description, :schedule, :cost
 
 
@@ -24,10 +26,6 @@ class JamEntry < ActiveRecord::Base
     )
   end
 
-
-  def before_save
-    sanitize_attributes!
-  end
 
   def sortable_title
     title

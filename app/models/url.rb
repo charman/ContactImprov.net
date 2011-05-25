@@ -11,6 +11,8 @@ class Url < ActiveRecord::Base
 
   attr_accessible :address
 
+  before_save :sanitize_attributes!, :set_address_to_address_with_protocol!
+
   validates_presence_of :address
 
 
@@ -30,13 +32,12 @@ class Url < ActiveRecord::Base
     end
   end
 
-  def before_save
-    self.address = self.address_with_protocol
-    sanitize_attributes!
-  end
-
   def completely_blank?
     self.address.blank?
+  end
+
+  def set_address_to_address_with_protocol!
+    self.address = self.address_with_protocol
   end
 
   def version_condition_met?
