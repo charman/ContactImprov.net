@@ -45,7 +45,7 @@ class PersonEntryTest < ActiveSupport::TestCase
     p2 = PersonEntry.new
     p2.owner_user = users(:non_admin_without_person_entry)
     assert !p2.save
-    assert_match /You are already listed in the directory of People/, p2.errors.on(:base)
+    assert_match /You are already listed in the directory of People/, p2.errors[:base].first
   end
  
 end

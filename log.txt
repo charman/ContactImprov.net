@@ -33,7 +33,8 @@ THIS COMMIT:
 TODO:
 
 @ RAILS 3 MIGRATION
-  - install Rails 3 compatible version of GeoKit plugin
+  - rewrite all the functions in user_mailer.rb to use new
+     ActionMailer syntax
   [...]
 
 ---

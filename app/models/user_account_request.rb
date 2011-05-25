@@ -37,7 +37,7 @@ class UserAccountRequest < ActiveRecord::Base
     user.set_temporary_password
     user.save!
     user.register!
-    UserMailer.deliver_signup_notification(user)
+    UserMailer.signup_notification(user).deliver
     user
   end
   

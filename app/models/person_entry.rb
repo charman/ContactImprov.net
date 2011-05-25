@@ -41,7 +41,7 @@ class PersonEntry < ActiveRecord::Base
     return true if self.owner_user.admin?
     
     if !self.owner_user.own_person_entry.blank? && self != self.owner_user.own_person_entry
-      errors.add_to_base("You are already listed in the directory of People")
+      errors.add(:base, "You are already listed in the directory of People")
       return false
     else
       return true

@@ -55,35 +55,35 @@ class UserTest < ActiveSupport::TestCase
   def test_should_require_email
     assert_no_difference 'User.count' do
       u = create_user(:email => nil)
-      assert u.errors.on(:email)
+      assert u.errors[:email]
     end
   end
 
   def test_should_require_valid_email
     assert_no_difference 'User.count' do
       u = create_user(:email => 'bad@emailaddress')
-      assert u.errors.on(:email)
+      assert u.errors[:email]
     end
   end
 
   def test_should_require_password
     assert_no_difference 'User.count' do
       u = create_user(:password => nil)
-      assert u.errors.on(:password)
+      assert u.errors[:password]
     end
   end
 
   def test_should_require_password_confirmation
     assert_no_difference 'User.count' do
       u = create_user(:password_confirmation => nil)
-      assert u.errors.on(:password_confirmation)
+      assert u.errors[:password_confirmation]
     end
   end
 
   def test_should_require_email
     assert_no_difference 'User.count' do
       u = create_user(:email => nil)
-      assert u.errors.on(:email)
+      assert u.errors[:email]
     end
   end
 
