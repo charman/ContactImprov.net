@@ -32,9 +32,17 @@ THIS COMMIT:
 
 TODO:
 
+@ RAILS 3 MIGRATION
+  - install Rails 3 compatible version of GeoKit plugin
+  [...]
+
+---
+
 @ Replace restful_authentication
   
-
+    https://github.com/binarylogic/authlogic
+    http://www.binarylogic.com/2008/11/23/tutorial-easily-migrate-from-restful_authentication-to-authlogic/
+    https://github.com/binarylogic/authlogic_example
 
 @ Google search box for site
 

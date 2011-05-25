@@ -1,4 +1,3 @@
-
 require File.expand_path('../boot', __FILE__)
 
 require 'rails/all'
@@ -15,6 +14,7 @@ module CiRail
 
     # Custom directories with classes and modules you want to be autoloadable.
     # config.autoload_paths += %W(#{config.root}/extras)
+    config.autoload_paths += %W(#{config.root}/lib)
 
     # Only load the plugins named here, in the order given (default is alphabetical).
     # :all can be used as a placeholder for all plugins not explicitly named.
@@ -64,8 +64,6 @@ module CiRail
     #         TODO: Once we no longer have any tables with a ci_ prefix, check to see if this
     #                configuration option is still necessary.
     config.active_record.schema_format = :sql
-
-    config.gem "geokit"
     #  [/CTH]
   end
 end
@@ -78,6 +76,7 @@ end
 ActionController::Base.cache_store = :mem_cache_store
 
 #  List of people who should receive email when an unhandled exception occurs
-ExceptionNotifier.exception_recipients = %w(charman@acm.org)
-ExceptionNotifier.sender_address = %("CI.net" <app.error@contactimprov.net>)
-ExceptionNotifier.email_prefix = "[CI.net - RailsError] "
+#  TODO: Figure out where to configure ExceptionNotifier
+# ExceptionNotifier.exception_recipients = %w(charman@acm.org)
+# ExceptionNotifier.sender_address = %("CI.net" <app.error@contactimprov.net>)
+# ExceptionNotifier.email_prefix = "[CI.net - RailsError] "

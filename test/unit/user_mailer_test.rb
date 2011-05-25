@@ -5,7 +5,8 @@ class UserMailerTest < Test::Unit::TestCase
   FIXTURES_PATH = File.dirname(__FILE__) + '/../fixtures'
   CHARSET = "utf-8"
 
-  include ActionMailer::Quoting
+  #  TODO: Investigate effect of commenting out include statement below
+#  include ActionMailer::Quoting
 
   def setup
     ActionMailer::Base.delivery_method = :test
