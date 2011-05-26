@@ -7,9 +7,6 @@ class ApplicationController < ActionController::Base
   # # Be sure to include AuthenticationSystem [sic] in Application Controller instead
   # include AuthenticatedSystem
 
-  # Send an email when an unhandled exception occurs
-  include ExceptionNotifiable
-
   include SslRequirement
 
   #  Allow SSL to be used on all pages.  Prevents an https -> http -> https redirection

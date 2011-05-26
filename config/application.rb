@@ -41,7 +41,6 @@ module CiRail
     config.filter_parameters += [:password]
     
     
-    #  [CTH]
     config.active_record.table_name_prefix = "ci_"
     config.active_record.primary_key_prefix_type = :table_name_with_underscore
 
@@ -64,19 +63,14 @@ module CiRail
     #         TODO: Once we no longer have any tables with a ci_ prefix, check to see if this
     #                configuration option is still necessary.
     config.active_record.schema_format = :sql
-    #  [/CTH]
+
+    config.middleware.use ExceptionNotifier,
+      :email_prefix => "[CI.net - RailsError] ",
+      :sender_address =>  %{"CI.net" <app.error@contactimprov.net>},
+      :exception_recipients => %w{charman@acm.org}
   end
 end
 
 
 #  TODO: Where should the code below be moved to as part of the Rails 3 upgrade?  The initializers directory?
-
-# Include your application configuration below
-
 ActionController::Base.cache_store = :mem_cache_store
-
-#  List of people who should receive email when an unhandled exception occurs
-#  TODO: Figure out where to configure ExceptionNotifier
-# ExceptionNotifier.exception_recipients = %w(charman@acm.org)
-# ExceptionNotifier.sender_address = %("CI.net" <app.error@contactimprov.net>)
-# ExceptionNotifier.email_prefix = "[CI.net - RailsError] "
