@@ -2,6 +2,8 @@
 
 source 'http://rubygems.org'
 
+gem 'acts_as_list'
+gem 'acts_as_state_machine'
 gem 'authlogic', '3.0.3'
 gem 'geokit'
 gem 'geokit-rails3'
