@@ -1,4 +1,4 @@
-class UserMailer < ActionMailer::Base
+class AdminMailer < ActionMailer::Base
 
   default :to => "ci@craigharman.net", :from => "ContactImprov.net <listings@contactimprov.net>"
   
@@ -9,7 +9,7 @@ class UserMailer < ActionMailer::Base
     @email      = user_account_request.email.address
     @something_about_contact_improv = user_account_request.something_about_contact_improv
 
-    mail :subject => subject_prefix + "Account request for #{first_name} #{last_name} (#{email})"
+    mail :subject => subject_prefix + "Account request for #{@first_name} #{@last_name} (#{@email})"
   end
 
   def entry_modified(entry, entry_type)
