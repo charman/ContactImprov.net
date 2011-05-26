@@ -34,14 +34,14 @@ class EmailTest < ActiveSupport::TestCase
     e = Email.new
     e.address = '<b>sanitized@contactimprov.org</b>'
     assert !e.save
-    assert_match /does not appear to be a valid e-mail address/, e.errors.on(:address)
+    assert_match /does not appear to be valid/, e.errors[:address].first
   end
 
   def test_should_not_validate_email_address
     e = Email.new
     e.address = 'not_a_valid_email'
     assert !e.save
-    assert_match /does not appear to be a valid e-mail address/, e.errors.on(:address)
+    assert_match /does not appear to be valid/, e.errors[:address].first
   end
   
 end
