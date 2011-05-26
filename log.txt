@@ -33,8 +33,10 @@ THIS COMMIT:
 TODO:
 
 @ RAILS 3 MIGRATION
-  - rewrite all the functions in user_mailer.rb to use new
-     ActionMailer syntax
+  - ActionMailer
+    - create separate admin_mailer.rb file
+    - rewrite code in user_mailer.rb to match new syntax
+    - unit tests
   [...]
 
 ---

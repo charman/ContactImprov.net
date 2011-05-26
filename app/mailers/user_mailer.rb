@@ -2,28 +2,19 @@ class UserMailer < ActionMailer::Base
   
   def account_request(user_account_request)
     setup_admin_email()
-    first_name = user_account_request.person.first_name
-    last_name  = user_account_request.person.last_name
-    email      = user_account_request.email.address
+    @first_name = user_account_request.person.first_name
+    @last_name  = user_account_request.person.last_name
+    @email      = user_account_request.email.address
+    @something_about_contact_improv = user_account_request.something_about_contact_improv
     @subject          += "Account request for #{first_name} #{last_name} (#{email})"
-    @body[:first_name] = first_name
-    @body[:last_name]  = last_name
-    @body[:email]      = email
-    @body[:something_about_contact_improv] = user_account_request.something_about_contact_improv
+    mail(:to => @recipients, :subject => @subject, :bcc => @bcc)
   end
 
   def activation(user)
     setup_user_email(user)
-    @subject    = 'Your ContactImprov.net account has been activated'
-    @body[:password] = user.password
-    @body[:url] = "#{@base_url}"
-  end
-
-  def ci_rochester(subject, email)
-    @from        = "Craig Harman <craig@craigharman.net>"
-    @sent_on     = Time.now
-    @subject     = subject
-    @recipients  = email
+    @password = user.password
+    @url = @base_url
+    mail(:to => @recipients, :subject => @subject, :bcc => @bcc)
   end
 
   def entry_modified(entry, entry_type)
@@ -31,6 +22,7 @@ class UserMailer < ActionMailer::Base
     @subject   += "Modified #{entry_type}: #{entry.title}"
     @entry      = entry
     @entry_type = entry_type
+    mail(:to => @recipients, :subject => @subject, :bcc => @bcc)
   end
 
   def new_entry_created(entry, entry_type)
@@ -38,39 +30,46 @@ class UserMailer < ActionMailer::Base
     @subject   += "New #{entry_type}: #{entry.title}"
     @entry      = entry
     @entry_type = entry_type
+    mail(:to => @recipients, :subject => @subject, :bcc => @bcc)
   end
 
   def passive_user_login_attempt(email)
     setup_admin_email()
     @subject += "Login attempt from #{email} whose account needs to be configured"
+    mail(:to => @recipients, :subject => @subject, :bcc => @bcc)
   end
 
   def password_reset(user)
     setup_user_email(user)
     @subject    = 'Instructions for resetting your ContactImprov.net account password'
-    @body[:url] = "#{@base_url}reset_password/#{user.password_reset_code}"
+    @url = "#{@base_url}reset_password/#{user.password_reset_code}"
+    mail(:to => @recipients, :subject => @subject, :bcc => @bcc)
   end
 
   def password_reset_by_admin(user, new_password)
     setup_user_email(user)
     @subject = 'New password for your ContactImprov.net account'
-    @body[:new_password] = new_password
+    @new_password = new_password
+    mail(:to => @recipients, :subject => @subject, :bcc => @bcc)
   end
   
   def please_update_your_legacy_listing(email)
     setup_email(email)
     @subject = "How to update your listing on ContactImprov.net"
+    mail(:to => @recipients, :subject => @subject, :bcc => @bcc)
   end
 
   def signup_notification(user)
     setup_user_email(user)
-    @subject     = 'We have created a ContactImprov.net account for you'
-    @body[:url]  = "#{@base_url}activate/#{user.activation_code}"
+    @subject = 'We have created a ContactImprov.net account for you'
+    @url     = "#{@base_url}activate/#{user.activation_code}"
+    @user    = user
     if user && user.person
-      @body[:name_of_user] = "#{user.person.first_name} #{user.person.last_name} -\n"
+      @name_of_user = "#{user.person.first_name} #{user.person.last_name} -\n"
     else
-      @body[:name_of_user] = ''
+      @name_of_user = ''
     end
+    mail(:to => @recipients, :subject => @subject, :bcc => @bcc)
   end
 
   def user_changed_email(old_email, new_email, user)
@@ -82,8 +81,9 @@ class UserMailer < ActionMailer::Base
       @subject += "User '#{old_email}' changed their email address"
     end
 
-    @body[:old_email] = old_email
-    @body[:new_email] = new_email
+    @old_email = old_email
+    @new_email = new_email
+    mail(:to => @recipients, :subject => @subject, :bcc => @bcc)
   end
 
 
