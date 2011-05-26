@@ -52,9 +52,9 @@ protected
 
   def setup_user_email(user)
     filter_recipients(user.email)
-    @sent_on     = Time.now
-    @base_url    = "http://www.contactimprov.net/"
-    @body[:user] = user
+    @sent_on  = Time.now
+    @base_url = "http://www.contactimprov.net/"
+    @user     = user
   end
 
 end
