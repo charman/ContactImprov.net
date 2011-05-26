@@ -1,6 +1,7 @@
 ENV["RAILS_ENV"] = "test"
 require File.expand_path(File.dirname(__FILE__) + "/../config/environment")
 require 'rails/test_help'
+require 'authlogic/test_case'
 
 class ActiveSupport::TestCase
   # Transactional fixtures accelerate your tests by wrapping each test method
@@ -39,6 +40,11 @@ class ActiveSupport::TestCase
   # -- they do not yet inherit this setting
   fixtures :all
 
+  # Sets the current user in the session from the user fixtures.
+  def login_as(user)
+    UserSession.create(users(user))
+  end
+
   # Add more helper methods to be used by all tests here...
   @@default_location_fields = {:street_address_line_1 => 'new_address_1',
                                :street_address_line_2 => 'new_address_2',
@@ -52,6 +58,10 @@ class ActiveSupport::TestCase
                              :postal_code => '',
                              :us_state => {:name => ''},
                              :country_name => {:english_name => ''}}
+end
+
+class ActionController::TestCase
+  setup :activate_authlogic
 end
 
 
