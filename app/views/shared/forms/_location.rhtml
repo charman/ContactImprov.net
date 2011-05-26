@@ -69,7 +69,7 @@
 			%>
 			<% #  We use a custom validation for the us_state field here and country_name field below,
 			   #   and so we need to do custom error highlighting here (and below) in the form.
-			   if location.errors.on(:us_state) %><div class="fieldWithErrors"><% end %>
+			   if location.errors[:us_state] %><div class="fieldWithErrors"><% end %>
  		  <input id="us_state_name_autocomplete_textbox" 
  		         name="<%= "#{prefix}[us_state][name]" %>" 
  		         <% if location.is_in_usa? && location.us_state %>
@@ -78,7 +78,7 @@
  		           value="<%= location.region_name %>"
  		         <% end %>
  		  />
-			<% if location.errors.on(:us_state) %></div><% end %>
+			<% if location.errors[:us_state] %></div><% end %>
 		</li>
 		<li>
 			<label>Postal Code:</label>
@@ -87,7 +87,7 @@
 		<li>
 			<label>Country:*</label>
 			<% @country_name = location.country_name if location %>
-			<% if location.errors.on(:country_name) %><div class="fieldWithErrors"><% end %>
+			<% if location.errors[:country_name] %><div class="fieldWithErrors"><% end %>
 				<% if location.user_submitted_unknown_country_name %>
 					<%= country_select("country_name", "english_name", @priority_countries, {}, 
 								{:name => "#{prefix}[country_name][english_name]"}.merge(optional_params)) %>
@@ -99,7 +99,7 @@
 			          <% end %>
 			    />
 				<% end %>
-			<% if location.errors.on(:country_name) %></div><% end %>
+			<% if location.errors[:country_name] %></div><% end %>
 		</li>
 		<% if @user_has_person_entry && @user_person_entry.person %>
 			<li>

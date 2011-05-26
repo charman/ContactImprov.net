@@ -22,7 +22,7 @@
 
 		<%= error_messages_for :user, :header => 'Unable to activate your account' %>
 
-		<% form_for :user, :url => { :action => "activate" } do |f| -%>
+		<%= form_for :user, :url => { :action => "activate" } do |f| -%>
 			<% 
 				#  If the activation_code parameter exists, then this page was reached
 			#  	by clicking on a link in an activation email.  In this case, we 

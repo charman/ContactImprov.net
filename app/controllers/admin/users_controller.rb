@@ -18,7 +18,7 @@ class Admin::UsersController < ApplicationController
       @user.attributes = params[:user]
       if @user.valid?
         @user.activate!   #  The activate! function calls save!
-        UserMailer.deliver_activation(@user)
+        UserMailer.activation(@user).deliver
         redirect_to :action => 'index'
       end
     end
@@ -49,7 +49,7 @@ class Admin::UsersController < ApplicationController
     if @user.valid?
       @user.save!
       @user.register!
-      UserMailer.deliver_signup_notification(@user)
+      UserMailer.signup_notification(@user).deliver
       redirect_to :action => 'index'
     else
       render :action => 'new'
@@ -127,7 +127,7 @@ class Admin::UsersController < ApplicationController
       @user.attributes = params[:user]
       if @user.valid?
         @user.save!
-        UserMailer.deliver_password_reset_by_admin(@user, params[:user][:password])
+        UserMailer.password_reset_by_admin(@user, params[:user][:password]).deliver
         redirect_to :action => 'show', :id => params[:id]
       end
     end

@@ -3,7 +3,7 @@
 <% end %>
 
 <%= error_messages_for :user, :header_message => 'Unable to create new user' %>
-<% form_for :user, :url => '/admin/users/create' do |u| -%>
+<%= form_for :user, :url => '/admin/users/create' do |u| -%>
 
 	<%= render :partial => 'shared/forms/person', 
 			:locals => { :prefix => 'user[person]', :legend => 'User\'s Name' } %>

@@ -299,13 +299,13 @@ private
   def process_password_reset_request(user, email)
     if user.active?
       user.make_password_reset_code
-      UserMailer.deliver_password_reset(user)
+      UserMailer.password_reset(user).deliver
       flash[:email] = email
       redirect_to :action => 'password_reset_requested'
     elsif user.pending?
       #  Resend activation email
       user.make_activation_code
-      UserMailer.deliver_signup_notification(user)
+      UserMailer.signup_notification(user).deliver
 
       flash.now[:notice] = "<h2>You need to activate your account</h2>" +
                             "<p>We have resent an email to <i>#{email}</i> " + 

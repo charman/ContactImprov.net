@@ -49,7 +49,7 @@
 
 
 	<div class="ci_form">
-		<% form_for @user_account_request, :url => { :action => 'request_account' } do |request| %>
+		<%= form_for @user_account_request, :url => { :action => 'request_account' } do |request| %>
 			<p><%= render :partial => "shared/forms/person",   :object => @uar_person, 
 				:locals => { :prefix => 'uar_person', :legend => 'Your Name' } 
 			%></p>

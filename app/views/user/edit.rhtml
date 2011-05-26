@@ -20,7 +20,7 @@
 		<% end %>
 		
 		<div class="ci_form">
-			<% form_for @user, :url => { :action => 'edit' } do |f| -%>
+			<%= form_for @user, :url => { :action => 'edit' } do |f| -%>
 				<%= render :partial => 'shared/forms/person', :object => @user.person, 
 						:locals => { :prefix => 'user[person]', :legend => 'Your Name' } %>
 				<fieldset class="ci_form_submit">

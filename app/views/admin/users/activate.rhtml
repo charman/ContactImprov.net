@@ -3,7 +3,7 @@
 <% end %>
 
 <%= error_messages_for :user, :header_message => 'Unable to Activate User' %>
-<% form_for :user, :url => { :action => 'activate'} do |f| -%>
+<%= form_for :user, :url => { :action => 'activate'} do |f| -%>
 	<p><label for="email">Email:</label><br/>
 	<%= f.text_field :email %></p>
 

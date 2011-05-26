@@ -14,7 +14,7 @@ class SessionsController < ApplicationController
       if user && user.state == 'pending'
         #  Resend activation email
         user.make_activation_code
-        UserMailer.deliver_signup_notification(user)
+        UserMailer.signup_notification(user).deliver
         
         flash[:notice] = "<h2>You need to activate your account</h2>" +
                           "<p>We have resent an email to <i>#{params[:email]}</i> " + 

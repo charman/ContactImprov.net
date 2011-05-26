@@ -20,7 +20,7 @@
 	<%= link_to 'Create a New User', :action => 'new', :controller => 'admin/users' %>
 </p>
 
-<% form_tag(:action => 'index', :controller => 'admin/users') do %>
+<%= form_tag(:action => 'index', :controller => 'admin/users') do %>
   <p>
 	  <span style="font-size: x-large;">Find a User by Name:</span>
     <%= text_field :user, :by_person %>

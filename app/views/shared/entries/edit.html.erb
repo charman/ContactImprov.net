@@ -30,7 +30,7 @@
 			Edit your listing:
 		</div>
 		<div class="ci_form">
-			<% form_for @entry, :url => { :action => 'edit' } do |the_entry| %>
+			<%= form_for @entry, :url => { :action => 'edit' } do |the_entry| %>
 				<%= render(:partial => "form_fields", :locals => { :the_entry => the_entry } ) %>
 				<fieldset class="ci_form_submit">
 					<p style="text-align: right; font-size: 0.9em;">
