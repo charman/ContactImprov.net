@@ -34,8 +34,6 @@ TODO:
 
 @ RAILS 3 MIGRATION
   - ActionMailer
-    - create separate admin_mailer.rb file
-    - rewrite code in user_mailer.rb to match new syntax
     - unit tests
   [...]
 

@@ -136,7 +136,7 @@ class UserController < ApplicationController
           if @user.valid?
             @user.save!
             self.current_user = @user   # Log the user in
-            UserMailer.deliver_user_changed_email(old_email, @user.email, @user)
+            AdminMailer.user_changed_email(old_email, @user.email, @user).deliver
 
             flash.now[:notice] = nil
             flash.now[:change_successful] = true
@@ -235,7 +235,7 @@ class UserController < ApplicationController
           @user_account_request.email    = @uar_email
           @user_account_request.save!
 
-          UserMailer.deliver_account_request(@user_account_request)
+          AdminMailer.account_request(@user_account_request).deliver
 
           redirect_to :action => "account_requested"
         end
@@ -312,7 +312,7 @@ private
                             "with instructions for activating your account. " +
                             "If you don't receive the email shortly, please check your spam filters.</p>"
     elsif user.passive?
-      UserMailer.deliver_passive_user_login_attempt(email)
+      AdminMailer.passive_user_login_attempt(email).deliver
       flash.now[:notice] = "<h2>Your account is not set up yet</h2>" +
                             "<p>An email has been sent to the ContactImprov.net staff letting them " +
                             "know they need to finish setting up your account.</p>"
