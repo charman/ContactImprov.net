@@ -14,6 +14,7 @@ gem 'htmlentities'
 gem 'memcache-client'
 gem 'mysql2', '~>0.2.7'   #  TODO: Switch to mysql2 0.3.x when switching to Rails 3.1.x
 gem 'rails', '>=3.0.7'
+gem 'RedCloth'
 gem 'ruby-debug'
 gem 'sanitize'
 gem 'ssl_requirement'
