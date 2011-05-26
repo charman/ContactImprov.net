@@ -25,13 +25,19 @@ class SessionsController < ApplicationController
       end
     end
     
-    #  User.authenticate() will fail if the user's state is not 'active'
-    self.current_user = User.authenticate(params[:email], params[:password])
-    if logged_in?
-      if params[:remember_me] == "1"
-        self.current_user.remember_me
-        cookies[:auth_token] = { :value => self.current_user.remember_token , :expires => self.current_user.remember_token_expires_at }
-      end
+#    #  User.authenticate() will fail if the user's state is not 'active'
+#    self.current_user = User.authenticate(params[:email], params[:password])
+    @user_session = UserSession.new(
+      :email => params[:email], 
+      :password => params[:password],
+      :remember_me => (params[:remember_me] == "1")
+    )
+#    if logged_in?
+#      if params[:remember_me] == "1"
+#        self.current_user.remember_me
+#        cookies[:auth_token] = { :value => self.current_user.remember_token , :expires => self.current_user.remember_token_expires_at }
+#      end
+    if @user_session.save
       redirect_back_or_default('/')
       flash[:notice] = "Logged in successfully"
     else
@@ -84,12 +90,9 @@ class SessionsController < ApplicationController
 
   #  The '/logout' action is an alias for '/session/destroy
   def destroy
-    self.current_user.forget_me if logged_in?
-    cookies.delete :auth_token
-    reset_session
+    current_user_session.destroy
     flash[:notice] = "You have been logged out."
     redirect_to new_session_path
-    ## redirect_back_or_default('/')
   end
 
   #  The 'new' action POST's data to the 'create' action

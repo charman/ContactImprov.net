@@ -21,7 +21,7 @@ class SessionsControllerTest < ActionController::TestCase
   def test_should_not_login_pending_user_with_password
     assert users(:aaron).pending?
     post :create, :email => users(:aaron).email, :password => 'test'
-    assert_nil session[:user_id]
+    assert_nil UserSession.find
     assert flash[:notice]
     assert_redirected_to :action => 'new'
   end
@@ -35,53 +35,56 @@ class SessionsControllerTest < ActionController::TestCase
 
   def test_should_redirect_admin_to_admin_page
     post :create, :email => users(:admin).email, :password => 'test'
-    assert session[:user_id]
+    assert user_session = UserSession.find
+    assert_equal users(:admin), user_session.user
     assert_redirected_to :controller => 'home', :action => 'index'
   end
 
   def test_should_login_and_redirect
     post :create, :email => users(:quentin).email, :password => 'test'
-    assert session[:user_id]
+    assert user_session = UserSession.find
+    assert_equal users(:quentin), user_session.user
     assert_response :redirect
   end
 
   def test_should_login_and_redirect_with_whitespace_around_email
     post :create, :email => " #{users(:quentin).email} ", :password => 'test'
-    assert session[:user_id]
+    assert user_session = UserSession.find
+    assert_equal users(:quentin), user_session.user
     assert_response :redirect
   end
 
   def test_should_not_login_with_bad_password_and_redirect
     post :create, :email => users(:quentin).email, :password => 'bad password'
-    assert_nil session[:user_id]
+    assert_nil UserSession.find
     assert flash[:notice]
     assert_redirected_to :action => 'new'
   end
 
   def test_should_not_login_with_empty_password_and_redirect
     post :create, :email => users(:quentin).email, :password => ''
-    assert_nil session[:user_id]
+    assert_nil UserSession.find
     assert flash[:notice]
     assert_redirected_to :action => 'new'
   end
 
   def test_should_not_login_with_empty_email_and_redirect
     post :create, :email => '', :password => ''
-    assert_nil session[:user_id]
+    assert_nil UserSession.find
     assert flash[:notice]
     assert_redirected_to :action => 'new'
   end
 
   def test_should_not_login_suspended_user
     post :create, :email => users(:suspended_user).email, :password => 'test'
-    assert_nil session[:user_id]
+    assert_nil UserSession.find
     assert flash[:notice]
     assert_redirected_to :action => 'new'
   end
 
   def test_should_not_login_deleted_user
     post :create, :email => users(:deleted_user).email, :password => 'test'
-    assert_nil session[:user_id]
+    assert_nil UserSession.find
     assert flash[:notice]
     assert_redirected_to :action => 'new'
   end
