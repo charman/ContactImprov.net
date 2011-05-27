@@ -37,7 +37,7 @@ class UserController < ApplicationController
       # TODO: Do we really want to log the user on with just an activation code?  Now that the
       #        activation code is no longer being deleted on activation, it effectively becomes
       #        second password - but a password that the user cannot change.
-      self.current_user = @user     #  Log the user in
+      UserSession.create(@user)   # Log the user in
       redirect_back_or_default('/')
       return
     end
@@ -83,9 +83,9 @@ class UserController < ApplicationController
         when 'pending'
           @user.activate!
           flash[:notice] = "Signup complete!"
-          self.current_user = @user   # Log the user in 
+          UserSession.create(@user)   # Log the user in
         when 'active'
-          self.current_user = @user   # Log the user in 
+          UserSession.create(@user)   # Log the user in
         when 'suspended'
           #  TODO: What should we do here when someone tries to activate a suspended account?
         when 'deleted'
@@ -135,7 +135,7 @@ class UserController < ApplicationController
 
           if @user.valid?
             @user.save!
-            self.current_user = @user   # Log the user in
+            UserSession.create(@user)   # Log the user in
             AdminMailer.user_changed_email(old_email, @user.email, @user).deliver
 
             flash.now[:notice] = nil
@@ -165,7 +165,7 @@ class UserController < ApplicationController
 
         if @user.valid?
           @user.save!
-          self.current_user = @user   # Log the user in
+          UserSession.create(@user)   # Log the user in
 
           flash.now[:notice] = nil
           flash.now[:change_successful] = true
@@ -286,7 +286,7 @@ class UserController < ApplicationController
       if @user.valid?
         @user.password_reset_code = nil
         @user.save!
-        self.current_user = @user   # Log the user in
+        UserSession.create(@user)   # Log the user in
 
         flash[:reset_successful] = true
       end
