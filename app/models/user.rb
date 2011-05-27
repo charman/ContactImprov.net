@@ -89,52 +89,11 @@ class User < ActiveRecord::Base
   def self.authenticate(email, password)
     user_session = UserSession.create(:email => email, :password => password)
     user_session && user_session.user
-
-  # u = find_in_state :first, :active, :conditions => ["email = ?", email] # need to get the salt
-  # if u && u.authenticated?(password) 
-  #   # [CTH]  Save the time that the user logged.
-  #   #
-  #   #        Please note that this function is called from the login_from_basic_auth
-  #   #        function in authenticated_system.rb, but not from the login_from_session
-  #   #        or login_from_cookie functions - so the last login timestamp is not updated
-  #   #        when logging in by cookie or session.  This may not be the desired behavior.
-  #   #        On the other hand, the logged_in? function is called on a regular basis when
-  #   #        users are trying to access restricted pages, and that function tries calling
-  #   #        the login_from_* functions in sequence until one of the functions indicate
-  #   #        that the user is logged in.  Normally the user has to supply a password at some
-  #   #        point in time, and thereafter the user's identity is confirmed using
-  #   #        either the cookie or the session.  Do we really want to update the timestamp in
-  #   #        the login_from_cookie function, which will cause a database update every time
-  #   #        the cookie is checked?  That may not be the desired behavior either.
-  #   #
-  #   #        So, for now, the login timestamp is only updated when the user logs in using a
-  #   #        password.  We may want to revisit this behavior eventually...
-  #   u.update_attribute(:last_login_at, DateTime.now)
-  #   u
-  # else
-  #   nil
-  # end
   end
 
-# # Encrypts some data with the salt.
-# def self.encrypt(password, salt)
-#   Digest::SHA1.hexdigest("--#{salt}--#{password}--")
-# end
-# 
-# def authenticated?(password)
-#   crypted_password == encrypt(password)
-# end
-# 
-# # Encrypts the password with the user salt
-# def encrypt(password)
-#   self.class.encrypt(password, salt)
-# end
-# 
-# def encrypt_password
-#   return if password.blank?
-#   self.salt = Digest::SHA1.hexdigest("--#{Time.now.to_s}--#{email}--") if new_record?
-#   self.crypted_password = encrypt(password)
-# end
+  def authenticated?(password)
+    self == User.authenticate(self.email, password)
+  end
 
   def first_name
     if person.nil?
@@ -144,12 +103,6 @@ class User < ActiveRecord::Base
     end
   end
 
-# def forget_me
-#   self.remember_token_expires_at = nil
-#   self.remember_token            = nil
-#   save(:validate => false)
-# end
-
   def last_name
     if person.nil?
       ''
@@ -158,12 +111,12 @@ class User < ActiveRecord::Base
     end
   end
 
-# def make_password_reset_code
-#   #  TODO: Using the current time is not a good source of randomness...
-#   self.password_reset_code = Digest::SHA1.hexdigest( Time.now.to_s.split(//).sort_by {rand}.join )
-#   save
-#   self.password_reset_code
-# end
+  def make_password_reset_code
+    #  TODO: Using the current time is not a good source of randomness...
+    self.password_reset_code = Digest::SHA1.hexdigest( Time.now.to_s.split(//).sort_by {rand}.join )
+    save
+    self.password_reset_code
+  end
 
   def make_activation_code
     self.deleted_at = nil
@@ -171,31 +124,6 @@ class User < ActiveRecord::Base
     self.activation_code = Digest::SHA1.hexdigest( Time.now.to_s.split(//).sort_by {rand}.join )
     save
   end
-
-# # These create and unset the fields required for remembering users between browser closes
-# def remember_me
-#   remember_me_for 2.weeks
-# end
-# 
-# def remember_me_for(time)
-#   remember_me_until time.from_now.utc
-# end
-# 
-# def remember_me_until(time)
-#   self.remember_token_expires_at = time
-#   self.remember_token            = encrypt("#{email}--#{remember_token_expires_at}")
-#   save(:validate => false)
-# end
-# 
-# def remember_token?
-#   remember_token_expires_at && Time.now.utc < remember_token_expires_at 
-# end
-# 
-# def set_temporary_password
-#   self.password              = 'completelykimpossiblyunguessable'
-#   self.password_confirmation = 'completelykimpossiblyunguessable'
-#   self.encrypt_password
-# end
 
       
 protected
@@ -220,9 +148,5 @@ protected
   def do_pending
     make_activation_code
   end
-
-# def password_required?
-#   crypted_password.blank? || !password.blank?
-# end
     
 end
