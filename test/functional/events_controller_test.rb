@@ -142,7 +142,7 @@ class EventsControllerTest < ActionController::TestCase
   end
 
   def test_should_not_let_user_delete_someone_elses_event
-    login_as :aaron
+    login_as :non_admin_without_person_entry
     get :delete, :id => 100
     assert_response :success
     assert_select "[class=errorExplanation]"
@@ -188,7 +188,7 @@ class EventsControllerTest < ActionController::TestCase
   end
   
   def test_should_deny_access_to_edit_to_non_owner_user
-    login_as :aaron
+    login_as :non_admin_without_person_entry
     get :edit, :id => event_entries(:complete_event_entry).event_entry_id
     assert_response :success
     assert_select "[class=errorExplanation]"
