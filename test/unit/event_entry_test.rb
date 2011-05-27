@@ -99,7 +99,7 @@ class EventEntryTest < ActiveSupport::TestCase
     c.end_date   = DateTime.now
     c.save!
     c.reload
-    assert_equal '&quot;quoted string&quot;', c.title
+    assert_equal '"quoted string"', c.title
     assert_equal '["craig":http://craigharman.net]', c.description
     assert_equal '["craig harman":http://craigharman.net] ["ci":http://contactimprov.net] ["ci":./foo] ["ci":/foo]', c.cost
   end
