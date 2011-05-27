@@ -35,6 +35,8 @@ class ApplicationController < ActionController::Base
   helper_method :current_user_session, :current_user
   
   
+  ###   Cache management  ###
+  
   def cache_entries_for_countries(entry_class)
     entry_type = entry_class.to_s.gsub(/(.*)Entry/, '\1').downcase
     @country_names_with_entries ||= Hash.new
@@ -135,7 +137,7 @@ class ApplicationController < ActionController::Base
   end
 
 
-######
+  ###  Authentication and session management  ###
 
   # Returns true or false if the user is logged in.
   # Preloads @current_user with the user model if they're logged in.
@@ -201,12 +203,6 @@ class ApplicationController < ActionController::Base
   def redirect_back_or_default(default)
     redirect_to(session[:return_to] || default)
     session[:return_to] = nil
-  end
-
-  # Inclusion hook to make #current_user and #logged_in?
-  # available as ActionView helper methods.
-  def self.included(base)
-    base.send :helper_method, :current_user, :logged_in?
   end
 
 end
