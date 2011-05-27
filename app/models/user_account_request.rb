@@ -34,7 +34,7 @@ class UserAccountRequest < ActiveRecord::Base
     user = User.new
     user.email = self.email.address
     user.person = self.person
-    user.set_temporary_password
+    user.randomize_password
     user.save!
     user.register!
     UserMailer.signup_notification(user).deliver
