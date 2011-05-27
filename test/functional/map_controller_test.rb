@@ -2,7 +2,6 @@ require 'test_helper'
 
 class MapControllerTest < ActionController::TestCase
 
-
   #  Test 'index' action
 
   def test_should_allow_access_to_index

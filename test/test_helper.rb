@@ -60,6 +60,18 @@ class ActiveSupport::TestCase
 end
 
 
+class ActionController::TestCase
+  def setup
+    @request    = ActionController::TestRequest.new
+    @response   = ActionController::TestResponse.new
+    @emails     = ActionMailer::Base.deliveries
+    @emails.clear
+  
+    activate_authlogic
+  end
+end
+
+
 def get_page_as_admin_with_no_errors(page)
   login_as :admin
   get page

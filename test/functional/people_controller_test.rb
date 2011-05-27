@@ -2,9 +2,6 @@ require 'test_helper'
 
 class PeopleControllerTest < ActionController::TestCase
 
-  setup :activate_authlogic
-
-
   #  Test 'create' action
 
   def test_should_accept_person_entry_application_for_teacher

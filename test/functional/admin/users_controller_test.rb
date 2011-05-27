@@ -2,14 +2,6 @@ require 'test_helper'
 
 class Admin::UsersControllerTest < ActionController::TestCase
 
-  def setup
-    activate_authlogic
-
-    @emails     = ActionMailer::Base.deliveries
-    @emails.clear
-  end
-
-
   #  Test 'activate' action
   
   def test_should_activate_user

@@ -2,14 +2,6 @@ require 'test_helper'
 
 class EventsControllerTest < ActionController::TestCase
 
-  def setup
-    activate_authlogic
-    
-    @emails     = ActionMailer::Base.deliveries
-    @emails.clear
-  end
-
-
   #  Test 'create' action
 
   def test_should_accept_event_entry_application

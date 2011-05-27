@@ -2,9 +2,6 @@ require 'test_helper'
 
 class Admin::JamsControllerTest < ActionController::TestCase
 
-  setup :activate_authlogic
-
-
   #  Test 'index' action
 
   def test_should_allow_admin_access_to_index

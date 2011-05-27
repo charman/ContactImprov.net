@@ -1,20 +1,6 @@
 require 'test_helper'
 
 class UserControllerTest < ActionController::TestCase
-  require "rubygems"
-  require "ruby-debug"
-  Debugger.start
-
-  def setup
-    activate_authlogic
-
-    @controller = UserController.new
-    @request    = ActionController::TestRequest.new
-    @response   = ActionController::TestResponse.new
-    @emails     = ActionMailer::Base.deliveries
-    @emails.clear
-  end
-
 
   #  Test 'activate' action
 
@@ -408,7 +394,7 @@ class UserControllerTest < ActionController::TestCase
          :uar_email => { :address => 'invalid' }
     assert_response :success
     assert_select "[class=errorExplanation]"
-    assert_match /does not appear to be a valid e-mail address/, @response.body
+    assert_match /does not appear to be valid/, @response.body
   end
 
   def test_should_allow_request_account

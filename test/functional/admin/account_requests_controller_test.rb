@@ -2,14 +2,6 @@ require 'test_helper'
 
 class Admin::AccountRequestsControllerTest < ActionController::TestCase
 
-  def setup
-    activate_authlogic
-    
-    @emails     = ActionMailer::Base.deliveries
-    @emails.clear
-  end
-
-
   #  Test 'process_account_request'
   
   def test_should_process_account_request_by_updating_ci_notes

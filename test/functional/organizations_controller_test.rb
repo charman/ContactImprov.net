@@ -2,9 +2,6 @@ require 'test_helper'
 
 class OrganizationsControllerTest < ActionController::TestCase
 
-  setup :activate_authlogic
-
-
   #  Test 'create' action
 
   def test_should_create_organization_entry_with_true_flags

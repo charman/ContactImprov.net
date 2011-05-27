@@ -2,17 +2,6 @@ require 'test_helper'
 
 class SessionsControllerTest < ActionController::TestCase
 
-  def setup
-    activate_authlogic
-
-    @controller = SessionsController.new
-    @request    = ActionController::TestRequest.new
-    @response   = ActionController::TestResponse.new
-    @emails     = ActionMailer::Base.deliveries
-    @emails.clear
-  end
-
-
   #  Test 'create' action
 
   def test_should_not_login_pending_user_with_password
