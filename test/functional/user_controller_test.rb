@@ -77,7 +77,7 @@ class UserControllerTest < ActionController::TestCase
     post :change_email, :password => 'test', :email => 'new_email-contactimprov.org', 
          :email_confirmation => 'new_email-contactimprov.org'
     assert_select "[class=errorExplanation]"
-    assert_match /Email  does not appear to be a valid e-mail address/, @response.body
+    assert_match /Email does not appear to be valid/, @response.body
     users(:quentin).reload
     assert_not_equal users(:quentin).email, 'new_email@contactimprov.org'
   end
