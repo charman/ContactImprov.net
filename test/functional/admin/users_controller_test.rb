@@ -356,7 +356,7 @@ class Admin::UsersControllerTest < ActionController::TestCase
 
   def test_should_reset_password
     login_as :admin
-    assert_not_nil User.authenticate(users(:quentin).email, 'test')
+    assert users(:quentin).valid_password?('test')
     post :reset_password, :id => users(:quentin).id, :user => {:password => 'new_password', :password_confirmation => 'new_password'}
     assert_redirected_to :action => 'show', :id => users(:quentin).id
     users(:quentin).reload
@@ -370,7 +370,7 @@ class Admin::UsersControllerTest < ActionController::TestCase
 
   def test_should_not_reset_password_with_mismatched_passwords
     login_as :admin
-    assert_not_nil User.authenticate(users(:quentin).email, 'test')
+    assert users(:quentin).valid_password?('test')
     post :reset_password, :id => users(:quentin).id, :user => {:password => 'new_password', :password_confirmation => 'bad_password'}
     assert_response :success
     assert_select "[class=errorExplanation]"
