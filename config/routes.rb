@@ -1,4 +1,4 @@
-CiRail::Application.routes.draw do
+ContactImprovNet::Application.routes.draw do
   resource :session do
     collection do
   get :no_cookies_for_you
