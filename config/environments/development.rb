@@ -24,5 +24,6 @@ ContactImprovNet::Application.configure do
   # [CTH]
   config.action_mailer.raise_delivery_errors = true
   config.action_mailer.delivery_method = :sendmail
+  config.active_support.deprecation = :log
 
 end

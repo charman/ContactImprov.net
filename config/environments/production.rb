@@ -31,5 +31,6 @@ ContactImprovNet::Application.configure do
   config.logger = Logger.new(log_pipe)
 
   config.action_mailer.delivery_method = :sendmail
+  config.active_support.deprecation = :log
 
 end
