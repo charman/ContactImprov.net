@@ -2,8 +2,8 @@ require 'test_helper'
 
 class Admin::OrganizationsControllerTest < ActionController::TestCase
 
-  fixtures :organization_entries
-  
+  setup :activate_authlogic
+
 
   #  Test 'index' action
 

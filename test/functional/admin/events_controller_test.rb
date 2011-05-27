@@ -4,6 +4,8 @@ class Admin::EventsControllerTest < ActionController::TestCase
 
   fixtures :event_entries
   
+  setup :activate_authlogic
+
 
   #  Test 'index' action
 

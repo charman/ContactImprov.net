@@ -5,6 +5,8 @@ class EventsControllerTest < ActionController::TestCase
   fixtures :event_entries, :country_names, :emails, :locations, :people, :phone_numbers, :urls, :us_states, :users
 
   def setup
+    activate_authlogic
+    
     @emails     = ActionMailer::Base.deliveries
     @emails.clear
   end

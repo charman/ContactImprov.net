@@ -5,13 +5,11 @@ class UserControllerTest < ActionController::TestCase
   require "ruby-debug"
   Debugger.start
 
-  # Be sure to include AuthenticatedTestHelper in test/test_helper.rb instead
-  # Then, you can remove it from this and the units test.
-  ## include AuthenticatedTestHelper
-
   fixtures :country_names, :locations, :people, :users, :us_states
 
   def setup
+    activate_authlogic
+
     @controller = UserController.new
     @request    = ActionController::TestRequest.new
     @response   = ActionController::TestResponse.new

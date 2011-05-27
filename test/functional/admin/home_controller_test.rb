@@ -2,6 +2,8 @@ require 'test_helper'
 
 class Admin::HomeControllerTest < ActionController::TestCase
 
+  setup :activate_authlogic
+
 
   #  Test 'index' action
 

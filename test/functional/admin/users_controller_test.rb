@@ -5,6 +5,8 @@ class Admin::UsersControllerTest < ActionController::TestCase
   fixtures :locations, :people, :users
 
   def setup
+    activate_authlogic
+
     @emails     = ActionMailer::Base.deliveries
     @emails.clear
   end

@@ -31,8 +31,7 @@ class ActiveSupport::TestCase
   # then set this back to true.
   self.use_instantiated_fixtures  = false
 
-#  # Add more helper methods to be used by all tests here...
-#  include AuthenticatedTestHelper
+  # Add more helper methods to be used by all tests here...
 
   # Setup all fixtures in test/fixtures/*.(yml|csv) for all tests in alphabetical order.
   #
@@ -58,10 +57,6 @@ class ActiveSupport::TestCase
                              :postal_code => '',
                              :us_state => {:name => ''},
                              :country_name => {:english_name => ''}}
-end
-
-class ActionController::TestCase
-  setup :activate_authlogic
 end
 
 
