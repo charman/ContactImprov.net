@@ -1,7 +1,6 @@
 require 'test_helper'
 
 class EventEntryTest < ActiveSupport::TestCase
-  fixtures :event_entries
 
   def test_acts_as_versioned
     c = EventEntry.new

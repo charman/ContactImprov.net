@@ -1,7 +1,6 @@
 require 'test_helper'
 
 class CountryNameTest < ActiveSupport::TestCase
-  fixtures :country_names
 
   def test_should_find_by_english_name
     assert_equal CountryName.find_by_english_name_or_altname('United States'), country_names(:united_states)
@@ -31,4 +30,5 @@ class CountryNameTest < ActiveSupport::TestCase
     assert CountryName.is_usa?(' united states ')
     assert country_names(:united_states).is_usa?
   end
+
 end

@@ -2,8 +2,6 @@ require 'test_helper'
 
 class Admin::PeopleControllerTest < ActionController::TestCase
 
-  fixtures :person_entries
-  
   setup :activate_authlogic
   
 

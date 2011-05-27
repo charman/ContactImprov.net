@@ -1,7 +1,6 @@
 require 'test_helper'
 
 class OrganizationEntryTest < ActiveSupport::TestCase
-  fixtures :organization_entries
 
   def test_acts_as_versioned
     o = OrganizationEntry.new

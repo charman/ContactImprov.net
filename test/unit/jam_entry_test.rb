@@ -1,7 +1,6 @@
 require 'test_helper'
 
 class JamEntryTest < ActiveSupport::TestCase
-  fixtures :jam_entries
 
   def test_acts_as_versioned
     c = JamEntry.new

@@ -1,7 +1,6 @@
 require 'test_helper'
 
 class UsStateTest < ActiveSupport::TestCase
-  fixtures :us_states
 
   def test_should_find_with_name_or_abbreviation
     assert_equal us_states(:new_york), UsState.find_by_name_or_abbreviation('New York')

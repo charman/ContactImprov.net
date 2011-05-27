@@ -2,8 +2,6 @@ require 'test_helper'
 
 class AdminMailerTest < ActiveSupport::TestCase
 
-  fixtures :event_entries, :user_account_requests, :users
-
   def setup
     @admin_email_address = "ci@craigharman.net"
   end

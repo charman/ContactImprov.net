@@ -1,7 +1,6 @@
 require 'test_helper'
 
 class PhoneNumberTest < ActiveSupport::TestCase
-  fixtures :phone_numbers
 
   def test_acts_as_versioned
     p = PhoneNumber.new

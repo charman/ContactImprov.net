@@ -1,14 +1,6 @@
-require File.dirname(__FILE__) + '/../test_helper'
+require 'test_helper'
 
 class UserTest < ActiveSupport::TestCase
-  require "rubygems"
-  require "ruby-debug"
-  Debugger.start
-  
-  # Be sure to include AuthenticatedTestHelper in test/test_helper.rb instead.
-  # Then, you can remove it from this and the functional test.
-  # include AuthenticatedTestHelper
-  fixtures :country_names, :users, :us_states
 
   def setup
     @emails     = ActionMailer::Base.deliveries

@@ -1,7 +1,6 @@
 require 'test_helper'
 
 class PersonEntryTest < ActiveSupport::TestCase
-  fixtures :person_entries, :users
 
   def test_acts_as_versioned
     p = PersonEntry.new

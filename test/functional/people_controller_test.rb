@@ -2,8 +2,6 @@ require 'test_helper'
 
 class PeopleControllerTest < ActionController::TestCase
 
-  fixtures :person_entries, :country_names, :emails, :locations, :people, :phone_numbers, :urls, :us_states, :users
-
   setup :activate_authlogic
 
 

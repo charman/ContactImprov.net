@@ -2,8 +2,6 @@ require 'test_helper'
 
 class OrganizationsControllerTest < ActionController::TestCase
 
-  fixtures :organization_entries, :country_names, :emails, :locations, :people, :phone_numbers, :urls, :us_states, :users
-
   setup :activate_authlogic
 
 

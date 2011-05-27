@@ -2,8 +2,6 @@ require 'test_helper'
 
 class Admin::AccountRequestsControllerTest < ActionController::TestCase
 
-  fixtures :locations, :people, :users, :user_account_requests
-
   def setup
     activate_authlogic
     

@@ -5,8 +5,6 @@ class UserControllerTest < ActionController::TestCase
   require "ruby-debug"
   Debugger.start
 
-  fixtures :country_names, :locations, :people, :users, :us_states
-
   def setup
     activate_authlogic
 

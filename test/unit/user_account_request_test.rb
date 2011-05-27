@@ -2,8 +2,6 @@ require 'test_helper'
 
 class UserAccountRequestTest < ActiveSupport::TestCase
 
-  fixtures :emails, :people, :user_account_requests, :users
-
   def setup
     @emails     = ActionMailer::Base.deliveries
     @emails.clear

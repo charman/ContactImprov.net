@@ -2,8 +2,6 @@ require 'test_helper'
 
 class UserMailerTest < ActiveSupport::TestCase
 
-  fixtures :users
-
   def setup
   end
 

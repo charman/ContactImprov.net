@@ -1,7 +1,6 @@
 require 'test_helper'
 
 class SessionsControllerTest < ActionController::TestCase
-  fixtures :users
 
   def setup
     activate_authlogic
