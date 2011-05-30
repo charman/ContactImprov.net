@@ -1,5 +1,7 @@
 class Admin::MotivationController < ApplicationController
 
+  layout "admin"
+
   #  Protect all actions behind an admin login
   before_filter :admin_required
 

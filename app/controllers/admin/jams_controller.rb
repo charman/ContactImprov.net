@@ -1,5 +1,7 @@
 class Admin::JamsController < ApplicationController
 
+  layout "admin"
+
   include EntryAdminActions
 
   #  Protect all actions behind an admin login
