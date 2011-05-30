@@ -4,19 +4,19 @@
 	<div style="float: right; width: 88%;">
 		<div class='entry_title'>
 			<% if entry.url %>
-				<%= "<a href=\"#{entry.url.address}\">#{entry.title}</a>" %>
+				<%= link_to entry.title, entry.url.address %>
 			<% else %>
-				<%= entry.title %>
+				<%= raw entry.title %>
 			<% end %>
 		</div>
-		<div class='entry_location'><%= entry.location.full_address_one_line %></div>
+		<div class='entry_location'><%= raw entry.location.full_address_one_line %></div>
 		<div style="margin-left: 1em;">
 			<% if !entry.organization.description.blank? %>
 				<div class='entry_description'>
-					<%= RedCloth.new(entry.organization.description.strip, [:filter_html]).to_html %>
+					<%= raw RedCloth.new(entry.organization.description.strip, [:filter_html]).to_html %>
 				</div>
 			<% end %>
-			<div class='entry_contact'><span style="color: #555;">CONTACT:</span> <%= format_contact_info(entry) %></div>
+			<div class='entry_contact'><span style="color: #555;">CONTACT:</span> <%= raw format_contact_info(entry) %></div>
 			<div class='entry_updated'>
 				<%= link_to 'Permalink', :action => 'show', :controller => 'organizations', :id => entry.id %>
 				&mdash;

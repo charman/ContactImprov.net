@@ -3,8 +3,8 @@
 <% end %>
 
 <div style="padding-bottom: 1em; padding-top: 1em;">
-	<span class="category_title"><%= category_title %></span>
-	<span class="category_subtitle"><%= category_subtitle %></span>
+	<span class="category_title"><%= raw category_title %></span>
+	<span class="category_subtitle"><%= raw category_subtitle %></span>
 </div>
 
 <div style="border-bottom: solid 1px #808080; padding-bottom: 1em;"></div>
@@ -50,7 +50,7 @@
 		<% @country_names_with_entries[@entry_type].each do |country_name| %>
 			<tr>
 				<td style="font-size: large;">
-					<b><%= country_name.gsub(/\s/, '&nbsp;') %></b>
+					<b><%= raw country_name.gsub(/\s/, '&nbsp;') %></b>
 				</td>
 				<td colspan="2" />
 			</tr>
@@ -67,8 +67,8 @@
 							<% entry = @entry_class.find(entry_id) %>
 					    	<tr>
 								<td style="border-bottom: none; width: 7em;" />
-								<td style="font-size: 0.9em;"><%= entry.location.city_name %></td>
-								<td style="font-size: 0.9em;"><a href="/<%= @entry_type.pluralize %>/show/<%= entry_id %>"><%= entry.title %></a></td>
+								<td style="font-size: 0.9em;"><%= raw entry.location.city_name %></td>
+								<td style="font-size: 0.9em;"><a href="/<%= @entry_type.pluralize %>/show/<%= entry_id %>"><%= raw entry.title %></a></td>
 							</tr>
 						<% end %>
 					<% end %>
@@ -78,8 +78,8 @@
 					<% entry = @entry_class.find(entry_id) %>
 			    	<tr>
 						<td style="border-bottom: none; width: 7em;" />
-						<td style="font-size: 0.9em;"><%= entry.location.city_name %></td>
-						<td style="font-size: 0.9em;"><a href="/<%= @entry_type.pluralize %>/show/<%= entry_id %>"><%= entry.title %></a></td>
+						<td style="font-size: 0.9em;"><%= raw entry.location.city_name %></td>
+						<td style="font-size: 0.9em;"><a href="/<%= @entry_type.pluralize %>/show/<%= entry_id %>"><%= raw entry.title %></a></td>
 					</tr>
 				<% end %>
 			<% end %>

@@ -34,7 +34,7 @@ module EventHelper
     end
     a << e.phone_number.number if (e.phone_number && !e.phone_number.number.blank?)
     a << obfuscate_email_with_javascript(e.email.address) if (e.email && !e.email.address.blank?)
-    a << "<a href=\"#{e.url.address}\">#{e.url.address}</a>" if (e.url && !e.url.address.blank?)
+    a << link_to(e.url.address, e.url.address) if (e.url && !e.url.address.blank?)
     a.join(", ")
   end
 

@@ -27,7 +27,7 @@
 		</span>
 		<span style="float: right; text-align: right;">
 			<!--
-			<%= '--' + '>' %>
+			<%= raw '--' + '>' %>
 			<% if logged_in? %>
 				<b>Logged in</b> as
 				<% if current_user.person %>
@@ -40,7 +40,7 @@
 				<b>You are not logged in</b>
 				| <a href="/login">Login</a>
 			<% end %>
-			<%= '<!' + '--' %>
+			<%= raw '<!' + '--' %>
 			-->
 		</span>
 	</div>

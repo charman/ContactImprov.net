@@ -4,29 +4,29 @@
 	<div style="float: right; width: 88%;">
 		<div class='entry_title'>
 			<% if !entry.url.blank? %>
-				<%= "<a href=\"#{entry.url.address}\">#{entry.title}</a>" %>
+			  <%= link_to entry.title, entry.url.address %>
 			<% else %>
-				<%= entry.title %>
+				<%= raw entry.title %>
 			<% end %>
 		</div>
-		<div class='entry_location'><%= entry.location.full_address_one_line %></div>
+		<div class='entry_location'><%= raw entry.location.full_address_one_line %></div>
 		<div style="margin-left: 1em;">
 			<% if !entry.description.blank? %>
 				<div class='entry_description'>
-					<%= RedCloth.new(entry.description.strip, [:filter_html]).to_html %>
+					<%= raw RedCloth.new(entry.description.strip, [:filter_html]).to_html %>
 				</div>
 			<% end %>
 			<% if !entry.cost.blank? %>
 				<div class='entry_cost'>
-					<%= RedCloth.new(entry.cost.strip, [:filter_html]).to_html %>
+					<%= raw RedCloth.new(entry.cost.strip, [:filter_html]).to_html %>
 				</div>
 			<% end %>
 			<% if !entry.schedule.blank? %>
 				<div class='entry_schedule'>
-					<%= RedCloth.new(entry.schedule.strip, [:filter_html]).to_html %>
+					<%= raw RedCloth.new(entry.schedule.strip, [:filter_html]).to_html %>
 				</div>
 			<% end %>
-			<div class='entry_contact'><span style="color: #555;">CONTACT:</span> <%= format_contact_info(entry) %></div>
+			<div class='entry_contact'><span style="color: #555;">CONTACT:</span> <%= raw format_contact_info(entry) %></div>
 			<div class='entry_updated'>
 				<%= link_to 'Permalink', :action => 'show', :controller => 'jams', :id => entry.id %>
 				&mdash;
