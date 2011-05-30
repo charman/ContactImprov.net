@@ -3,7 +3,7 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8;" />
 	<title>
 		CI-Admin:
-		<%= defined?(subsection) && !subsection.nil? ? " #{subsection.titleize.gsub('_', ' ')}: " : '' %>
+		<%= defined?(subsection) && !subsection.nil? ? raw(" #{subsection.titleize.gsub('_', ' ')}: ") : '' %>
 		<%= yield :title %>
 	</title>
 
@@ -104,9 +104,9 @@
 		<p style="font-weight: bold;">
 		<%=
 		if logged_in?
-			"Logged in as " + current_user.email + ' - <a href="/logout">Logout</a>'
+			raw("Logged in as " + current_user.email + ' - <a href="/logout">Logout</a>')
 		else
-			'Not logged in - <a href="/login">Login</a>'
+			raw('Not logged in - <a href="/login">Login</a>')
 		end
 		%>
 		</p>
