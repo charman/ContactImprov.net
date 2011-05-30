@@ -1,8 +1,5 @@
 module AccessibleAttributeEncoding
 
-  require 'htmlentities'
-  require 'sanitize'
-
   def decode_html_entities_of_attributes!
     return if self.class.accessible_attributes.blank?
     self.class.accessible_attributes.each do |aa|

@@ -390,7 +390,7 @@ CREATE TABLE `ci_users` (
   KEY `index_ci_users_on_activation_code` (`activation_code`),
   KEY `index_ci_users_on_persistence_token` (`persistence_token`),
   KEY `index_ci_users_on_last_request_at` (`last_request_at`)
-) ENGINE=MyISAM AUTO_INCREMENT=15321 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=15319 DEFAULT CHARSET=utf8;
 
 INSERT INTO ci_schema_migrations (version) VALUES ('20081216170645');
 
