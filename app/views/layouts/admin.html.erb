@@ -94,10 +94,12 @@
 
 <body>
 
-<h1><a href="/">CI</a>-<a href="/admin">Admin</a><%= 
-	defined?(subsection) && !subsection.nil? ? "-<a href=\"/admin/#{subsection.downcase}\">#{subsection.titleize.gsub('_', ' ')}</a>" : '' 
-%>:
-<%= yield :title %></h1>
+<h1><a href="/">CI</a>-<a href="/admin">Admin</a><%= raw(
+	  '-' + link_to (params[:controller].gsub('admin/', '').titleize.gsub('_', ''), "/#{params[:controller]}") 
+	  )
+	# + <a href=\"/admin/#{subsection.downcase}\">#{subsection.titleize.gsub('_', ' ')}</a>" : '' 
+  %>:
+  <%= yield :title %></h1>
 
 	<div style="margin-left: 2em;">
 
