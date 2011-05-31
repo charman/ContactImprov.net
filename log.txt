@@ -35,6 +35,11 @@ TODO:
 @ Authlogic
   [...]
 
+@ Configure mail delivery
+
+@ ExceptionNotifier
+  - implement functional test
+
 ---
 
 @ Google search box for site

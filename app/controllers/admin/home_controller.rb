@@ -4,6 +4,11 @@ class Admin::HomeController < ApplicationController
 
   #  Protect all actions behind an admin login
   before_filter :admin_required
+
+  
+  def exception_test
+    raise Exception, "This action used for functional testing of exception handling"
+  end
   
   def index
     @total_new_account_requests = UserAccountRequest.count :conditions => "state ='new'"
