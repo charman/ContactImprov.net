@@ -38,9 +38,9 @@ TODO:
 
 ---
 
-@ Update to newer version of jQuery
-
 @ Google search box for site
+
+@ Switch from YUI datatables to jQuery UI equivalent
 
 @ Geocoding
   - update GeoKit settings in initializer file
