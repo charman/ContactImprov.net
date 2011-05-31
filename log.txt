@@ -37,14 +37,12 @@ TODO:
 
 @ Configure mail delivery
 
-@ ExceptionNotifier
-  - implement functional test
-
 ---
 
 @ Google search box for site
 
 @ Geocoding
+  - update GeoKit settings in initializer file
   - admin page for locations that could not be geocoded
     - add links to actual actions
   - admin action to attempt to re-geocode

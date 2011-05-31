@@ -3,7 +3,7 @@ class Admin::HomeController < ApplicationController
   layout "admin"
 
   #  Protect all actions behind an admin login
-  before_filter :admin_required
+  before_filter :admin_required, :except => :exception_test
 
   
   def exception_test
