@@ -32,12 +32,13 @@ THIS COMMIT:
 
 TODO:
 
-@ Authlogic
-  [...]
-
 @ Configure mail delivery
+  - can we move config options out of the user_mailer.rb
+     filter_recipients() function?
 
 ---
+
+@ Update to newer version of jQuery
 
 @ Google search box for site
 
