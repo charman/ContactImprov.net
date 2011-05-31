@@ -32,15 +32,28 @@ THIS COMMIT:
 
 TODO:
 
-@ Configure mail delivery
-  - can we move config options out of the user_mailer.rb
-     filter_recipients() function?
+
+@ Calendars
+  - iCal feeds
+    - functional tests for routes
+    - find icons for adding iCal calendars
+        http://www.oxygen-inc.com/kenx/
+    - for events with start/end dates greater than X, create separate
+       start and end date events instead of having one giant event
+
+@ Atom feeds
 
 ---
 
 @ Google search box for site
 
+@ Configure mail delivery
+  - can we move config options out of the user_mailer.rb
+     filter_recipients() function?
+
 @ Switch from YUI datatables to jQuery UI equivalent
+
+@ preferred_url function - returns website for entry, otherwise CI.net link
 
 @ Geocoding
   - update GeoKit settings in initializer file
@@ -69,14 +82,6 @@ GMail account?
     http://www.projecthoneypot.org/how_to_avoid_spambots_3.php
 
 ---
-
-@ Calendars
-  - iCal feeds
-    - functional tests for routes
-    - find icons for adding iCal calendars
-        http://www.oxygen-inc.com/kenx/
-    - for events with start/end dates greater than X, create separate
-       start and end date events instead of having one giant event
 
 @ Get rid of CountryName.english_name_with_underscores, which is
 deprecated thanks to the underlined_english_name database field
@@ -192,8 +197,6 @@ they can edit for that type of entry
 @ Update 404/500 error pages
   - read 404 page guidelines on SmashingMagazine
   - add Google search box
-
-@ RSS feeds
 
 @ Entry listings
   - validation function for "has at least one of these models"
