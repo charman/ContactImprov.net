@@ -255,13 +255,11 @@ class UserController < ApplicationController
         return
       end
 
-      #  TODO: Confirm that this is not susceptible to an SQL injection attack
       @user = User.find_by_email(params[:email])
       if @user
         process_password_reset_request(@user, params[:email])
       else
         flash.now[:notice] = "<h2>Problem resetting password</h2>" + 
-                              #  TODO: Secure string interpolation here:
                               "<p>We don't seem to have any records of a user with the email address <i>" + params[:email] + "</i></p>"
       end
     end

@@ -27,13 +27,6 @@ THIS COMMIT:
 
 TODO:
 
-@ No /denied route
-  - modify functional tests to catch this error
-
-@ Fix SQL injection vulnerabilities
-
----
-
 @ Calendars
   - iCal feeds
     - functional tests for routes

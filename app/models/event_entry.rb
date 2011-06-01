@@ -18,20 +18,19 @@ class EventEntry < ActiveRecord::Base
   validates_presence_of :title, :description, :start_date, :end_date
 
 
-  # TODO: Are any of these find_by_* functions susceptible to SQL injection attacks?
-  
   def self.distinct_months(year)
-    EventEntry.find_by_sql("SELECT DISTINCT DATE_FORMAT(start_date, '%Y') " + 
+    EventEntry.find_by_sql(["SELECT DISTINCT DATE_FORMAT(start_date, '%Y') " + 
       "AS year, DATE_FORMAT(start_date, '%m') AS month FROM ci_event_entries " + 
-      "WHERE DATE_FORMAT(start_date, '%Y') = '#{year}' ORDER BY year, month;").collect { |e| e.month }
+      "WHERE DATE_FORMAT(start_date, '%Y') = ? ORDER BY year, month;", year]).collect { |e| e.month }
   end
 
   def self.distinct_nonpast_months(year)
-    EventEntry.find_by_sql("SELECT DISTINCT DATE_FORMAT(start_date, '%Y') AS year, " + 
+    EventEntry.find_by_sql(["SELECT DISTINCT DATE_FORMAT(start_date, '%Y') AS year, " + 
       "DATE_FORMAT(start_date, '%m') AS month FROM ci_event_entries " + 
-      "WHERE DATE_FORMAT(start_date, '%Y') = '#{year}' " + 
-      "AND start_date >= '#{Date.today.strftime('%Y-%m-01')}' " +
-      "ORDER BY year, month;").collect { |e| e.month }
+      "WHERE DATE_FORMAT(start_date, '%Y') = ? " + 
+      "AND start_date >= ? " +
+      "ORDER BY year, month;", 
+      year, Date.today.strftime('%Y-%m-01')]).collect { |e| e.month }
   end
 
   def self.distinct_years
@@ -40,18 +39,24 @@ class EventEntry < ActiveRecord::Base
   end
 
   def self.distinct_nonpast_years
-    EventEntry.find_by_sql("SELECT DISTINCT DATE_FORMAT(start_date, '%Y') AS year " + 
-      "FROM ci_event_entries WHERE start_date > '#{Date.today.strftime('%Y')}-01-01' " +
-      "ORDER BY year;").collect { |e| e.year }
+    EventEntry.find_by_sql(["SELECT DISTINCT DATE_FORMAT(start_date, '%Y') AS year " + 
+      "FROM ci_event_entries WHERE start_date > ? " +
+      "ORDER BY year;", Date.today.strftime('%Y-01-01')]).collect { |e| e.year }
   end
 
   def self.find_by_year(year, by_start_date_only = false)
     first_of_year = "'#{year}-01-01'"
     last_of_year  = "'#{year}-12-31'"
-    @entries = EventEntry.find(:all, :order => 'start_date ASC',
-      :conditions => "(start_date >= #{first_of_year} AND start_date <= #{last_of_year}) " +
-                     (by_start_date_only ? '' : "OR (end_date >= #{first_of_year} AND end_date <= #{last_of_year})")
-    )
+    if by_start_date_only
+      @entries = EventEntry.find(:all, :order => 'start_date ASC',
+        :conditions => ["start_date >= ? AND start_date <= ?", first_of_year, last_of_year]
+      )
+    else
+      @entries = EventEntry.find(:all, :order => 'start_date ASC',
+        :conditions => ["(start_date >= ? AND start_date <= ?) OR (end_date >= ? AND end_date <= ?)", 
+          first_of_year, last_of_year, first_of_year, last_of_year]
+      )
+    end
   end
   
   def self.find_by_start_date_year(year)
@@ -61,13 +66,16 @@ class EventEntry < ActiveRecord::Base
   def self.find_by_year_month(year, month, by_start_date_only = false)
     first_of_month = "'#{year}-#{month}-01'"
     last_of_month  = "'#{year}-#{month}-31'"
-    EventEntry.find(:all, :order => 'start_date ASC', 
-      :conditions => "(start_date >= #{first_of_month} AND start_date <= #{last_of_month}) " +
-                     (by_start_date_only ? '' : "OR (end_date >= #{first_of_month} AND end_date <= #{last_of_month}) ")
-                     #  Line below commented out because all current events that last longer
-                     #   than a month are actually misclassified jams
-                     # "(start_date < #{first_of_month} AND end_date > #{last_of_month})" 
-    )
+    if by_start_date_only
+      @entries = EventEntry.find(:all, :order => 'start_date ASC',
+        :conditions => ["start_date >= ? AND start_date <= ?", first_of_month, last_of_month]
+      )
+    else
+      @entries = EventEntry.find(:all, :order => 'start_date ASC',
+        :conditions => ["(start_date >= ? AND start_date <= ?) OR (end_date >= ? AND end_date <= ?)", 
+          first_of_month, last_of_month, first_of_month, last_of_month]
+      )
+    end
   end
 
   def self.find_by_start_date_year_month(year, month)
@@ -77,18 +85,18 @@ class EventEntry < ActiveRecord::Base
   def self.find_future_by_country_name(country_name)
     self.find(:all,
       :from => "ci_event_entries, ci_locations",
-      :conditions => "end_date > CURRENT_DATE() " +
-                     "AND ci_event_entries.location_id = ci_locations.location_id " + 
-                     "AND country_name_id = '#{country_name.id}'" 
+      :conditions => ["end_date > CURRENT_DATE() " +
+                      "AND ci_event_entries.location_id = ci_locations.location_id " + 
+                      "AND country_name_id = ?", country_name.id]
     )
   end
 
   def self.find_future_by_us_state(us_state)
     self.find(:all,
       :from => "ci_event_entries, ci_locations",
-      :conditions => "end_date > CURRENT_DATE() " +
-                     "AND ci_event_entries.location_id = ci_locations.location_id " + 
-                     "AND us_state_id = '#{us_state.id}'"
+      :conditions => ["end_date > CURRENT_DATE() " +
+                      "AND ci_event_entries.location_id = ci_locations.location_id " + 
+                      "AND us_state_id = ?", us_state.id]
     )
   end
 
