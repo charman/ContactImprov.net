@@ -1,10 +1,5 @@
 ======================================================================
 
-WAITING FOR:
-
-
-======================================================================
-
 WHEN MOVING SITE TO NEW SERVER:
 
   mkdir log
@@ -32,6 +27,12 @@ THIS COMMIT:
 
 TODO:
 
+@ No /denied route
+  - modify functional tests to catch this error
+
+@ Fix SQL injection vulnerabilities
+
+---
 
 @ Calendars
   - iCal feeds
@@ -157,9 +158,6 @@ deprecated thanks to the underlined_english_name database field
   - in listings controller, rename entry_display_name functions, since
      category_name_singular now actually fills that role (while a
      renamed entry_display_name is still needed for generating routes)
-
-@ No /denied route
-  - modify functional tests to catch this error
 
 @ Allow people to list themselves as the contact person for an Entry
   - functional tests

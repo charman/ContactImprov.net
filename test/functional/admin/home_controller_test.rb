@@ -10,8 +10,6 @@ class Admin::HomeControllerTest < ActionController::TestCase
     assert_raise Exception do
       get :exception_test
     end
-    # TODO:  I'd really like this test to verify that ExceptionNotifier is working properly,
-    #        but haven't figured out how to do so yet.
   end
   
 
@@ -19,6 +17,19 @@ class Admin::HomeControllerTest < ActionController::TestCase
 
   def test_should_allow_admin_access_to_index
     get_page_as_admin_with_no_errors(:index)
+  end
+
+  def test_should_deny_access_to_non_admin_user
+    login_as :quentin
+    get :index
+    assert_redirected_to '/denied'
+    assert_select "[class=errorExplanation]", false
+  end
+
+  def test_should_deny_access_to_not_logged_in_user
+    get :index
+    assert_redirected_to '/denied'
+    assert_select "[class=errorExplanation]", false
   end
 
 end
