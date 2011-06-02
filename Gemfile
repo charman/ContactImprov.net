@@ -9,6 +9,7 @@ gem 'authlogic', '>=3.0.3'
 gem 'exception_notification', :require => 'exception_notifier'
 gem 'geokit'
 gem 'geokit-rails3'
+gem 'icalendar'
 gem 'htmlentities'
 gem 'memcache-client'
 gem 'mysql2', '~>0.2.7'   #  TODO: Switch to mysql2 0.3.x when switching to Rails 3.1.x

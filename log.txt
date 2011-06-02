@@ -40,7 +40,6 @@ TODO:
 
 @ Calendars
   - iCal feeds
-    - functional tests for routes
     - find icons for adding iCal calendars
         http://www.oxygen-inc.com/kenx/
     - for events with start/end dates greater than X, create separate
