@@ -27,12 +27,10 @@ THIS COMMIT:
 
 TODO:
 
-<<<<<<< .mine
-@ No /denied route
-  - modify functional tests to catch this error
+---
 
-=======
->>>>>>> .r390
+@ Rename .rhtml files to .html.erb
+
 @ Authlogic
   - functional testing
     - password resets
