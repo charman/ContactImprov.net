@@ -27,41 +27,15 @@ THIS COMMIT:
 
 TODO:
 
-@ Unit tests for EventEntry.find_by_year/.find_by_year_month
+@ Google search box for site
 
 @ Calendars
   - iCal feeds
     - convert HTML entities (e.g. &amp;) back into characters
     - webcal:// links
     - find icons for adding iCal calendars
-        http://www.oxygen-inc.com/kenx/
     - for events with start/end dates greater than X, create separate
        start and end date events instead of having one giant event
-
----
-
-@ Rename .rhtml files to .html.erb
-
-@ Authlogic
-  - functional testing
-    - password resets
-    - account activation process
-    - old passwords still working
-  [...]
-
-@ Atom feeds
-
----
-
-@ Google search box for site
-
-@ Configure mail delivery
-  - can we move config options out of the user_mailer.rb
-     filter_recipients() function?
-
-@ Switch from YUI datatables to jQuery UI equivalent
-
-@ preferred_url function - returns website for entry, otherwise CI.net link
 
 @ Geocoding
   - update GeoKit settings in initializer file
@@ -83,6 +57,33 @@ TODO:
        (multi-colored icon with # of things?)
   - fix javascript warning message
 
+@ Update 404/500 error pages
+  - read 404 page guidelines on SmashingMagazine
+  - add Google search box
+
+---
+
+@ Rename .rhtml files to .html.erb
+
+@ Authlogic
+  - functional testing
+    - password resets
+    - account activation process
+    - old passwords still working
+  [...]
+
+@ Atom feeds
+
+---
+
+@ Configure mail delivery
+  - can we move config options out of the user_mailer.rb
+     filter_recipients() function?
+
+@ Switch from YUI datatables to jQuery UI equivalent
+
+@ preferred_url function - returns website for entry, otherwise CI.net link
+
 @ email every user whose account status is pending - perhaps from
 GMail account?
 
@@ -96,10 +97,6 @@ deprecated thanks to the underlined_english_name database field
 
 @ Create function for Events/People/etc to generate listing URL
   - refactor code in events_helper.rb
-
-@ KML
-  - read documentation:
-      http://code.google.com/apis/kml/
 
 @ Account requests
   - remove white text box from home page
@@ -199,10 +196,6 @@ they can edit for that type of entry
 
 @ Refactor auto-complete location actions to separate controllers
 
-@ Update 404/500 error pages
-  - read 404 page guidelines on SmashingMagazine
-  - add Google search box
-
 @ Entry listings
   - validation function for "has at least one of these models"
 
@@ -218,8 +211,14 @@ they can edit for that type of entry
 
 ==[ LOG ]=============================================================
 
-----[ day, January , 2009 ]--------------------------------------
+----[ day, May , 2011 ]--------------------------------------
 
+
+
+----[ Wednesday, June  1, 2011 ]--------------------------------------
+
+@ Finished migration of the code from Rails 2 to Rails 3, went live
+with the Rails 3 version of the site.
 
 
 ----[ Monday, December 14, 2009 ]-------------------------------------

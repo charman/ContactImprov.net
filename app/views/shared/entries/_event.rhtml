@@ -43,12 +43,12 @@
 				Updated:
 				<%= entry.updated_at.strftime('%b %d %Y') %>
 			</div>
+      <div style="text-align: right; margin-top: 0.2em;">
+      	<%= raw add_to_google_calendar_button(entry) %>
+      </div>
 		</div>
 	</div>
 </div>
 
-<div>
-	<%= raw add_to_google_calendar_button(entry) %>
-</div>
 
 <div style="clear: both; padding-top: 1.8em;"></div>
