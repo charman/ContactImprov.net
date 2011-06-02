@@ -28,6 +28,10 @@ THIS COMMIT:
 TODO:
 
 @ Google search box for site
+  - customize look and feel:
+    http://code.google.com/intl/en/apis/customsearch/docs/ui.html
+    - 
+  [...]
 
 @ Calendars
   - iCal feeds

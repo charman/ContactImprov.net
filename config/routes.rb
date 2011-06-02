@@ -1,10 +1,9 @@
 ContactImprovNet::Application.routes.draw do
+
   resource :session do
     collection do
-  get :no_cookies_for_you
-  end
-  
-  
+      get :no_cookies_for_you
+    end
   end
 
   match '/activate/:activation_code' => 'user#activate', :as => :activate
@@ -17,20 +16,7 @@ ContactImprovNet::Application.routes.draw do
 
   namespace 'admin' do
     match '/' => 'home#index'
-    match '/account_requests' => 'account_requests#index'
-    match '/events' => 'events#index'
-    match '/geocoding' => 'geocoding#index'
-    match '/jams' => 'jams#index'
-    match '/motivation' => 'motivation#index'
-    match '/organizations' => 'organizations#index'
-    match '/people' => 'people#index'
-    match '/users' => 'users#index'
   end
-
-  match '/events' => 'events#index', :as => :events_index
-  match '/jams' => 'jams#index', :as => :jams_index
-  match '/people' => 'people#index', :as => :people_index
-  match '/organizations' => 'organizations#index', :as => :organizations_index
 
   match '/events/list/:year/:month' => 'events#list'
   match '/events/list/:year' => 'events#list'
@@ -47,4 +33,5 @@ ContactImprovNet::Application.routes.draw do
 
   match ':controller(/:action(/:id))', :controller => /admin\/[^\/]+/
   match '/:controller(/:action(/:id))'
+
 end
