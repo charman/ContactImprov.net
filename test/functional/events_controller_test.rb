@@ -342,6 +342,15 @@ class EventsControllerTest < ActionController::TestCase
   #         verify that the models were deleted from the database  (OR NOT?)
 
 
+  #  Test 'index' action
+
+  test "get index" do
+    get :index
+    assert_response :success
+    assert_select "[class=errorExplanation]", false
+  end
+
+
   #  Test 'list' action
 
   def test_should_allow_access_to_list

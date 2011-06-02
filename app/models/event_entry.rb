@@ -45,8 +45,8 @@ class EventEntry < ActiveRecord::Base
   end
 
   def self.find_by_year(year, by_start_date_only = false)
-    first_of_year = "'#{year}-01-01'"
-    last_of_year  = "'#{year}-12-31'"
+    first_of_year = "#{year}-01-01"
+    last_of_year  = "#{year}-12-31"
     if by_start_date_only
       @entries = EventEntry.find(:all, :order => 'start_date ASC',
         :conditions => ["start_date >= ? AND start_date <= ?", first_of_year, last_of_year]
@@ -64,8 +64,8 @@ class EventEntry < ActiveRecord::Base
   end
   
   def self.find_by_year_month(year, month, by_start_date_only = false)
-    first_of_month = "'#{year}-#{month}-01'"
-    last_of_month  = "'#{year}-#{month}-31'"
+    first_of_month = "#{year}-#{month}-01"
+    last_of_month  = "#{year}-#{month}-31"
     if by_start_date_only
       @entries = EventEntry.find(:all, :order => 'start_date ASC',
         :conditions => ["start_date >= ? AND start_date <= ?", first_of_month, last_of_month]
