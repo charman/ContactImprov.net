@@ -20,7 +20,7 @@ CREATE TABLE `ci_email_versions` (
   KEY `index_ci_email_versions_on_email_id` (`email_id`),
   KEY `index_ci_email_versions_on_for_entity_id` (`for_entity_id`),
   KEY `index_ci_email_versions_on_address` (`address`)
-) ENGINE=MyISAM AUTO_INCREMENT=15875 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=15876 DEFAULT CHARSET=utf8;
 
 CREATE TABLE `ci_emails` (
   `email_id` int(11) NOT NULL AUTO_INCREMENT,
@@ -33,7 +33,7 @@ CREATE TABLE `ci_emails` (
   PRIMARY KEY (`email_id`),
   KEY `index_ci_emails_on_for_entity_id` (`for_entity_id`),
   KEY `index_ci_emails_on_address` (`address`)
-) ENGINE=MyISAM AUTO_INCREMENT=15858 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=15859 DEFAULT CHARSET=utf8;
 
 CREATE TABLE `ci_event_entries` (
   `event_entry_id` int(11) NOT NULL AUTO_INCREMENT,
@@ -224,7 +224,7 @@ CREATE TABLE `ci_people` (
   `created_at` datetime DEFAULT NULL,
   `updated_at` datetime DEFAULT NULL,
   PRIMARY KEY (`person_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=15829 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=15830 DEFAULT CHARSET=utf8;
 
 CREATE TABLE `ci_person_entries` (
   `person_entry_id` int(11) NOT NULL AUTO_INCREMENT,
@@ -270,7 +270,7 @@ CREATE TABLE `ci_person_versions` (
   `last_name` varchar(255) DEFAULT NULL,
   `updated_at` datetime DEFAULT NULL,
   PRIMARY KEY (`person_version_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=15855 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=15856 DEFAULT CHARSET=utf8;
 
 CREATE TABLE `ci_phone_number_versions` (
   `phone_number_version_id` int(11) NOT NULL AUTO_INCREMENT,
@@ -345,7 +345,7 @@ CREATE TABLE `ci_user_account_requests` (
   `created_at` datetime DEFAULT NULL,
   `updated_at` datetime DEFAULT NULL,
   PRIMARY KEY (`user_account_request_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=15419 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=15420 DEFAULT CHARSET=utf8;
 
 CREATE TABLE `ci_user_sessions` (
   `ci_user_session_id` int(11) NOT NULL AUTO_INCREMENT,
@@ -390,7 +390,7 @@ CREATE TABLE `ci_users` (
   KEY `index_ci_users_on_activation_code` (`activation_code`),
   KEY `index_ci_users_on_persistence_token` (`persistence_token`),
   KEY `index_ci_users_on_last_request_at` (`last_request_at`)
-) ENGINE=MyISAM AUTO_INCREMENT=15357 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=15358 DEFAULT CHARSET=utf8;
 
 INSERT INTO ci_schema_migrations (version) VALUES ('20081216170645');
 
