@@ -7,21 +7,21 @@ class UserMailer < ActionMailer::Base
     setup_user_email(user)
     @password = user.password
     @url = @base_url
-    mail(:to => @recipients, :subject => @subject, :bcc => @bcc)
+    mail(:to => @recipients, :subject => @subject, :bcc => @bcc, :content_type => "text/plain")
   end
 
   def password_reset(user)
     setup_user_email(user)
     @subject    = 'Instructions for resetting your ContactImprov.net account password'
     @url = "#{@base_url}reset_password/#{user.password_reset_code}"
-    mail(:to => @recipients, :subject => @subject, :bcc => @bcc)
+    mail(:to => @recipients, :subject => @subject, :bcc => @bcc, :content_type => "text/plain")
   end
 
   def password_reset_by_admin(user, new_password)
     setup_user_email(user)
     @subject = 'New password for your ContactImprov.net account'
     @new_password = new_password
-    mail(:to => @recipients, :subject => @subject, :bcc => @bcc)
+    mail(:to => @recipients, :subject => @subject, :bcc => @bcc, :content_type => "text/plain")
   end
   
   def signup_notification(user)
@@ -34,7 +34,7 @@ class UserMailer < ActionMailer::Base
     else
       @name_of_user = ''
     end
-    mail(:to => @recipients, :subject => @subject, :bcc => @bcc)
+    mail(:to => @recipients, :subject => @subject, :bcc => @bcc, :content_type => "text/plain")
   end
 
 
