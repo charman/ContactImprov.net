@@ -2,7 +2,7 @@
 	<fieldset>
 		<legend>Organization*</legend>
 		<ol>
-			<% fields_for 'entry[organization]', @entry.organization do |o| %>
+			<%= fields_for 'entry[organization]', @entry.organization do |o| %>
 				<li>
 					<label>Name:*</label>
 					<%= o.text_field :name %>

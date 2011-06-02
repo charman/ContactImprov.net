@@ -27,6 +27,19 @@ THIS COMMIT:
 
 TODO:
 
+<<<<<<< .mine
+@ No /denied route
+  - modify functional tests to catch this error
+
+=======
+>>>>>>> .r390
+@ Authlogic
+  - functional testing
+    - password resets
+    - account activation process
+    - old passwords still working
+  [...]
+
 @ Calendars
   - iCal feeds
     - functional tests for routes

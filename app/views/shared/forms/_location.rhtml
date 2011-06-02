@@ -14,7 +14,7 @@
 <% end %>
 
 
-<% fields_for prefix, location do |location_form| %>
+<%= fields_for prefix, location do |location_form| %>
 <fieldset>
 	<legend><%= defined?(legend) && !legend.nil? ? legend : 'Location' %></legend>
 	<ol>
