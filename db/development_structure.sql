@@ -77,7 +77,7 @@ CREATE TABLE `ci_event_entry_versions` (
   `ci_notes` text,
   `updated_at` datetime DEFAULT NULL,
   PRIMARY KEY (`event_entry_version_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=15472 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=15473 DEFAULT CHARSET=utf8;
 
 CREATE TABLE `ci_jam_entries` (
   `jam_entry_id` int(11) NOT NULL AUTO_INCREMENT,

@@ -64,8 +64,6 @@ TODO:
 
 @ Update 500 error page
 
-@ Rename .rhtml files to .html.erb
-
 @ Authlogic
   - functional testing
     - password resets
