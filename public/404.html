@@ -1,37 +1,111 @@
 <html>
 <head>
-	<meta http-equiv="content-type" content="text/html; charset=utf-8">
 	<title>
     Page not found (404) - ContactImprov.net
 	</title>
-	<link href="/contact.css" type="text/css" rel="stylesheet">
 
+  <!-- TODO: Make certain we have copied over the latest code from the '/includes/' files,
+             as this page is served statically, with no code inserted using either Apache
+             include directives or server-side code.
+  -->
+
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8;" />
+  <meta http-equiv="keywords" content="Contact Improvisation, Contact Improv, Contact Dance Improvisation, Contact Jams, Improv Dance Workshops Festivals">
+
+  <link rel="stylesheet" type="text/css" href="/stylesheets/smoothness/jquery-ui-1.8.6.custom.css" />
+  <link rel="stylesheet" href="/contact.css" type="text/css" />
+
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.1/jquery.min.js"></script>
+  <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.13/jquery-ui.min.js"></script>
+
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-18542553-1']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
 </head>
 <body>
-	<!--#include virtual="/includes/header.html"-->
+	<div class="main">
+  	<div class="content">
 
-  <!-- This file lives in public/404.html -->
-  <div style="padding-bottom: 1em;">
-    <h1>Page not found!</h1>
-    <p style="font-size: 1.2em;">You may have mistyped the address or the page may have moved.</p>
-  </div>
+      <!-- TODO: Make certain we have copied over the latest code from the '/includes/header' file -->
+  		<div class="banner_image">
+  			<a href="/"><img src="/images/ContactImprovNet-Banner.png" height="130" width="840" alt="" /></a>
+  		</div>
 
-  <h2>Search the site</h2>
+  		<div class="navigation_bar">
+  			<div class="navigation_bar">
+        	<table>
+        		<tr>
+        			<th class="navigation_bar_entry" style="width: 25%;">
+        				<a href="/events">Special Events</a>
+        			</th>
+        			<th class="navigation_bar_entry" style="width: 30%;">
+        				<a href="/jams">Ongoing Jams/Classes</a>
+        			</th>
+        			<th class="navigation_bar_entry" style="width: 15%;">
+        				<a href="/people">People</a>
+        			</th>
+        			<th class="navigation_bar_entry" style="width: 20%;">
+        				<a href="/organizations">Organizations</a>
+        			</th>
+        			<th class="navigation_bar_entry" style="width: 10%; font-style: italic;">
+        				<a href="/map">Map</a>
+        			</th>
+        	   	</tr>
+        	</table>
 
-  <div>
-    <form action="http://www.contactimprov.net/search/results" id="cse-search-box">
-      <div>
-        <input type="hidden" name="cx" value="018296936324905345799:jcwhoejcprq" />
-        <input type="hidden" name="cof" value="FORID:9" />
-        <input type="hidden" name="ie" value="UTF-8" />
-        <input type="text" name="q" size="31" />
-        <input type="submit" name="sa" value="Search" />
+          <div style="font-size: small; margin-top: 0em; width: 100%;">
+            <span style="float: left; text-align: left;">
+          	</span>
+          	<span style="float: right; text-align: right;">
+              <form action="http://www.contactimprov.net/search/results" id="cse-search-box">
+                <div>
+                  <input type="hidden" name="cx" value="018296936324905345799:jcwhoejcprq" />
+                  <input type="hidden" name="cof" value="FORID:9" />
+                  <input type="hidden" name="ie" value="UTF-8" />
+                  <input type="text" name="q" size="31" />
+                  <input type="submit" name="sa" value="Search" />
+                </div>
+              </form>
+              <script type="text/javascript" src="http://www.google.com/cse/brand?form=cse-search-box&lang=en&sitesearch=true"></script>
+          	</span>
+        	</div>
+
+          <div style="width: 100%; border-bottom: solid 1px #A0A0A0; clear: both;"></div>
+        </div>
+  		</div>
+
+      <div id="four_oh_four_content" style="padding-left: 10em;">
+        <div style="padding-bottom: 1em;">
+          <h1>Page not found!</h1>
+          <p style="font-size: 1.2em;">You may have mistyped the address or the page may have moved.</p>
+        </div>
+
+        <h2>Search the site</h2>
+
+        <div>
+          <form action="http://www.contactimprov.net/search/results" id="cse-search-box">
+            <div>
+              <input type="hidden" name="cx" value="018296936324905345799:jcwhoejcprq" />
+              <input type="hidden" name="cof" value="FORID:9" />
+              <input type="hidden" name="ie" value="UTF-8" />
+              <input type="text" name="q" size="31" />
+              <input type="submit" name="sa" value="Search" />
+            </div>
+          </form>
+          <script type="text/javascript" src="http://www.google.com/cse/brand?form=cse-search-box&lang=en&sitesearch=true"></script>
+        </div>
       </div>
-    </form>
-    <script type="text/javascript" src="http://www.google.com/cse/brand?form=cse-search-box&lang=en&sitesearch=true"></script>
+
+      <!-- TODO: Make certain we have copied over the latest code from the '/includes/footer' file -->
+	  </div>
   </div>
-
-
-	<!--#include virtual="/includes/footer.html"-->
 </body>
 </html>
