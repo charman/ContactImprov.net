@@ -35,7 +35,6 @@ TODO:
 
 @ Calendars
   - iCal feeds
-    - convert HTML entities (e.g. &amp;) back into characters
     - webcal:// links
     - find icons for adding iCal calendars
     - for events with start/end dates greater than X, create separate

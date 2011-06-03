@@ -145,16 +145,18 @@ class EventEntry < ActiveRecord::Base
   end
 
   def to_ical_event
+    decoder = HTMLEntities.new
+    
     event = Icalendar::Event.new
     event.start   = self.start_date
     event.end     = self.end_date
-    event.summary = self.title
+    event.summary = decoder.decode(self.title)
     if self.location.geocode_precision
       geo = Icalendar::Geo.new(self.location.lat, self.location.lng)
       event.geo = geo
       event.geo_location = geo
     end
-    event.location = self.location.full_address_one_line
+    event.location = decoder.decode(self.location.full_address_one_line)
     if self.url && !self.url.address.empty?
       event.url = self.url.address 
     else
