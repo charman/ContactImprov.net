@@ -504,21 +504,21 @@ class UserControllerTest < ActionController::TestCase
   def test_should_find_user_to_reset_password_for
     code = users(:quentin).make_password_reset_code
     get :reset_password, :password_reset_code => code
-    assert_select "form"
+    assert_select "#password_reset_form"
     assert_response :success
     assert_select "[class=errorExplanation]", false
   end
 
   def test_should_not_find_user_to_reset_password_for_with_get
     get :reset_password, :password_reset_code => ''
-    assert_select "form", false
+    assert_select "#password_reset_form", false
     assert_response :success
     assert_match /Invalid password reset code/, @response.body
   end
 
   def test_should_not_find_user_to_reset_password_for_with_post
     post :reset_password, :password_reset_code => ''
-    assert_select "form", false
+    assert_select "#password_reset_form", false
     assert_response :success
     assert_match /Invalid password reset code/, @response.body
   end
