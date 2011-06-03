@@ -27,9 +27,8 @@ ContactImprovNet::Application.routes.draw do
   match '/people/list/:country_name/:us_state' => 'people#list'
   match '/people/list/:country_name' => 'people#list'
 
-  match '/events/calendar.ics' => 'events#calendar'
-  match '/events/:country_name/calendar.ics' => 'events#calendar'
-  match '/events/:country_name/:us_state/calendar.ics' => 'events#calendar'
+  match '/calendars/feed/:country_name' => 'calendars#feed'
+  match '/calendars/feed/:country_name/:us_state' => 'calendars#feed'
 
   match ':controller(/:action(/:id))', :controller => /admin\/[^\/]+/
   match '/:controller(/:action(/:id))'
