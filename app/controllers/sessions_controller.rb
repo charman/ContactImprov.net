@@ -85,7 +85,7 @@ class SessionsController < ApplicationController
 
   #  The '/logout' action is an alias for '/session/destroy
   def destroy
-    current_user_session.destroy
+    current_user_session.destroy if current_user_session 
     flash[:notice] = "You have been logged out."
     redirect_to new_session_path
   end

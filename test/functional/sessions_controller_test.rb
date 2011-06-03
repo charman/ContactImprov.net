@@ -99,6 +99,12 @@ class SessionsControllerTest < ActionController::TestCase
     assert_response :redirect
   end
 
+  def test_should_redirect_if_anonymously_trying_to_logout
+    assert_nil UserSession.find
+    get :destroy
+    assert_nil UserSession.find
+    assert_response :redirect
+  end
 
   #  Test 'new' action
 
