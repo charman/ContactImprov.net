@@ -60,11 +60,9 @@ TODO:
        (multi-colored icon with # of things?)
   - fix javascript warning message
 
-@ Update 404/500 error pages
-  - read 404 page guidelines on SmashingMagazine
-  - add Google search box
-
 ---
+
+@ Update 500 error page
 
 @ Rename .rhtml files to .html.erb
 

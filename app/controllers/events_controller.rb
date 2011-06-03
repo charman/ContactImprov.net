@@ -27,8 +27,7 @@ class EventsController < ApplicationController
   end
 
   def index
-    @entries = EventEntry.find(:all, :order => 'start_date ASC', 
-      :conditions => [ "start_date > ?",  Date.today])
+    @entries = EventEntry.find(:all, :order => 'start_date ASC', :conditions => 'end_date > CURRENT_DATE()')
 
     @entries_by_year_month = Hash.new
     EventEntry.distinct_nonpast_years.each do |y| 
@@ -60,7 +59,7 @@ class EventsController < ApplicationController
         @entries_by_year_month[y] = Hash.new
         EventEntry.distinct_months(y).each { |m| @entries_by_year_month[y][m] = EventEntry.find_by_start_date_year_month(y, m) }
       end
-      @entries = EventEntry.find(:all, :order => 'start_date ASC')
+      @entries = EventEntry.find(:all, :order => 'start_date ASC', :conditions =>  'end_date > CURRENT_DATE()')
     end
   end
 
