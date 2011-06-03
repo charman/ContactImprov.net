@@ -27,6 +27,17 @@ THIS COMMIT:
 
 TODO:
 
+@ Performance tuning
+  - caching
+    - rewrite code to use sweepers
+    - more caching calls
+  - database optimization
+    [...]
+
+---
+
+@ Logging out should not redirect the user to /session/new
+
 @ Calendars
   - iCal feeds
     - text for calendar subscription page
@@ -55,6 +66,8 @@ TODO:
   - fix javascript warning message
 
 ---
+
+@ Rewrite forms to use new(-to-project) Rails support for nested forms
 
 @ Google search box for site
   - customize look and feel:
