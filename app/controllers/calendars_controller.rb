@@ -22,6 +22,7 @@ class CalendarsController < ApplicationController
   end
 
   def index
+    cache_entries_for_countries(EventEntry)
   end
 
 end

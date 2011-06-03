@@ -27,15 +27,9 @@ THIS COMMIT:
 
 TODO:
 
-@ Google search box for site
-  - customize look and feel:
-    http://code.google.com/intl/en/apis/customsearch/docs/ui.html
-    - 
-  [...]
-
 @ Calendars
   - iCal feeds
-    - webcal:// links
+    - text for calendar subscription page
     - find icons for adding iCal calendars
     - for events with start/end dates greater than X, create separate
        start and end date events instead of having one giant event
@@ -61,6 +55,12 @@ TODO:
   - fix javascript warning message
 
 ---
+
+@ Google search box for site
+  - customize look and feel:
+    http://code.google.com/intl/en/apis/customsearch/docs/ui.html
+    - 
+  [...]
 
 @ Update 500 error page
 

@@ -1,0 +1,7 @@
+<div class="list_of_countries">
+	<% @country_names_with_entries['event'].each do |country_name| %>
+    <div>
+      <a href="webcal://www.contactimprov.net/calendars/feed/<%= link_safe_name(country_name) %>"><%= country_name %></a>
+    </div>
+	<% end %>
+</div>
