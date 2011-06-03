@@ -1,30 +1,37 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-       "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
-
+<html>
 <head>
-  <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-  <title>The page you were looking for doesn't exist (404)</title>
-	<style type="text/css">
-		body { background-color: #fff; color: #666; text-align: center; font-family: arial, sans-serif; }
-		div.dialog {
-			width: 25em;
-			padding: 0 4em;
-			margin: 4em auto 0 auto;
-			border: 1px solid #ccc;
-			border-right-color: #999;
-			border-bottom-color: #999;
-		}
-		h1 { font-size: 100%; color: #f00; line-height: 1.5em; }
-	</style>
-</head>
+	<meta http-equiv="content-type" content="text/html; charset=utf-8">
+	<title>
+    Page not found (404) - ContactImprov.net
+	</title>
+	<link href="/contact.css" type="text/css" rel="stylesheet">
 
+</head>
 <body>
+	<!--#include virtual="/includes/header.html"-->
+
   <!-- This file lives in public/404.html -->
-  <div class="dialog">
-    <h1>The page you were looking for doesn't exist.</h1>
-    <p>You may have mistyped the address or the page may have moved.</p>
+  <div style="padding-bottom: 1em;">
+    <h1>Page not found!</h1>
+    <p style="font-size: 1.2em;">You may have mistyped the address or the page may have moved.</p>
   </div>
+
+  <h2>Search the site</h2>
+
+  <div>
+    <form action="http://www.contactimprov.net/search/results" id="cse-search-box">
+      <div>
+        <input type="hidden" name="cx" value="018296936324905345799:jcwhoejcprq" />
+        <input type="hidden" name="cof" value="FORID:9" />
+        <input type="hidden" name="ie" value="UTF-8" />
+        <input type="text" name="q" size="31" />
+        <input type="submit" name="sa" value="Search" />
+      </div>
+    </form>
+    <script type="text/javascript" src="http://www.google.com/cse/brand?form=cse-search-box&lang=en&sitesearch=true"></script>
+  </div>
+
+
+	<!--#include virtual="/includes/footer.html"-->
 </body>
 </html>
