@@ -1,39 +1,41 @@
-<div style="clear: both; margin-bottom: 1.5em;">
-	<div style="float: left; width: 12%;">
-	</div>
-	<div style="float: right; width: 88%;">
-		<div class='entry_title'>
-			<% if !entry.url.blank? %>
-			  <%= link_to entry.title, entry.url.address %>
-			<% else %>
-				<%= raw entry.title %>
-			<% end %>
-		</div>
-		<div class='entry_location'><%= raw entry.location.full_address_one_line %></div>
-		<div style="margin-left: 1em;">
-			<% if !entry.description.blank? %>
-				<div class='entry_description'>
-					<%= raw RedCloth.new(entry.description.strip, [:filter_html]).to_html %>
-				</div>
-			<% end %>
-			<% if !entry.cost.blank? %>
-				<div class='entry_cost'>
-					<%= raw RedCloth.new(entry.cost.strip, [:filter_html]).to_html %>
-				</div>
-			<% end %>
-			<% if !entry.schedule.blank? %>
-				<div class='entry_schedule'>
-					<%= raw RedCloth.new(entry.schedule.strip, [:filter_html]).to_html %>
-				</div>
-			<% end %>
-			<div class='entry_contact'><span style="color: #555;">CONTACT:</span> <%= raw format_contact_info(entry) %></div>
-			<div class='entry_updated'>
-				<%= link_to 'Permalink', :action => 'show', :controller => 'jams', :id => entry.id %>
-				&mdash;
-				Updated:
-				<%= entry.updated_at.strftime('%b %d %Y') %>]
-			</div>
-		</div>
-	</div>
-</div>
-<div style="clear: both; padding-top: 1.8em;"></div>
+<% cache("jam_entry_#{entry.id}") do %>
+  <div style="clear: both; margin-bottom: 1.5em;">
+  	<div style="float: left; width: 12%;">
+  	</div>
+  	<div style="float: right; width: 88%;">
+  		<div class='entry_title'>
+  			<% if !entry.url.blank? %>
+  			  <%= link_to entry.title, entry.url.address %>
+  			<% else %>
+  				<%= raw entry.title %>
+  			<% end %>
+  		</div>
+  		<div class='entry_location'><%= raw entry.location.full_address_one_line %></div>
+  		<div style="margin-left: 1em;">
+  			<% if !entry.description.blank? %>
+  				<div class='entry_description'>
+  					<%= raw RedCloth.new(entry.description.strip, [:filter_html]).to_html %>
+  				</div>
+  			<% end %>
+  			<% if !entry.cost.blank? %>
+  				<div class='entry_cost'>
+  					<%= raw RedCloth.new(entry.cost.strip, [:filter_html]).to_html %>
+  				</div>
+  			<% end %>
+  			<% if !entry.schedule.blank? %>
+  				<div class='entry_schedule'>
+  					<%= raw RedCloth.new(entry.schedule.strip, [:filter_html]).to_html %>
+  				</div>
+  			<% end %>
+  			<div class='entry_contact'><span style="color: #555;">CONTACT:</span> <%= raw format_contact_info(entry) %></div>
+  			<div class='entry_updated'>
+  				<%= link_to 'Permalink', :action => 'show', :controller => 'jams', :id => entry.id %>
+  				&mdash;
+  				Updated:
+  				<%= entry.updated_at.strftime('%b %d %Y') %>]
+  			</div>
+  		</div>
+  	</div>
+  </div>
+  <div style="clear: both; padding-top: 1.8em;"></div>
+<% end %>

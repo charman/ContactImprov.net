@@ -29,9 +29,7 @@ TODO:
 
 @ Performance tuning
   - caching
-    - jams
-    - organizations
-    - people
+    - index page for jams, organizations, people
     - events for calendars
     - Google Maps
   - database optimization

@@ -3,6 +3,7 @@ class OrganizationsController < ApplicationController
   include EntryFormWithOptionalModels
 
   before_filter :login_required, :only => [:create, :delete, :edit, :new]
+  cache_sweeper :organization_entry_sweeper
 
 
   def index

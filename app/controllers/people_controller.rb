@@ -3,6 +3,7 @@ class PeopleController < ApplicationController
   include EntryFormWithOptionalModels
 
   before_filter :login_required, :only => [:create, :delete, :edit, :new]
+  cache_sweeper :person_entry_sweeper
 
 
   def index

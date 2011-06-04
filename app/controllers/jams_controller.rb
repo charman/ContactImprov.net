@@ -3,6 +3,7 @@ class JamsController < ApplicationController
   include EntryFormWithOptionalModels
 
   before_filter :login_required, :only => [:create, :delete, :edit, :new]
+  cache_sweeper :jam_entry_sweeper
 
 
   def index
