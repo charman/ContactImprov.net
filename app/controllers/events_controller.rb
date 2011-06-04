@@ -19,8 +19,8 @@ class EventsController < ApplicationController
     #   date is in that month [using EventEntry.find_by_start_date_year_month()].  This prevents an
     #   event that spans two months from being listed twice.
     if year and month
-      @entries_by_year_month = { year => { month => EventEntry.find_by_year_month(year, month) } }
       @entries = EventEntry.find_by_year_month(year, month)
+      @entries_by_year_month = { year => { month => @entries } }
     elsif year
       @entries_by_year_month = Hash.new
       @entries_by_year_month[year] = Hash.new
