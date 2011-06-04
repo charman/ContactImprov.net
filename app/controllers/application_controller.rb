@@ -162,7 +162,7 @@ class ApplicationController < ActionController::Base
 
   #  User is logged in, but is trying to access a restricted page
   def deny_access_to_user
-    flash[:denied_url] = request.url
+    flash[:denied_path] = request.path
     redirect_to '/denied'
   end
 

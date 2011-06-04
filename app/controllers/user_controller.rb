@@ -179,6 +179,8 @@ class UserController < ApplicationController
   end
 
   def denied
+    #  Keep flash[:denied_path]
+    flash.keep
   end
 
   def edit

@@ -92,8 +92,10 @@ class SessionsController < ApplicationController
     if logged_in?
       #  Users who are logged in should not be shown the logon page, per feedback from confused users
       redirect_back_or_home 
-    else
-      flash[:login_referer_page] = request.referer if request.referer
+    elsif request.referer
+      #  If the user tried to access a page was denied, redirect them to the original page they
+      #   were denied access to, and not the '/denied' page
+      flash[:login_referer_page] = (flash[:denied_path] ? flash[:denied_path] : request.referer)
     end
   end
 
