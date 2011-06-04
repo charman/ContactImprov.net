@@ -82,6 +82,10 @@ class EventEntry < ActiveRecord::Base
     self.find_by_year_month(year, month, true)
   end
 
+  def self.find_future
+    self.find(:all, :order => 'start_date ASC', :conditions => 'end_date > CURRENT_DATE()')
+  end
+
   def self.find_future_by_country_name(country_name)
     self.find(:all,
       :from => "ci_event_entries, ci_locations",
