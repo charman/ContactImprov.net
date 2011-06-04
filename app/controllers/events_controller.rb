@@ -7,13 +7,6 @@ class EventsController < ApplicationController
   
 
   def index
-    @entries = EventEntry.find_future
-
-    @entries_by_year_month = Hash.new
-    EventEntry.distinct_nonpast_years.each do |y| 
-      @entries_by_year_month[y] = Hash.new
-      EventEntry.distinct_nonpast_months(y).each { |m| @entries_by_year_month[y][m] = EventEntry.find_by_start_date_year_month(y, m) }
-    end
   end
 
   def list
