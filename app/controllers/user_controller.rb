@@ -33,12 +33,11 @@ class UserController < ApplicationController
 
     if @user && @user.state == 'active'
       # User has already been activated, so redirect on to original page
-      # TODO: And how do we figure out what the original page was?
       # TODO: Do we really want to log the user on with just an activation code?  Now that the
       #        activation code is no longer being deleted on activation, it effectively becomes
       #        second password - but a password that the user cannot change.
       UserSession.create(@user)   # Log the user in
-      redirect_back_or_default('/')
+      redirect_back_or_home
       return
     end
 

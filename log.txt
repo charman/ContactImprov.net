@@ -36,8 +36,6 @@ TODO:
 
 ---
 
-@ Logging out should not redirect the user to /session/new
-
 @ Calendars
   - iCal feeds
     - text for calendar subscription page
@@ -66,6 +64,11 @@ TODO:
   - fix javascript warning message
 
 ---
+
+@ Figure out why .text.erb email templates aren't being sent as plain
+  text, and why settting:
+    defaults :content_type => "text/plain"
+  doesn't seem to be working 
 
 @ Rewrite forms to use new(-to-project) Rails support for nested forms
 

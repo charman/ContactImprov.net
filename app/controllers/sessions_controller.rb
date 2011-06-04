@@ -25,16 +25,13 @@ class SessionsController < ApplicationController
       end
     end
     
-#    #  User.authenticate() will fail if the user's state is not 'active'
-#    self.current_user = User.authenticate(params[:email], params[:password])
     @user_session = UserSession.new(
       :email => params[:email], 
       :password => params[:password],
       :remember_me => (params[:remember_me] == "1")
     )
     if @user_session.save
-      redirect_back_or_default('/')
-      flash[:notice] = "Logged in successfully"
+      redirect_to (flash[:login_referer_page] ? flash[:login_referer_page] : '/')
     else
       if params[:email].empty?
         flash[:notice] = "<h2>Empty email address</h2>" +
@@ -86,15 +83,18 @@ class SessionsController < ApplicationController
   #  The '/logout' action is an alias for '/session/destroy
   def destroy
     current_user_session.destroy if current_user_session 
-    flash[:notice] = "You have been logged out."
-    redirect_to new_session_path
+    redirect_back_or_home
   end
 
   #  The 'new' action POST's data to the 'create' action
   #  The '/login' action is an alias for '/session/new
   def new
-    #  Users who are logged in should not be shown the logon page, per feedback from confused users
-    redirect_to '/' if logged_in?
+    if logged_in?
+      #  Users who are logged in should not be shown the logon page, per feedback from confused users
+      redirect_back_or_home 
+    else
+      flash[:login_referer_page] = request.referer if request.referer
+    end
   end
 
   def nocookiesforyou
