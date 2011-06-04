@@ -7,7 +7,7 @@ ContactImprovNet::Application.routes.draw do
   end
 
   match '/activate/:activation_code' => 'user#activate', :as => :activate
-  match '/denied' => 'home#denied', :as => :denied
+  match '/denied' => 'user#denied', :as => :denied
   match '/login' => 'sessions#new', :as => :login
   match '/logout' => 'sessions#destroy', :as => :logout
   match '/reset_password/:password_reset_code' => 'user#reset_password', :as => :activate

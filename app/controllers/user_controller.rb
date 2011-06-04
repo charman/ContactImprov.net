@@ -178,6 +178,9 @@ class UserController < ApplicationController
     end
   end
 
+  def denied
+  end
+
   def edit
     @priority_countries = ["United States", "Austria", "Brazil", "Canada", "France", 
       "Germany", "Italy", "Spain", "Switzerland", "United Kingdom"]

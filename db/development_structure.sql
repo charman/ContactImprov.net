@@ -54,7 +54,10 @@ CREATE TABLE `ci_event_entries` (
   `ci_notes` text,
   `created_at` datetime DEFAULT NULL,
   `updated_at` datetime DEFAULT NULL,
-  PRIMARY KEY (`event_entry_id`)
+  PRIMARY KEY (`event_entry_id`),
+  KEY `index_ci_event_entries_on_start_date` (`start_date`),
+  KEY `index_ci_event_entries_on_end_date` (`end_date`),
+  KEY `index_ci_event_entries_on_location_id` (`location_id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=15248 DEFAULT CHARSET=utf8;
 
 CREATE TABLE `ci_event_entry_versions` (
@@ -77,7 +80,7 @@ CREATE TABLE `ci_event_entry_versions` (
   `ci_notes` text,
   `updated_at` datetime DEFAULT NULL,
   PRIMARY KEY (`event_entry_version_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=15473 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=15472 DEFAULT CHARSET=utf8;
 
 CREATE TABLE `ci_jam_entries` (
   `jam_entry_id` int(11) NOT NULL AUTO_INCREMENT,
@@ -96,7 +99,8 @@ CREATE TABLE `ci_jam_entries` (
   `ci_notes` text,
   `created_at` datetime DEFAULT NULL,
   `updated_at` datetime DEFAULT NULL,
-  PRIMARY KEY (`jam_entry_id`)
+  PRIMARY KEY (`jam_entry_id`),
+  KEY `index_ci_jam_entries_on_location_id` (`location_id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=15140 DEFAULT CHARSET=utf8;
 
 CREATE TABLE `ci_jam_entry_versions` (
@@ -175,7 +179,8 @@ CREATE TABLE `ci_organization_entries` (
   `ci_notes` text,
   `created_at` datetime DEFAULT NULL,
   `updated_at` datetime DEFAULT NULL,
-  PRIMARY KEY (`organization_entry_id`)
+  PRIMARY KEY (`organization_entry_id`),
+  KEY `index_ci_organization_entries_on_location_id` (`location_id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=15043 DEFAULT CHARSET=utf8;
 
 CREATE TABLE `ci_organization_entry_versions` (
@@ -241,7 +246,8 @@ CREATE TABLE `ci_person_entries` (
   `ci_notes` text,
   `created_at` datetime DEFAULT NULL,
   `updated_at` datetime DEFAULT NULL,
-  PRIMARY KEY (`person_entry_id`)
+  PRIMARY KEY (`person_entry_id`),
+  KEY `index_ci_person_entries_on_location_id` (`location_id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=15108 DEFAULT CHARSET=utf8;
 
 CREATE TABLE `ci_person_entry_versions` (
@@ -441,3 +447,5 @@ INSERT INTO ci_schema_migrations (version) VALUES ('20090126191118');
 INSERT INTO ci_schema_migrations (version) VALUES ('20101223194518');
 
 INSERT INTO ci_schema_migrations (version) VALUES ('20101223201613');
+
+INSERT INTO ci_schema_migrations (version) VALUES ('20110603202457');
