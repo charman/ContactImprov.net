@@ -68,9 +68,7 @@ module ContactImprovNet
       :email_prefix => "[CI.net - RailsError] ",
       :sender_address =>  %{"CI.net" <app.error@contactimprov.net>},
       :exception_recipients => %w{charman@acm.org}
+
+    config.cache_store = :mem_cache_store
   end
 end
-
-
-#  TODO: Where should the code below be moved to as part of the Rails 3 upgrade?  The initializers directory?
-ActionController::Base.cache_store = :mem_cache_store
