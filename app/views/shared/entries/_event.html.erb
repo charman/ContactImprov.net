@@ -1,54 +1,55 @@
-<div style="clear: both; margin-bottom: 1.5em;">
-	<div style="float: left; width: 12%;">
-		<div class="date_box"> 
-			<span class="day"><%= entry.start_date.strftime('%e') %></span> 
-			<span class="month"><%= entry.start_date.strftime('%b').upcase %></span> 
-			<span class="year"><%= entry.start_date.strftime('%Y') %></span> 
-		</div>
-		<% if entry.start_date != entry.end_date %>
-			<div style="padding-left: 28px; padding-bottom: 4px;">
-				to
-			</div>
-			<div class="date_box"> 
-				<span class="day"><%= entry.end_date.strftime('%e') %></span> 
-				<span class="month"><%= entry.end_date.strftime('%b') %></span> 
-			    <span class="year"><%= entry.end_date.strftime('%Y') %></span> 
-			</div>
-		<% end %>
-	</div>
-	<div style="float: right; width: 88%;">
-		<div class='entry_title'>
-			<% if entry.url %>
-				<%= link_to entry.title, entry.url.address %>
-			<% else %>
-				<%= raw entry.title %>
-			<% end %>
-		</div>
-		<div class='entry_location'><%= raw entry.location.full_address_one_line %></div>
-		<div style="margin-left: 1em;">
-			<% if !entry.description.blank? %>
-				<div class='entry_description'>
-					<%= raw RedCloth.new(entry.description.strip, [:filter_html]).to_html %>
-				</div>
-			<% end %>
-			<% if !entry.cost.blank? %>
-				<div class='entry_cost'>
-					<%= raw RedCloth.new(entry.cost.strip, [:filter_html]).to_html %>
-				</div>
-			<% end %>
-			<div class='entry_contact'><span style="color: #555;">CONTACT:</span> <%= raw format_contact_info(entry) %></div>
-			<div class='entry_updated'>
-				<%= link_to 'Permalink', :action => 'show', :controller => 'events', :id => entry.id %>
-				&mdash;
-				Updated:
-				<%= entry.updated_at.strftime('%b %d %Y') %>
-			</div>
-      <div style="text-align: right; margin-top: 0.2em;">
-      	<%= raw add_to_google_calendar_button(entry) %>
-      </div>
-		</div>
-	</div>
-</div>
+<% cache("event_entry_#{entry.id}") do %>
+  <div style="clear: both; margin-bottom: 1.5em;">
+  	<div style="float: left; width: 12%;">
+  		<div class="date_box"> 
+  			<span class="day"><%= entry.start_date.strftime('%e') %></span> 
+  			<span class="month"><%= entry.start_date.strftime('%b').upcase %></span> 
+  			<span class="year"><%= entry.start_date.strftime('%Y') %></span> 
+  		</div>
+  		<% if entry.start_date != entry.end_date %>
+  			<div style="padding-left: 28px; padding-bottom: 4px;">
+  				to
+  			</div>
+  			<div class="date_box"> 
+  				<span class="day"><%= entry.end_date.strftime('%e') %></span> 
+  				<span class="month"><%= entry.end_date.strftime('%b') %></span> 
+  			    <span class="year"><%= entry.end_date.strftime('%Y') %></span> 
+  			</div>
+  		<% end %>
+  	</div>
+  	<div style="float: right; width: 88%;">
+  		<div class='entry_title'>
+  			<% if entry.url %>
+  				<%= link_to entry.title, entry.url.address %>
+  			<% else %>
+  				<%= raw entry.title %>
+  			<% end %>
+  		</div>
+  		<div class='entry_location'><%= raw entry.location.full_address_one_line %></div>
+  		<div style="margin-left: 1em;">
+  			<% if !entry.description.blank? %>
+  				<div class='entry_description'>
+  					<%= raw RedCloth.new(entry.description.strip, [:filter_html]).to_html %>
+  				</div>
+  			<% end %>
+  			<% if !entry.cost.blank? %>
+  				<div class='entry_cost'>
+  					<%= raw RedCloth.new(entry.cost.strip, [:filter_html]).to_html %>
+  				</div>
+  			<% end %>
+  			<div class='entry_contact'><span style="color: #555;">CONTACT:</span> <%= raw format_contact_info(entry) %></div>
+  			<div class='entry_updated'>
+  				<%= link_to 'Permalink', :action => 'show', :controller => 'events', :id => entry.id %>
+  				&mdash;
+  				Updated:
+  				<%= entry.updated_at.strftime('%b %d %Y') %>
+  			</div>
+        <div style="text-align: right; margin-top: 0.2em;">
+        	<%= raw add_to_google_calendar_button(entry) %>
+        </div>
+  		</div>
+  	</div>
+  </div>
 
-
-<div style="clear: both; padding-top: 1.8em;"></div>
+  <div style="clear: both; padding-top: 1.8em;"></div>
+<% end %>

@@ -14,55 +14,57 @@
 	Detailed Listings
 </div>
 
-<div style="padding-left: 3em; padding-bottom: 1em;">
-	<div style="padding-bottom: 1em; font-size: 1.2em; font-weight: bold;">
-		<a href="/events/list">View All Upcoming Events</a>
-	</div>
+<% cache do %>
+  <div style="padding-left: 3em; padding-bottom: 1em;">
+  	<div style="padding-bottom: 1em; font-size: 1.2em; font-weight: bold;">
+  		<a href="/events/list">View All Upcoming Events</a>
+  	</div>
 
-	<div style="padding-bottom: 0.4em; font-size: 1.2em; font-weight: bold;">
-		View by Year or Month
-	</div>
+  	<div style="padding-bottom: 0.4em; font-size: 1.2em; font-weight: bold;">
+  		View by Year or Month
+  	</div>
 
-	<% EventEntry.distinct_years.each do |y| %>
-		<div style="padding-bottom: 1em; padding-left: 2em;">
-			<span style="font-size: 1.2em; font-weight: bold;"><a href="/events/list/<%= y %>"><%= y %></a>:</span>
-			<% EventEntry.distinct_months(y).each do |m| %>
-				<span style="padding-left: 0.5em;">
-					<a href="/events/list/<%= y %>/<%= m.to_i %>"><%= Date::MONTHNAMES[m.to_i] %></a>
-				</span>
-			<% end %>
-		</div>
-	<% end %>
-</div>
+  	<% EventEntry.distinct_years.each do |y| %>
+  		<div style="padding-bottom: 1em; padding-left: 2em;">
+  			<span style="font-size: 1.2em; font-weight: bold;"><a href="/events/list/<%= y %>"><%= y %></a>:</span>
+  			<% EventEntry.distinct_months(y).each do |m| %>
+  				<span style="padding-left: 0.5em;">
+  					<a href="/events/list/<%= y %>/<%= m.to_i %>"><%= Date::MONTHNAMES[m.to_i] %></a>
+  				</span>
+  			<% end %>
+  		</div>
+  	<% end %>
+  </div>
 
-<hr />
+  <hr />
 
-<div style="font-size: 1.3em; font-weight: bold; padding-left: 1em; padding-bottom: 0.7em; padding-top: 1em;">
-	Summary of Listings
-</div>
+  <div style="font-size: 1.3em; font-weight: bold; padding-left: 1em; padding-bottom: 0.7em; padding-top: 1em;">
+  	Summary of Listings
+  </div>
 
-<div style="padding-left: 3em;">
-	<table class="entry_summary_table">
-		<% EventEntry.distinct_nonpast_years.each do |y| %>
-			<% EventEntry.distinct_nonpast_months(y).each do |m| %>
-				<tr>
-					<td colspan="3" style="font-size: large;">
-						<b><%= Date::MONTHNAMES[m.to_i] %> - <%= y %></b>
-					</td>
-					<td></td>
-				</tr>
+  <div style="padding-left: 3em;">
+  	<table class="entry_summary_table">
+  		<% EventEntry.distinct_nonpast_years.each do |y| %>
+  			<% EventEntry.distinct_nonpast_months(y).each do |m| %>
+  				<tr>
+  					<td colspan="3" style="font-size: large;">
+  						<b><%= Date::MONTHNAMES[m.to_i] %> - <%= y %></b>
+  					</td>
+  					<td></td>
+  				</tr>
 
-				<% @entries_by_year_month[y][m].each do |entry| %>
-			    	<tr>
-						<td style="border-bottom: none; width: 7em;" />
-						<td style="font-size: 0.9em; width: 5em;"><%= entry.date_range_without_year %></td>
-						<td style="font-size: 0.9em;"><%= raw format_entry_location(entry)%></td>
-						<td style="font-size: 0.9em;">
-							<a href="/events/show/<%= entry.id %>"><%= raw entry.title %></a>
-						</td>
-					</tr>
-				<% end %>
-			<% end %>
-		<% end %>
-	</table>
-</div>
+  				<% @entries_by_year_month[y][m].each do |entry| %>
+  			    	<tr>
+  						<td style="border-bottom: none; width: 7em;" />
+  						<td style="font-size: 0.9em; width: 5em;"><%= entry.date_range_without_year %></td>
+  						<td style="font-size: 0.9em;"><%= raw format_entry_location(entry)%></td>
+  						<td style="font-size: 0.9em;">
+  							<a href="/events/show/<%= entry.id %>"><%= raw entry.title %></a>
+  						</td>
+  					</tr>
+  				<% end %>
+  			<% end %>
+  		<% end %>
+  	</table>
+  </div>
+<% end %>

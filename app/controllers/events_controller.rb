@@ -3,7 +3,8 @@ class EventsController < ApplicationController
   include EntryFormWithOptionalModels
 
   before_filter :login_required, :only => [:create, :delete, :edit, :new]
-
+  cache_sweeper :event_entry_sweeper
+  
 
   def index
     @entries = EventEntry.find(:all, :order => 'start_date ASC', :conditions => 'end_date > CURRENT_DATE()')

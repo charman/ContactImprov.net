@@ -29,8 +29,11 @@ TODO:
 
 @ Performance tuning
   - caching
-    - rewrite code to use sweepers
-    - more caching calls
+    - jams
+    - organizations
+    - people
+    - events for calendars
+    - Google Maps
   - database optimization
     [...]
 
