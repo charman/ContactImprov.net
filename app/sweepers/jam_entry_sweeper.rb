@@ -17,6 +17,7 @@ private
 
   def expire_cache_for(jam_entry)
     expire_fragment("jam_listing_#{jam_entry.id}")
+    expire_fragment(:controller => 'jams', :action => 'index')
   end
 
 end

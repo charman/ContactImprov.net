@@ -9,80 +9,83 @@
 
 <div style="border-bottom: solid 1px #808080; padding-bottom: 1em;"></div>
 
+<% cache do %>
 
-<div style="font-size: 1.3em; font-weight: bold; padding-left: 1em; padding-bottom: 0.7em; padding-top: 1em;">
-	Detailed Listings
-</div>
+  <div style="font-size: 1.3em; font-weight: bold; padding-left: 1em; padding-bottom: 0.7em; padding-top: 1em;">
+  	Detailed Listings
+  </div>
 
-<div style="padding-left: 3em; padding-bottom: 1em;">
-	<div style="padding-bottom: 1em; font-size: 1.2em; font-weight: bold;">
-		<a href="/<%= @entry_type.pluralize %>/list">View All</a>
-	</div>
+  <div style="padding-left: 3em; padding-bottom: 1em;">
+  	<div style="padding-bottom: 1em; font-size: 1.2em; font-weight: bold;">
+  		<a href="/<%= @entry_type.pluralize %>/list">View All</a>
+  	</div>
 
-	<div style="font-size: 1.2em; font-weight: bold;">View by Country:</div>
+  	<div style="font-size: 1.2em; font-weight: bold;">View by Country:</div>
 	
-	<div style="padding-bottom: 1em; padding-left: 1em;">
-		<% @country_names_with_entries[@entry_type].each do |country_name| %>
-			<span style="padding-left: 0.4em;"><a href="/<%= @entry_type.pluralize %>/list/<%= link_safe_name(country_name) %>"><%= country_name %></a></span>
-		<% end %>
-	</div>
+  	<div style="padding-bottom: 1em; padding-left: 1em;">
+  		<% @country_names_with_entries[@entry_type].each do |country_name| %>
+  			<span style="padding-left: 0.4em;"><a href="/<%= @entry_type.pluralize %>/list/<%= link_safe_name(country_name) %>"><%= country_name %></a></span>
+  		<% end %>
+  	</div>
 
-	<div style="font-size: 1.2em; font-weight: bold;">View by US State:</div>
+  	<div style="font-size: 1.2em; font-weight: bold;">View by US State:</div>
 
-	<div style="padding-bottom: 1em; padding-left: 1em;">
-		<% @us_state_abbreviations_with_entries[@entry_type].each do |us_state_abbreviation| %>
-			<span style="padding-left: 0.4em;">
-				<a href="/<%= @entry_type.pluralize %>/list/United_States/<%= UsState.find_by_abbreviation(us_state_abbreviation).underlined_name %>"><%= us_state_abbreviation %></a>
-			</span>
-		<% end %>
-	</div>
-</div>
+  	<div style="padding-bottom: 1em; padding-left: 1em;">
+  		<% @us_state_abbreviations_with_entries[@entry_type].each do |us_state_abbreviation| %>
+  			<span style="padding-left: 0.4em;">
+  				<a href="/<%= @entry_type.pluralize %>/list/United_States/<%= UsState.find_by_abbreviation(us_state_abbreviation).underlined_name %>"><%= us_state_abbreviation %></a>
+  			</span>
+  		<% end %>
+  	</div>
+  </div>
 
-<div style="border-bottom: solid 1px #808080;"></div>
+  <div style="border-bottom: solid 1px #808080;"></div>
 
 
-<div style="font-size: 1.3em; font-weight: bold; padding-left: 1em; padding-top: 1em;">
-	Summary of Listings
-</div>
+  <div style="font-size: 1.3em; font-weight: bold; padding-left: 1em; padding-top: 1em;">
+  	Summary of Listings
+  </div>
 
-<div style="padding-left: 3em;">
-	<table class="entry_summary_table">
-		<% @country_names_with_entries[@entry_type].each do |country_name| %>
-			<tr>
-				<td style="font-size: large;">
-					<b><%= raw country_name.gsub(/\s/, '&nbsp;') %></b>
-				</td>
-				<td colspan="2" />
-			</tr>
+  <div style="padding-left: 3em;">
+  	<table class="entry_summary_table">
+  		<% @country_names_with_entries[@entry_type].each do |country_name| %>
+  			<tr>
+  				<td style="font-size: large;">
+  					<b><%= raw country_name.gsub(/\s/, '&nbsp;') %></b>
+  				</td>
+  				<td colspan="2" />
+  			</tr>
 
-			<% #  We can't use country.is_usa? here because when country (as part of @countries_with_entries)
-			   #   is cached, we can only access the member variables of the cached objects, and not the
-			   #   methods of the cached objects.
-			   if country_name == 'United States' %>
-				<ul>
-					<% @us_state_names_with_entries[@entry_type].each do |us_state_name| %>
-						<td style="font-style: italic; font-weight: bold; padding-left: 1em;"><%= us_state_name %></td>
-						<td colspan="2" />
-						<% @entry_ids_for_us_state[@entry_type][us_state_name].each do |entry_id| %>
-							<% entry = @entry_class.find(entry_id) %>
-					    	<tr>
-								<td style="border-bottom: none; width: 7em;" />
-								<td style="font-size: 0.9em;"><%= raw entry.location.city_name %></td>
-								<td style="font-size: 0.9em;"><a href="/<%= @entry_type.pluralize %>/show/<%= entry_id %>"><%= raw entry.title %></a></td>
-							</tr>
-						<% end %>
-					<% end %>
-				</ul>
-			<% else %>
-				<% @entry_ids_for_country[@entry_type][country_name].each do |entry_id| %>
-					<% entry = @entry_class.find(entry_id) %>
-			    	<tr>
-						<td style="border-bottom: none; width: 7em;" />
-						<td style="font-size: 0.9em;"><%= raw entry.location.city_name %></td>
-						<td style="font-size: 0.9em;"><a href="/<%= @entry_type.pluralize %>/show/<%= entry_id %>"><%= raw entry.title %></a></td>
-					</tr>
-				<% end %>
-			<% end %>
-		<% end %>
-	</table>
-</div>
+  			<% #  We can't use country.is_usa? here because when country (as part of @countries_with_entries)
+  			   #   is cached, we can only access the member variables of the cached objects, and not the
+  			   #   methods of the cached objects.
+  			   if country_name == 'United States' %>
+  				<ul>
+  					<% @us_state_names_with_entries[@entry_type].each do |us_state_name| %>
+  						<td style="font-style: italic; font-weight: bold; padding-left: 1em;"><%= us_state_name %></td>
+  						<td colspan="2" />
+  						<% @entry_ids_for_us_state[@entry_type][us_state_name].each do |entry_id| %>
+  							<% entry = @entry_class.find(entry_id) %>
+  					    	<tr>
+  								<td style="border-bottom: none; width: 7em;" />
+  								<td style="font-size: 0.9em;"><%= raw entry.location.city_name %></td>
+  								<td style="font-size: 0.9em;"><a href="/<%= @entry_type.pluralize %>/show/<%= entry_id %>"><%= raw entry.title %></a></td>
+  							</tr>
+  						<% end %>
+  					<% end %>
+  				</ul>
+  			<% else %>
+  				<% @entry_ids_for_country[@entry_type][country_name].each do |entry_id| %>
+  					<% entry = @entry_class.find(entry_id) %>
+  			    	<tr>
+  						<td style="border-bottom: none; width: 7em;" />
+  						<td style="font-size: 0.9em;"><%= raw entry.location.city_name %></td>
+  						<td style="font-size: 0.9em;"><a href="/<%= @entry_type.pluralize %>/show/<%= entry_id %>"><%= raw entry.title %></a></td>
+  					</tr>
+  				<% end %>
+  			<% end %>
+  		<% end %>
+  	</table>
+  </div>
+
+<% end %>

@@ -29,11 +29,8 @@ TODO:
 
 @ Performance tuning
   - caching
-    - index page for jams, organizations, people
-    - events for iCalendar feeds
-    - when a user is logged on, prevent the database from being
-       queried with each page view
     - Google Maps
+    - events for iCalendar feeds
   - database optimization
     [...]
 

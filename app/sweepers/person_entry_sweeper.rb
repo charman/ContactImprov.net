@@ -17,6 +17,7 @@ private
 
   def expire_cache_for(person_entry)
     expire_fragment("person_listing_#{person_entry.id}")
+    expire_fragment(:controller => 'people', :action => 'index')
   end
 
 end

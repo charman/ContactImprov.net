@@ -17,6 +17,7 @@ private
 
   def expire_cache_for(organization_entry)
     expire_fragment("organization_listing_#{organization_entry.id}")
+    expire_fragment(:controller => 'organizations', :action => 'index')
   end
 
 end
