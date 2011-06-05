@@ -30,11 +30,17 @@ TODO:
 @ Performance tuning
   - caching
     - Google Maps
+    - better caching for 'list' views
+      - by_country
+      - events (trickier)
     - events for iCalendar feeds
   - database optimization
     [...]
 
 ---
+
+@ Fix problem where Country and State fields are highlighted in red
+when editing an event
 
 @ Calendars
   - iCal feeds
