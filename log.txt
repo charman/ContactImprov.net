@@ -27,6 +27,19 @@ THIS COMMIT:
 
 TODO:
 
+@ Google Maps
+  - switch from JSON to XML
+  - caching
+  - maps on more pages
+    - [...]
+  - links for directions to here, from here
+  ...
+  - map key explaining what the markers mean
+    - figure out how to reduce size of key markers
+    - change purple dot icon to something more explanatory
+       (multi-colored icon with # of things?)
+  - fix javascript warning message
+
 @ Performance tuning
   - caching
     - Google Maps
@@ -55,19 +68,6 @@ when editing an event
     - add links to actual actions
   - admin action to attempt to re-geocode
   - send admin an email if geocoding failed
-
-@ Google Maps
-  - caching
-  - switch from JSON to XML
-  - maps on more pages
-    - [...]
-  - links for directions to here, from here
-  ...
-  - map key explaining what the markers mean
-    - figure out how to reduce size of key markers
-    - change purple dot icon to something more explanatory
-       (multi-colored icon with # of things?)
-  - fix javascript warning message
 
 ---
 

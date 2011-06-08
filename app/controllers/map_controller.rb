@@ -41,6 +41,17 @@ class MapController < ApplicationController
     render :layout => false, :json => @marker_info, :callback => params[:callback]
   end
 
+  def newmap
+  end
+
+  def newmap_feed
+    @entries = JamEntry.find_geocoded_entries
+
+    respond_to do |format|
+      format.xml
+    end
+  end
+
   def people
     @entry_category = 'people'
     render :action => 'index'
