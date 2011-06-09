@@ -72,10 +72,10 @@ div.banner_image {
 /* === jQuery UI overrides  === */
 
 .ui-dialog-titlebar {
-    font-size: 80%;
+    font-size: 120%;
 }
 
-.ui-dialog-content {
+.ui-widget-content {
     font-size: 62.5%;
 }
 

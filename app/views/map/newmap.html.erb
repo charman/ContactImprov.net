@@ -46,7 +46,14 @@
 
       function show_dialog(entries) {
         if (entries.length > 1) {
-          //  TODO: Deal with case with multiple entries
+          var h = '';
+          for (i in entries) {
+            h += '<h3><a href="#">' + entries[i].title + '</a></h3><div>Random Content</div>';
+          }
+          $('<div></div>')
+            .html(h)
+            .dialog({'title': 'Multiple Entries'})
+            .accordion();
         }
         else {
           $('<div></div>')
