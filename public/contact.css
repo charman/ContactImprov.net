@@ -68,6 +68,19 @@ div.banner_image {
 }
 
 
+
+/* === jQuery UI overrides  === */
+
+.ui-dialog-titlebar {
+    font-size: 80%;
+}
+
+.ui-dialog-content {
+    font-size: 62.5%;
+}
+
+
+
 /* === NAVIGATION BAR === */
 
 div.navigation_bar {
