@@ -3,30 +3,27 @@
   <script src="/javascripts/jquery.ui.map.js" type="text/javascript"></script>
 
   <script type="text/javascript">
-    //  Global variables
-  	var entries_by_lat_comma_lng = new Array();
-
     $(function() {
-      $('#map_canvas').gmap({ 'center': new google.maps.LatLng(39.2083424, -76.53943019999997), 'streetViewControl': false, 'callback': function (map) {
+      $('#map_canvas').gmap({ 'center': new google.maps.LatLng(37.4419, 0), 'zoom': 2, 'streetViewControl': false, 'callback': function (map) {
         $.get('/map/newmap_feed.xml', function(xml_data) {
+        	var entries_by_lat_comma_lng = new Array();
 
           //  Parse XML feed, store entry info in global array 'entries_by_lat_comma_lng'
           $('listings', xml_data).children('listing').each(function() {
             var latitude  = $('latitude', this).text();
             var longitude = $('longitude', this).text();
-            var title     = $('title', this).text();
-
             var lat_comma_lng = latitude + ',' + longitude;
 
             if (!(lat_comma_lng in entries_by_lat_comma_lng)) {
               entries_by_lat_comma_lng[lat_comma_lng] = new Array();
             } 
             entries_by_lat_comma_lng[lat_comma_lng].push({
-              'title': title
+              'title': $('title', this).text()
+              //  TODO: Add more fields here
             });
           });
 
-          //  Add markers and marker callback function
+          //  Add a Marker for each GPS coordinate
           for (var lat_comma_lng in entries_by_lat_comma_lng) {
             var latlng = lat_comma_lng.split(',');
             var total_entries = entries_by_lat_comma_lng[lat_comma_lng].length;
@@ -35,9 +32,8 @@
               'position': new google.maps.LatLng(latlng[0], latlng[1]),
               'icon':new google.maps.MarkerImage(marker_image_url_for_n_entries(total_entries)),
 
-              'lat_comma_lng': lat_comma_lng,
+              //  Attach the array of entries for the GPS coordinate to the Marker object
               'contactimprov_entries': entries_by_lat_comma_lng[lat_comma_lng]
-              
             }).click(function() {
               var latlng = $(this).get(0).getPosition();
               map.panTo(latlng);
