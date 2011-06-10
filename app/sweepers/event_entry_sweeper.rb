@@ -18,6 +18,8 @@ private
   def expire_cache_for(event_entry)
     expire_fragment("event_listing_#{event_entry.id}")
     expire_fragment(:controller => 'events', :action => 'index')
+    expire_fragment("map_feed_events")
+    expire_fragment("map_feed_combined")
   end
 
 end

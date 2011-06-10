@@ -45,21 +45,7 @@ class MapController < ApplicationController
   end
 
   def newmap_feed
-    case params[:id]
-    when 'events'
-      @entries += EventEntry.find_geocoded_entries
-    when 'jams'
-      @entries = JamEntry.find_geocoded_entries
-    when 'people'
-      @entries = PersonEntry.find_geocoded_entries
-    when 'organizations'
-      @entries = OrganizationEntry.find_geocoded_entries
-    else 
-      @entries = EventEntry.find_geocoded_entries +
-        JamEntry.find_geocoded_entries +
-        PersonEntry.find_geocoded_entries +
-        OrganizationEntry.find_geocoded_entries
-    end
+    @listing_type = params[:id]
 
     respond_to do |format|
       format.xml
