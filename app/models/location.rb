@@ -127,6 +127,30 @@ class Location < ActiveRecord::Base
     fa.join(', ')
   end
 
+  def geocodable_part_of_address
+    fa = Array.new
+    if geocode_precision == 'address' or geocode_precision == 'zip' or 
+       geocode_precision == 'zip+4' or geocode_precision == 'building'
+      fa << self.street_address_line_1 if !self.street_address_line_1.blank?
+      fa << self.street_address_line_2 if !self.street_address_line_2.blank?
+    end
+
+    if geocode_precision == 'address' or geocode_precision == 'zip' or 
+       geocode_precision == 'zip+4' or geocode_precision == 'building' or
+       geocode_precision == 'city'
+      fa << self.city_name if !self.city_name.blank?
+    end
+    if self.is_in_usa?
+      fa << "#{self.us_state.abbreviation} USA"
+    else
+      if !self.region_name.blank?
+        fa << "#{self.region_name} #{self.postal_code}".strip
+      end
+      fa << self.country_name.english_name
+    end
+    fa.join(', ')
+  end
+
   def geocode
     geoloc = GeoKit::GeoLoc.new
     geoloc.city              = self.city_name
