@@ -30,20 +30,20 @@ module EventHelper
   def format_contact_info(e)
     a = Array.new
     if e.respond_to?('person') && e.person
-      a << "<span itemprop=\"name\"#{e.person.first_name} #{e.person.last_name}</span>" 
+      a << "#{e.person.first_name} #{e.person.last_name}"
     end
     if (e.phone_number && !e.phone_number.number.blank?)
+      #  TODO: Should adding microdata for the telephone field be optional?  The
+      #        http://schema.org/DanceEvent schema doesn't have a telephone field
       a << "<span itemprop=\"telephone\">#{e.phone_number.number}</span>"
     end
     if (e.email && !e.email.address.blank?)
-      #  TODO: Is there a safe way to use microdata for an unobfuscated email address?
-#      a << "<span itemprop=\"email\">#{obfuscate_email_with_javascript(e.email.address)}</span>" 
       a << obfuscate_email_with_javascript(e.email.address)
     end
     if (e.url && !e.url.address.blank?)
-      a << "<a href=\"#{e.url.address}\" itemprop=\"url\">#{e.url.address}</a>"
+      a << "<a href=\"#{e.url.address}\">#{e.url.address}</a>"
     end
-    '<span itemscope itemtype="http://schema.org/ContactPoint">' + a.join(", ") + '</span>'
+    a.join(", ")
   end
 
   def format_entry_location(e)
