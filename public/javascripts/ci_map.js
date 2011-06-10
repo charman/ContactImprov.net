@@ -48,7 +48,9 @@ function ci_map_initialize(feed_url) {
       var h = '';
       for (i in entries) {
         h += '<h3><a href="' + entries[i].url + '">' + entries[i].title + '</a></h3>' + 
-          '<div>' + entries[i].description + '</div>';
+          '<div>' + entries[i].description + 
+          '<p><a href="' + entries[i].url + '">' + entries[i].url + '</a></p>' +
+          '</div>';
       }
       $('<div></div>')
         .html(h)
