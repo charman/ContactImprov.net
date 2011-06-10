@@ -18,7 +18,8 @@ paths = [
   '/people',
   '/people/list',
   '/organizations',
-  '/organizations/list'
+  '/organizations/list',
+  '/map/feed/combined.xml'
 ]
 
 paths.each do |path|
