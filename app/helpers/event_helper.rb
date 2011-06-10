@@ -50,7 +50,25 @@ module EventHelper
     e.location.city_state_country
   end
 
-  def postal_address_microdata_for_location(l, itemprop_name)
+  def geocode_microdata_for_location(l)
+    if l.geocode_precision.blank?
+      ''
+    else
+      '<span itemprop="geo" itemscope itemtype="http://schema.org/GeoCoordinates">' +
+        "<meta itemprop=\"latitude\" content=\"#{l.lat}\" />" +
+        "<meta itemprop=\"longitude\" content=\"#{l.lng}\" />" +
+        '</span>'
+    end
+  end
+
+  def place_microdata_for_location(l)
+    '<span itemprop="location" itemscope itemtype="http://schema.org/Place">' +
+      postal_address_microdata_for_location(l) +
+      geocode_microdata_for_location(l) +
+      '</span>'
+  end
+
+  def postal_address_microdata_for_location(l)
     fa = Array.new
 
     if !l.street_address_line_1.blank?
@@ -73,7 +91,7 @@ module EventHelper
       end
       fa << l.country_name.english_name
     end
-    "<span itemprop=\"#{itemprop_name}\" itemscope itemtype=\"http://schema.org/PostalAddress\">" + fa.join(', ') + 
+    '<span itemprop="address" itemscope itemtype="http://schema.org/PostalAddress">' + fa.join(', ') + 
       "<meta itemprop=\"country\" content=\"#{l.country_name.iso_3166_1_a2_code}\" />" +
       '</span>'
   end

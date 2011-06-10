@@ -10,7 +10,7 @@
   				<span itemprop="name"><%= raw entry.title %></span>
   			<% end %>
   		</div>
-  		<div class='entry_location'><%= raw postal_address_microdata_for_location(entry.location, 'address') %></div>
+  		<div class='entry_location'><%= raw place_microdata_for_location(entry.location) %></div>
   		<div style="margin-left: 1em;">
   			<% if !entry.organization.description.blank? %>
   				<div class='entry_description' itemprop="description">
