@@ -18,7 +18,9 @@
               entries_by_lat_comma_lng[lat_comma_lng] = new Array();
             } 
             entries_by_lat_comma_lng[lat_comma_lng].push({
-              'title': $('title', this).text()
+              'title': $('title', this).text(),
+              'description': $('description', this).text(),
+              'url': $('url', this).text()
               //  TODO: Add more fields here
             });
           });
@@ -48,17 +50,24 @@
         if (entries.length > 1) {
           var h = '';
           for (i in entries) {
-            h += '<h3><a href="#">' + entries[i].title + '</a></h3><div>Random Content</div>';
+            h += '<h3><a href="' + entries[i].url + '">' + entries[i].title + '</a></h3>' + 
+              '<div>' + entries[i].description + '</div>';
           }
           $('<div></div>')
             .html(h)
-            .dialog({'title': 'Multiple Entries'})
+            .dialog({
+              'title': 'Multiple Entries',
+              'width': 530
+            })
             .accordion();
         }
         else {
           $('<div></div>')
-            .html('Testing')
-            .dialog({'title': entries[0].title});
+            .html('<div>' + entries[0].description + '</div>')
+            .dialog({
+              'title': '<a href="' + entries[0].url + '">' + entries[0].title + '</a>',
+              'width': 530
+            });
         }
       }
 
