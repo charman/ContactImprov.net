@@ -30,12 +30,20 @@ module EventHelper
   def format_contact_info(e)
     a = Array.new
     if e.respond_to?('person') && e.person
-      a << "#{e.person.first_name} #{e.person.last_name}" 
+      a << "<span itemprop=\"name\"#{e.person.first_name} #{e.person.last_name}</span>" 
     end
-    a << e.phone_number.number if (e.phone_number && !e.phone_number.number.blank?)
-    a << obfuscate_email_with_javascript(e.email.address) if (e.email && !e.email.address.blank?)
-    a << link_to(e.url.address, e.url.address) if (e.url && !e.url.address.blank?)
-    a.join(", ")
+    if (e.phone_number && !e.phone_number.number.blank?)
+      a << "<span itemprop=\"telephone\">#{e.phone_number.number}</span>"
+    end
+    if (e.email && !e.email.address.blank?)
+      #  TODO: Is there a safe way to use microdata for an unobfuscated email address?
+#      a << "<span itemprop=\"email\">#{obfuscate_email_with_javascript(e.email.address)}</span>" 
+      a << obfuscate_email_with_javascript(e.email.address)
+    end
+    if (e.url && !e.url.address.blank?)
+      a << "<span itemprop=\"url\">#{link_to(e.url.address, e.url.address)}</span>" 
+    end
+    '<span itemscope itemtype="http://schema.org/ContactPoint">' + a.join(", ") + '</span>'
   end
 
   def format_entry_location(e)

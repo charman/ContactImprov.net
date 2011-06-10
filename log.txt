@@ -40,6 +40,9 @@ TODO:
        (multi-colored icon with # of things?)
   - fix javascript warning message
 
+@ Microdata
+  - address encoding
+
 @ Performance tuning
   - caching
     - Google Maps

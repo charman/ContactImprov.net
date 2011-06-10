@@ -2,24 +2,24 @@
   <div style="clear: both; margin-bottom: 1.5em;">
   	<div style="float: left; width: 12%;">
   	</div>
-  	<div style="float: right; width: 88%;">
+  	<div style="float: right; width: 88%;" itemscope itemtype="http://schema.org/DanceGroup">
   		<div class='entry_title'>
   			<% if entry.url %>
-  			  <a href="<%= entry.url.address %>"><%= raw entry.title %></a>
+  			  <a href="<%= entry.url.address %>"><span itemprop="name"><%= raw entry.title %></span></a>
   			<% else %>
-  				<%= raw entry.title %>
+  				<span itemprop="name"><%= raw entry.title %></span>
   			<% end %>
   		</div>
   		<div class='entry_location'><%= raw entry.location.full_address_one_line %></div>
   		<div style="margin-left: 1em;">
   			<% if !entry.organization.description.blank? %>
-  				<div class='entry_description'>
+  				<div class='entry_description' itemprop="description">
   					<%= raw RedCloth.new(entry.organization.description.strip, [:filter_html]).to_html %>
   				</div>
   			<% end %>
   			<div class='entry_contact'><span style="color: #555;">CONTACT:</span> <%= raw format_contact_info(entry) %></div>
   			<div class='entry_updated'>
-  				<%= link_to 'Permalink', :action => 'show', :controller => 'organizations', :id => entry.id %>
+  				<span itemprop="url"><%= link_to 'Permalink', :action => 'show', :controller => 'organizations', :id => entry.id %></span>
   				&mdash;
   				Updated:
   				<%= entry.updated_at.strftime('%b %d %Y') %>
