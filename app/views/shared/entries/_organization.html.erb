@@ -5,7 +5,7 @@
   	<div style="float: right; width: 88%;" itemscope itemtype="http://schema.org/DanceGroup">
   		<div class='entry_title'>
   			<% if entry.url %>
-  			  <a href="<%= entry.url.address %>"><span itemprop="name"><%= raw entry.title %></span></a>
+  			  <a href="<%= entry.url.address %>" itemprop="url"><span itemprop="name"><%= raw entry.title %></span></a>
   			<% else %>
   				<span itemprop="name"><%= raw entry.title %></span>
   			<% end %>
@@ -19,7 +19,7 @@
   			<% end %>
   			<div class='entry_contact'><span style="color: #555;">CONTACT:</span> <%= raw format_contact_info(entry) %></div>
   			<div class='entry_updated'>
-  				<span itemprop="url"><%= link_to 'Permalink', :action => 'show', :controller => 'organizations', :id => entry.id %></span>
+  				<%= link_to 'Permalink', :action => 'show', :controller => 'organizations', :id => entry.id %>
   				&mdash;
   				Updated:
   				<%= entry.updated_at.strftime('%b %d %Y') %>

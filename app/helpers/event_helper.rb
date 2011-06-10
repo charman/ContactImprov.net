@@ -41,7 +41,7 @@ module EventHelper
       a << obfuscate_email_with_javascript(e.email.address)
     end
     if (e.url && !e.url.address.blank?)
-      a << "<span itemprop=\"url\">#{link_to(e.url.address, e.url.address)}</span>" 
+      a << "<a href=\"#{e.url.address}\" itemprop=\"url\">#{e.url.address}</a>"
     end
     '<span itemscope itemtype="http://schema.org/ContactPoint">' + a.join(", ") + '</span>'
   end
