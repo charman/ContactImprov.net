@@ -50,6 +50,34 @@ module EventHelper
     e.location.city_state_country
   end
 
+  def postal_address_microdata_for_location(l, itemprop_name)
+    fa = Array.new
+
+    if !l.street_address_line_1.blank?
+      if !l.street_address_line_2.blank?
+        fa << "<span itemprop=\"streetAddress\">#{l.street_address_line_1}, #{l.street_address_line_2}</span>"
+      else
+        fa << "<span itemprop=\"streetAddress\">#{l.street_address_line_1}</span>"
+      end
+    end
+    if !l.city_name.blank?
+      fa << "<span itemprop=\"addressLocality\">#{l.city_name}</span>"
+    end
+    if l.is_in_usa?
+      fa << "<span itemprop=\"addressRegion\">#{l.us_state.abbreviation} </span> <span itemprop=\"postalCode\">#{l.postal_code}</span> USA"
+    else
+      if !l.region_name.blank?
+        fa << "<span itemprop=\"addressRegion\">#{l.region_name}</span> <span itemprop=\"postalCode\">#{l.postal_code}</span>"
+      else
+        fa << "<span itemprop=\"postalCode\">#{l.postal_code.strip}</span>" if !l.postal_code.blank?
+      end
+      fa << l.country_name.english_name
+    end
+    "<span itemprop=\"#{itemprop_name}\" itemscope itemtype=\"http://schema.org/PostalAddress\">" + fa.join(', ') + 
+      "<meta itemprop=\"country\" content=\"#{l.country_name.iso_3166_1_a2_code}\" />" +
+      '</span>'
+  end
+
   #  Return the Event's website if available; otherwise return contactimprov.net URL
   def preferred_url(e)
     if !e.url.blank?

@@ -2,18 +2,18 @@
   <div style="clear: both; margin-bottom: 1.5em;">
   	<div style="float: left; width: 12%;">
   	</div>
-  	<div style="float: right; width: 88%;">
+  	<div style="float: right; width: 88%;" itemscope itemtype="http://schema.org/DanceEvent">
   		<div class='entry_title'>
   			<% if !entry.url.blank? %>
-  			  <a href="<%= entry.url.address %>"><%= raw entry.title %></a>
+  			  <a href="<%= entry.url.address %>" itemprop="url"><span itemprop="name"><%= raw entry.title %></span></a>
   			<% else %>
-  				<%= raw entry.title %>
+  				<span itemprop="name"><%= raw entry.title %></span>
   			<% end %>
   		</div>
-  		<div class='entry_location'><%= raw entry.location.full_address_one_line %></div>
+  		<div class='entry_location'><%= raw postal_address_microdata_for_location(entry.location, 'location') %></div>
   		<div style="margin-left: 1em;">
   			<% if !entry.description.blank? %>
-  				<div class='entry_description'>
+  				<div class='entry_description' itemprop="description">
   					<%= raw RedCloth.new(entry.description.strip, [:filter_html]).to_html %>
   				</div>
   			<% end %>
