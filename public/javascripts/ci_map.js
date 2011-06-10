@@ -1,119 +1,106 @@
-function ci_map_initialize() {
-	var map_center = new google.maps.LatLng(37.4419, 0);
-	var myOptions = {
-		zoom: 2,
-		center: map_center,
-		mapTypeId: google.maps.MapTypeId.ROADMAP
-	};
-	map = new google.maps.Map(document.getElementById("map_canvas"), myOptions);
+function ci_map_initialize(feed_url) {
+  $('#map_canvas').gmap({ 'center': new google.maps.LatLng(37.4419, 0), 'zoom': 2, 'streetViewControl': false, 'mapTypeId': google.maps.MapTypeId.TERRAIN, 'callback': function (map) {
+    $.get(feed_url, function(xml_data) {
+    	var entries_by_lat_comma_lng = new Array();
 
-	//  TODO: entry_category is being passed as a global variable.  Isn't there a
-	//         better way to do this?
-	var json_url = "/map/json/" + entry_category;
+      //  Parse XML feed, store entry info in global array 'entries_by_lat_comma_lng'
+      $('listings', xml_data).children('listing').each(function() {
+        var latitude  = $('latitude', this).text();
+        var longitude = $('longitude', this).text();
+        var lat_comma_lng = latitude + ',' + longitude;
 
-	//  HACK: If the user is connecting from localhost (e.g. during development), then
-	//         we allow a relative pathname.  Otherwise, we use an absolute pathname
-	//         with a hostname so that the map can be embedded in other sites.
-	if (location.hostname.search(/localhost/) == -1) {
-		//  jQuery uses the 'callback=?' parameter to accept JSON from a remote site.
-		//   For more details, see:
-		//     http://docs.jquery.com/Ajax/jQuery.getJSON
-		//  The Rails controller also needs to be modififed to support remote JSON
-		//   queries using:
-		//      render :layout => false, :json => [...], :callback => params[:callback]
-		//  TODO: Switch from JSON to XML to avoid all the JSON related security issues
-		json_url = "http://contactimprov.net" + json_url + "?callback=?";
-	}
+        if (!(lat_comma_lng in entries_by_lat_comma_lng)) {
+          entries_by_lat_comma_lng[lat_comma_lng] = new Array();
+        } 
+        entries_by_lat_comma_lng[lat_comma_lng].push({
+          'title': $('title', this).text(),
+          'description': $('description', this).text(),
+          'url': $('url', this).text(),
+          'listing_type': $('listing_type', this).text()
+          //  TODO: Add more fields here
+        });
+      });
 
-	$.getJSON(json_url,
-		function(marker_info) {
-			var markercount = 0;
+      //  Add a Marker for each GPS coordinate
+      for (var lat_comma_lng in entries_by_lat_comma_lng) {
+        var latlng = lat_comma_lng.split(',');
+        var total_entries = entries_by_lat_comma_lng[lat_comma_lng].length;
+        
+        $('#map_canvas').gmap('addMarker', {
+          'position': new google.maps.LatLng(latlng[0], latlng[1]),
+          'icon':new google.maps.MarkerImage(marker_image_url_for_entries(entries_by_lat_comma_lng[lat_comma_lng])),
 
-			for (var coordinates in marker_info) {
-				var lat_lng = coordinates.split('|');
+          //  Attach the array of entries for the GPS coordinate to the Marker object
+          'contactimprov_entries': entries_by_lat_comma_lng[lat_comma_lng]
+        }).click(function() {
+          var latlng = $(this).get(0).getPosition();
+          map.panTo(latlng);
+          show_dialog($(this).get(0).contactimprov_entries);
+        });
+      }
 
-				//  TODO: For some reason, marker_info[coordinates] is not treated as an Array
-				//         unless the Prototype JavaScript framework has been loded.
-				if (marker_info[coordinates].length > 1) {
-					ci_map_add_tabbed_infowindow(lat_lng[0], lat_lng[1], marker_info[coordinates], markercount++);
-				}
-				else {
-					ci_map_add_infowindow(lat_lng[0], lat_lng[1], marker_info[coordinates][0], markercount++);
-				}
-			}
-		}
-	);
-}
+    }, 'xml');
+  }});
 
-function ci_map_add_infowindow(lat, lng, marker_info, markercount) {
-	var latlng = new google.maps.LatLng(lat, lng);
-	markers[markercount] = new google.maps.Marker({
-		position: latlng,
-		map: map,
-		title: marker_info.mouseover_text,
-		icon: ci_map_image_url_for_entry_class(marker_info.entry_class)
-	});
-	var infowindow = new google.maps.InfoWindow({
-		content: marker_info.infowindow_html
-	});
-	google.maps.event.addListener(markers[markercount], 'click', 
-		function() { infowindow.open(map, markers[markercount]); } );
-}
+  function show_dialog(entries) {
+    if (entries.length > 1) {
+      var h = '';
+      for (i in entries) {
+        h += '<h3><a href="' + entries[i].url + '">' + entries[i].title + '</a></h3>' + 
+          '<div>' + entries[i].description + '</div>';
+      }
+      $('<div></div>')
+        .html(h)
+        .dialog({
+          'title': 'Multiple Entries',
+          'width': 530
+        })
+        .accordion();
+    }
+    else {
+      $('<div></div>')
+        .html('<div>' + entries[0].description + '</div>')
+        .dialog({
+          'title': '<a href="' + entries[0].url + '">' + entries[0].title + '</a>',
+          'width': 530
+        });
+    }
+  }
 
-function ci_map_add_tabbed_infowindow(lat, lng, marker_info_array, markercount) {
-	var mouseover_text_array = [];
-	for (var i = 0; i < marker_info_array.length; i++) {
-		mouseover_text_array.push(marker_info_array[i].mouseover_text);
-	}
-	var mouseover_text = mouseover_text_array.join(",\n");
+  function marker_image_url_for_entries(entries) {
+    if (entries.length > 1) {
+      return marker_image_url_for_n_entries(entries.length);
+    }
+    else {
+      return marker_image_url_for_listing_type(entries[0].listing_type);
+    }
+  }
 
-	var latlng = new google.maps.LatLng(lat, lng);
-	markers[markercount] = new google.maps.Marker({
-		position: latlng,
-		map: map,
-		title: mouseover_text,
-		icon: 'http://www.google.com/mapfiles/marker_purple.png'
-	});
-	var infowindow = new google.maps.InfoWindow({
-		content: ci_map_get_tabbed_infowindow_html(marker_info_array, markercount)
-	});
-	google.maps.event.addListener(markers[markercount], 'click', 
-		function() { 
-			infowindow.open(map, markers[markercount]); 
-			$("#tabs_" + markercount).tabs();
-		} 
-	);
-}
+  function marker_image_url_for_listing_type(lt) {
+    if (lt == 'EventEntry') {
+      return 'http://www.google.com/mapfiles/marker_greenE.png';
+    }
+    else if (lt == 'JamEntry') {
+      return 'http://www.google.com/mapfiles/marker_yellowJ.png';
+    }
+    else if (lt == 'OrganizationEntry') {
+      return 'http://www.google.com/mapfiles/marker_brownO.png';
+    }
+    else if (lt == 'PersonEntry') {
+      return 'http://www.google.com/mapfiles/marker_orangeP.png';
+    }
+  }
 
-function ci_map_image_url_for_entry_class(entry_class) {
-	switch(entry_class) {
-		case 'Event':
-			return 'http://www.google.com/mapfiles/marker_greenE.png';
-		case 'Jam':
-			return 'http://www.google.com/mapfiles/marker_yellowJ.png';
-		case 'Organization':
-			return 'http://www.google.com/mapfiles/marker_brownO.png';
-		case 'Person':
-			return 'http://www.google.com/mapfiles/marker_orangeP.png';
-	}
-}
+  function marker_image_url_for_n_entries(n) {
+    //  The google-maps-icons project only has icons for numbers up to 20 for most of the
+    //  colored numeric icon sets.  For the full list, see:
+    //    http://code.google.com/p/google-maps-icons/wiki/NumericIcons
+    if (n >= 20) {
+      n = 20;
+    }
 
-function ci_map_get_tabbed_infowindow_html(marker_info_array, markercount) {
-	var s;
-	
-	s = '<div id="tabs_' + markercount + '" style="font-size: 11px; width: 320px; height: 120px;">' +
-	    '<ul>';
-	for (var i = 0; i < marker_info_array.length; i++) {
-        s += '<li><a href="#fragment-' + i + '_' + markercount + '"><span>' + 
-			marker_info_array[i]['entry_class'] + '</span></a></li>';
-	}
-	s += '</ul>';
-	for (var i = 0; i < marker_info_array.length; i++) {
-		s += '<div id="fragment-' + i + '_' + markercount + '">' +
-		    marker_info_array[i]['infowindow_html'] +
-		    '</div>';
-	}
-    s += '</div>';
+    var zero_padded_n = (n < 10 ? '0' : '') + n;
 
-	return s;
+    return 'http://google-maps-icons.googlecode.com/files/purple' + zero_padded_n + '.png';
+  }
 }
