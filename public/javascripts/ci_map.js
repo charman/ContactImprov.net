@@ -54,16 +54,20 @@ function ci_map_initialize(feed_url) {
         .html(h)
         .dialog({
           'title': entries[0].address,
-          'width': 530
+          'width': 500,
+          'height': 400
         })
-        .accordion();
+        .accordion({
+          'autoHeight': false,
+          'collapsible': true
+        });
     }
     else {
       $('<div></div>')
         .html('<div>' + entries[0].description + '</div>')
         .dialog({
           'title': '<a href="' + entries[0].url + '">' + entries[0].title + '</a>',
-          'width': 530
+          'width': 500,
         });
     }
   }
