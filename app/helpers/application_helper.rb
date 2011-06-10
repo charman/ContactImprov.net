@@ -56,6 +56,17 @@ module ApplicationHelper
       "</script>"
   end
 
+  #  TODO: Refactor this function into a library shared by the *Entry models
+  def preferred_url_for_entry(e)
+    if e.url && e.url.address
+      e.url.address
+    else
+      #  TODO: Refactor this into a library shared by the *Entry models
+      controller_name = e.class.to_s.gsub('Entry', '').downcase.pluralize
+      url_for :controller => controller_name, :action => 'show', :id => e.id
+    end
+  end
+
   #  The object must belong to a class with the 'acts_as_versioned' property
   def wrap_in_span_if_attribute_changed(an_object, attribute_name, span_options = 'style="font-weight: bold;"')
     if attribute_changed_from_previous_version?(an_object, attribute_name)
