@@ -25,6 +25,7 @@ cache "map_feed_#{@entry_category}" do
         xml.title entry.title
         xml.description entry.description
         xml.url preferred_url_for_entry(entry)
+        xml.address entry.location.full_address_one_line
         xml.latitude  entry.location.lat
         xml.longitude entry.location.lng
         xml.listing_type entry.class.to_s

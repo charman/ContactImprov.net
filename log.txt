@@ -28,24 +28,12 @@ THIS COMMIT:
 TODO:
 
 @ Google Maps
-  - switch from JSON to XML
-  - caching
-  - maps on more pages
-    - [...]
+  - for multiple listings, show address in title  
   - links for directions to here, from here
-  ...
-  - map key explaining what the markers mean
-    - figure out how to reduce size of key markers
-    - change purple dot icon to something more explanatory
-       (multi-colored icon with # of things?)
-  - fix javascript warning message
-
-@ Microdata
-  [...]
+  - streetview
 
 @ Performance tuning
   - caching
-    - Google Maps
     - better caching for 'list' views
       - by_country
       - events (trickier)

@@ -16,6 +16,7 @@ function ci_map_initialize(feed_url) {
           'title': $('title', this).text(),
           'description': $('description', this).text(),
           'url': $('url', this).text(),
+          'address': $('address', this).text(),
           'listing_type': $('listing_type', this).text()
           //  TODO: Add more fields here
         });
@@ -52,7 +53,7 @@ function ci_map_initialize(feed_url) {
       $('<div></div>')
         .html(h)
         .dialog({
-          'title': 'Multiple Entries',
+          'title': entries[0].address,
           'width': 530
         })
         .accordion();
