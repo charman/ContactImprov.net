@@ -18,7 +18,7 @@
   				</div>
   			<% end %>
   			<% if !entry.cost.blank? %>
-  				<div class='entry_cost'>
+  				<div class='entry_cost' itemprop="offers">
   					<%= raw RedCloth.new(entry.cost.strip, [:filter_html]).to_html %>
   				</div>
   			<% end %>

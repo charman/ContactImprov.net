@@ -41,7 +41,7 @@ TODO:
   - fix javascript warning message
 
 @ Microdata
-  - address encoding
+  [...]
 
 @ Performance tuning
   - caching
