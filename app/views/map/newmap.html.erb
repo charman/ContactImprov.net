@@ -4,7 +4,7 @@
 
   <script type="text/javascript">
     $(function() {
-      $('#map_canvas').gmap({ 'center': new google.maps.LatLng(37.4419, 0), 'zoom': 2, 'streetViewControl': false, 'callback': function (map) {
+      $('#map_canvas').gmap({ 'center': new google.maps.LatLng(37.4419, 0), 'zoom': 2, 'streetViewControl': false, 'mapTypeId': google.maps.MapTypeId.TERRAIN, 'callback': function (map) {
         $.get('/map/newmap_feed.xml', function(xml_data) {
         	var entries_by_lat_comma_lng = new Array();
 
