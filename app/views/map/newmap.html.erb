@@ -20,7 +20,8 @@
             entries_by_lat_comma_lng[lat_comma_lng].push({
               'title': $('title', this).text(),
               'description': $('description', this).text(),
-              'url': $('url', this).text()
+              'url': $('url', this).text(),
+              'listing_type': $('listing_type', this).text()
               //  TODO: Add more fields here
             });
           });
@@ -32,7 +33,7 @@
             
             $('#map_canvas').gmap('addMarker', {
               'position': new google.maps.LatLng(latlng[0], latlng[1]),
-              'icon':new google.maps.MarkerImage(marker_image_url_for_n_entries(total_entries)),
+              'icon':new google.maps.MarkerImage(marker_image_url_for_entries(entries_by_lat_comma_lng[lat_comma_lng])),
 
               //  Attach the array of entries for the GPS coordinate to the Marker object
               'contactimprov_entries': entries_by_lat_comma_lng[lat_comma_lng]
@@ -71,6 +72,30 @@
         }
       }
 
+      function marker_image_url_for_entries(entries) {
+        if (entries.length > 1) {
+          return marker_image_url_for_n_entries(entries.length);
+        }
+        else {
+          return marker_image_url_for_listing_type(entries[0].listing_type);
+        }
+      }
+
+      function marker_image_url_for_listing_type(lt) {
+        if (lt == 'EventEntry') {
+          return 'http://www.google.com/mapfiles/marker_greenE.png';
+        }
+        else if (lt == 'JamEntry') {
+          return 'http://www.google.com/mapfiles/marker_yellowJ.png';
+        }
+        else if (lt == 'OrganizationEntry') {
+          return 'http://www.google.com/mapfiles/marker_brownO.png';
+        }
+        else if (lt == 'PersonEntry') {
+          return 'http://www.google.com/mapfiles/marker_orangeP.png';
+        }
+      }
+
       function marker_image_url_for_n_entries(n) {
         //  The google-maps-icons project only has icons for numbers up to 20 for most of the
         //  colored numeric icon sets.  For the full list, see:
@@ -88,3 +113,28 @@
 <% end %>
 
 <div id="map_canvas" style="width: 100%; height: 500px; border: 1px solid #666;"></div>
+
+<div class="ci_bulleted_list">
+	<ul>
+		<li style="list-style-image: url(http://www.google.com/mapfiles/marker_greenE.png);">
+			<%= link_to 'Special Events', :action => 'events', :controller => 'map' %>
+			&ndash; conferences, festivals, regional jams and workshops
+		</li>
+		<li style="list-style-image: url(http://www.google.com/mapfiles/marker_yellowJ.png)">
+			<%= link_to 'Ongoing Jams/Classes', :action => 'jams', :controller => 'map' %>
+			&ndash; local classes and jams &ndash; <i>"regularly scheduled dancing"</i>
+		</li>
+		<li style="list-style-image: url(http://www.google.com/mapfiles/marker_orangeP.png)">
+			<%= link_to 'People', :action => 'people', :controller => 'map' %>
+			&ndash; teaching, performing, or otherwise involved in Contact
+		</li>
+		<li style="list-style-image: url(http://www.google.com/mapfiles/marker_brownO.png)">
+			<%= link_to 'Organizations', :action => 'organizations', :controller => 'map' %>
+			&ndash; regional websites, studios, companies, etc. &ndash; <i>"everything else"</i>
+		</li>
+		<li style="list-style-image: url(http://google-maps-icons.googlecode.com/files/purple02.png)">
+			<%= link_to 'Multiple Listings', :action => 'index', :controller => 'map' %>
+			&ndash; more than one Events, Jams, People or Organizations at one location
+		</li>
+	</ul>
+</div>

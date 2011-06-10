@@ -7,6 +7,7 @@ xml.listings do
       xml.url preferred_url_for_entry(entry)
       xml.latitude  entry.location.lat
       xml.longitude entry.location.lng
+      xml.listing_type entry.class.to_s
     end
   end
 end
