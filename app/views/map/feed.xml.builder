@@ -1,10 +1,10 @@
-cache "map_feed_#{@listing_type}" do
+cache "map_feed_#{@entry_category}" do
 
   #  We're querying the database from the view instead of the controller to
   #   take advantage of caching.  There's probably a better way to do this...
-  case @listing_type
+  case @entry_category
   when 'events'
-    entries += EventEntry.find_geocoded_entries
+    entries = EventEntry.find_geocoded_entries
   when 'jams'
     entries = JamEntry.find_geocoded_entries
   when 'people'
