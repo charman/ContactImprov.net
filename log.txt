@@ -28,6 +28,10 @@ THIS COMMIT:
 TODO:
 
 @ Google Maps
+  - XML feed
+    - url and listing_url
+    - 'USA' or country_name
+  - format address information using JavaScript
   - for multiple listings, show address in title  
   - links for directions to here, from here
   - streetview

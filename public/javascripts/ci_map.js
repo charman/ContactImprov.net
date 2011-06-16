@@ -34,33 +34,48 @@ function ci_map_initialize(feed_url) {
           //  Attach the array of entries for the GPS coordinate to the Marker object
           'contactimprov_entries': entries_by_lat_comma_lng[lat_comma_lng]
         }).click(function() {
-          var latlng = $(this).get(0).getPosition();
-          map.panTo(latlng);
-          show_dialog($(this).get(0).contactimprov_entries);
+          var marker = $(this).get(0);
+          var entries = marker.contactimprov_entries;
+          
+          if (entries.length > 1) {
+            map.panTo(marker.getPosition());
+            show_dialog(entries);
+          }
+          else {
+            var infowindow = new google.maps.InfoWindow({
+              content: html_for_entry(entries[0])
+            }).open(map, marker);
+          }
         });
       }
 
     }, 'xml');
   }});
 
+  function html_for_entry(entry) {
+    return '<div>' + 
+        '<span style="font-size: 1.2em; font-weight: bold;">' + entry.title + '</span><br />' +
+        '<span><a href="' + entry.url + '">more info »</a></span><br />' +
+        '<span>' + entry.address + '</span><br />' +
+      '</div>';
+  }
+
   function show_dialog(entries) {
     if (entries.length > 1) {
       var h = '';
       for (i in entries) {
-        h += '<h3><a href="' + entries[i].url + '">' + entries[i].title + '</a></h3>' + 
-          '<div>' + entries[i].description + 
-          '<p><a href="' + entries[i].url + '">' + entries[i].url + '</a></p>' +
+        h += '<h3 style="font-weight: bold; font-size: 13px;"><a href="' + entries[i].url + '">' + entries[i].title + '</a></h3>' + 
+          '<div style="font-size: 13px;">' + 
+            '<span><a href="' + entries[i].url + '">more info »</a></span><br />' +
           '</div>';
       }
       $('<div></div>')
         .html(h)
         .dialog({
           'title': entries[0].address,
-          'width': 500,
-          'height': 400
+          'width': 500
         })
         .accordion({
-          'autoHeight': false,
           'collapsible': true
         });
     }
@@ -84,16 +99,16 @@ function ci_map_initialize(feed_url) {
   }
 
   function marker_image_url_for_listing_type(lt) {
-    if (lt == 'EventEntry') {
+    if (lt == 'event') {
       return 'http://www.google.com/mapfiles/marker_greenE.png';
     }
-    else if (lt == 'JamEntry') {
+    else if (lt == 'jam') {
       return 'http://www.google.com/mapfiles/marker_yellowJ.png';
     }
-    else if (lt == 'OrganizationEntry') {
+    else if (lt == 'organization') {
       return 'http://www.google.com/mapfiles/marker_brownO.png';
     }
-    else if (lt == 'PersonEntry') {
+    else if (lt == 'person') {
       return 'http://www.google.com/mapfiles/marker_orangeP.png';
     }
   }
