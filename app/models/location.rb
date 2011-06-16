@@ -109,7 +109,7 @@ class Location < ActiveRecord::Base
     end
   end
 
-  def full_address_one_line
+  def full_address_array
     fa = Array.new
     fa << self.street_address_line_1 if !self.street_address_line_1.blank?
     fa << self.street_address_line_2 if !self.street_address_line_2.blank?
@@ -124,31 +124,49 @@ class Location < ActiveRecord::Base
       end
       fa << self.country_name.english_name
     end
-    fa.join(', ')
+    fa
   end
 
-  def geocodable_part_of_address
+  def full_address_one_line
+    full_address_array.join(', ')
+  end
+
+  def geocodable_city?
+    geocode_precision == 'address' or
+      geocode_precision == 'zip' or 
+      geocode_precision == 'zip+4' or 
+      geocode_precision == 'building' or
+      geocode_precision == 'city'
+  end
+
+  def geocodable_street_address?
+    geocode_precision == 'address' or 
+      geocode_precision == 'zip' or 
+      geocode_precision == 'zip+4' or 
+      geocode_precision == 'building'
+  end
+
+  def geocodable_part_of_address_array
     fa = Array.new
-    if geocode_precision == 'address' or geocode_precision == 'zip' or 
-       geocode_precision == 'zip+4' or geocode_precision == 'building'
+    if self.geocodable_street_address?
       fa << self.street_address_line_1 if !self.street_address_line_1.blank?
       fa << self.street_address_line_2 if !self.street_address_line_2.blank?
     end
 
-    if geocode_precision == 'address' or geocode_precision == 'zip' or 
-       geocode_precision == 'zip+4' or geocode_precision == 'building' or
-       geocode_precision == 'city'
-      fa << self.city_name if !self.city_name.blank?
-    end
     if self.is_in_usa?
-      fa << "#{self.us_state.abbreviation} USA"
+      if self.geocodable_city? && !self.city_name.blank?
+        fa << "#{self.city_name}, #{self.us_state.abbreviation} USA"
+      else
+        fa << "#{self.us_state.abbreviation} USA"
+      end  
     else
-      if !self.region_name.blank?
-        fa << "#{self.region_name} #{self.postal_code}".strip
-      end
-      fa << self.country_name.english_name
+      lastline = Array.new
+      lastline << self.city_name if (self.geocodable_city? && !self.city_name.blank?)
+      lastline << self.region_name if !self.region_name.blank?
+      lastline << self.country_name.english_name
+      fa << lastline.join(', ')
     end
-    fa.join(', ')
+    fa
   end
 
   def geocode
