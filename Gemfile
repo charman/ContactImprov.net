@@ -9,7 +9,7 @@ gem 'authlogic', '>=3.0.3'
 gem 'builder'
 gem 'exception_notification', :require => 'exception_notifier'
 gem 'geokit'
-gem 'geokit-rails3',      #  geokit-rails3 v0.1.5 requires rails ~>3.0 and mysql2 ~> 0.2
+gem 'geokit-rails3'       #  geokit-rails3 v0.1.5 requires rails ~>3.0 and mysql2 ~> 0.2
 gem 'icalendar'
 gem 'htmlentities'
 gem 'memcache-client'
