@@ -180,6 +180,14 @@ module ActiveRecord #:nodoc:
         self.version_association_options  = {
                                                     :class_name  => "#{self.to_s}::#{versioned_class_name}",
                                                     :foreign_key => versioned_foreign_key,
+                                                    #  [CTH]  Rails 3.1.1 was using a primary key of "version_id", which wasn't consistent with
+                                                    #         the behavior of Rails 3.0.x.  Suspect the problem is related to this setting in
+                                                    #         config/application.rb:
+                                                    #           setting:config.active_record.primary_key_prefix_type = :table_name_with_underscore
+                                                    #         Hopefully the problem will be fixed when a version of acts_as_versioned > 0.6.0 is
+                                                    #         released that officially supports Rails 3.1.x.
+                                                    :primary_key => "#{self.to_s.underscore}_version_id",
+                                                    #  [/CTH]
                                                     :dependent   => :delete_all
         }.merge(options[:association_options] || {})
 
