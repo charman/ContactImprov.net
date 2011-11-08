@@ -127,7 +127,7 @@ class UserController < ApplicationController
     @user = current_user
 
     if request.post?
-      if @user.authenticated?(params["password"])
+      if @user.valid_password?(params["password"])
         if params["email"] == params["email_confirmation"]
           old_email = @user.email
           @user.email = params["email"]
@@ -158,7 +158,7 @@ class UserController < ApplicationController
     @user = current_user
 
     if request.post?
-      if @user.authenticated?(params["old_password"])
+      if @user.valid_password?(params["old_password"])
         @user.password = params["password"]
         @user.password_confirmation = params["password_confirmation"]
 

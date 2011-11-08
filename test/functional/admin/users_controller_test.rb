@@ -361,8 +361,8 @@ class Admin::UsersControllerTest < ActionController::TestCase
     assert_redirected_to :action => 'show', :id => users(:quentin).id
     users(:quentin).reload
     assert_select "[class=errorExplanation]", false
-    assert_not_nil User.authenticate(users(:quentin).email, 'new_password')
-    assert_nil User.authenticate(users(:quentin).email, 'test')
+    assert users(:quentin).valid_password?('new_password')
+    assert !users(:quentin).valid_password?('test')
     assert_equal 1, @emails.size
     assert_match 'new_password', @emails.first.body
     assert_match 'New password for your ContactImprov.net account', @emails.first.subject
@@ -374,8 +374,8 @@ class Admin::UsersControllerTest < ActionController::TestCase
     post :reset_password, :id => users(:quentin).id, :user => {:password => 'new_password', :password_confirmation => 'bad_password'}
     assert_response :success
     assert_select "[class=errorExplanation]"
-    assert_not_nil User.authenticate(users(:quentin).email, 'test')
-    assert_nil User.authenticate(users(:quentin).email, 'new_password')
+    assert users(:quentin).valid_password?('test')
+    assert !users(:quentin).valid_password?('new_password')
     assert_equal 0, @emails.size
   end
 

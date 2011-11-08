@@ -21,6 +21,7 @@ class User < ActiveRecord::Base
 
   acts_as_authentic do |c|
     c.act_like_restful_authentication = true
+    c.maintain_sessions = false
   end
 
   # [CTH]  Even though we specify an initial state for the state machine,
@@ -84,16 +85,6 @@ class User < ActiveRecord::Base
     transitions :from => :suspended, :to => :passive
   end
 
-
-  # Authenticates a user by their login name and unencrypted password.  Returns the user or nil.
-  def self.authenticate(email, password)
-    user_session = UserSession.create(:email => email, :password => password)
-    user_session && user_session.user
-  end
-
-  def authenticated?(password)
-    self == User.authenticate(self.email, password)
-  end
 
   def first_name
     if person.nil?

@@ -73,15 +73,15 @@ class UserTest < ActiveSupport::TestCase
   end
 
   def test_should_reset_password
-    assert_equal users(:quentin), User.authenticate('quentin@contactimprov.org', 'test')
+    assert users(:quentin).valid_password?('test')
     users(:quentin).password = 'new password' #update_attributes(:password => 'new password', :password_confirmation => 'new password')
     users(:quentin).password_confirmation = 'new password'
     users(:quentin).save!
-    assert_equal users(:quentin), User.authenticate('quentin@contactimprov.org', 'new password')
+    assert users(:quentin).valid_password?('new password')
   end
 
   def test_should_authenticate_user
-    assert_equal users(:quentin), User.authenticate('quentin@contactimprov.org', 'test')
+    assert users(:quentin).valid_password?('test')
   end
 
   def test_should_register_passive_user
@@ -94,11 +94,6 @@ class UserTest < ActiveSupport::TestCase
   def test_should_suspend_user
     users(:quentin).suspend!
     assert users(:quentin).suspended?
-  end
-
-  def test_suspended_user_should_not_authenticate
-    users(:quentin).suspend!
-    assert_not_equal users(:quentin), User.authenticate('quentin', 'test')
   end
 
   def test_should_unsuspend_user_to_active_state

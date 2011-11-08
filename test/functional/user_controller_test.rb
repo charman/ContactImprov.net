@@ -115,7 +115,8 @@ class UserControllerTest < ActionController::TestCase
   def test_should_change_password
     login_as :quentin
     post :change_password, :old_password => 'test', :password => 'new_password', :password_confirmation => 'new_password'
-    assert User.authenticate('quentin@contactimprov.org', 'new_password')
+    users(:quentin).reload
+    assert users(:quentin).valid_password?('new_password')
     assert_select "[id=change_successful]"
     assert_select "[class=errorExplanation]", false
     assert_response :success
@@ -534,8 +535,8 @@ class UserControllerTest < ActionController::TestCase
   def test_should_reset_password
     code = users(:quentin).make_password_reset_code
     post :reset_password, :password_reset_code => code, :user => { :password => 'new_password', :password_confirmation => 'new_password'}
-    assert User.authenticate('quentin@contactimprov.org', 'new_password')
     users(:quentin).reload
+    assert users(:quentin).valid_password?('new_password')
     assert_nil users(:quentin).password_reset_code
     assert_select "[id=reset_successful]"
     assert_response :success
