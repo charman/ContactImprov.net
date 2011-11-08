@@ -1,0 +1,737 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<meta content="text/html; charset=UTF-8" http-equiv="Content-Type">
+
+<title>Module: ActiveRecord::Acts::Versioned</title>
+
+<link type="text/css" media="screen" href="../../rdoc.css" rel="stylesheet">
+
+<script type="text/javascript">
+  var rdoc_rel_prefix = "../../";
+</script>
+
+<script type="text/javascript" charset="utf-8" src="../../js/jquery.js"></script>
+<script type="text/javascript" charset="utf-8" src="../../js/navigation.js"></script>
+<script type="text/javascript" charset="utf-8" src="../../js/search_index.js"></script>
+<script type="text/javascript" charset="utf-8" src="../../js/search.js"></script>
+<script type="text/javascript" charset="utf-8" src="../../js/searcher.js"></script>
+<script type="text/javascript" charset="utf-8" src="../../js/darkfish.js"></script>
+
+
+<body id="top" class="module">
+<nav id="metadata">
+  <nav id="home-section" class="section">
+  <h3 class="section-header">
+    <a href="../../index.html">Home</a>
+    <a href="../../table_of_contents.html#classes">Classes</a>
+    <a href="../../table_of_contents.html#methods">Methods</a>
+  </h3>
+</nav>
+
+
+  <nav id="search-section" class="section project-section" class="initially-hidden">
+  <form action="#" method="get" accept-charset="utf-8">
+    <h3 class="section-header">
+      <input type="text" name="search" placeholder="Search" id="search-field"
+             title="Type to search, Up and Down to navigate, Enter to load">
+    </h3>
+  </form>
+
+  <ul id="search-results" class="initially-hidden"></ul>
+</nav>
+
+
+  <div id="file-metadata">
+    <nav id="file-list-section" class="section">
+  <h3 class="section-header">Defined In</h3>
+  <ul>
+    <li>lib/acts_as_versioned.rb
+  </ul>
+</nav>
+
+    
+  </div>
+
+  <div id="class-metadata">
+    
+    
+    <!-- Included Modules -->
+<nav id="includes-section" class="section">
+  <h3 class="section-header">Included Modules</h3>
+
+  <ul class="link-list">
+  
+  
+    <li><a class="include" href="Versioned/Behaviors.html">ActiveRecord::Acts::Versioned::Behaviors</a>
+  
+  
+  </ul>
+</nav>
+
+    <!-- Method Quickref -->
+<nav id="method-list-section" class="section">
+  <h3 class="section-header">Methods</h3>
+
+  <ul class="link-list">
+    
+    <li><a href="#method-c-after">::after</a>
+    
+    <li><a href="#method-c-before">::before</a>
+    
+    <li><a href="#method-c-earliest">::earliest</a>
+    
+    <li><a href="#method-c-latest">::latest</a>
+    
+    <li><a href="#method-c-reloadable-3F">::reloadable?</a>
+    
+    <li><a href="#method-i-acts_as_versioned">#acts_as_versioned</a>
+    
+    <li><a href="#method-i-next">#next</a>
+    
+    <li><a href="#method-i-previous">#previous</a>
+    
+    <li><a href="#method-i-versions_count">#versions_count</a>
+    
+  </ul>
+</nav>
+
+  </div>
+
+  <div id="project-metadata">
+    <nav id="fileindex-section" class="section project-section">
+  <h3 class="section-header">Pages</h3>
+
+  <ul>
+  
+    <li class="file"><a href="../../CHANGELOG.html">CHANGELOG</a>
+  
+    <li class="file"><a href="../../MIT-LICENSE.html">MIT-LICENSE</a>
+  
+    <li class="file"><a href="../../README.html">README</a>
+  
+  </ul>
+</nav>
+
+    <nav id="classindex-section" class="section project-section">
+  <h3 class="section-header">Class and Module Index</h3>
+
+  <ul class="link-list">
+  
+    <li><a href="../../ActiveRecord.html">ActiveRecord</a>
+  
+    <li><a href="../../ActiveRecord/Acts.html">ActiveRecord::Acts</a>
+  
+    <li><a href="../../ActiveRecord/Acts/Versioned.html">ActiveRecord::Acts::Versioned</a>
+  
+    <li><a href="../../ActiveRecord/Acts/Versioned/Behaviors.html">ActiveRecord::Acts::Versioned::Behaviors</a>
+  
+    <li><a href="../../ActiveRecord/Acts/Versioned/Behaviors/ClassMethods.html">ActiveRecord::Acts::Versioned::Behaviors::ClassMethods</a>
+  
+    <li><a href="../../ActiveRecord/Acts/Versioned/Behaviors/InstanceMethods.html">ActiveRecord::Acts::Versioned::Behaviors::InstanceMethods</a>
+  
+  </ul>
+</nav>
+
+  </div>
+</nav>
+
+<div id="documentation">
+  <h1 class="module">module ActiveRecord::Acts::Versioned</h1>
+
+  <div id="description" class="description">
+    
+<p>Specify this act if you want to save a copy of the row in a versioned
+table.  This assumes there is a  versioned table ready and that your model
+has a version field.  This works with optimistic locking if the
+lock_version column is present as well.</p>
+
+<p>The class for the versioned model is derived the first time it is seen.
+Therefore, if you change your database schema you have to restart your
+container for the changes to be reflected. In development mode this usually
+means restarting WEBrick.</p>
+
+<pre class="ruby"><span class="ruby-keyword">class</span> <span class="ruby-constant">Page</span> <span class="ruby-operator">&lt;</span> <span class="ruby-constant">ActiveRecord</span><span class="ruby-operator">::</span><span class="ruby-constant">Base</span>
+  <span class="ruby-comment"># assumes pages_versions table</span>
+  <span class="ruby-identifier">acts_as_versioned</span>
+<span class="ruby-keyword">end</span>
+</pre>
+
+<p>Example:</p>
+
+<pre class="ruby"><span class="ruby-identifier">page</span> = <span class="ruby-constant">Page</span>.<span class="ruby-identifier">create</span>(:<span class="ruby-identifier">title</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">'hello world!'</span>)
+<span class="ruby-identifier">page</span>.<span class="ruby-identifier">version</span>       <span class="ruby-comment"># =&gt; 1</span>
+
+<span class="ruby-identifier">page</span>.<span class="ruby-identifier">title</span> = <span class="ruby-string">'hello world'</span>
+<span class="ruby-identifier">page</span>.<span class="ruby-identifier">save</span>
+<span class="ruby-identifier">page</span>.<span class="ruby-identifier">version</span>       <span class="ruby-comment"># =&gt; 2</span>
+<span class="ruby-identifier">page</span>.<span class="ruby-identifier">versions</span>.<span class="ruby-identifier">size</span> <span class="ruby-comment"># =&gt; 2</span>
+
+<span class="ruby-identifier">page</span>.<span class="ruby-identifier">revert_to</span>(<span class="ruby-value">1</span>)  <span class="ruby-comment"># using version number</span>
+<span class="ruby-identifier">page</span>.<span class="ruby-identifier">title</span>         <span class="ruby-comment"># =&gt; 'hello world!'</span>
+
+<span class="ruby-identifier">page</span>.<span class="ruby-identifier">revert_to</span>(<span class="ruby-identifier">page</span>.<span class="ruby-identifier">versions</span>.<span class="ruby-identifier">last</span>) <span class="ruby-comment"># using versioned instance</span>
+<span class="ruby-identifier">page</span>.<span class="ruby-identifier">title</span>         <span class="ruby-comment"># =&gt; 'hello world'</span>
+
+<span class="ruby-identifier">page</span>.<span class="ruby-identifier">versions</span>.<span class="ruby-identifier">earliest</span> <span class="ruby-comment"># efficient query to find the first version</span>
+<span class="ruby-identifier">page</span>.<span class="ruby-identifier">versions</span>.<span class="ruby-identifier">latest</span>   <span class="ruby-comment"># efficient query to find the most recently created version</span>
+</pre>
+
+<p>Simple Queries to page between versions</p>
+
+<pre>page.versions.before(version) 
+page.versions.after(version)</pre>
+
+<p>Access the previous/next versions from the versioned model itself</p>
+
+<pre>version = page.versions.latest
+version.previous # go back one version
+version.next     # go forward one version</pre>
+
+<p>See ActiveRecord::Acts::Versioned::ClassMethods#acts_as_versioned for
+configuration options</p>
+
+  </div><!-- description -->
+
+  
+  
+  
+  <section id="5Buntitled-5D" class="documentation-section">
+    
+
+    
+
+    
+    <!-- Constants -->
+    <section id="constants-list" class="section">
+      <h3 class="section-header">Constants</h3>
+      <dl>
+      
+        <dt id="CALLBACKS">CALLBACKS
+        
+        <dd class="description">
+        
+      
+        <dt id="VERSION">VERSION
+        
+        <dd class="description">
+        
+      
+      </dl>
+    </section>
+    
+
+    
+
+    <!-- Methods -->
+    
+     <section id="public-class-5Buntitled-5D-method-details" class="method-section section">
+      <h3 class="section-header">Public Class Methods</h3>
+
+    
+      <div id="method-c-after" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">after</span><span
+            class="method-args">(version)</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>find first version after the given version.</p>
+          
+
+          
+          <div class="method-source-code" id="after-source">
+            <pre><span class="ruby-comment"># File lib/acts_as_versioned.rb, line 221</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">after</span>(<span class="ruby-identifier">version</span>)
+  <span class="ruby-identifier">where</span>([<span class="ruby-node">&quot;#{original_class.versioned_foreign_key} = ? and version &gt; ?&quot;</span>, <span class="ruby-identifier">version</span>.<span class="ruby-identifier">send</span>(<span class="ruby-identifier">original_class</span>.<span class="ruby-identifier">versioned_foreign_key</span>), <span class="ruby-identifier">version</span>.<span class="ruby-identifier">version</span>]).
+          <span class="ruby-identifier">order</span>(<span class="ruby-string">'version ASC'</span>).
+          <span class="ruby-identifier">first</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- after-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- after-method -->
+
+    
+      <div id="method-c-before" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">before</span><span
+            class="method-args">(version)</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>find first version before the given version</p>
+          
+
+          
+          <div class="method-source-code" id="before-source">
+            <pre><span class="ruby-comment"># File lib/acts_as_versioned.rb, line 214</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">before</span>(<span class="ruby-identifier">version</span>)
+  <span class="ruby-identifier">where</span>([<span class="ruby-node">&quot;#{original_class.versioned_foreign_key} = ? and version &lt; ?&quot;</span>, <span class="ruby-identifier">version</span>.<span class="ruby-identifier">send</span>(<span class="ruby-identifier">original_class</span>.<span class="ruby-identifier">versioned_foreign_key</span>), <span class="ruby-identifier">version</span>.<span class="ruby-identifier">version</span>]).
+          <span class="ruby-identifier">order</span>(<span class="ruby-string">'version DESC'</span>).
+          <span class="ruby-identifier">first</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- before-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- before-method -->
+
+    
+      <div id="method-c-earliest" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">earliest</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>finds earliest version of this record</p>
+          
+
+          
+          <div class="method-source-code" id="earliest-source">
+            <pre><span class="ruby-comment"># File lib/acts_as_versioned.rb, line 228</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">earliest</span>
+  <span class="ruby-identifier">order</span>(<span class="ruby-node">&quot;#{original_class.version_column}&quot;</span>).<span class="ruby-identifier">first</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- earliest-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- earliest-method -->
+
+    
+      <div id="method-c-latest" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">latest</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>find latest version of this record</p>
+          
+
+          
+          <div class="method-source-code" id="latest-source">
+            <pre><span class="ruby-comment"># File lib/acts_as_versioned.rb, line 233</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">latest</span>
+  <span class="ruby-identifier">order</span>(<span class="ruby-node">&quot;#{original_class.version_column} desc&quot;</span>).<span class="ruby-identifier">first</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- latest-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- latest-method -->
+
+    
+      <div id="method-c-reloadable-3F" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">reloadable?</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="reloadable-3F-source">
+            <pre><span class="ruby-comment"># File lib/acts_as_versioned.rb, line 209</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">reloadable?</span>;
+  <span class="ruby-keyword">false</span>;
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- reloadable-3F-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- reloadable-3F-method -->
+
+    
+    </section><!-- public-class-method-details -->
+  
+     <section id="public-instance-5Buntitled-5D-method-details" class="method-section section">
+      <h3 class="section-header">Public Instance Methods</h3>
+
+    
+      <div id="method-i-acts_as_versioned" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">acts_as_versioned</span><span
+            class="method-args">(options = {}, &extension)</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          <h2 id="method-i-acts_as_versioned-label-Configuration+options">Configuration options</h2>
+<ul><li>
+<p><code>class_name</code> - versioned model class name (default: PageVersion
+in the above example)</p>
+</li><li>
+<p><code>table_name</code> - versioned model table name (default:
+page_versions in the above example)</p>
+</li><li>
+<p><code>foreign_key</code> - foreign key used to relate the versioned model
+to the original model (default: page_id in the above example)</p>
+</li><li>
+<p><code>inheritance_column</code> - name of the column to save the model’s
+inheritance_column value for STI.  (default: versioned_type)</p>
+</li><li>
+<p><code>version_column</code> - name of the column in the model that keeps
+the version number (default: version)</p>
+</li><li>
+<p><code>sequence_name</code> - name of the custom sequence to be used by the
+versioned model.</p>
+</li><li>
+<p><code>limit</code> - number of revisions to keep, defaults to unlimited</p>
+</li><li>
+<p><code>if</code> - symbol of method to check before saving a new version. 
+If this method returns false, a new version is not saved. For finer
+control, pass either a Proc or modify Model#version_condition_met?</p>
+
+<pre class="ruby"><span class="ruby-identifier">acts_as_versioned</span> :<span class="ruby-keyword">if</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-constant">Proc</span>.<span class="ruby-identifier">new</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">auction</span><span class="ruby-operator">|</span> <span class="ruby-operator">!</span><span class="ruby-identifier">auction</span>.<span class="ruby-identifier">expired?</span> }
+</pre>
+
+<p>or…</p>
+
+<pre class="ruby"><span class="ruby-keyword">class</span> <span class="ruby-constant">Auction</span>
+  <span class="ruby-keyword">def</span> <span class="ruby-identifier">version_condition_met?</span> <span class="ruby-comment"># totally bypasses the &lt;tt&gt;:if&lt;/tt&gt; option</span>
+    <span class="ruby-operator">!</span><span class="ruby-identifier">expired?</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span>
+</pre>
+</li><li>
+<p><code>if_changed</code> - Simple way of specifying attributes that are
+required to be changed before saving a model.  This takes either a symbol
+or array of symbols.</p>
+</li><li>
+<p><code>extend</code> - Lets you specify a module to be mixed in both the
+original and versioned models.  You can also just pass a block to create an
+anonymous mixin:</p>
+
+<pre class="ruby"><span class="ruby-keyword">class</span> <span class="ruby-constant">Auction</span>
+  <span class="ruby-identifier">acts_as_versioned</span> <span class="ruby-keyword">do</span>
+    <span class="ruby-keyword">def</span> <span class="ruby-identifier">started?</span>
+      <span class="ruby-operator">!</span><span class="ruby-identifier">started_at</span>.<span class="ruby-identifier">nil?</span>
+    <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span>
+</pre>
+
+<p>or…</p>
+
+<pre class="ruby"><span class="ruby-keyword">module</span> <span class="ruby-constant">AuctionExtension</span>
+  <span class="ruby-keyword">def</span> <span class="ruby-identifier">started?</span>
+    <span class="ruby-operator">!</span><span class="ruby-identifier">started_at</span>.<span class="ruby-identifier">nil?</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span>
+<span class="ruby-keyword">class</span> <span class="ruby-constant">Auction</span>
+  <span class="ruby-identifier">acts_as_versioned</span> :<span class="ruby-identifier">extend</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-constant">AuctionExtension</span>
+<span class="ruby-keyword">end</span>
+</pre>
+</li></ul>
+
+<pre>Example code:
+
+  @auction = Auction.find(1)
+  @auction.started?
+  @auction.versions.first.started?</pre>
+
+<h2 id="method-i-acts_as_versioned-label-Database+Schema">Database Schema</h2>
+
+<p>The model that you’re versioning needs to have a ‘version’ attribute.
+The model is versioned into a table called #{model}_versions where the
+model name is singlular. The _versions table should contain all the fields
+you want versioned, the same version column, and a #{model}_id foreign key
+field.</p>
+
+<p>A lock_version field is also accepted if your model uses Optimistic
+Locking.  If your table uses Single Table inheritance, then that field is
+reflected in the versioned model as ‘versioned_type’ by default.</p>
+
+<p>Acts_as_versioned comes prepared with the
+ActiveRecord::Acts::Versioned::ActMethods::ClassMethods#create_versioned_table
+method, perfect for a migration.  It will also create the version column if
+the main model does not already have it.</p>
+
+<pre class="ruby"><span class="ruby-keyword">class</span> <span class="ruby-constant">AddVersions</span> <span class="ruby-operator">&lt;</span> <span class="ruby-constant">ActiveRecord</span><span class="ruby-operator">::</span><span class="ruby-constant">Migration</span>
+  <span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">up</span>
+    <span class="ruby-comment"># create_versioned_table takes the same options hash</span>
+    <span class="ruby-comment"># that create_table does</span>
+    <span class="ruby-constant">Post</span>.<span class="ruby-identifier">create_versioned_table</span>
+  <span class="ruby-keyword">end</span>
+
+  <span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">down</span>
+    <span class="ruby-constant">Post</span>.<span class="ruby-identifier">drop_versioned_table</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span>
+</pre>
+
+<h2 id="method-i-acts_as_versioned-label-Changing+What+Fields+Are+Versioned">Changing What Fields Are <a href="Versioned.html">Versioned</a></h2>
+
+<p>By default, <a
+href="Versioned.html#method-i-acts_as_versioned">#acts_as_versioned</a>
+will version all but these fields:</p>
+
+<pre>[self.primary_key, inheritance_column, 'version', 'lock_version', versioned_inheritance_column]</pre>
+
+<p>You can add or change those by modifying non_versioned_columns.  Note that
+this takes strings and not symbols.</p>
+
+<pre class="ruby"><span class="ruby-keyword">class</span> <span class="ruby-constant">Post</span> <span class="ruby-operator">&lt;</span> <span class="ruby-constant">ActiveRecord</span><span class="ruby-operator">::</span><span class="ruby-constant">Base</span>
+  <span class="ruby-identifier">acts_as_versioned</span>
+  <span class="ruby-keyword">self</span>.<span class="ruby-identifier">non_versioned_columns</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-string">'comments_count'</span>
+<span class="ruby-keyword">end</span>
+</pre>
+          
+
+          
+          <div class="method-source-code" id="acts_as_versioned-source">
+            <pre><span class="ruby-comment"># File lib/acts_as_versioned.rb, line 163</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">acts_as_versioned</span>(<span class="ruby-identifier">options</span> = {}, &amp;<span class="ruby-identifier">extension</span>)
+  <span class="ruby-comment"># don't allow multiple calls</span>
+  <span class="ruby-keyword">return</span> <span class="ruby-keyword">if</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">included_modules</span>.<span class="ruby-identifier">include?</span>(<span class="ruby-constant">ActiveRecord</span><span class="ruby-operator">::</span><span class="ruby-constant">Acts</span><span class="ruby-operator">::</span><span class="ruby-constant">Versioned</span><span class="ruby-operator">::</span><span class="ruby-constant">Behaviors</span>)
+
+  <span class="ruby-identifier">cattr_accessor</span> <span class="ruby-value">:versioned_class_name</span>, <span class="ruby-value">:versioned_foreign_key</span>, <span class="ruby-value">:versioned_table_name</span>, <span class="ruby-value">:versioned_inheritance_column</span>,
+                 <span class="ruby-value">:version_column</span>, <span class="ruby-value">:max_version_limit</span>, <span class="ruby-value">:track_altered_attributes</span>, <span class="ruby-value">:version_condition</span>, <span class="ruby-value">:version_sequence_name</span>, <span class="ruby-value">:non_versioned_columns</span>,
+                 <span class="ruby-value">:version_association_options</span>, <span class="ruby-value">:version_if_changed</span>
+
+  <span class="ruby-keyword">self</span>.<span class="ruby-identifier">versioned_class_name</span>         = <span class="ruby-identifier">options</span>[<span class="ruby-value">:class_name</span>] <span class="ruby-operator">||</span> <span class="ruby-string">&quot;Version&quot;</span>
+  <span class="ruby-keyword">self</span>.<span class="ruby-identifier">versioned_foreign_key</span>        = <span class="ruby-identifier">options</span>[<span class="ruby-value">:foreign_key</span>] <span class="ruby-operator">||</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">to_s</span>.<span class="ruby-identifier">foreign_key</span>
+  <span class="ruby-keyword">self</span>.<span class="ruby-identifier">versioned_table_name</span>         = <span class="ruby-identifier">options</span>[<span class="ruby-value">:table_name</span>] <span class="ruby-operator">||</span> <span class="ruby-node">&quot;#{table_name_prefix}#{base_class.name.demodulize.underscore}_versions#{table_name_suffix}&quot;</span>
+  <span class="ruby-keyword">self</span>.<span class="ruby-identifier">versioned_inheritance_column</span> = <span class="ruby-identifier">options</span>[<span class="ruby-value">:inheritance_column</span>] <span class="ruby-operator">||</span> <span class="ruby-node">&quot;versioned_#{inheritance_column}&quot;</span>
+  <span class="ruby-keyword">self</span>.<span class="ruby-identifier">version_column</span>               = <span class="ruby-identifier">options</span>[<span class="ruby-value">:version_column</span>] <span class="ruby-operator">||</span> <span class="ruby-string">'version'</span>
+  <span class="ruby-keyword">self</span>.<span class="ruby-identifier">version_sequence_name</span>        = <span class="ruby-identifier">options</span>[<span class="ruby-value">:sequence_name</span>]
+  <span class="ruby-keyword">self</span>.<span class="ruby-identifier">max_version_limit</span>            = <span class="ruby-identifier">options</span>[<span class="ruby-value">:limit</span>].<span class="ruby-identifier">to_i</span>
+  <span class="ruby-keyword">self</span>.<span class="ruby-identifier">version_condition</span>            = <span class="ruby-identifier">options</span>[<span class="ruby-value">:if</span>] <span class="ruby-operator">||</span> <span class="ruby-keyword">true</span>
+  <span class="ruby-keyword">self</span>.<span class="ruby-identifier">non_versioned_columns</span>        = [<span class="ruby-keyword">self</span>.<span class="ruby-identifier">primary_key</span>, <span class="ruby-identifier">inheritance_column</span>, <span class="ruby-keyword">self</span>.<span class="ruby-identifier">version_column</span>, <span class="ruby-string">'lock_version'</span>, <span class="ruby-identifier">versioned_inheritance_column</span>] <span class="ruby-operator">+</span> <span class="ruby-identifier">options</span>[<span class="ruby-value">:non_versioned_columns</span>].<span class="ruby-identifier">to_a</span>.<span class="ruby-identifier">map</span>(&amp;<span class="ruby-value">:to_s</span>)
+  <span class="ruby-keyword">self</span>.<span class="ruby-identifier">version_association_options</span>  = {
+                                              <span class="ruby-value">:class_name</span>  =<span class="ruby-operator">&gt;</span> <span class="ruby-node">&quot;#{self.to_s}::#{versioned_class_name}&quot;</span>,
+                                              <span class="ruby-value">:foreign_key</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">versioned_foreign_key</span>,
+                                              <span class="ruby-value">:dependent</span>   =<span class="ruby-operator">&gt;</span> <span class="ruby-value">:delete_all</span>
+  }.<span class="ruby-identifier">merge</span>(<span class="ruby-identifier">options</span>[<span class="ruby-value">:association_options</span>] <span class="ruby-operator">||</span> {})
+
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">block_given?</span>
+    <span class="ruby-identifier">extension_module_name</span> = <span class="ruby-node">&quot;#{versioned_class_name}Extension&quot;</span>
+    <span class="ruby-identifier">silence_warnings</span> <span class="ruby-keyword">do</span>
+      <span class="ruby-keyword">self</span>.<span class="ruby-identifier">const_set</span>(<span class="ruby-identifier">extension_module_name</span>, <span class="ruby-constant">Module</span>.<span class="ruby-identifier">new</span>(&amp;<span class="ruby-identifier">extension</span>))
+    <span class="ruby-keyword">end</span>
+
+    <span class="ruby-identifier">options</span>[<span class="ruby-value">:extend</span>] = <span class="ruby-keyword">self</span>.<span class="ruby-identifier">const_get</span>(<span class="ruby-identifier">extension_module_name</span>)
+  <span class="ruby-keyword">end</span>
+
+  <span class="ruby-keyword">unless</span> <span class="ruby-identifier">options</span>[<span class="ruby-value">:if_changed</span>].<span class="ruby-identifier">nil?</span>
+    <span class="ruby-keyword">self</span>.<span class="ruby-identifier">track_altered_attributes</span> = <span class="ruby-keyword">true</span>
+    <span class="ruby-identifier">options</span>[<span class="ruby-value">:if_changed</span>] = [<span class="ruby-identifier">options</span>[<span class="ruby-value">:if_changed</span>]] <span class="ruby-keyword">unless</span> <span class="ruby-identifier">options</span>[<span class="ruby-value">:if_changed</span>].<span class="ruby-identifier">is_a?</span>(<span class="ruby-constant">Array</span>)
+    <span class="ruby-keyword">self</span>.<span class="ruby-identifier">version_if_changed</span> = <span class="ruby-identifier">options</span>[<span class="ruby-value">:if_changed</span>].<span class="ruby-identifier">map</span>(&amp;<span class="ruby-value">:to_s</span>)
+  <span class="ruby-keyword">end</span>
+
+  <span class="ruby-identifier">include</span> <span class="ruby-identifier">options</span>[<span class="ruby-value">:extend</span>] <span class="ruby-keyword">if</span> <span class="ruby-identifier">options</span>[<span class="ruby-value">:extend</span>].<span class="ruby-identifier">is_a?</span>(<span class="ruby-constant">Module</span>)
+
+  <span class="ruby-identifier">include</span> <span class="ruby-constant">ActiveRecord</span><span class="ruby-operator">::</span><span class="ruby-constant">Acts</span><span class="ruby-operator">::</span><span class="ruby-constant">Versioned</span><span class="ruby-operator">::</span><span class="ruby-constant">Behaviors</span>
+
+  <span class="ruby-comment">#</span>
+  <span class="ruby-comment"># Create the dynamic versioned model</span>
+  <span class="ruby-comment">#</span>
+  <span class="ruby-identifier">const_set</span>(<span class="ruby-identifier">versioned_class_name</span>, <span class="ruby-constant">Class</span>.<span class="ruby-identifier">new</span>(<span class="ruby-constant">ActiveRecord</span><span class="ruby-operator">::</span><span class="ruby-constant">Base</span>)).<span class="ruby-identifier">class_eval</span> <span class="ruby-keyword">do</span>
+    <span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">reloadable?</span>;
+      <span class="ruby-keyword">false</span>;
+    <span class="ruby-keyword">end</span>
+
+    <span class="ruby-comment"># find first version before the given version</span>
+    <span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">before</span>(<span class="ruby-identifier">version</span>)
+      <span class="ruby-identifier">where</span>([<span class="ruby-node">&quot;#{original_class.versioned_foreign_key} = ? and version &lt; ?&quot;</span>, <span class="ruby-identifier">version</span>.<span class="ruby-identifier">send</span>(<span class="ruby-identifier">original_class</span>.<span class="ruby-identifier">versioned_foreign_key</span>), <span class="ruby-identifier">version</span>.<span class="ruby-identifier">version</span>]).
+              <span class="ruby-identifier">order</span>(<span class="ruby-string">'version DESC'</span>).
+              <span class="ruby-identifier">first</span>
+    <span class="ruby-keyword">end</span>
+
+    <span class="ruby-comment"># find first version after the given version.</span>
+    <span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">after</span>(<span class="ruby-identifier">version</span>)
+      <span class="ruby-identifier">where</span>([<span class="ruby-node">&quot;#{original_class.versioned_foreign_key} = ? and version &gt; ?&quot;</span>, <span class="ruby-identifier">version</span>.<span class="ruby-identifier">send</span>(<span class="ruby-identifier">original_class</span>.<span class="ruby-identifier">versioned_foreign_key</span>), <span class="ruby-identifier">version</span>.<span class="ruby-identifier">version</span>]).
+              <span class="ruby-identifier">order</span>(<span class="ruby-string">'version ASC'</span>).
+              <span class="ruby-identifier">first</span>
+    <span class="ruby-keyword">end</span>
+
+    <span class="ruby-comment"># finds earliest version of this record</span>
+    <span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">earliest</span>
+      <span class="ruby-identifier">order</span>(<span class="ruby-node">&quot;#{original_class.version_column}&quot;</span>).<span class="ruby-identifier">first</span>
+    <span class="ruby-keyword">end</span>
+
+    <span class="ruby-comment"># find latest version of this record</span>
+    <span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">latest</span>
+      <span class="ruby-identifier">order</span>(<span class="ruby-node">&quot;#{original_class.version_column} desc&quot;</span>).<span class="ruby-identifier">first</span>
+    <span class="ruby-keyword">end</span>
+
+    <span class="ruby-keyword">def</span> <span class="ruby-identifier">previous</span>
+      <span class="ruby-keyword">self</span>.<span class="ruby-identifier">class</span>.<span class="ruby-identifier">before</span>(<span class="ruby-keyword">self</span>)
+    <span class="ruby-keyword">end</span>
+
+    <span class="ruby-keyword">def</span> <span class="ruby-keyword">next</span>
+      <span class="ruby-keyword">self</span>.<span class="ruby-identifier">class</span>.<span class="ruby-identifier">after</span>(<span class="ruby-keyword">self</span>)
+    <span class="ruby-keyword">end</span>
+
+    <span class="ruby-keyword">def</span> <span class="ruby-identifier">versions_count</span>
+      <span class="ruby-identifier">page</span>.<span class="ruby-identifier">version</span>
+    <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">end</span>
+
+  <span class="ruby-identifier">versioned_class</span>.<span class="ruby-identifier">cattr_accessor</span> <span class="ruby-value">:original_class</span>
+  <span class="ruby-identifier">versioned_class</span>.<span class="ruby-identifier">original_class</span> = <span class="ruby-keyword">self</span>
+  <span class="ruby-identifier">versioned_class</span>.<span class="ruby-identifier">set_table_name</span> <span class="ruby-identifier">versioned_table_name</span>
+  <span class="ruby-identifier">versioned_class</span>.<span class="ruby-identifier">belongs_to</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">to_s</span>.<span class="ruby-identifier">demodulize</span>.<span class="ruby-identifier">underscore</span>.<span class="ruby-identifier">to_sym</span>,
+                             <span class="ruby-value">:class_name</span>  =<span class="ruby-operator">&gt;</span> <span class="ruby-node">&quot;::#{self.to_s}&quot;</span>,
+                             <span class="ruby-value">:foreign_key</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">versioned_foreign_key</span>
+  <span class="ruby-identifier">versioned_class</span>.<span class="ruby-identifier">send</span> <span class="ruby-value">:include</span>, <span class="ruby-identifier">options</span>[<span class="ruby-value">:extend</span>] <span class="ruby-keyword">if</span> <span class="ruby-identifier">options</span>[<span class="ruby-value">:extend</span>].<span class="ruby-identifier">is_a?</span>(<span class="ruby-constant">Module</span>)
+  <span class="ruby-identifier">versioned_class</span>.<span class="ruby-identifier">set_sequence_name</span> <span class="ruby-identifier">version_sequence_name</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">version_sequence_name</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- acts_as_versioned-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- acts_as_versioned-method -->
+
+    
+      <div id="method-i-next" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">next</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="next-source">
+            <pre><span class="ruby-comment"># File lib/acts_as_versioned.rb, line 241</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword">next</span>
+  <span class="ruby-keyword">self</span>.<span class="ruby-identifier">class</span>.<span class="ruby-identifier">after</span>(<span class="ruby-keyword">self</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- next-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- next-method -->
+
+    
+      <div id="method-i-previous" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">previous</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="previous-source">
+            <pre><span class="ruby-comment"># File lib/acts_as_versioned.rb, line 237</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">previous</span>
+  <span class="ruby-keyword">self</span>.<span class="ruby-identifier">class</span>.<span class="ruby-identifier">before</span>(<span class="ruby-keyword">self</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- previous-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- previous-method -->
+
+    
+      <div id="method-i-versions_count" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">versions_count</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="versions_count-source">
+            <pre><span class="ruby-comment"># File lib/acts_as_versioned.rb, line 245</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">versions_count</span>
+  <span class="ruby-identifier">page</span>.<span class="ruby-identifier">version</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- versions_count-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- versions_count-method -->
+
+    
+    </section><!-- public-instance-method-details -->
+  
+  </section><!-- 5Buntitled-5D -->
+
+</div><!-- documentation -->
+
+
+<footer id="validator-badges">
+  <p><a href="http://validator.w3.org/check/referer">[Validate]</a>
+  <p>Generated by <a href="https://github.com/rdoc/rdoc">RDoc</a> 3.11.
+  <p>Generated with the <a href="http://deveiate.org/projects/Darkfish-Rdoc/">Darkfish Rdoc Generator</a> 3.
+</footer>
+

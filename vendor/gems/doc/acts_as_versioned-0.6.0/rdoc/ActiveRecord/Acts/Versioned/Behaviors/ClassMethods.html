@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<meta content="text/html; charset=UTF-8" http-equiv="Content-Type">
+
+<title>Module: ActiveRecord::Acts::Versioned::Behaviors::ClassMethods</title>
+
+<link type="text/css" media="screen" href="../../../../rdoc.css" rel="stylesheet">
+
+<script type="text/javascript">
+  var rdoc_rel_prefix = "../../../../";
+</script>
+
+<script type="text/javascript" charset="utf-8" src="../../../../js/jquery.js"></script>
+<script type="text/javascript" charset="utf-8" src="../../../../js/navigation.js"></script>
+<script type="text/javascript" charset="utf-8" src="../../../../js/search_index.js"></script>
+<script type="text/javascript" charset="utf-8" src="../../../../js/search.js"></script>
+<script type="text/javascript" charset="utf-8" src="../../../../js/searcher.js"></script>
+<script type="text/javascript" charset="utf-8" src="../../../../js/darkfish.js"></script>
+
+
+<body id="top" class="module">
+<nav id="metadata">
+  <nav id="home-section" class="section">
+  <h3 class="section-header">
+    <a href="../../../../index.html">Home</a>
+    <a href="../../../../table_of_contents.html#classes">Classes</a>
+    <a href="../../../../table_of_contents.html#methods">Methods</a>
+  </h3>
+</nav>
+
+
+  <nav id="search-section" class="section project-section" class="initially-hidden">
+  <form action="#" method="get" accept-charset="utf-8">
+    <h3 class="section-header">
+      <input type="text" name="search" placeholder="Search" id="search-field"
+             title="Type to search, Up and Down to navigate, Enter to load">
+    </h3>
+  </form>
+
+  <ul id="search-results" class="initially-hidden"></ul>
+</nav>
+
+
+  <div id="file-metadata">
+    <nav id="file-list-section" class="section">
+  <h3 class="section-header">Defined In</h3>
+  <ul>
+    <li>lib/acts_as_versioned.rb
+  </ul>
+</nav>
+
+    
+  </div>
+
+  <div id="class-metadata">
+    
+    
+    
+    <!-- Method Quickref -->
+<nav id="method-list-section" class="section">
+  <h3 class="section-header">Methods</h3>
+
+  <ul class="link-list">
+    
+    <li><a href="#method-i-create_versioned_table">#create_versioned_table</a>
+    
+    <li><a href="#method-i-drop_versioned_table">#drop_versioned_table</a>
+    
+    <li><a href="#method-i-versioned_class">#versioned_class</a>
+    
+    <li><a href="#method-i-versioned_columns">#versioned_columns</a>
+    
+    <li><a href="#method-i-without_locking">#without_locking</a>
+    
+    <li><a href="#method-i-without_revision">#without_revision</a>
+    
+  </ul>
+</nav>
+
+  </div>
+
+  <div id="project-metadata">
+    <nav id="fileindex-section" class="section project-section">
+  <h3 class="section-header">Pages</h3>
+
+  <ul>
+  
+    <li class="file"><a href="../../../../CHANGELOG.html">CHANGELOG</a>
+  
+    <li class="file"><a href="../../../../MIT-LICENSE.html">MIT-LICENSE</a>
+  
+    <li class="file"><a href="../../../../README.html">README</a>
+  
+  </ul>
+</nav>
+
+    <nav id="classindex-section" class="section project-section">
+  <h3 class="section-header">Class and Module Index</h3>
+
+  <ul class="link-list">
+  
+    <li><a href="../../../../ActiveRecord.html">ActiveRecord</a>
+  
+    <li><a href="../../../../ActiveRecord/Acts.html">ActiveRecord::Acts</a>
+  
+    <li><a href="../../../../ActiveRecord/Acts/Versioned.html">ActiveRecord::Acts::Versioned</a>
+  
+    <li><a href="../../../../ActiveRecord/Acts/Versioned/Behaviors.html">ActiveRecord::Acts::Versioned::Behaviors</a>
+  
+    <li><a href="../../../../ActiveRecord/Acts/Versioned/Behaviors/ClassMethods.html">ActiveRecord::Acts::Versioned::Behaviors::ClassMethods</a>
+  
+    <li><a href="../../../../ActiveRecord/Acts/Versioned/Behaviors/InstanceMethods.html">ActiveRecord::Acts::Versioned::Behaviors::InstanceMethods</a>
+  
+  </ul>
+</nav>
+
+  </div>
+</nav>
+
+<div id="documentation">
+  <h1 class="module">module ActiveRecord::Acts::Versioned::Behaviors::ClassMethods</h1>
+
+  <div id="description" class="description">
+    
+  </div><!-- description -->
+
+  
+  
+  
+  <section id="5Buntitled-5D" class="documentation-section">
+    
+
+    
+
+    
+
+    
+
+    <!-- Methods -->
+    
+     <section id="public-instance-5Buntitled-5D-method-details" class="method-section section">
+      <h3 class="section-header">Public Instance Methods</h3>
+
+    
+      <div id="method-i-create_versioned_table" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">create_versioned_table</span><span
+            class="method-args">(create_table_options = {})</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Rake migration task to create the versioned table using options passed to
+acts_as_versioned</p>
+          
+
+          
+          <div class="method-source-code" id="create_versioned_table-source">
+            <pre><span class="ruby-comment"># File lib/acts_as_versioned.rb, line 413</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">create_versioned_table</span>(<span class="ruby-identifier">create_table_options</span> = {})
+  <span class="ruby-comment"># create version column in main table if it does not exist</span>
+  <span class="ruby-keyword">if</span> <span class="ruby-operator">!</span><span class="ruby-keyword">self</span>.<span class="ruby-identifier">content_columns</span>.<span class="ruby-identifier">find</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">c</span><span class="ruby-operator">|</span> [<span class="ruby-identifier">version_column</span>.<span class="ruby-identifier">to_s</span>, <span class="ruby-string">'lock_version'</span>].<span class="ruby-identifier">include?</span> <span class="ruby-identifier">c</span>.<span class="ruby-identifier">name</span> }
+    <span class="ruby-keyword">self</span>.<span class="ruby-identifier">connection</span>.<span class="ruby-identifier">add_column</span> <span class="ruby-identifier">table_name</span>, <span class="ruby-identifier">version_column</span>, <span class="ruby-value">:integer</span>
+    <span class="ruby-keyword">self</span>.<span class="ruby-identifier">reset_column_information</span>
+  <span class="ruby-keyword">end</span>
+
+  <span class="ruby-keyword">return</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">connection</span>.<span class="ruby-identifier">table_exists?</span>(<span class="ruby-identifier">versioned_table_name</span>)
+
+  <span class="ruby-keyword">self</span>.<span class="ruby-identifier">connection</span>.<span class="ruby-identifier">create_table</span>(<span class="ruby-identifier">versioned_table_name</span>, <span class="ruby-identifier">create_table_options</span>) <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">t</span><span class="ruby-operator">|</span>
+    <span class="ruby-identifier">t</span>.<span class="ruby-identifier">column</span> <span class="ruby-identifier">versioned_foreign_key</span>, <span class="ruby-value">:integer</span>
+    <span class="ruby-identifier">t</span>.<span class="ruby-identifier">column</span> <span class="ruby-identifier">version_column</span>, <span class="ruby-value">:integer</span>
+  <span class="ruby-keyword">end</span>
+
+  <span class="ruby-keyword">self</span>.<span class="ruby-identifier">versioned_columns</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">col</span><span class="ruby-operator">|</span>
+    <span class="ruby-keyword">self</span>.<span class="ruby-identifier">connection</span>.<span class="ruby-identifier">add_column</span> <span class="ruby-identifier">versioned_table_name</span>, <span class="ruby-identifier">col</span>.<span class="ruby-identifier">name</span>, <span class="ruby-identifier">col</span>.<span class="ruby-identifier">type</span>,
+                               <span class="ruby-value">:limit</span>     =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">col</span>.<span class="ruby-identifier">limit</span>,
+                               <span class="ruby-value">:default</span>   =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">col</span>.<span class="ruby-identifier">default</span>,
+                               <span class="ruby-value">:scale</span>     =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">col</span>.<span class="ruby-identifier">scale</span>,
+                               <span class="ruby-value">:precision</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">col</span>.<span class="ruby-identifier">precision</span>
+  <span class="ruby-keyword">end</span>
+
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">type_col</span> = <span class="ruby-keyword">self</span>.<span class="ruby-identifier">columns_hash</span>[<span class="ruby-identifier">inheritance_column</span>]
+    <span class="ruby-keyword">self</span>.<span class="ruby-identifier">connection</span>.<span class="ruby-identifier">add_column</span> <span class="ruby-identifier">versioned_table_name</span>, <span class="ruby-identifier">versioned_inheritance_column</span>, <span class="ruby-identifier">type_col</span>.<span class="ruby-identifier">type</span>,
+                               <span class="ruby-value">:limit</span>     =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">type_col</span>.<span class="ruby-identifier">limit</span>,
+                               <span class="ruby-value">:default</span>   =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">type_col</span>.<span class="ruby-identifier">default</span>,
+                               <span class="ruby-value">:scale</span>     =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">type_col</span>.<span class="ruby-identifier">scale</span>,
+                               <span class="ruby-value">:precision</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">type_col</span>.<span class="ruby-identifier">precision</span>
+  <span class="ruby-keyword">end</span>
+
+  <span class="ruby-keyword">self</span>.<span class="ruby-identifier">connection</span>.<span class="ruby-identifier">add_index</span> <span class="ruby-identifier">versioned_table_name</span>, <span class="ruby-identifier">versioned_foreign_key</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- create_versioned_table-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- create_versioned_table-method -->
+
+    
+      <div id="method-i-drop_versioned_table" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">drop_versioned_table</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Rake migration task to drop the versioned table</p>
+          
+
+          
+          <div class="method-source-code" id="drop_versioned_table-source">
+            <pre><span class="ruby-comment"># File lib/acts_as_versioned.rb, line 447</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">drop_versioned_table</span>
+  <span class="ruby-keyword">self</span>.<span class="ruby-identifier">connection</span>.<span class="ruby-identifier">drop_table</span> <span class="ruby-identifier">versioned_table_name</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- drop_versioned_table-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- drop_versioned_table-method -->
+
+    
+      <div id="method-i-versioned_class" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">versioned_class</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Returns an instance of the dynamic versioned model</p>
+          
+
+          
+          <div class="method-source-code" id="versioned_class-source">
+            <pre><span class="ruby-comment"># File lib/acts_as_versioned.rb, line 408</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">versioned_class</span>
+  <span class="ruby-identifier">const_get</span> <span class="ruby-identifier">versioned_class_name</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- versioned_class-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- versioned_class-method -->
+
+    
+      <div id="method-i-versioned_columns" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">versioned_columns</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Returns an array of columns that are versioned.  See non_versioned_columns</p>
+          
+
+          
+          <div class="method-source-code" id="versioned_columns-source">
+            <pre><span class="ruby-comment"># File lib/acts_as_versioned.rb, line 403</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">versioned_columns</span>
+  <span class="ruby-ivar">@versioned_columns</span> <span class="ruby-operator">||=</span> <span class="ruby-identifier">columns</span>.<span class="ruby-identifier">select</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">c</span><span class="ruby-operator">|</span> <span class="ruby-operator">!</span><span class="ruby-identifier">non_versioned_columns</span>.<span class="ruby-identifier">include?</span>(<span class="ruby-identifier">c</span>.<span class="ruby-identifier">name</span>) }
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- versioned_columns-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- versioned_columns-method -->
+
+    
+      <div id="method-i-without_locking" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">without_locking</span><span
+            class="method-args">(&block)</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Turns off optimistic locking for the duration of the block</p>
+
+<pre>Foo.without_locking do
+  @foo.save
+end</pre>
+          
+
+          
+          <div class="method-source-code" id="without_locking-source">
+            <pre><span class="ruby-comment"># File lib/acts_as_versioned.rb, line 479</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">without_locking</span>(&amp;<span class="ruby-identifier">block</span>)
+  <span class="ruby-identifier">current</span> = <span class="ruby-constant">ActiveRecord</span><span class="ruby-operator">::</span><span class="ruby-constant">Base</span>.<span class="ruby-identifier">lock_optimistically</span>
+  <span class="ruby-constant">ActiveRecord</span><span class="ruby-operator">::</span><span class="ruby-constant">Base</span>.<span class="ruby-identifier">lock_optimistically</span> = <span class="ruby-keyword">false</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">current</span>
+  <span class="ruby-keyword">begin</span>
+    <span class="ruby-identifier">block</span>.<span class="ruby-identifier">call</span>
+  <span class="ruby-keyword">ensure</span>
+    <span class="ruby-constant">ActiveRecord</span><span class="ruby-operator">::</span><span class="ruby-constant">Base</span>.<span class="ruby-identifier">lock_optimistically</span> = <span class="ruby-keyword">true</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">current</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- without_locking-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- without_locking-method -->
+
+    
+      <div id="method-i-without_revision" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">without_revision</span><span
+            class="method-args">(&block)</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Executes the block with the versioning callbacks disabled.</p>
+
+<pre>Foo.without_revision do
+  @foo.save
+end</pre>
+          
+
+          
+          <div class="method-source-code" id="without_revision-source">
+            <pre><span class="ruby-comment"># File lib/acts_as_versioned.rb, line 457</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">without_revision</span>(&amp;<span class="ruby-identifier">block</span>)
+  <span class="ruby-identifier">class_eval</span> <span class="ruby-keyword">do</span>
+    <span class="ruby-constant">CALLBACKS</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">attr_name</span><span class="ruby-operator">|</span>
+      <span class="ruby-identifier">alias_method</span> <span class="ruby-node">&quot;orig_#{attr_name}&quot;</span>.<span class="ruby-identifier">to_sym</span>, <span class="ruby-identifier">attr_name</span>
+      <span class="ruby-identifier">alias_method</span> <span class="ruby-identifier">attr_name</span>, <span class="ruby-value">:empty_callback</span>
+    <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-identifier">block</span>.<span class="ruby-identifier">call</span>
+<span class="ruby-keyword">ensure</span>
+  <span class="ruby-identifier">class_eval</span> <span class="ruby-keyword">do</span>
+    <span class="ruby-constant">CALLBACKS</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">attr_name</span><span class="ruby-operator">|</span>
+      <span class="ruby-identifier">alias_method</span> <span class="ruby-identifier">attr_name</span>, <span class="ruby-node">&quot;orig_#{attr_name}&quot;</span>.<span class="ruby-identifier">to_sym</span>
+    <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- without_revision-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- without_revision-method -->
+
+    
+    </section><!-- public-instance-method-details -->
+  
+  </section><!-- 5Buntitled-5D -->
+
+</div><!-- documentation -->
+
+
+<footer id="validator-badges">
+  <p><a href="http://validator.w3.org/check/referer">[Validate]</a>
+  <p>Generated by <a href="https://github.com/rdoc/rdoc">RDoc</a> 3.11.
+  <p>Generated with the <a href="http://deveiate.org/projects/Darkfish-Rdoc/">Darkfish Rdoc Generator</a> 3.
+</footer>
+

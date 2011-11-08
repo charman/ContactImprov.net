@@ -1,0 +1,619 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<meta content="text/html; charset=UTF-8" http-equiv="Content-Type">
+
+<title>Module: ActiveRecord::Acts::Versioned::Behaviors::InstanceMethods</title>
+
+<link type="text/css" media="screen" href="../../../../rdoc.css" rel="stylesheet">
+
+<script type="text/javascript">
+  var rdoc_rel_prefix = "../../../../";
+</script>
+
+<script type="text/javascript" charset="utf-8" src="../../../../js/jquery.js"></script>
+<script type="text/javascript" charset="utf-8" src="../../../../js/navigation.js"></script>
+<script type="text/javascript" charset="utf-8" src="../../../../js/search_index.js"></script>
+<script type="text/javascript" charset="utf-8" src="../../../../js/search.js"></script>
+<script type="text/javascript" charset="utf-8" src="../../../../js/searcher.js"></script>
+<script type="text/javascript" charset="utf-8" src="../../../../js/darkfish.js"></script>
+
+
+<body id="top" class="module">
+<nav id="metadata">
+  <nav id="home-section" class="section">
+  <h3 class="section-header">
+    <a href="../../../../index.html">Home</a>
+    <a href="../../../../table_of_contents.html#classes">Classes</a>
+    <a href="../../../../table_of_contents.html#methods">Methods</a>
+  </h3>
+</nav>
+
+
+  <nav id="search-section" class="section project-section" class="initially-hidden">
+  <form action="#" method="get" accept-charset="utf-8">
+    <h3 class="section-header">
+      <input type="text" name="search" placeholder="Search" id="search-field"
+             title="Type to search, Up and Down to navigate, Enter to load">
+    </h3>
+  </form>
+
+  <ul id="search-results" class="initially-hidden"></ul>
+</nav>
+
+
+  <div id="file-metadata">
+    <nav id="file-list-section" class="section">
+  <h3 class="section-header">Defined In</h3>
+  <ul>
+    <li>lib/acts_as_versioned.rb
+  </ul>
+</nav>
+
+    
+  </div>
+
+  <div id="class-metadata">
+    
+    
+    
+    <!-- Method Quickref -->
+<nav id="method-list-section" class="section">
+  <h3 class="section-header">Methods</h3>
+
+  <ul class="link-list">
+    
+    <li><a href="#method-i-altered-3F">#altered?</a>
+    
+    <li><a href="#method-i-clear_old_versions">#clear_old_versions</a>
+    
+    <li><a href="#method-i-clone_versioned_model">#clone_versioned_model</a>
+    
+    <li><a href="#method-i-empty_callback">#empty_callback</a>
+    
+    <li><a href="#method-i-revert_to">#revert_to</a>
+    
+    <li><a href="#method-i-revert_to-21">#revert_to!</a>
+    
+    <li><a href="#method-i-save_version">#save_version</a>
+    
+    <li><a href="#method-i-save_version-3F">#save_version?</a>
+    
+    <li><a href="#method-i-save_without_revision">#save_without_revision</a>
+    
+    <li><a href="#method-i-save_without_revision-21">#save_without_revision!</a>
+    
+    <li><a href="#method-i-version_condition_met-3F">#version_condition_met?</a>
+    
+    <li><a href="#method-i-without_locking">#without_locking</a>
+    
+    <li><a href="#method-i-without_revision">#without_revision</a>
+    
+  </ul>
+</nav>
+
+  </div>
+
+  <div id="project-metadata">
+    <nav id="fileindex-section" class="section project-section">
+  <h3 class="section-header">Pages</h3>
+
+  <ul>
+  
+    <li class="file"><a href="../../../../CHANGELOG.html">CHANGELOG</a>
+  
+    <li class="file"><a href="../../../../MIT-LICENSE.html">MIT-LICENSE</a>
+  
+    <li class="file"><a href="../../../../README.html">README</a>
+  
+  </ul>
+</nav>
+
+    <nav id="classindex-section" class="section project-section">
+  <h3 class="section-header">Class and Module Index</h3>
+
+  <ul class="link-list">
+  
+    <li><a href="../../../../ActiveRecord.html">ActiveRecord</a>
+  
+    <li><a href="../../../../ActiveRecord/Acts.html">ActiveRecord::Acts</a>
+  
+    <li><a href="../../../../ActiveRecord/Acts/Versioned.html">ActiveRecord::Acts::Versioned</a>
+  
+    <li><a href="../../../../ActiveRecord/Acts/Versioned/Behaviors.html">ActiveRecord::Acts::Versioned::Behaviors</a>
+  
+    <li><a href="../../../../ActiveRecord/Acts/Versioned/Behaviors/ClassMethods.html">ActiveRecord::Acts::Versioned::Behaviors::ClassMethods</a>
+  
+    <li><a href="../../../../ActiveRecord/Acts/Versioned/Behaviors/InstanceMethods.html">ActiveRecord::Acts::Versioned::Behaviors::InstanceMethods</a>
+  
+  </ul>
+</nav>
+
+  </div>
+</nav>
+
+<div id="documentation">
+  <h1 class="module">module ActiveRecord::Acts::Versioned::Behaviors::InstanceMethods</h1>
+
+  <div id="description" class="description">
+    
+  </div><!-- description -->
+
+  
+  
+  
+  <section id="5Buntitled-5D" class="documentation-section">
+    
+
+    
+
+    
+
+    
+
+    <!-- Methods -->
+    
+     <section id="public-instance-5Buntitled-5D-method-details" class="method-section section">
+      <h3 class="section-header">Public Instance Methods</h3>
+
+    
+      <div id="method-i-altered-3F" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">altered?</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="altered-3F-source">
+            <pre><span class="ruby-comment"># File lib/acts_as_versioned.rb, line 328</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">altered?</span>
+  <span class="ruby-identifier">track_altered_attributes</span> <span class="ruby-operator">?</span> (<span class="ruby-identifier">version_if_changed</span> <span class="ruby-operator">-</span> <span class="ruby-identifier">changed</span>).<span class="ruby-identifier">length</span> <span class="ruby-operator">&lt;</span> <span class="ruby-identifier">version_if_changed</span>.<span class="ruby-identifier">length</span> <span class="ruby-operator">:</span> <span class="ruby-identifier">changed?</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- altered-3F-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- altered-3F-method -->
+
+    
+      <div id="method-i-clear_old_versions" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">clear_old_versions</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Clears old revisions if a limit is set with the :limit option in
+<code>acts_as_versioned</code>. Override this method to set your own
+criteria for clearing old versions.</p>
+          
+
+          
+          <div class="method-source-code" id="clear_old_versions-source">
+            <pre><span class="ruby-comment"># File lib/acts_as_versioned.rb, line 286</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">clear_old_versions</span>
+  <span class="ruby-keyword">return</span> <span class="ruby-keyword">if</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">class</span>.<span class="ruby-identifier">max_version_limit</span> <span class="ruby-operator">==</span> <span class="ruby-value">0</span>
+  <span class="ruby-identifier">excess_baggage</span> = <span class="ruby-identifier">send</span>(<span class="ruby-keyword">self</span>.<span class="ruby-identifier">class</span>.<span class="ruby-identifier">version_column</span>).<span class="ruby-identifier">to_i</span> <span class="ruby-operator">-</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">class</span>.<span class="ruby-identifier">max_version_limit</span>
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">excess_baggage</span> <span class="ruby-operator">&gt;</span> <span class="ruby-value">0</span>
+    <span class="ruby-keyword">self</span>.<span class="ruby-identifier">class</span>.<span class="ruby-identifier">versioned_class</span>.<span class="ruby-identifier">delete_all</span> [<span class="ruby-node">&quot;#{self.class.version_column} &lt;= ? and #{self.class.versioned_foreign_key} = ?&quot;</span>, <span class="ruby-identifier">excess_baggage</span>, <span class="ruby-identifier">id</span>]
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- clear_old_versions-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- clear_old_versions-method -->
+
+    
+      <div id="method-i-clone_versioned_model" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">clone_versioned_model</span><span
+            class="method-args">(orig_model, new_model)</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Clones a model.  Used when saving a new version or reverting a model’s
+version.</p>
+          
+
+          
+          <div class="method-source-code" id="clone_versioned_model-source">
+            <pre><span class="ruby-comment"># File lib/acts_as_versioned.rb, line 333</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">clone_versioned_model</span>(<span class="ruby-identifier">orig_model</span>, <span class="ruby-identifier">new_model</span>)
+  <span class="ruby-keyword">self</span>.<span class="ruby-identifier">class</span>.<span class="ruby-identifier">versioned_columns</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">col</span><span class="ruby-operator">|</span>
+    <span class="ruby-identifier">new_model</span>.<span class="ruby-identifier">send</span>(<span class="ruby-node">&quot;#{col.name}=&quot;</span>, <span class="ruby-identifier">orig_model</span>.<span class="ruby-identifier">send</span>(<span class="ruby-identifier">col</span>.<span class="ruby-identifier">name</span>)) <span class="ruby-keyword">if</span> <span class="ruby-identifier">orig_model</span>.<span class="ruby-identifier">has_attribute?</span>(<span class="ruby-identifier">col</span>.<span class="ruby-identifier">name</span>)
+  <span class="ruby-keyword">end</span>
+
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">orig_model</span>.<span class="ruby-identifier">is_a?</span>(<span class="ruby-keyword">self</span>.<span class="ruby-identifier">class</span>.<span class="ruby-identifier">versioned_class</span>)
+    <span class="ruby-identifier">new_model</span>[<span class="ruby-identifier">new_model</span>.<span class="ruby-identifier">class</span>.<span class="ruby-identifier">inheritance_column</span>] = <span class="ruby-identifier">orig_model</span>[<span class="ruby-keyword">self</span>.<span class="ruby-identifier">class</span>.<span class="ruby-identifier">versioned_inheritance_column</span>]
+  <span class="ruby-keyword">elsif</span> <span class="ruby-identifier">new_model</span>.<span class="ruby-identifier">is_a?</span>(<span class="ruby-keyword">self</span>.<span class="ruby-identifier">class</span>.<span class="ruby-identifier">versioned_class</span>)
+    <span class="ruby-identifier">new_model</span>[<span class="ruby-keyword">self</span>.<span class="ruby-identifier">class</span>.<span class="ruby-identifier">versioned_inheritance_column</span>] = <span class="ruby-identifier">orig_model</span>[<span class="ruby-identifier">orig_model</span>.<span class="ruby-identifier">class</span>.<span class="ruby-identifier">inheritance_column</span>]
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- clone_versioned_model-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- clone_versioned_model-method -->
+
+    
+      <div id="method-i-empty_callback" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">empty_callback</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="empty_callback-source">
+            <pre><span class="ruby-comment"># File lib/acts_as_versioned.rb, line 383</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">empty_callback</span>()
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- empty_callback-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- empty_callback-method -->
+
+    
+      <div id="method-i-revert_to" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">revert_to</span><span
+            class="method-args">(version)</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Reverts a model to a given version.  Takes either a version number or an
+instance of the versioned model</p>
+          
+
+          
+          <div class="method-source-code" id="revert_to-source">
+            <pre><span class="ruby-comment"># File lib/acts_as_versioned.rb, line 295</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">revert_to</span>(<span class="ruby-identifier">version</span>)
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">version</span>.<span class="ruby-identifier">is_a?</span>(<span class="ruby-keyword">self</span>.<span class="ruby-identifier">class</span>.<span class="ruby-identifier">versioned_class</span>)
+    <span class="ruby-keyword">return</span> <span class="ruby-keyword">false</span> <span class="ruby-keyword">unless</span> <span class="ruby-identifier">version</span>.<span class="ruby-identifier">send</span>(<span class="ruby-keyword">self</span>.<span class="ruby-identifier">class</span>.<span class="ruby-identifier">versioned_foreign_key</span>) <span class="ruby-operator">==</span> <span class="ruby-identifier">id</span> <span class="ruby-keyword">and</span> <span class="ruby-operator">!</span><span class="ruby-identifier">version</span>.<span class="ruby-identifier">new_record?</span>
+  <span class="ruby-keyword">else</span>
+    <span class="ruby-keyword">return</span> <span class="ruby-keyword">false</span> <span class="ruby-keyword">unless</span> <span class="ruby-identifier">version</span> = <span class="ruby-identifier">versions</span>.<span class="ruby-identifier">where</span>(<span class="ruby-keyword">self</span>.<span class="ruby-identifier">class</span>.<span class="ruby-identifier">version_column</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">version</span>).<span class="ruby-identifier">first</span>
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">self</span>.<span class="ruby-identifier">clone_versioned_model</span>(<span class="ruby-identifier">version</span>, <span class="ruby-keyword">self</span>)
+  <span class="ruby-identifier">send</span>(<span class="ruby-node">&quot;#{self.class.version_column}=&quot;</span>, <span class="ruby-identifier">version</span>.<span class="ruby-identifier">send</span>(<span class="ruby-keyword">self</span>.<span class="ruby-identifier">class</span>.<span class="ruby-identifier">version_column</span>))
+  <span class="ruby-keyword">true</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- revert_to-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- revert_to-method -->
+
+    
+      <div id="method-i-revert_to-21" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">revert_to!</span><span
+            class="method-args">(version)</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Reverts a model to a given version and saves the model. Takes either a
+version number or an instance of the versioned model</p>
+          
+
+          
+          <div class="method-source-code" id="revert_to-21-source">
+            <pre><span class="ruby-comment"># File lib/acts_as_versioned.rb, line 308</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">revert_to!</span>(<span class="ruby-identifier">version</span>)
+  <span class="ruby-identifier">revert_to</span>(<span class="ruby-identifier">version</span>) <span class="ruby-operator">?</span> <span class="ruby-identifier">save_without_revision</span> <span class="ruby-operator">:</span> <span class="ruby-keyword">false</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- revert_to-21-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- revert_to-21-method -->
+
+    
+      <div id="method-i-save_version" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">save_version</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Saves a version of the model in the versioned table.  This is called in the
+after_save callback by default</p>
+          
+
+          
+          <div class="method-source-code" id="save_version-source">
+            <pre><span class="ruby-comment"># File lib/acts_as_versioned.rb, line 273</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">save_version</span>
+  <span class="ruby-keyword">if</span> <span class="ruby-ivar">@saving_version</span>
+    <span class="ruby-ivar">@saving_version</span> = <span class="ruby-keyword">nil</span>
+    <span class="ruby-identifier">rev</span> = <span class="ruby-keyword">self</span>.<span class="ruby-identifier">class</span>.<span class="ruby-identifier">versioned_class</span>.<span class="ruby-identifier">new</span>
+    <span class="ruby-identifier">clone_versioned_model</span>(<span class="ruby-keyword">self</span>, <span class="ruby-identifier">rev</span>)
+    <span class="ruby-identifier">rev</span>.<span class="ruby-identifier">send</span>(<span class="ruby-node">&quot;#{self.class.version_column}=&quot;</span>, <span class="ruby-identifier">send</span>(<span class="ruby-keyword">self</span>.<span class="ruby-identifier">class</span>.<span class="ruby-identifier">version_column</span>))
+    <span class="ruby-identifier">rev</span>.<span class="ruby-identifier">send</span>(<span class="ruby-node">&quot;#{self.class.versioned_foreign_key}=&quot;</span>, <span class="ruby-identifier">id</span>)
+    <span class="ruby-identifier">rev</span>.<span class="ruby-identifier">save</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- save_version-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- save_version-method -->
+
+    
+      <div id="method-i-save_version-3F" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">save_version?</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Checks whether a new version shall be saved or not.  Calls
+<code>version_condition_met?</code> and <code>changed?</code>.</p>
+          
+
+          
+          <div class="method-source-code" id="save_version-3F-source">
+            <pre><span class="ruby-comment"># File lib/acts_as_versioned.rb, line 346</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">save_version?</span>
+  <span class="ruby-identifier">version_condition_met?</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-identifier">altered?</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- save_version-3F-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- save_version-3F-method -->
+
+    
+      <div id="method-i-save_without_revision" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">save_without_revision</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Temporarily turns off Optimistic Locking while saving.  Used when reverting
+so that a new version is not created.</p>
+          
+
+          
+          <div class="method-source-code" id="save_without_revision-source">
+            <pre><span class="ruby-comment"># File lib/acts_as_versioned.rb, line 313</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">save_without_revision</span>
+  <span class="ruby-identifier">save_without_revision!</span>
+  <span class="ruby-keyword">true</span>
+<span class="ruby-keyword">rescue</span>
+  <span class="ruby-keyword">false</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- save_without_revision-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- save_without_revision-method -->
+
+    
+      <div id="method-i-save_without_revision-21" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">save_without_revision!</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="save_without_revision-21-source">
+            <pre><span class="ruby-comment"># File lib/acts_as_versioned.rb, line 320</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">save_without_revision!</span>
+  <span class="ruby-identifier">without_locking</span> <span class="ruby-keyword">do</span>
+    <span class="ruby-identifier">without_revision</span> <span class="ruby-keyword">do</span>
+      <span class="ruby-identifier">save!</span>
+    <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- save_without_revision-21-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- save_without_revision-21-method -->
+
+    
+      <div id="method-i-version_condition_met-3F" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">version_condition_met?</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Checks condition set in the :if option to check whether a revision should
+be created or not.  Override this for custom version condition checking.</p>
+          
+
+          
+          <div class="method-source-code" id="version_condition_met-3F-source">
+            <pre><span class="ruby-comment"># File lib/acts_as_versioned.rb, line 352</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">version_condition_met?</span>
+  <span class="ruby-keyword">case</span>
+    <span class="ruby-keyword">when</span> <span class="ruby-identifier">version_condition</span>.<span class="ruby-identifier">is_a?</span>(<span class="ruby-constant">Symbol</span>)
+      <span class="ruby-identifier">send</span>(<span class="ruby-identifier">version_condition</span>)
+    <span class="ruby-keyword">when</span> <span class="ruby-identifier">version_condition</span>.<span class="ruby-identifier">respond_to?</span>(<span class="ruby-value">:call</span>) <span class="ruby-operator">&amp;&amp;</span> (<span class="ruby-identifier">version_condition</span>.<span class="ruby-identifier">arity</span> <span class="ruby-operator">==</span> <span class="ruby-value">1</span> <span class="ruby-operator">||</span> <span class="ruby-identifier">version_condition</span>.<span class="ruby-identifier">arity</span> <span class="ruby-operator">==</span> <span class="ruby-value">-1</span>)
+      <span class="ruby-identifier">version_condition</span>.<span class="ruby-identifier">call</span>(<span class="ruby-keyword">self</span>)
+    <span class="ruby-keyword">else</span>
+      <span class="ruby-identifier">version_condition</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- version_condition_met-3F-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- version_condition_met-3F-method -->
+
+    
+      <div id="method-i-without_locking" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">without_locking</span><span
+            class="method-args">(&block)</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Turns off optimistic locking for the duration of the block</p>
+
+<pre>@foo.without_locking do
+  @foo.save
+end</pre>
+          
+
+          
+          <div class="method-source-code" id="without_locking-source">
+            <pre><span class="ruby-comment"># File lib/acts_as_versioned.rb, line 379</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">without_locking</span>(&amp;<span class="ruby-identifier">block</span>)
+  <span class="ruby-keyword">self</span>.<span class="ruby-identifier">class</span>.<span class="ruby-identifier">without_locking</span>(&amp;<span class="ruby-identifier">block</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- without_locking-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- without_locking-method -->
+
+    
+      <div id="method-i-without_revision" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">without_revision</span><span
+            class="method-args">(&block)</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Executes the block with the versioning callbacks disabled.</p>
+
+<pre>@foo.without_revision do
+  @foo.save
+end</pre>
+          
+
+          
+          <div class="method-source-code" id="without_revision-source">
+            <pre><span class="ruby-comment"># File lib/acts_as_versioned.rb, line 369</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">without_revision</span>(&amp;<span class="ruby-identifier">block</span>)
+  <span class="ruby-keyword">self</span>.<span class="ruby-identifier">class</span>.<span class="ruby-identifier">without_revision</span>(&amp;<span class="ruby-identifier">block</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- without_revision-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- without_revision-method -->
+
+    
+    </section><!-- public-instance-method-details -->
+  
+  </section><!-- 5Buntitled-5D -->
+
+</div><!-- documentation -->
+
+
+<footer id="validator-badges">
+  <p><a href="http://validator.w3.org/check/referer">[Validate]</a>
+  <p>Generated by <a href="https://github.com/rdoc/rdoc">RDoc</a> 3.11.
+  <p>Generated with the <a href="http://deveiate.org/projects/Darkfish-Rdoc/">Darkfish Rdoc Generator</a> 3.
+</footer>
+
