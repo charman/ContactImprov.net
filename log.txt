@@ -45,7 +45,11 @@ TODO:
   - database optimization
     [...]
 
+@ Add descriptive title to home page
+
 ---
+
+@ Fix deprecation warnings caused by acts_as_state_machine
 
 @ Fix problem where Country and State fields are highlighted in red
 when editing an event
@@ -227,8 +231,35 @@ they can edit for that type of entry
 
 ==[ LOG ]=============================================================
 
-----[ day, May , 2011 ]--------------------------------------
+----[ day, November , 2011 ]--------------------------------------
 
+
+
+
+----[ day, November , 2011 ]--------------------------------------
+
+
+----[ Tuesday, November 8, 2011 ]-------------------------------------
+
+Fixed a compatibility problem between the local acts_as_versioned Gem
+and Rails 3.1.  With Rails 3.1, the primary key for the
+Classname::Versions model was being set incorrectly, causing the
+one_to_many relationship between Classname and Classname::Versions to
+fail on operations such as classname_instance.destroy with MySQL error
+messages such as:
+
+  test_should_allow_admin_to_delete_event(EventsControllerTest):
+  ActiveRecord::StatementInvalid: Mysql2::Error: Unknown column
+  'ci_event_entry_versions.version_id' in 'where clause': DELETE FROM
+  `ci_event_entry_versions` WHERE
+  `ci_event_entry_versions`.`event_entry_id` = 100 AND
+  `ci_event_entry_versions`.`version_id` IS NULL
+    lib/entry_form_with_optional_models.rb:31:in `delete'
+    test/functional/events_controller_test.rb:102:in
+    `test_should_allow_admin_to_delete_event'
+
+where the primary key for the ci_event_entry_versions table should be
+'eventy_entry_version_id' and not 'version_id'.
 
 
 ----[ Wednesday, June  1, 2011 ]--------------------------------------

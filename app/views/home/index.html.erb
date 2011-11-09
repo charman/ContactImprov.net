@@ -2,6 +2,17 @@
   <script type="text/javascript" src="/javascripts/fancybox/jquery.fancybox-1.3.4.pack.js"></script>
   <link rel="stylesheet" href="/javascripts/fancybox/jquery.fancybox-1.3.4.css" type="text/css" media="screen" />
 
+  <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script>
+  <script type="text/javascript" src="/javascripts/jquery.ui.map.js"></script>
+  <script type="text/javascript" src="/javascripts/ci_map.js"></script>
+
+  <script type="text/javascript">
+    $(function() {
+      ci_map_initialize('/map/feed/combined.xml');
+    });
+  </script>
+
+
   <script>
     $(function() {
       $("a[rel=lightbox_image]").fancybox();
@@ -9,142 +20,133 @@
   </script>
 <% end %>
 
-			<div>
-				<div class="lightbox_sidebar">
-					<div class="lightbox" id="lightbox_images">
-						<a href="/images/Stefano_Bussolon/Stefano_Bussolon_3.jpg" rel="lightbox_image">
-							<img src="/images/Stefano_Bussolon/Stefano_Bussolon_3_w120.jpg" />
-						</a>
-						<a href="/images/Stefano_Bussolon/Stefano_Bussolon_4.jpg" rel="lightbox_image">
-							<img src="/images/Stefano_Bussolon/Stefano_Bussolon_4_w120.jpg" />
-						</a>
-						<a href="/images/Stefano_Bussolon/Stefano_Bussolon_5.jpg" rel="lightbox_image">
-							<img src="/images/Stefano_Bussolon/Stefano_Bussolon_5_w120.jpg" />
-						</a>
-						<a href="/images/Stefano_Bussolon/Stefano_Bussolon_8.jpg" rel="lightbox_image">
-							<img src="/images/Stefano_Bussolon/Stefano_Bussolon_8_w120.jpg" />
-						</a>
-						<a href="/images/Stefano_Bussolon/Stefano_Bussolon_9.jpg" rel="lightbox_image">
-							<img src="/images/Stefano_Bussolon/Stefano_Bussolon_9_w120.jpg" />
-						</a>
-					</div>
-					<div class="lightbox_sidebar_caption">
-						Photos by <a href="http://www.flickr.com/photos/sweetdreamer_it/">Stefano Bussolon</a>
-					</div>
-				</div>
-				
-				<div class="ci_bulleted_list">
-					<p>
-						<span class="ci_bulleted_list_title">Find Dancers &amp; Dancing</span>
-						<span  class="ci_bulleted_list_subtitle">&mdash;Contact Improvisation worldwide</span>
-					</p>
-					<ul>
-						<li>
-							<%= link_to 'Special Events', :action => 'index', :controller => 'events' %>
-							&ndash; conferences, festivals, regional jams and workshops
-						</li>
-						<li>
-							<%= link_to 'Ongoing Jams/Classes', :action => 'index', :controller => 'jams' %>
-							&ndash; local classes and jams &ndash; <i>"regularly scheduled dancing"</i>
-						</li>
-						<li>
-							<%= link_to 'People', :action => 'index', :controller => 'people' %>
-							&ndash; teaching, performing, or otherwise involved in Contact
-						</li>
-						<li>
-							<%= link_to 'Organizations', :action => 'index', :controller => 'organizations' %>
-							&ndash; regional websites, studios, companies, etc. &ndash; <i>"everything else"</i>
-						</li>
-						<li style="padding-top: 1em;">
-							<i><b><%= link_to 'Global Map', :action => 'index', :controller => 'map' %></b></i>
-							&ndash; Events, Jams/Classes, People and Organizations on a Google Map
-						</li>
-					</ul>
-				</div>
+      <div>
+<!--
+        <div class="lightbox_sidebar">
+          <div class="lightbox" id="lightbox_images">
+            <a href="/images/Stefano_Bussolon/Stefano_Bussolon_3.jpg" rel="lightbox_image">
+              <img src="/images/Stefano_Bussolon/Stefano_Bussolon_3_w120.jpg" />
+            </a>
+            <a href="/images/Stefano_Bussolon/Stefano_Bussolon_4.jpg" rel="lightbox_image">
+              <img src="/images/Stefano_Bussolon/Stefano_Bussolon_4_w120.jpg" />
+            </a>
+            <a href="/images/Stefano_Bussolon/Stefano_Bussolon_5.jpg" rel="lightbox_image">
+              <img src="/images/Stefano_Bussolon/Stefano_Bussolon_5_w120.jpg" />
+            </a>
+            <a href="/images/Stefano_Bussolon/Stefano_Bussolon_8.jpg" rel="lightbox_image">
+              <img src="/images/Stefano_Bussolon/Stefano_Bussolon_8_w120.jpg" />
+            </a>
+            <a href="/images/Stefano_Bussolon/Stefano_Bussolon_9.jpg" rel="lightbox_image">
+              <img src="/images/Stefano_Bussolon/Stefano_Bussolon_9_w120.jpg" />
+            </a>
+          </div>
+          <div class="lightbox_sidebar_caption">
+            Photos by <a href="http://www.flickr.com/photos/sweetdreamer_it/">Stefano Bussolon</a>
+          </div>
+        </div>
+-->        
+        <div class="ci_bulleted_list">
+          <div>
+            <span class="ci_bulleted_list_title">Contact Improvisation Resources</span>
+            <span style="ci_bulleted_list_subtitle">&mdash;</span>
+          </div>
+          <ul>
+            <li>
+              <a href="http://www.contactquarterly.com/cq/webtext/resource.html">Learn About Contact Improvisation</a>
+              &ndash; definitions, history, development &amp; applications, practice, documentation and links
+              (courtesy of <i><a href="http://www.contactquarterly.com/" style="font-size: 1em;">Contact Quarterly</a></i>)
+            </li>
+            <!--
+            <li style="padding-top: 1em;">
+              <a href="/ci25/ci25.html">CI25</a>
+              was the celebration of the 25th Anniversary of Contact Improvisation, held 
+              in June 1997 at Oberlin College. This section includes historical information
+              about Contact including a bibliography and list of videos.
+            </li>
+            -->
+          </ul>
+        </div>
 
-				<div class="announcement">
-					<fieldset>
-						<legend>
-							Submitting Listings to the Directory
-						</legend>
-						<div>
-							<ol>
-								<li>
-									Fill out the 
-									<a href="/user/request_account">Account Request form</a>
-								</li>
-								<li>
-									Wait 0-48 hours for your request to be approved
-								</li>
-								<li>
-									Once your account has been created, 
-									<a href="/user">log in to your account</a>
-								</li>
-								<li>
-									You will now be able to create listings for
-									<a href="/events/new">Special Events</a>,
-									<a href="/jams/new">Ongoing Jams/Classes</a>,
-									<a href="/people/new">People</a> and
-									<a href="/organizations/new">Organizations</a>
-									or update your existing listings
-								</li>
-							</ol>
-						</div>
-						<p>
-							Please email <a href="mailto:listings@contactimprov.net">listings@contactimprov.net</a>
-							if you have any questions.
-						</p>
-					</fieldset>
-				</div>
+        <div class="ci_bulleted_list">
+          <p>
+            <span class="ci_bulleted_list_title">Find Dancers &amp; Dancing</span>
+            <span  class="ci_bulleted_list_subtitle">&mdash;Contact Improvisation worldwide</span>
+          </p>
+          <ul>
+            <li>
+              <%= link_to 'Special Events', :action => 'index', :controller => 'events' %>
+              &ndash; conferences, festivals, regional jams and workshops
+            </li>
+            <li>
+              <%= link_to 'Ongoing Jams/Classes', :action => 'index', :controller => 'jams' %>
+              &ndash; local classes and jams &ndash; <i>"regularly scheduled dancing"</i>
+            </li>
+            <li>
+              <%= link_to 'People', :action => 'index', :controller => 'people' %>
+              &ndash; teaching, performing, or otherwise involved in Contact
+            </li>
+            <li>
+              <%= link_to 'Organizations', :action => 'index', :controller => 'organizations' %>
+              &ndash; regional websites, studios, companies, etc. &ndash; <i>"everything else"</i>
+            </li>
 
-				<div class="ci_bulleted_list">
-					<p>
-						<span class="ci_bulleted_list_title">Contact Improvisation Resources</span>
-						<span style="ci_bulleted_list_subtitle">&mdash;</span>
-					</p>
-					<ul>
-						<li>
-							<a href="/about.html">About Contact Improvisation</a>
-							&ndash; just one definition
-						</li>
-						<li>
-							<a href="http://www.contactquarterly.com/cq/webtext/resource.html">More About Contact Improvisation</a>
-							&ndash; definitions, history, development &amp; applications, practice, documentation and resources
-							(from <i><a href="http://www.contactquarterly.com/" style="font-size: 1em;">Contact Quarterly</a></i>)
-						</li>
-						<li>
-							<a href="announce.html">Announcements and Links</a>
-							&ndash; notices, advertisements, etc.
-						</li>
-						<li>
-							<a href="/ci25/ci25.html">CI25</a>
-							was the celebration of the 25th Anniversary of Contact Improvisation, held 
-							in June 1997 at Oberlin College. This section includes historical information
-							about Contact including a bibliography and list of videos.
-						</li>
-						<li>
-							<a href="writings.html">Essays, Articles, and Theses about Contact Improvisation</a>
-						</li> 
-						<li>
-							<a href="photos/">Photographs</a>
-						</li>
-					</ul>
-				</div>
-			</div>
+            <li style="padding-top: 1em;">
+              <i><b><a href="">Add a Listing</a></b></i>
+              &ndash; for a CI-related Event, Jam, Person or Organization
+            </li>
 
-			<div style="border-bottom: solid 1px #808080; padding-bottom: 1em; clear: both;"></div>
+          </ul>
+        </div>
+        
+        <div id="map_canvas" style="width: 100%; height: 500px; border: 1px solid #666; margin-top: 2em;"></div>
 
-			<div style="font-size: small; text-align: right;">
-				<p>
-					As of January 15, 2009, this site is maintained by 
-					<a href="http://craigharman.net">Craig Harman</a>,
-					<br />
-					with assistance from
-					<a href="http://myriadicity.com/">Ken Manheimer</a>.
-				</p>
-				<p>
-	        Many thanks to Jim Davis, Chris Deephouse and Mugsy Lunsford  
-					<br />
-					for maintaining and hosting this site since 1995.
-				</p>
-			</div>
+<!--
+        <div class="announcement">
+          <fieldset>
+            <legend>
+              Submitting Listings to the Directory
+            </legend>
+            <div>
+              <ol>
+                <li>
+                  Fill out the 
+                  <a href="/user/request_account">Account Request form</a>
+                </li>
+                <li>
+                  Wait 0-48 hours for your request to be approved
+                </li>
+                <li>
+                  Once your account has been created, 
+                  <a href="/user">log in to your account</a>
+                </li>
+                <li>
+                  You will now be able to create listings for
+                  <a href="/events/new">Special Events</a>,
+                  <a href="/jams/new">Ongoing Jams/Classes</a>,
+                  <a href="/people/new">People</a> and
+                  <a href="/organizations/new">Organizations</a>
+                  or update your existing listings
+                </li>
+              </ol>
+            </div>
+            <p>
+              Please email <a href="mailto:listings@contactimprov.net">listings@contactimprov.net</a>
+              if you have any questions.
+            </p>
+          </fieldset>
+        </div>
+-->
+
+      </div>
+
+      <div style="border-bottom: solid 1px #808080; padding-bottom: 1em; clear: both;"></div>
+
+      <div style="font-size: small; text-align: right;">
+        <p>
+          Since 1995, 
+          Jim Davis, Chris Deephouse, Mugsy Lunsford and (as of 2009)
+          <a href="http://craigharman.net">Craig Harman</a>
+          <br />
+          have maintained the site as a free service for the community
+        </p>
+      </div>

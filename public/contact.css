@@ -84,7 +84,7 @@ div.banner_image {
 /* === NAVIGATION BAR === */
 
 div.navigation_bar {
-	margin-bottom: 2.5em;
+	margin-bottom: 0.5em;
 }
 
 .navigation_bar table {
@@ -166,6 +166,7 @@ span.ci_bulleted_list_title {
 span.ci_bulleted_list_subtitle {
 	font-size: 1.3em;
 }
+
 
 
 /* === CATEGORY TITLE === */
