@@ -39,7 +39,7 @@
 
 	<% if flash[:notice] %>
 		<div class="errorExplanation" id="errorExplanation">
-			<%= flash[:notice] %>
+			<%= raw flash[:notice] %>
 		</div>
 	<% end %>
 

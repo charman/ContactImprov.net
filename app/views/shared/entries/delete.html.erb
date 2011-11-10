@@ -6,7 +6,7 @@
 <div id="ci_form_page">
 	<% if flash[:notice] %>
 		<div class="errorExplanation" id="errorExplanation">
-			<%= flash[:notice] %>
+			<%= raw flash[:notice] %>
 		</div>
 	<% else %>
 		<h2>We have deleted your <%= category_name_singular %> listing</h2>

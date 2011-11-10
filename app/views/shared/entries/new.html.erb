@@ -5,7 +5,7 @@
 <div id="ci_form_page">
 	<% if flash[:notice] %>
 		<div class="errorExplanation" id="errorExplanation">
-			<%= flash[:notice] %>
+			<%= raw flash[:notice] %>
 		</div>
 	<% end %>
 
