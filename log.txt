@@ -27,6 +27,15 @@ THIS COMMIT:
 
 TODO:
 
+@ Revamp login form, Amazon style or similar
+
+@ Redirect about.html to CQ CI resource page
+
+@ Add descriptive title to home page
+
+@ Fix problem where Country and State fields are highlighted in red
+when editing an event
+
 @ Google Maps
   - XML feed
     - url and listing_url
@@ -45,14 +54,11 @@ TODO:
   - database optimization
     [...]
 
-@ Add descriptive title to home page
-
 ---
 
 @ Fix deprecation warnings caused by acts_as_state_machine
-
-@ Fix problem where Country and State fields are highlighted in red
-when editing an event
+  - migrate to AASM?
+      https://github.com/rubyist/aasm
 
 @ Calendars
   - iCal feeds
