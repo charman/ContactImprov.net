@@ -44,6 +44,8 @@ when editing an event
   - for multiple listings, show address in title  
   - links for directions to here, from here
   - streetview
+  - restyle
+    http://google-maps-utility-library-v3.googlecode.com/svn/trunk/infobubble/examples/example.html
 
 @ Performance tuning
   - caching
@@ -280,7 +282,6 @@ with the Rails 3 version of the site.
 Google Maps API v3 with jQuery:
 
   http://gmaps-samples-v3.googlecode.com/svn/trunk/infowindow/tabs.html
-
 
 
 ----[ Monday, January 26, 2009 ]--------------------------------------
