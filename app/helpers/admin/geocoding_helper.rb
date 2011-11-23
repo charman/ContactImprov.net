@@ -1,2 +1,0 @@
-module Admin::GeocodingHelper
-end
