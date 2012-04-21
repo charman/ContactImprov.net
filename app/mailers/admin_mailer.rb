@@ -21,6 +21,11 @@ class AdminMailer < ActionMailer::Base
       :content_type => "text/plain"
   end
 
+  def invalid_password_reset_code(reset_code)
+    mail :subject => subject_prefix + "Invalid password reset code - #{reset_code}",
+      :content_type => "text/plain"
+  end
+
   def new_entry_created(entry, entry_type)
     @entry      = entry
     @entry_type = entry_type

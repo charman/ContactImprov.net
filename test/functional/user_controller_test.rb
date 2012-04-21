@@ -515,6 +515,8 @@ class UserControllerTest < ActionController::TestCase
     assert_select "#password_reset_form", false
     assert_response :success
     assert_match /Invalid password reset code/, @response.body
+    assert_equal(1, @emails.size)
+    assert_match /Invalid password reset code/, @emails.first.subject
   end
 
   def test_should_not_find_user_to_reset_password_for_with_post
@@ -522,6 +524,8 @@ class UserControllerTest < ActionController::TestCase
     assert_select "#password_reset_form", false
     assert_response :success
     assert_match /Invalid password reset code/, @response.body
+    assert_equal(1, @emails.size)
+    assert_match /Invalid password reset code/, @emails.first.subject
   end
 
   def test_should_not_reset_password_with_mismatched_passwords

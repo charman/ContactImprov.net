@@ -275,8 +275,8 @@ class UserController < ApplicationController
     end
 
     if !@user
-      flash.now[:notice] = '<h2>Invalid password reset code</h2>' +
-                            '<p></p>'
+      flash.now[:notice] = '<h2>Invalid password reset code</h2> <p></p>'
+      AdminMailer.invalid_password_reset_code(params[:password_reset_code]).deliver
       return
     end
 
