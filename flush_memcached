@@ -1,0 +1,20 @@
+#!/bin/bash
+
+#  Flush the memcached memory cache - a frequent task when testing/debugging caching
+#
+#  To install memcached on OS X, install MacPorts and then run the command:
+#    port install memcached
+#
+#  To install memcached on Ubuntu, run the command:
+#    apt-get install memcached
+
+UNAME=`uname`
+
+if [ "$UNAME" == "Darwin" ]; then
+    sudo port unload memcached
+    sudo port load memcached
+fi
+
+if [ "$UNAME" == "Linux" ]; then
+    sudo /etc/init.d/memcached restart
+fi

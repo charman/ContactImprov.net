@@ -1,3 +1,0 @@
-#!/bin/bash
-port unload memcached
-port load memcached
