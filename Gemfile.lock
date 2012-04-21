@@ -2,7 +2,7 @@ PATH
   remote: vendor/gems/gems/acts_as_versioned-0.6.0
   specs:
     acts_as_versioned (0.6.0)
-      activerecord (~> 3.1)
+      activerecord (>= 3.0.9)
 
 GEM
   remote: http://rubygems.org/
