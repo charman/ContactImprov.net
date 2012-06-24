@@ -2,8 +2,6 @@ class SessionsController < ApplicationController
 
   rescue_from(ActionController::InvalidAuthenticityToken) { |e| redirect_to :action => 'nocookiesforyou' }
 
-  ssl_allowed :new, :create, :destroy
-
 
   def create
     #  Check if an account with the given email address exists and is waiting to be activated

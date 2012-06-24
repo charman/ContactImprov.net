@@ -5,14 +5,6 @@ class ApplicationController < ActionController::Base
   helper :all # include all helpers, all the time
   helper_method :current_user_session, :current_user, :logged_in?
 
-  include SslRequirement
-
-  #  Allow SSL to be used on all pages.  Prevents an https -> http -> https redirection
-  #   loop when using mod_rewrite in Apache to force an https connection.
-  def ssl_allowed?
-    true
-  end
-
   # [CTH]  We use :logged_in? as a before_filter in order to check if a user is logged in,
   #        and :login_required to force a user to log in.  This is useful if we want to
   #        display a user's current login status without redirecting them to a login page.

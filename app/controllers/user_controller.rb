@@ -2,9 +2,6 @@ class UserController < ApplicationController
 
   before_filter :login_required, :only => [:change_email, :change_password, :edit, :index]
 
-  ssl_allowed :index, :request_password_reset, :password_reset_requested, 
-    :reset_password, :request_account, :account_requested, :edit,
-    :change_password, :change_email, :activate
 
   #  In order for the AJAX auto_complete plugin to work, we need to disable authenticity
   #   checking when using POST requests to the auto_complete_[object]_[method] action that 
