@@ -29,8 +29,6 @@ TODO:
 
 @ Revamp login form, Amazon style or similar
 
-@ Redirect about.html to CQ CI resource page
-
 @ Add descriptive title to home page
 
 @ Fix problem where Country and State fields are highlighted in red
@@ -239,12 +237,31 @@ they can edit for that type of entry
 
 ==[ LOG ]=============================================================
 
-----[ day, November , 2011 ]--------------------------------------
 
 
+----[ day, April , 2012 ]--------------------------------------
 
 
-----[ day, November , 2011 ]--------------------------------------
+----[ Saturday, April 21, 2012 ]--------------------------------------
+
+@ User Natalia Perez:
+
+  catalinascarlatti@hotmail.com
+
+has been unable to reset her password - she keeps on getting an error
+message about "Invalid reset code".
+
+Made local copy of database.
+
+  >> u = User.find_by_email('catalinascarlatti@hotmail.com')
+  >> u.password_reset_code
+  => nil
+
+Tried generating new password reset code:
+
+  >> u.make_password_reset_code
+
+which worked as expected.
 
 
 ----[ Tuesday, November 8, 2011 ]-------------------------------------
