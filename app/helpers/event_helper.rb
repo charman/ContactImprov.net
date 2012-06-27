@@ -33,9 +33,7 @@ module EventHelper
       a << "#{e.person.first_name} #{e.person.last_name}"
     end
     if (e.phone_number && !e.phone_number.number.blank?)
-      #  TODO: Should adding microdata for the telephone field be optional?  The
-      #        http://schema.org/DanceEvent schema doesn't have a telephone field
-      a << "<span itemprop=\"telephone\">#{e.phone_number.number}</span>"
+      a << e.phone_number.number
     end
     if (e.email && !e.email.address.blank?)
       a << obfuscate_email_with_javascript(e.email.address)
