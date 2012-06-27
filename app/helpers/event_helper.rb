@@ -92,7 +92,7 @@ module EventHelper
       fa << l.country_name.english_name
     end
     '<span itemprop="address" itemscope itemtype="http://schema.org/PostalAddress">' + fa.join(', ') + 
-      "<meta itemprop=\"country\" content=\"#{l.country_name.iso_3166_1_a2_code}\" />" +
+      "<meta itemprop=\"addressCountry\" content=\"#{l.country_name.iso_3166_1_a2_code}\" />" +
       '</span>'
   end
 
