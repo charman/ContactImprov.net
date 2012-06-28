@@ -4,7 +4,7 @@
 #chown charman:charman config/environment.rb
 
 echo "Flushing memcached"
-./flush_memcached_ubuntu
+./flush_memcached
 
 #echo "Restarting Apache"
 #apachectl restart
