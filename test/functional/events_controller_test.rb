@@ -242,7 +242,7 @@ class EventsControllerTest < ActionController::TestCase
       }
     assert_response :success
     assert_select "[class=errorExplanation]"
-    assert_match /Country name can.t be blank/, @response.body
+    assert_match /Country name can.{1,10}t be blank/, @response.body
 #    assert_match /City name can.t be blank/, @response.body
   end
 
@@ -397,11 +397,11 @@ protected
   def verify_error_messages_for_missing_fields
     assert_response :success
     assert_select "[class=errorExplanation]"
-    assert_match /End date can.t be blank/, @response.body
-    assert_match /Start date can.t be blank/, @response.body
-    assert_match /Title can.t be blank/, @response.body
-    assert_match /Description can.t be blank/, @response.body
-    assert_match /Country name can.t be blank/, @response.body
+    assert_match /End date can.{1,10}t be blank/, @response.body
+    assert_match /Start date can.{1,10}t be blank/, @response.body
+    assert_match /Title can.{1,10}t be blank/, @response.body
+    assert_match /Description can.{1,10}t be blank/, @response.body
+    assert_match /Country name can.{1,10}t be blank/, @response.body
   end
 
 end

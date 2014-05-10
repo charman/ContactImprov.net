@@ -297,7 +297,7 @@ class Admin::UsersControllerTest < ActionController::TestCase
                                                  :country_name => {:english_name => 'United States'}}}
     users(:quentin).reload
     assert_select "[class=errorExplanation]"
-    assert_match /Last name can.t be blank/, @response.body
+    assert_match /Last name can.{1,10}t be blank/, @response.body
     #  We're not really testing for 'success' here, but rather if the form has been redisplayed
     assert_response :success
   end

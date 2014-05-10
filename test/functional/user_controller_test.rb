@@ -99,7 +99,7 @@ class UserControllerTest < ActionController::TestCase
     login_as :quentin
     post :change_password, :old_password => 'test', :password => 'password', :password_confirmation => 'mismatched'
     assert_select "[class=errorExplanation]"
-    assert_match /Password doesn.t match confirmation/, @response.body
+    assert_match /Password doesn.{1,6}t match confirmation/, @response.body
     assert_match /The password must have at least four characters/, @response.body
     assert_response :success
   end
@@ -324,7 +324,7 @@ class UserControllerTest < ActionController::TestCase
     put :edit, :user => {:person => {:first_name => '', :last_name => ''}}
     users(:quentin).reload
     assert_select "[class=errorExplanation]"
-    assert_match /Last name can.t be blank/, @response.body
+    assert_match /Last name can.{1,10}t be blank/, @response.body
     assert_response :success
   end
 
@@ -356,7 +356,7 @@ class UserControllerTest < ActionController::TestCase
          :uar_email => { :address => 'new_email@foo.com' }
     assert_response :success
     assert_select "[class=errorExplanation]"
-    assert_match /Something about contact improv can.t be blank/, @response.body
+    assert_match /Something about contact improv can.{1,6}t be blank/, @response.body
   end
   
   def test_should_not_allow_request_account_with_empty_last_name
@@ -369,7 +369,7 @@ class UserControllerTest < ActionController::TestCase
          :uar_email => { :address => 'new_email@foo.com' }
     assert_response :success
     assert_select "[class=errorExplanation]"
-    assert_match /Last name can.t be blank/, @response.body
+    assert_match /Last name can.{1,9}t be blank/, @response.body
   end
   
   def test_should_not_allow_request_account_with_empty_email
@@ -382,7 +382,7 @@ class UserControllerTest < ActionController::TestCase
          :uar_email => { :address => '' }
     assert_response :success
     assert_select "[class=errorExplanation]"
-    assert_match /Address can.t be blank/, @response.body
+    assert_match /Address can.{1,6}t be blank/, @response.body
   end
 
   def test_should_not_allow_request_account_with_invalid_email
@@ -533,7 +533,7 @@ class UserControllerTest < ActionController::TestCase
     post :reset_password, :password_reset_code => code, :user => { :password => 'password', :password_confirmation => 'mismatched'}
     assert_select "[class=errorExplanation]"
     assert_response :success
-    assert_match /Password doesn.t match confirmation/, @response.body
+    assert_match /Password doesn.{1,6}t match confirmation/, @response.body
   end
 
   def test_should_reset_password
