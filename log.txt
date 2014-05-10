@@ -237,9 +237,112 @@ they can edit for that type of entry
 
 ==[ LOG ]=============================================================
 
+----[ day, May , 2014 ]--------------------------------------
 
 
-----[ day, April , 2012 ]--------------------------------------
+----[ Saturday, May 10, 2014 ]----------------------------------------
+
+@ Revisiting long neglected code base.
+
+Code is currently using Rails 3.1.12.  The code needs to be updated to
+at least the most recent Rails 3.2 (3.2.18), and should possibly be
+upgraded to Rails 4.1.
+
+In an Ubuntu 12.04 VM, tried running:
+
+  gem install rails -v 3.2.18
+
+and the command seemed to hang for over a minute - but I was
+apparently just being impatient.
+
+From the VM, tried running:
+
+  bundle install
+
+While trying to install nokigiri, got an error message:
+
+  checking for libxml/parser.h... no
+  libxml2 is missing
+
+Tried:
+
+  apt-get install libxml2-dev
+
+which fixed that problem, but I now get the error message:
+
+  checking for libxslt/xslt.h... no
+
+Tried:
+
+  apt-get install libxslt-dev
+
+and the nokigiri 1.5.6 now installed successfully.
+
+@ Tried running:
+
+  rake test
+
+but got the error message:
+
+  You have already activated rake 10.0.4, but your Gemfile requires rake
+  10.0.3. Prepending `bundle exec` to your command may solve this.
+
+hand-edited the Gemfile.lock file, and changed:
+
+    rake (10.0.3)
+
+to:
+
+    rake (10.0.4)
+
+Ran:
+
+  rake test
+
+This time, got the error message:
+
+  /home/charman/contact_improv_net/config/initializers/geokit_config.rb:29:in
+  `initialize': No such file or directory -
+  config/google_maps_api_key.txt (Errno::ENOENT)
+
+which is an expected error message.  Ran:
+
+  cd config
+  ln -s google_maps_api_key.localhost.txt google_maps_api_key.txt
+
+Ran:
+
+  rake test
+
+and this time get MySQL error messages about permissions.  Ran my
+script:
+
+
+  ./DBinit
+
+and then re-ran:
+
+  rake test
+
+Fixed some RegEx issues matching escaped apostrophes.
+
+Currently the only unit/functional/integration test that doesn't pass
+is a unit test for geocoding.
+
+There are a bunch of deprecation warnings:
+
+  DEPRECATION WARNING: class_inheritable_attribute is deprecated,
+  please use class_attribute method instead. Notice their behavior are
+  slightly different, so refer to class_attribute documentation
+  first. (called from
+  /home/charman/contact_improv_net/app/models/user.rb:40)
+
+caused by acts_as_state_machine.  The acts_as_state_machine:
+
+  http://rubygems.org/gems/acts_as_state_machine
+
+hasn't been updated since 2010-01-13.
+
 
 
 ----[ Saturday, April 21, 2012 ]--------------------------------------
