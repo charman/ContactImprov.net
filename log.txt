@@ -317,7 +317,6 @@ Ran:
 and this time get MySQL error messages about permissions.  Ran my
 script:
 
-
   ./DBinit
 
 and then re-ran:
@@ -342,6 +341,56 @@ caused by acts_as_state_machine.  The acts_as_state_machine:
   http://rubygems.org/gems/acts_as_state_machine
 
 hasn't been updated since 2010-01-13.
+
+@ Updating code to use Rails 3.2[.18] instead of 3.1[.11].
+
+Running:
+
+  rake test
+
+generates a lot of deprecation warnings from the acts_as_versioned
+Gem:
+
+  DEPRECATION WARNING: You're trying to create an attribute
+  `version_id'. Writing arbitrary attributes on a model is
+  deprecated. Please just use `attr_writer` etc. (called from
+  save_version at /home/charman/.bundler/ruby/1.8/acts_as_versioned-63b1fc8529d0/lib/acts_as_versioned.rb:279)
+
+The official acts_as_versioned Gem:
+
+  https://github.com/technoweenie/acts_as_versioned
+
+hasn't been updated since April 11, 2012.  The most recent commit to
+the official version is supposed to fix deprecation warnings with
+Rails 3.2.
+
+There are forked versions of the Gem that are supposedly compatible
+with Rails 3.2 and Rails 4, such as this version - updated just a few
+weeks ago:
+
+  https://github.com/mjsommer/acts_as_versioned
+
+but I get the same deprecation warnings when using these versions.
+
+The actual line that is generating the deprecation messages, from the
+original version, is 279:
+
+        def save_version
+          if @saving_version
+            @saving_version = nil
+            rev = self.class.versioned_class.new
+            clone_versioned_model(self, rev)
+            rev.send("#{self.class.version_column}=",
+          send(self.class.version_column))
+            rev.send("#{self.class.versioned_foreign_key}=", id)
+*279*       rev.save
+          end
+        end
+
+If other people aren't experiencing these issues (and the commit logs
+suggest that the deprecation warnings were already fixed), it's
+possible that the deprecation warnings would be fixed if I was using
+Ruby 1.9 instead of Ruby 1.8.
 
 
 

@@ -37,52 +37,56 @@ class User < ActiveRecord::Base
   #                     so we set the initial state here as a hack.
   before_validation 'self.state = "passive" if !self.state'
 
-  acts_as_state_machine :initial => :passive
-  state :passive
-  state :pending, :enter => :do_pending
-  state :active,  :enter => :do_activate
-  state :suspended
-  state :deleted, :enter => :do_delete
+  include AASM
 
-  #  QUIRKY BEHAVIOR WARNING:  You must save the User object before invoking an action!!
-  #
-  #  Invoking a transition event before the User object is saved to the database seems to produce
-  #   inconsistent results.  Specifically, if I use User.new to create a new user, and then invoke
-  #   either the register! or activate! actions before saving the user to the database, then the
-  #   user's state is immediately updated.  But if I invoke either the suspend! or delete! action,
-  #   then the user's state is *not* updated.  All events work as expected after the User object
-  #   has been saved.
-  #  Let's assume that the default behavior is that you cannot update a state until the User has
-  #   been created.  I can understand why the register! event actually works in this case, because
-  #   the register changes the state to pending, which causes the do_pending function to be called -
-  #   and do_pending calls make_activation_code, which in turn calls save.  So the register! action
-  #   actually calls save before updating the state.  But why does the activate! event actually change
-  #   the state in this case?  Both activate! and delete! modify properties of the User object (both
-  #   modify deleted_at, while activate! also modifies activated_at and activation_code), and both
-  #   have transition functions (do_activate and do_delete, respectively), but only activate! actually
-  #   changes the user's state.
-  #  Obviously I'm missing something here...
+  aasm :column => 'state' do
+    state :passive, :initial => true
+    state :pending, :enter => :do_pending
+    state :active,  :enter => :do_activate
+    state :suspended
+    state :deleted, :enter => :do_delete
 
-  event :register do
-    transitions :from => :passive, :to => :pending, :guard => Proc.new {|u| !(u.crypted_password.blank? && u.password.blank?) }
-  end
-  
-  event :activate do
-    transitions :from => [:passive, :pending], :to => :active 
-  end
-  
-  event :suspend do
-    transitions :from => [:passive, :pending, :active], :to => :suspended
-  end
-  
-  event :delete do
-    transitions :from => [:passive, :pending, :active, :suspended], :to => :deleted
-  end
 
-  event :unsuspend do
-    transitions :from => :suspended, :to => :active,  :guard => Proc.new {|u| !u.activated_at.blank? }
-    transitions :from => :suspended, :to => :pending, :guard => Proc.new {|u| !u.activation_code.blank? }
-    transitions :from => :suspended, :to => :passive
+    #  QUIRKY BEHAVIOR WARNING:  You must save the User object before invoking an action!!
+    #
+    #  Invoking a transition event before the User object is saved to the database seems to produce
+    #   inconsistent results.  Specifically, if I use User.new to create a new user, and then invoke
+    #   either the register! or activate! actions before saving the user to the database, then the
+    #   user's state is immediately updated.  But if I invoke either the suspend! or delete! action,
+    #   then the user's state is *not* updated.  All events work as expected after the User object
+    #   has been saved.
+    #  Let's assume that the default behavior is that you cannot update a state until the User has
+    #   been created.  I can understand why the register! event actually works in this case, because
+    #   the register changes the state to pending, which causes the do_pending function to be called -
+    #   and do_pending calls make_activation_code, which in turn calls save.  So the register! action
+    #   actually calls save before updating the state.  But why does the activate! event actually change
+    #   the state in this case?  Both activate! and delete! modify properties of the User object (both
+    #   modify deleted_at, while activate! also modifies activated_at and activation_code), and both
+    #   have transition functions (do_activate and do_delete, respectively), but only activate! actually
+    #   changes the user's state.
+    #  Obviously I'm missing something here...
+
+    event :register do
+      transitions :from => :passive, :to => :pending, :guard => Proc.new {|u| !(u.crypted_password.blank? && u.password.blank?) }
+    end
+
+    event :activate do
+      transitions :from => [:passive, :pending], :to => :active 
+    end
+
+    event :suspend do
+      transitions :from => [:passive, :pending, :active], :to => :suspended
+    end
+
+    event :delete do
+      transitions :from => [:passive, :pending, :active, :suspended], :to => :deleted
+    end
+
+    event :unsuspend do
+      transitions :from => :suspended, :to => :active,  :guard => Proc.new {|u| !u.activated_at.blank? }
+      transitions :from => :suspended, :to => :pending, :guard => Proc.new {|u| !u.activation_code.blank? }
+      transitions :from => :suspended, :to => :passive
+    end
   end
 
 
