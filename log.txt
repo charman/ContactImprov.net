@@ -56,10 +56,6 @@ when editing an event
 
 ---
 
-@ Fix deprecation warnings caused by acts_as_state_machine
-  - migrate to AASM?
-      https://github.com/rubyist/aasm
-
 @ Calendars
   - iCal feeds
     - text for calendar subscription page
@@ -237,7 +233,200 @@ they can edit for that type of entry
 
 ==[ LOG ]=============================================================
 
-----[ day, May , 2014 ]--------------------------------------
+----[ day, July , 2017 ]--------------------------------------
+
+
+----[ Saturday, July 15, 2017 ]---------------------------------------
+
+@ Ubuntu 12.04 LTS is no longer supported, so I need to upgrade to my
+server - and get this app running with a newer version of Ruby.
+
+On Ubuntu 16.04 LTS, with the 'ruby' package installed, the Ruby
+version is 2.3.1:
+
+  $ ruby --version
+  ruby 2.3.1p112 (2016-04-26) [x86_64-linux-gnu]
+
+and the Gem version is 2.5.1:
+
+  $ gem --version
+  2.5.1
+
+Installed Bundler using:
+
+  sudo gem install bundler
+
+which installed Bundler 1.15.1.
+
+Tried running:
+
+  bundle update
+
+Got an error message about being unable to install the MySQL gem, as
+the VM I'm working in doesn't have MySQL installed.  Ran the
+recommended command:
+
+  sudo apt-get install libmysqlclient-dev
+
+Tried running:
+
+  bundle update
+
+and got the error message:
+
+  libxml2 is missing.  please visit
+  http://nokogiri.org/tutorials/installing_nokogiri.html for help with
+  installing dependencies.
+
+Tried installing dependencies:
+
+  sudo apt-get install libxml2-dev
+  sudo apt-get install libxslt-dev
+
+Tried running:
+
+  bundle update
+
+and got the error message:
+
+  Fetching sanitize 2.0.3
+  Installing sanitize 2.0.3
+  Gem::Ext::BuildError: ERROR: Failed to build gem native extension.
+
+  current directory:
+  /tmp/bundler20170715-30728-1v7mtb6linecache-1.3.1/gems/linecache-1.3.1/ext/linecache
+  /usr/bin/ruby2.3 -r ./siteconf20170715-30728-1t9535.rb extconf.rb
+  Can't handle 1.9.x yet
+  *** extconf.rb failed ***
+
+linecache isn't one of the dependencies listed in the Gemfile.  Based
+on Gemfile.lock, it looks like linecache is being brought in because
+of the dependency chain:
+
+  ruby-debug
+    ruby-debug-base
+      linecache
+
+Tried commenting out this Gemfile line:
+
+  gem 'ruby-debug'
+
+Tried running:
+
+  bundle update
+
+and this time the command succeeded.
+
+@ Installed MySQL server in the VM:
+
+  sudo apt-get install mysql-server
+
+Copied database-related files from the live Ubuntu 12.04 server to the
+Ubuntu 16.04 VM:
+
+  ci_rails/initialize_db/
+  ci_rails/DBinit
+  ci_rails/config/database.yml
+  ci_rails/config/google_maps_api_key.txt
+
+Ran the command:
+
+  ./DBinit
+
+and got the error message:
+
+  LoadError: Please install the mysql2 adapter: `gem install
+  activerecord-mysql2-adapter` (can't activate mysql2 (~> 0.3.10),
+  already activated mysql2-0.4.8. Make sure all dependencies are added
+  to Gemfile.)
+
+In the Gemfile, tried changing:
+
+  gem 'mysql2'
+
+to:
+
+  gem 'mysql2', '~>0.3.10'
+
+and now I can successfully run:
+
+  ./DBinit
+
+Running:
+
+  rails server
+
+runs without errors.
+
+@ As a sanity check, is Rails 3.2 even compatible with Ruby 2.3?
+Found this blog post, which claims that Rails 3.2.22 is compatible
+with Ruby 2.2:
+
+  http://weblog.rubyonrails.org/2015/6/16/Rails-3-2-22-4-1-11-and-4-2-2-have-been-released-and-more/
+
+The most recent version of the Rails 3.2.x line is Rails 3.2.22.5.
+
+In this GitHub issue, a user ran into some problems using Rails 3.2
+with Ruby 2.3, and was told that Rails 3.2 is no longer supported:
+
+  https://github.com/rails/rails/issues/26229
+
+So it's possible the app won't work with Ruby 2.3 unless I upgrade
+from Rails 3.2 to 4.2.
+
+@ Running:
+
+  rake test:units
+
+generates a ton of ActiveRecord errors.  87 out of 88 tests fail.  The
+error ActiveRecord error messages seem to look like:
+
+  Error:
+  test_should_unsuspend_user_with_nil_activation_code_and_activated_at_to_passive_state(UserTest):
+  ActiveRecord::StatementInvalid: Mysql2::Error: Field 'session_id'
+  doesn't have a default value: INSERT INTO `ci_user_sessions` () VALUES ()
+
+and all of the error messages seem to be the same error message about
+the 'ci_user_sessions' table.
+
+The problem was with the fixture file:
+
+  ci_rails/test/fixtures/user_sessions.yml
+
+which created some UserSession class instances that were missing the
+required field 'session_id'.
+
+@ Test failures:
+
+  Unit tests:
+  - location
+    - geocoding failure (likely because calling API from wrong host)
+  - user_account_request
+    - ?? related to AASM? (acts as state machine)
+  - users
+    - ??
+
+In the User model unit tests, I was getting error messages like:
+
+  Error:
+  test_should_unsuspend_user_with_nil_activation_code_and_activated_at_to_passive_state(UserTest):
+  NoMethodError: undefined method `activated_at' for nil:NilClass
+
+This was caused by version v4.x of the 'aasm' (acts as state machine)
+Gem.  There are apparently some major differences between aasm 3.x and
+aasm 4.x:
+
+  https://github.com/aasm/aasm/blob/master/README_FROM_VERSION_3_TO_4.md
+
+Modified the Gemfile, changing:
+
+  gem 'aasm'
+
+to:
+
+  gem 'aasm', '~>3.4.0'
+
+and that fixed the problems.
 
 
 ----[ Saturday, May 10, 2014 ]----------------------------------------

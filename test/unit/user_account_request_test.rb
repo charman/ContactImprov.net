@@ -15,7 +15,7 @@ class UserAccountRequestTest < ActiveSupport::TestCase
     assert_not_nil user
     assert_equal 'pending', user.state
     assert_equal 1, @emails.size
-    assert_match /A ContactImprov.net account has been created for you/, @emails.first.body
+    assert_match /A ContactImprov.net account has been created for you/, @emails.first.body.to_s
   end
 
   def test_should_sanitize_something_and_existing

@@ -31,8 +31,8 @@ class Admin::AccountRequestsControllerTest < ActionController::TestCase
     assert_not_nil user
     assert_equal 'pending', user.state
     assert_equal 1, @emails.size
-    assert_match /A ContactImprov.net account has been created for you/, @emails.first.body
-    assert_match user.activation_code, @emails.first.body
+    assert_match /A ContactImprov.net account has been created for you/, @emails.first.body.to_s
+    assert_match user.activation_code, @emails.first.body.to_s
   end
 
 

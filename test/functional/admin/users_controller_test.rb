@@ -297,7 +297,7 @@ class Admin::UsersControllerTest < ActionController::TestCase
                                                  :country_name => {:english_name => 'United States'}}}
     users(:quentin).reload
     assert_select "[class=errorExplanation]"
-    assert_match /Last name can.{1,10}t be blank/, @response.body
+    assert_match /Last name can.{1,10}t be blank/, @response.body.to_s
     #  We're not really testing for 'success' here, but rather if the form has been redisplayed
     assert_response :success
   end
@@ -364,7 +364,7 @@ class Admin::UsersControllerTest < ActionController::TestCase
     assert users(:quentin).valid_password?('new_password')
     assert !users(:quentin).valid_password?('test')
     assert_equal 1, @emails.size
-    assert_match 'new_password', @emails.first.body
+    assert_match 'new_password', @emails.first.body.to_s
     assert_match 'New password for your ContactImprov.net account', @emails.first.subject
   end
 

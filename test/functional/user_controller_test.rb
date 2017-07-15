@@ -57,8 +57,8 @@ class UserControllerTest < ActionController::TestCase
     assert_select "[id=change_successful]"
     assert_response :success
     assert_equal(1, @emails.size)
-    assert_match /EMAIL CHANGED/, @emails.first.body
-    assert_match /Your email address has been changed/, @response.body
+    assert_match /EMAIL CHANGED/, @emails.first.body.to_s
+    assert_match /Your email address has been changed/, @response.body.to_s
     assert_select "[class=errorExplanation]", false
   end
 
@@ -67,7 +67,7 @@ class UserControllerTest < ActionController::TestCase
     post :change_email, :password => 'badpassword', :email => 'new_email@contactimprov.org', 
          :email_confirmation => 'new_email@contactimprov.org'
     assert_select "[class=errorExplanation]"
-    assert_match /Old password incorrect/, @response.body
+    assert_match /Old password incorrect/, @response.body.to_s
     users(:quentin).reload
     assert_not_equal users(:quentin).email, 'new_email@contactimprov.org'
   end
@@ -77,7 +77,7 @@ class UserControllerTest < ActionController::TestCase
     post :change_email, :password => 'test', :email => 'new_email-contactimprov.org', 
          :email_confirmation => 'new_email-contactimprov.org'
     assert_select "[class=errorExplanation]"
-    assert_match /Email does not appear to be valid/, @response.body
+    assert_match /Email does not appear to be a valid/, @response.body.to_s
     users(:quentin).reload
     assert_not_equal users(:quentin).email, 'new_email@contactimprov.org'
   end
@@ -87,7 +87,7 @@ class UserControllerTest < ActionController::TestCase
     post :change_email, :password => 'test', :email => 'new_email@contactimprov.org', 
          :email_confirmation => 'different@contactimprov.org'
     assert_select "[class=errorExplanation]"
-    assert_match /email addresses do not match/, @response.body
+    assert_match /email addresses do not match/, @response.body.to_s
     users(:quentin).reload
     assert_not_equal users(:quentin).email, 'new_email@contactimprov.org'
   end
@@ -99,8 +99,8 @@ class UserControllerTest < ActionController::TestCase
     login_as :quentin
     post :change_password, :old_password => 'test', :password => 'password', :password_confirmation => 'mismatched'
     assert_select "[class=errorExplanation]"
-    assert_match /Password doesn.{1,6}t match confirmation/, @response.body
-    assert_match /The password must have at least four characters/, @response.body
+    assert_match /Password doesn.{1,6}t match confirmation/, @response.body.to_s
+    assert_match /The password must have at least four characters/, @response.body.to_s
     assert_response :success
   end
 
@@ -108,7 +108,7 @@ class UserControllerTest < ActionController::TestCase
     login_as :quentin
     post :change_password, :old_password => 'bad_password', :password => 'password', :password_confirmation => 'mismatched'
     assert_select "[class=errorExplanation]"
-    assert_match /Incorrect old password/, @response.body
+    assert_match /Incorrect old password/, @response.body.to_s
     assert_response :success
   end
 
@@ -324,7 +324,7 @@ class UserControllerTest < ActionController::TestCase
     put :edit, :user => {:person => {:first_name => '', :last_name => ''}}
     users(:quentin).reload
     assert_select "[class=errorExplanation]"
-    assert_match /Last name can.{1,10}t be blank/, @response.body
+    assert_match /Last name can.{1,10}t be blank/, @response.body.to_s
     assert_response :success
   end
 
@@ -356,7 +356,7 @@ class UserControllerTest < ActionController::TestCase
          :uar_email => { :address => 'new_email@foo.com' }
     assert_response :success
     assert_select "[class=errorExplanation]"
-    assert_match /Something about contact improv can.{1,6}t be blank/, @response.body
+    assert_match /Something about contact improv can.{1,6}t be blank/, @response.body.to_s
   end
   
   def test_should_not_allow_request_account_with_empty_last_name
@@ -369,7 +369,7 @@ class UserControllerTest < ActionController::TestCase
          :uar_email => { :address => 'new_email@foo.com' }
     assert_response :success
     assert_select "[class=errorExplanation]"
-    assert_match /Last name can.{1,9}t be blank/, @response.body
+    assert_match /Last name can.{1,9}t be blank/, @response.body.to_s
   end
   
   def test_should_not_allow_request_account_with_empty_email
@@ -382,7 +382,7 @@ class UserControllerTest < ActionController::TestCase
          :uar_email => { :address => '' }
     assert_response :success
     assert_select "[class=errorExplanation]"
-    assert_match /Address can.{1,6}t be blank/, @response.body
+    assert_match /Address can.{1,6}t be blank/, @response.body.to_s
   end
 
   def test_should_not_allow_request_account_with_invalid_email
@@ -395,7 +395,7 @@ class UserControllerTest < ActionController::TestCase
          :uar_email => { :address => 'invalid' }
     assert_response :success
     assert_select "[class=errorExplanation]"
-    assert_match /does not appear to be valid/, @response.body
+    assert_match /does not appear to be a valid/, @response.body.to_s
   end
 
   def test_should_allow_request_account
@@ -417,7 +417,7 @@ class UserControllerTest < ActionController::TestCase
     assert_equal 'new_email@foo.com', uar.email.address
   
     assert_equal(1, @emails.size)
-    assert_match /ACCOUNT REQUEST/, @emails.first.body
+    assert_match /ACCOUNT REQUEST/, @emails.first.body.to_s
   end
 
   def test_should_send_pending_users_activation_email_when_they_request_account
@@ -430,10 +430,10 @@ class UserControllerTest < ActionController::TestCase
         :uar_email => { :address => users(:pending_user).email }
    assert_response :success
    assert_select "[class=errorExplanation]"
-   assert_match /You need to activate your account/, @response.body
+   assert_match /You need to activate your account/, @response.body.to_s
    assert_equal(1, @emails.size)
    assert_match /We have created a ContactImprov.net account for you/, @emails.first.subject
-   assert_match /A ContactImprov.net account has been created for you/, @emails.first.body
+   assert_match /A ContactImprov.net account has been created for you/, @emails.first.body.to_s
   end
 
   def test_should_send_active_users_password_reset_email_when_they_request_account
@@ -448,7 +448,7 @@ class UserControllerTest < ActionController::TestCase
     assert_select "[class=errorExplanation]", false
     assert_equal(1, @emails.size)
     assert_match /Instructions for resetting your ContactImprov.net account password/, @emails.first.subject
-    assert_match /We have received a request to reset the password/, @emails.first.body
+    assert_match /We have received a request to reset the password/, @emails.first.body.to_s
   end
 
 
@@ -458,28 +458,28 @@ class UserControllerTest < ActionController::TestCase
     post :request_password_reset, :email => ''
     assert_response :success
     assert flash[:notice]
-    assert_match /You must provide an email address/, @response.body
+    assert_match /You must provide an email address/, @response.body.to_s
   end
 
   def test_should_not_allow_request_password_reset_with_mismatched_emails
     post :request_password_reset, :email => 'quentin@contactimprov.org', :email_confirmation => 'notquentin@contactimprov.org'
     assert_response :success
     assert flash[:notice]
-    assert_match /The email addresses you provided do not match/, @response.body
+    assert_match /The email addresses you provided do not match/, @response.body.to_s
   end
 
   def test_should_not_allow_request_password_for_unknown_email
     post :request_password_reset, :email => 'unknown_user@contactimprov.org', :email_confirmation => 'unknown_user@contactimprov.org'
     assert_response :success
     assert flash[:notice]
-    assert_match /We don.t seem to have any records of a user with the email address/, @response.body
+    assert_match /We don.t seem to have any records of a user with the email address/, @response.body.to_s
   end
 
   def test_should_not_allow_request_password_for_pending_user
     post :request_password_reset, :email => 'aaron@contactimprov.org', :email_confirmation => 'aaron@contactimprov.org'
     assert_response :success
     assert flash[:notice]
-    assert_match /You need to activate your account/, @response.body
+    assert_match /You need to activate your account/, @response.body.to_s
     assert_equal(1, @emails.size)
     #  TODO: Test values of the email subject, recipient, and body
   end
@@ -488,7 +488,7 @@ class UserControllerTest < ActionController::TestCase
     post :request_password_reset, :email => 'passive_user@contactimprov.org', :email_confirmation => 'passive_user@contactimprov.org'
     assert_response :success
     assert flash[:notice]
-    assert_match /Your account is not set up yet/, @response.body
+    assert_match /Your account is not set up yet/, @response.body.to_s
     assert_equal(1, @emails.size)
     #  TODO: Test values of the email subject, recipient, and body
   end
@@ -514,7 +514,7 @@ class UserControllerTest < ActionController::TestCase
     get :reset_password, :password_reset_code => ''
     assert_select "#password_reset_form", false
     assert_response :success
-    assert_match /Invalid password reset code/, @response.body
+    assert_match /Invalid password reset code/, @response.body.to_s
     assert_equal(1, @emails.size)
     assert_match /Invalid password reset code/, @emails.first.subject
   end
@@ -523,7 +523,7 @@ class UserControllerTest < ActionController::TestCase
     post :reset_password, :password_reset_code => ''
     assert_select "#password_reset_form", false
     assert_response :success
-    assert_match /Invalid password reset code/, @response.body
+    assert_match /Invalid password reset code/, @response.body.to_s
     assert_equal(1, @emails.size)
     assert_match /Invalid password reset code/, @emails.first.subject
   end
@@ -533,7 +533,7 @@ class UserControllerTest < ActionController::TestCase
     post :reset_password, :password_reset_code => code, :user => { :password => 'password', :password_confirmation => 'mismatched'}
     assert_select "[class=errorExplanation]"
     assert_response :success
-    assert_match /Password doesn.{1,6}t match confirmation/, @response.body
+    assert_match /Password doesn.{1,6}t match confirmation/, @response.body.to_s
   end
 
   def test_should_reset_password

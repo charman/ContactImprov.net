@@ -1,2 +1,3 @@
 #!/bin/bash
-/usr/bin/ruby -Ilib:test "/Library/Ruby/Gems/1.8/gems/rake-0.8.7/lib/rake/rake_test_loader.rb" "test/functional/$1_controller_test.rb"
+/usr/bin/ruby -Ilib:test "/var/lib/gems/2.3.0/gems/rake-12.0.0/lib/rake/rake_test_loader.rb" "test/functional/$1_controller_test.rb"
+#/usr/bin/ruby -Ilib:test "/Library/Ruby/Gems/1.8/gems/rake-0.8.7/lib/rake/rake_test_loader.rb" "test/functional/$1_controller_test.rb"
