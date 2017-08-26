@@ -15,7 +15,7 @@ ContactImprovNet::Application.configure do
   # config.action_mailer.raise_delivery_errors = false
 
   # [CTH]
-  log_pipe = IO.popen("/usr/local/apache2/bin/rotatelogs #{::Rails.root.to_s}/log/production_log.%Y%m%d 86400", 'a')
+  log_pipe = IO.popen("/usr/bin/rotatelogs #{::Rails.root.to_s}/log/production_log.%Y%m%d 86400", 'a')
   config.logger = Logger.new(log_pipe)
 
   config.action_mailer.delivery_method = :sendmail
