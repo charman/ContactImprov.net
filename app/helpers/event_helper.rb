@@ -2,8 +2,8 @@ module EventHelper
 
   def add_to_google_calendar_button(e)
     #  For information about the parameters to use, see:
-    #    http://www.google.com/googlecalendar/event_publisher_guide_detail.html
-    '<a href="http://www.google.com/calendar/event?action=TEMPLATE' + 
+    #    https://www.google.com/googlecalendar/event_publisher_guide_detail.html
+    '<a href="https://www.google.com/calendar/event?action=TEMPLATE' + 
       '&text=' + url_escape(e.title) + 
       '&dates=' + event_dates_formatted_for_google_calendar(e) + 
       '&details=' + description_formatted_for_google_calendar(e) +  
@@ -12,7 +12,7 @@ module EventHelper
       #  Google Calendar doesn't seem to be doing anything with the sprop arguments
       '&sprop=website:' + preferred_url(e) + 
       '&sprop=name:ContactImprov.net" target="_blank">' + 
-      '<img src="http://www.google.com/calendar/images/ext/gc_button6.gif" border=0></a>'
+      '<img src="https://www.google.com/calendar/images/ext/gc_button6.gif" border=0></a>'
   end
 
   def description_formatted_for_google_calendar(e)
@@ -99,7 +99,7 @@ module EventHelper
     if !e.url.blank?
       url_escape(e.url.address)
     else
-      "http://contactimprov.net/events/view/#{e.id}"
+      "https://www.contactimprov.net/events/view/#{e.id}"
     end
   end
 
